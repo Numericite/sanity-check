@@ -2,13 +2,21 @@ import sharp from "sharp";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { buildConfig } from "payload";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+import { Media } from "./collections/Media";
+import { Tools } from "./collections/Tools";
+
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
 export default buildConfig({
 	// If you'd like to use Rich Text, pass your editor here
 	editor: lexicalEditor(),
 
 	// Define and configure your collections in this array
-	collections: [],
+	collections: [Media, Tools],
 
 	// Your Payload secret - should be a complex and secure string, unguessable
 	secret: process.env.PAYLOAD_SECRET || "",
@@ -25,6 +33,6 @@ export default buildConfig({
 	// you don't need it!
 	sharp,
 	typescript: {
-		outputFile: "src/payload/payload-types.ts",
+		outputFile: path.resolve(dirname, "payload-types.ts"),
 	},
 });

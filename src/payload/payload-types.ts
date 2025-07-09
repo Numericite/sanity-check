@@ -67,6 +67,8 @@ export interface Config {
   };
   blocks: {};
   collections: {
+    media: Media;
+    tools: Tool;
     users: User;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -74,6 +76,8 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
+    media: MediaSelect<false> | MediaSelect<true>;
+    tools: ToolsSelect<false> | ToolsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -113,6 +117,93 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tools".
+ */
+export interface Tool {
+  id: number;
+  name: string;
+  site_link: string;
+  image_link: number | Media;
+  description?: string | null;
+  enterprise_certifications?: string | null;
+  data_access?: string | null;
+  subcontractors?: string | null;
+  transfer_out_eu?: string | null;
+  privacy_score_saas?: string | null;
+  privacy_score_self_hosted?: string | null;
+  tool_kind?: string | null;
+  location_host_client?: string | null;
+  online_accessible_dpa?: string | null;
+  subcontractors_infra?: string | null;
+  certification_dpf?: boolean | null;
+  opensource?: string | null;
+  self_host_possibility?: string | null;
+  fr_documentation?: string | null;
+  dpa_compliant?: string | null;
+  subkind?: string | null;
+  rgpd_feature?: string | null;
+  transfer_supervision?: string | null;
+  enterprise_location?: string | null;
+  dpa_link?: string | null;
+  subcontractors_certifications?: string | null;
+  enterprise_european?: string | null;
+  final_users_location?: string | null;
+  actions?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  location_note?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  transfer_informations?: string | null;
+  dpa_file?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -141,10 +232,19 @@ export interface User {
  */
 export interface PayloadLockedDocument {
   id: number;
-  document?: {
-    relationTo: 'users';
-    value: number | User;
-  } | null;
+  document?:
+    | ({
+        relationTo: 'media';
+        value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'tools';
+        value: number | Tool;
+      } | null)
+    | ({
+        relationTo: 'users';
+        value: number | User;
+      } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
@@ -186,6 +286,63 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tools_select".
+ */
+export interface ToolsSelect<T extends boolean = true> {
+  name?: T;
+  site_link?: T;
+  image_link?: T;
+  description?: T;
+  enterprise_certifications?: T;
+  data_access?: T;
+  subcontractors?: T;
+  transfer_out_eu?: T;
+  privacy_score_saas?: T;
+  privacy_score_self_hosted?: T;
+  tool_kind?: T;
+  location_host_client?: T;
+  online_accessible_dpa?: T;
+  subcontractors_infra?: T;
+  certification_dpf?: T;
+  opensource?: T;
+  self_host_possibility?: T;
+  fr_documentation?: T;
+  dpa_compliant?: T;
+  subkind?: T;
+  rgpd_feature?: T;
+  transfer_supervision?: T;
+  enterprise_location?: T;
+  dpa_link?: T;
+  subcontractors_certifications?: T;
+  enterprise_european?: T;
+  final_users_location?: T;
+  actions?: T;
+  location_note?: T;
+  transfer_informations?: T;
+  dpa_file?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
