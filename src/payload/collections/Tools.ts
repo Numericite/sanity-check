@@ -21,8 +21,7 @@ export const Tools: CollectionConfig = {
 		{
 			name: "image_link",
 			type: "relationship",
-			relationTo: "media",
-			required: true,
+			relationTo: "media"
 		},
 		{
 			name: "description",

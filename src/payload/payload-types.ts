@@ -123,7 +123,7 @@ export interface Tool {
   id: number;
   name: string;
   site_link: string;
-  image_link: number | Media;
+  image_link?: (number | null) | Media;
   description?: string | null;
   enterprise_certifications?: string | null;
   data_access?: string | null;
