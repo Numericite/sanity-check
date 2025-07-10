@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { CustomSelectFieldClient } from "../components/CustomSelect";
 
 export const Tools: CollectionConfig = {
 	slug: "tools",
@@ -32,6 +33,14 @@ export const Tools: CollectionConfig = {
 			name: "enterprise_certifications",
 			type: "text",
 			label: "Certifications de l'entreprise",
+			admin: {
+				components: {
+					Field: {
+						path: "/components/CustomSelect#CustomSelectFieldServer",
+						exportName: "CustomSelectFieldServer",
+					},
+				},
+			},
 		},
 		{
 			name: "data_access",
