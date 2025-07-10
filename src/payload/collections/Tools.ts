@@ -1,5 +1,4 @@
 import type { CollectionConfig } from "payload";
-import { CustomSelectFieldClient } from "../components/CustomSelect";
 
 export const Tools: CollectionConfig = {
 	slug: "tools",
@@ -22,7 +21,7 @@ export const Tools: CollectionConfig = {
 		{
 			name: "image_link",
 			type: "relationship",
-			relationTo: "media"
+			relationTo: "media",
 		},
 		{
 			name: "description",
@@ -46,6 +45,14 @@ export const Tools: CollectionConfig = {
 			name: "data_access",
 			type: "text",
 			label: "Accès aux données",
+			admin: {
+				components: {
+					Field: {
+						path: "/components/CustomSelect#CustomSelectFieldServer",
+						exportName: "CustomSelectFieldServer",
+					},
+				},
+			},
 		},
 		{
 			name: "subcontractors",
@@ -71,11 +78,27 @@ export const Tools: CollectionConfig = {
 			name: "tool_kind",
 			type: "text",
 			label: "Type d'outil",
+			admin: {
+				components: {
+					Field: {
+						path: "/components/CustomSelect#CustomSelectFieldServer",
+						exportName: "CustomSelectFieldServer",
+					},
+				},
+			},
 		},
 		{
 			name: "location_host_client",
 			type: "text",
 			label: "Localisation hébergement: relation client",
+			admin: {
+				components: {
+					Field: {
+						path: "/components/CustomSelect#CustomSelectFieldServer",
+						exportName: "CustomSelectFieldServer",
+					},
+				},
+			},
 		},
 		{
 			name: "online_accessible_dpa",
@@ -86,6 +109,14 @@ export const Tools: CollectionConfig = {
 			name: "subcontractors_infra",
 			type: "text",
 			label: "Sous-traitants (infrastructure)",
+			admin: {
+				components: {
+					Field: {
+						path: "/components/CustomSelect#CustomSelectFieldServer",
+						exportName: "CustomSelectFieldServer",
+					},
+				},
+			},
 		},
 		{
 			name: "certification_dpf",
@@ -116,21 +147,53 @@ export const Tools: CollectionConfig = {
 			name: "subkind",
 			type: "text",
 			label: "Sous Type d'outil / fonctionnalités",
+			admin: {
+				components: {
+					Field: {
+						path: "/components/CustomSelect#CustomSelectFieldServer",
+						exportName: "CustomSelectFieldServer",
+					},
+				},
+			},
 		},
 		{
 			name: "rgpd_feature",
 			type: "text",
 			label: "Fonctionnalités RGPD / Sécurité",
+			admin: {
+				components: {
+					Field: {
+						path: "/components/CustomSelect#CustomSelectFieldServer",
+						exportName: "CustomSelectFieldServer",
+					},
+				},
+			},
 		},
 		{
 			name: "transfer_supervision",
 			type: "text",
 			label: "Supervision des transferts",
+			admin: {
+				components: {
+					Field: {
+						path: "/components/CustomSelect#CustomSelectFieldServer",
+						exportName: "CustomSelectFieldServer",
+					},
+				},
+			},
 		},
 		{
 			name: "enterprise_location",
 			type: "text",
 			label: "Localisation de l'entreprise",
+			admin: {
+				components: {
+					Field: {
+						path: "/components/CustomSelect#CustomSelectFieldServer",
+						exportName: "CustomSelectFieldServer",
+					},
+				},
+			},
 		},
 		{
 			name: "dpa_link",
@@ -141,16 +204,40 @@ export const Tools: CollectionConfig = {
 			name: "subcontractors_certifications",
 			type: "text",
 			label: "Certifications des sous-traitants",
+			admin: {
+				components: {
+					Field: {
+						path: "/components/CustomSelect#CustomSelectFieldServer",
+						exportName: "CustomSelectFieldServer",
+					},
+				},
+			},
 		},
 		{
 			name: "enterprise_european",
 			type: "text",
 			label: "Entreprise européenne",
+			admin: {
+				components: {
+					Field: {
+						path: "/components/CustomSelect#CustomSelectFieldServer",
+						exportName: "CustomSelectFieldServer",
+					},
+				},
+			},
 		},
 		{
 			name: "final_users_location",
 			type: "text",
 			label: "Localisation de l'hébergement des utilisateurs finaux",
+			admin: {
+				components: {
+					Field: {
+						path: "/components/CustomSelect#CustomSelectFieldServer",
+						exportName: "CustomSelectFieldServer",
+					},
+				},
+			},
 		},
 		{
 			name: "actions",
