@@ -28,10 +28,13 @@ export const Tools: CollectionConfig = {
 			type: "textarea",
 			label: "Description de l'outil",
 		},
-		{
+		{	
 			name: "enterprise_certifications",
 			type: "text",
 			label: "Certifications de l'entreprise",
+			custom: {
+				selectLabel: "Certifications de l'entreprise"
+			},
 			admin: {
 				components: {
 					Field: {
@@ -45,6 +48,9 @@ export const Tools: CollectionConfig = {
 			name: "data_access",
 			type: "text",
 			label: "Accès aux données",
+			custom: {
+				selectLabel: "Acccès aux données"
+			},
 			admin: {
 				components: {
 					Field: {
@@ -78,6 +84,9 @@ export const Tools: CollectionConfig = {
 			name: "tool_kind",
 			type: "text",
 			label: "Type d'outil",
+			custom: {
+				selectLabel: "Type d'outil"
+			},
 			admin: {
 				components: {
 					Field: {
@@ -91,6 +100,9 @@ export const Tools: CollectionConfig = {
 			name: "location_host_client",
 			type: "text",
 			label: "Localisation hébergement: relation client",
+			custom: {
+				selectLabel: "Localisation hébergement: relation client"
+			},
 			admin: {
 				components: {
 					Field: {
@@ -109,6 +121,9 @@ export const Tools: CollectionConfig = {
 			name: "subcontractors_infra",
 			type: "text",
 			label: "Sous-traitants (infrastructure)",
+			custom: {
+				selectLabel: "Sous-traitants (infrastructure)"
+			},
 			admin: {
 				components: {
 					Field: {
@@ -147,6 +162,9 @@ export const Tools: CollectionConfig = {
 			name: "subkind",
 			type: "text",
 			label: "Sous Type d'outil / fonctionnalités",
+			custom: {
+				selectLabel: "Sous type d'outil / fonctionnalités"
+			},
 			admin: {
 				components: {
 					Field: {
@@ -160,6 +178,9 @@ export const Tools: CollectionConfig = {
 			name: "rgpd_feature",
 			type: "text",
 			label: "Fonctionnalités RGPD / Sécurité",
+			custom: {
+				selectLabel: "Fonctionnalités RGPD / Sécurité"
+			},
 			admin: {
 				components: {
 					Field: {
@@ -173,6 +194,9 @@ export const Tools: CollectionConfig = {
 			name: "transfer_supervision",
 			type: "text",
 			label: "Supervision des transferts",
+			custom: {
+				selectLabel: "Supervision des transferts"
+			},
 			admin: {
 				components: {
 					Field: {
@@ -186,6 +210,9 @@ export const Tools: CollectionConfig = {
 			name: "enterprise_location",
 			type: "text",
 			label: "Localisation de l'entreprise",
+			custom: {
+				selectLabel: "Localisation de l'entreprise"
+			},
 			admin: {
 				components: {
 					Field: {
@@ -204,6 +231,9 @@ export const Tools: CollectionConfig = {
 			name: "subcontractors_certifications",
 			type: "text",
 			label: "Certifications des sous-traitants",
+			custom: {
+				selectLabel: "Certifications des sous-traitants"
+			},
 			admin: {
 				components: {
 					Field: {
@@ -217,6 +247,9 @@ export const Tools: CollectionConfig = {
 			name: "enterprise_european",
 			type: "text",
 			label: "Entreprise européenne",
+			custom: {
+				selectLabel: "entreprise européenne"
+			},
 			admin: {
 				components: {
 					Field: {
@@ -230,6 +263,9 @@ export const Tools: CollectionConfig = {
 			name: "final_users_location",
 			type: "text",
 			label: "Localisation de l'hébergement des utilisateurs finaux",
+			custom: {
+				selectLabel: "Localisation de l'hébergement des utilisateurs finaux"
+			},
 			admin: {
 				components: {
 					Field: {
