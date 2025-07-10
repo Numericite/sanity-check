@@ -6,8 +6,7 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"ignoreUnknown": false,
-		"ignore": ["./src/payload/payload-types.ts"]
+		"ignoreUnknown": false
 	},
 	"formatter": { "enabled": true },
 	"organizeImports": { "enabled": true },

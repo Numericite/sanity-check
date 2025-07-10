@@ -2,6 +2,9 @@ import type { CollectionConfig } from "payload";
 
 export const Tools: CollectionConfig = {
 	slug: "tools",
+	versions: {
+		drafts: false,
+	},
 	fields: [
 		{
 			name: "name",
@@ -17,7 +20,7 @@ export const Tools: CollectionConfig = {
 		},
 		{
 			name: "image_link",
-			type: "upload",
+			type: "relationship",
 			relationTo: "media",
 			required: true,
 		},

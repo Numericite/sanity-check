@@ -20,6 +20,15 @@ const config = {
   experimental: {
     optimizePackageImports: ["@chakra-ui/react"],
   },
+  webpack: (webpackConfig) => {
+    webpackConfig.resolve.extensionAlias = {
+      ".cjs": [".cts", ".cjs"],
+      ".js": [".ts", ".tsx", ".js", ".jsx"],
+      ".mjs": [".mts", ".mjs"],
+    };
+
+    return webpackConfig;
+  },
 };
 
-export default withPayload(config);
+export default withPayload(config, { devBundleServerPackages: false });

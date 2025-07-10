@@ -12,11 +12,16 @@ const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 export default buildConfig({
+	admin: {
+		importMap: {
+			baseDir: path.resolve(dirname),
+		},
+	},
 	// If you'd like to use Rich Text, pass your editor here
 	editor: lexicalEditor(),
 
 	// Define and configure your collections in this array
-	collections: [Media, Tools],
+	collections: [Tools, Media],
 
 	// Your Payload secret - should be a complex and secure string, unguessable
 	secret: process.env.PAYLOAD_SECRET || "",
@@ -26,6 +31,7 @@ export default buildConfig({
 		pool: {
 			connectionString: process.env.DATABASE_URI || "",
 		},
+		migrationDir: path.resolve(dirname, "./migrations"),
 	}),
 	// If you want to resize images, crop, set focal point, etc.
 	// make sure to install it and pass it to the config.
