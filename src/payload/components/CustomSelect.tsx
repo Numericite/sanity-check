@@ -8,38 +8,31 @@ interface CustomSelectFieldProps {
 }
 
 export const CustomSelectFieldServer: TextFieldServerComponent = async (
-    props,
+	props,
 ) => {
-    const { path, payload, data, field } = props;
+	const { path, payload, field } = props;
 
-    const tmpPath = path as keyof Tool;
+	const tmpPath = path as keyof Tool;
 
-    const versions = await payload.findVersions({
-        collection: "tools",
-        select: {
-            version: {
-                [tmpPath]: true,
-            },
-        },
-    });
+	const versions = await payload.findVersions({
+		collection: "tools",
+		select: {
+			version: {
+				[tmpPath]: true,
+			},
+		},
+	});
 
-    const uniqueValues = Array.from(
-        new Set(versions.docs.map((version) => (version.version as Tool)[tmpPath])),
-    ) as string[];
+	const uniqueValues = Array.from(
+		new Set(versions.docs.map((version) => (version.version as Tool)[tmpPath])),
+	) as string[];
 
-    const options = uniqueValues.map((val) => ({
-        label: val,
-        value: val,
-    }));
+	const options = uniqueValues.map((val) => ({
+		label: val,
+		value: val,
+	}));
 
-    // Récupérer le label depuis la propriété custom
-    const customLabel = (field as any).custom?.selectLabel || "Sélectionner une valeur";
+	const label = (field.label as string) || "Sélectionner une valeur";
 
-    return (
-        <CreatableTextClient
-            path={path}
-            label={customLabel}
-            options={options}
-        />
-    );
+	return <CreatableTextClient path={path} label={label} options={options} />;
 };

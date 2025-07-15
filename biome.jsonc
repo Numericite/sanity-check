@@ -8,10 +8,20 @@
 	"files": {
 		"ignoreUnknown": false
 	},
-	"formatter": { "enabled": true },
+	"formatter": {
+		"enabled": true,
+		"ignore": [
+			"./src/payload/payload-types.ts",
+			"./src/payload/payload-generated-schema.ts"
+		]
+	},
 	"organizeImports": { "enabled": true },
 	"linter": {
 		"enabled": true,
+		"ignore": [
+			"./src/payload/payload-types.ts",
+			"./src/payload/payload-generated-schema.ts"
+		],
 		"rules": {
 			"nursery": {
 				"useSortedClasses": {
