@@ -20,6 +20,7 @@ export const Tools: CollectionConfig = {
 		},
 		{
 			name: "image_link",
+			label: "Image de l'outil",
 			type: "relationship",
 			relationTo: "media",
 		},
