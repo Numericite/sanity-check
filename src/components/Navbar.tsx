@@ -68,7 +68,7 @@ const Navbar = () => {
 				</Flex>
 				<Flex alignItems="center" gap={4}>
 					<Text color="black">Un outil manque ?</Text>
-					<Button colorPalette="blue" variant="outline">
+					<Button colorPalette="primary" variant="outline">
 						Contactez-nous
 					</Button>
 				</Flex>

@@ -1,4 +1,15 @@
-import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
+import {
+	createSystem,
+	defaultConfig,
+	defineConfig,
+	defineRecipe,
+} from "@chakra-ui/react";
+
+const buttonRecipe = defineRecipe({
+	base: {
+		borderRadius: "xl",
+	},
+});
 
 const config = defineConfig({
 	theme: {
@@ -39,16 +50,19 @@ const config = defineConfig({
 		semanticTokens: {
 			colors: {
 				primary: {
-					solid: { value: "{colors.blue.500}" },
-					contrast: { value: "{colors.blue.100}" },
-					fg: { value: "{colors.blue.700}" },
-					muted: { value: "{colors.blue.100}" },
-					subtle: { value: "{colors.blue.200}" },
+					solid: { value: "{colors.blue.600}" },
+					contrast: { value: "{colors.white}" },
+					fg: { value: "{colors.blue.950}" },
+					muted: { value: "{colors.blue.950}" },
+					subtle: { value: "{colors.blue.50}" },
 					emphasized: { value: "{colors.blue.300}" },
 					focusRing: { value: "{colors.blue.500}" },
 					active: { value: "{colors.blue.600}" },
 				},
 			},
+		},
+		recipes: {
+			button: buttonRecipe,
 		},
 	},
 });

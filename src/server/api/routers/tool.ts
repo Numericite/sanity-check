@@ -31,4 +31,15 @@ export const toolRouter = createTRPCRouter({
 
 			return tools.docs;
 		}),
+
+	getById: publicProcedure
+		.input(z.number())
+		.query(async ({ ctx, input: id }) => {
+			const tool = await ctx.payload.findByID({
+				collection: "tools",
+				id,
+			});
+
+			return tool;
+		}),
 });
