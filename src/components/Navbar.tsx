@@ -38,14 +38,23 @@ const Navbar = () => {
 	return (
 		<Container>
 			<Flex alignItems="center" justifyContent="space-between" py={6}>
-				<Flex alignItems="center" gap={2}>
-					<Box bgColor="primary.active" borderRadius="full" px={3} py={1}>
-						<Text color="white" fontWeight={500} fontSize={20}>
-							S
-						</Text>
-					</Box>
-					<Heading color="black">Sanity Check</Heading>
-				</Flex>
+				<ChakraLink
+					color="black"
+					_hover={{ textDecoration: "none" }}
+					_focus={{ outline: "none" }}
+					asChild
+				>
+					<NextLink href="/" passHref>
+						<Flex alignItems="center" gap={2}>
+							<Box bgColor="primary.active" borderRadius="full" px={3} py={1}>
+								<Text color="white" fontWeight={500} fontSize={20}>
+									S
+								</Text>
+							</Box>
+							<Heading color="black">Sanity Check</Heading>
+						</Flex>
+					</NextLink>
+				</ChakraLink>
 				<Flex alignItems="center" gap={7}>
 					<NavbarItem href="/" isActive={pathname === "/"}>
 						Accueil
