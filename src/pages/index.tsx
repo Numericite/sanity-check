@@ -5,15 +5,22 @@ import {
 	Grid,
 	GridItem,
 	Heading,
+	Icon,
 	IconButton,
 	Input,
+	Show,
 	Text,
 } from "@chakra-ui/react";
+import { LuSearch, LuX } from "react-icons/lu";
 import Head from "next/head";
 import ToolCard from "~/components/ToolCard";
 import { api } from "~/utils/api";
+import { useState } from "react";
 
 export default function Home() {
+	const [isSearching, setIsSearching] = useState(false);
+	const [searchTerm, setSearchTerm] = useState("");
+
 	const { data: toolsWithAScore, isFetching: isLoadingToolsWithAScore } =
 		api.tool.getList.useQuery(
 			{
@@ -69,12 +76,15 @@ export default function Home() {
 					</Flex>
 					<Flex
 						alignItems="center"
-						bgColor="white"
+						bgColor={isSearching ? "blue.50" : "white"}
 						borderRadius="full"
 						px={4}
 						py={3}
 						mt={8}
 						w="full"
+						borderWidth={1}
+						borderColor={isSearching ? "blue.500" : "gray.100"}
+						transition="all 0.2s ease-in-out"
 					>
 						<Input
 							placeholder="Rechercher un outil ou une catégorie"
@@ -83,8 +93,36 @@ export default function Home() {
 							variant="outline"
 							outline="none"
 							border="none"
+							onFocus={() => setIsSearching(true)}
+							onBlur={() => setIsSearching(false)}
+							value={searchTerm}
+							onChange={(e) => setSearchTerm(e.target.value)}
 						/>
-						<IconButton bgColor="gray.800" p={4.5} borderRadius="full" />
+						<Show when={searchTerm !== ""}>
+							<IconButton
+								aria-label="Annuler la recherche"
+								bgColor={isSearching ? "white" : "gray.100"}
+								borderRadius="full"
+								size="2xs"
+								p={0}
+								mr={4}
+								onClick={() => {
+									setSearchTerm("");
+									setIsSearching(false);
+								}}
+							>
+								<Icon as={LuX} boxSize={3} color="blue.600" />
+							</IconButton>
+						</Show>
+						<IconButton
+							aria-label="Rechercher un outil"
+							borderRadius="full"
+							p={6}
+							flex={1}
+							colorPalette={isSearching ? "primary" : "black"}
+						>
+							<Icon as={LuSearch} boxSize={6} />
+						</IconButton>
 					</Flex>
 				</Flex>
 				<Flex flexDir="column" mt={12}>

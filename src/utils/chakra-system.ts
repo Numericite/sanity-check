@@ -59,6 +59,16 @@ const config = defineConfig({
 					focusRing: { value: "{colors.blue.500}" },
 					active: { value: "{colors.blue.600}" },
 				},
+				secondary: {
+					solid: { value: "{colors.gray.400}" },
+					contrast: { value: "{colors.white}" },
+					fg: { value: "{colors.gray.950}" },
+					muted: { value: "{colors.gray.950}" },
+					subtle: { value: "{colors.gray.50}" },
+					emphasized: { value: "{colors.gray.300}" },
+					focusRing: { value: "{colors.gray.500}" },
+					active: { value: "{colors.gray.600}" },
+				},
 			},
 		},
 		recipes: {
