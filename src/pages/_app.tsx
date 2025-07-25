@@ -1,5 +1,6 @@
 import type { AppType } from "next/app";
 import { Lexend } from "next/font/google";
+import Layout from "~/components/Layout";
 import { Provider } from "~/components/ui/provider";
 import { api } from "~/utils/api";
 
@@ -12,7 +13,9 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 	return (
 		<div className={lexend.className}>
 			<Provider>
-				<Component {...pageProps} />
+				<Layout>
+					<Component {...pageProps} />
+				</Layout>
 			</Provider>
 		</div>
 	);
