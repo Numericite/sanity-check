@@ -29,6 +29,16 @@ const config = {
 
     return webpackConfig;
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "logo.clearbit.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
+  },
 };
 
 export default withPayload(config, { devBundleServerPackages: false });
