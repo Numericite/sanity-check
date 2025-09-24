@@ -6,12 +6,14 @@ type CreatableTextClientProps = {
 	path: string;
 	label: string;
 	options: { label: string; value: string }[];
+	hasMany?: boolean;
 };
 
 export default function CreatableTextClient({
 	path,
 	label,
 	options,
+	hasMany = false,
 }: CreatableTextClientProps) {
 	const { value, setValue } = useField<string>({ path });
 
@@ -22,6 +24,7 @@ export default function CreatableTextClient({
 			<FieldLabel htmlFor={path} path={path} label={label} />
 			<Select
 				options={options}
+				isMulti={hasMany}
 				isCreatable
 				isClearable
 				onChange={(option) => {

@@ -3,10 +3,6 @@ import type React from "react";
 import CreatableTextClient from "./CreatableTextClient";
 import type { Tool } from "../payload-types";
 
-interface CustomSelectFieldProps {
-	label?: string;
-}
-
 export const CustomSelectFieldServer: TextFieldServerComponent = async (
 	props,
 ) => {
@@ -34,5 +30,12 @@ export const CustomSelectFieldServer: TextFieldServerComponent = async (
 
 	const label = (field.label as string) || "Sélectionner une valeur";
 
-	return <CreatableTextClient path={path} label={label} options={options} />;
+	return (
+		<CreatableTextClient
+			path={path}
+			label={label}
+			options={options}
+			hasMany={field.hasMany}
+		/>
+	);
 };
