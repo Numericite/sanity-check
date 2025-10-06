@@ -7,8 +7,6 @@ import {
   GridItem,
   Image,
   Skeleton,
-  Table,
-  TableHeader,
   Text,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
@@ -19,6 +17,7 @@ import CategoryBadge from "~/components/CategoryBadge";
 import type { icons } from "~/components/Icons";
 import NextLink from "next/link";
 import { LuExternalLink } from "react-icons/lu";
+import ToolsCaroussel from "~/components/ToolsCaroussel";
 
 const ToolPage = () => {
   const router = useRouter();
@@ -28,20 +27,23 @@ const ToolPage = () => {
     enabled: !!id,
   });
 
-  // if (!isLoading && tool) {
-  //   const { data: tools, isFetching: isLoadingTools } =
-  //     api.tool.getList.useQuery(
-  //       {
-  //         limit: 6,
-  //         filters: [{ key: "id", value: { not: tool.id } }],
-  //       },
-  //       {
-  //         initialData: Array.from({ length: 6 }),
-  //       }
-  //     );
-  // }
-
-  console.log(tool);
+  const { data: tools, isFetching: isLoadingTools } = api.tool.getList.useQuery(
+    {
+      limit: 6,
+      filters: [
+        { key: "privacy_score_saas", value: "A" },
+        {
+          key: "id",
+          operation: "not_equals",
+          value: (tool?.id ?? 0).toString(),
+        },
+      ],
+    },
+    {
+      initialData: Array.from({ length: 6 }),
+    }
+  );
+  console.log(tools);
 
   return (
     <Flex gap={6} flexDir={"column"}>
@@ -676,7 +678,7 @@ const ToolPage = () => {
                 </Flex>
               </Line>
 
-              <Line title="Certifications de l'entreprise">
+              <Line title="Certifications de l'entreprise" last>
                 <Flex
                   flexDir={"row"}
                   flexWrap={"wrap"}
@@ -706,28 +708,12 @@ const ToolPage = () => {
       </Flex>
 
       {/* Outils similaires */}
-      <Flex pt={10} gap={6}>
+      <Flex pt={10} gap={6} flexDir={"column"}>
         <Text fontSize={20} fontWeight={500}>
           Outils similaires
         </Text>
 
-        {/* <Grid
-          templateColumns={{
-            base: "1fr",
-            sm: "repeat(2, 1fr)",
-            md: "repeat(3, 1fr)",
-          }}
-          gap={6}
-        >
-          {tools?.map((tool, index) => (
-            <GridItem key={tool?.id ? tool.id : `tool-${index}`}>
-              <ToolCard
-                tool={tool?.id ? tool : null}
-                isLoading={isLoadingToolsWithAScore}
-              />
-            </GridItem>
-          ))}
-        </Grid> */}
+        <ToolsCaroussel tools={tools} isLoading={isLoadingTools} />
       </Flex>
     </Flex>
   );
@@ -735,9 +721,11 @@ const ToolPage = () => {
 
 function Line({
   title,
+  last = false,
   children,
 }: {
   title: string;
+  last?: boolean;
   children: React.ReactNode;
 }) {
   return (
@@ -746,7 +734,7 @@ function Line({
       py={5}
       gap={5}
       borderBottomColor={"blue.50"}
-      borderBottomWidth={1}
+      borderBottomWidth={!last ? 1 : 0}
     >
       <Flex w={"1/3"} justifyContent={"start"} alignItems={"center"}>
         <Text>{title}</Text>
