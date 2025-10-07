@@ -261,5 +261,17 @@ export const Tools: CollectionConfig = {
 			relationTo: "media",
 			label: "DPA (Document de Protection des Données)",
 		},
+		{
+			name: 'category',
+			type: 'relationship',
+			relationTo: 'categories',
+			required: false,
+		},
+		{
+			name: 'subCategories',
+			type: 'relationship',
+			relationTo: 'categories',
+			hasMany: true,
+		},
 	],
 };

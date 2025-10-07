@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     tools: Tool;
     media: Media;
+    categories: Category;
     users: User;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +79,7 @@ export interface Config {
   collectionsSelect: {
     tools: ToolsSelect<false> | ToolsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -180,6 +182,8 @@ export interface Tool {
   } | null;
   transfer_informations?: string | null;
   dpa_file?: (number | null) | Media;
+  category?: (number | null) | Category;
+  subCategories?: (number | Category)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -201,6 +205,22 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: number;
+  name: string;
+  icon: string;
+  color: string;
+  fonctionnalities?: string | null;
+  vigilances?: string | null;
+  recommendations?: string | null;
+  tools?: (number | Tool)[] | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -240,6 +260,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'categories';
+        value: number | Category;
       } | null)
     | ({
         relationTo: 'users';
@@ -323,6 +347,8 @@ export interface ToolsSelect<T extends boolean = true> {
   location_note?: T;
   transfer_informations?: T;
   dpa_file?: T;
+  category?: T;
+  subCategories?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -343,6 +369,21 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories_select".
+ */
+export interface CategoriesSelect<T extends boolean = true> {
+  name?: T;
+  icon?: T;
+  color?: T;
+  fonctionnalities?: T;
+  vigilances?: T;
+  recommendations?: T;
+  tools?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -36,6 +36,13 @@ yarn-error.log*
 .env
 .env*.local
 
+# Ignore les fichiers en -lock.json à la racine du projet
+/*-lock.json
+
+.yarn/install-state.gz
+
+.yarn.yml
+
 # vercel
 .vercel
 

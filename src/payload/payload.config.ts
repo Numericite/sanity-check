@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 
 import { Media } from "./collections/Media";
 import { Tools } from "./collections/Tools";
+import { Categories } from "./collections/Category";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -18,7 +19,7 @@ export default buildConfig({
 		},
 	},
 	editor: lexicalEditor(),
-	collections: [Tools, Media],
+	collections: [Tools, Media, Categories],
 	secret: process.env.PAYLOAD_SECRET || "",
 	db: postgresAdapter({
 		pool: {
