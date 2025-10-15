@@ -28,7 +28,7 @@ export default function ToolCard({
 	const mainCategory = tool?.categories?.find((cat) => cat.main)?.category;
 
 	return (
-		<Skeleton loading={isLoading}>
+		<Skeleton loading={isLoading} w="full">
 			<ChakraLink
 				_hover={{ textDecoration: "none" }}
 				_focus={{ outline: "none" }}
@@ -99,7 +99,7 @@ export default function ToolCard({
 								)}
 								{tool?.enterprise_european && <Badge color="blue">🇪🇺 EU</Badge>}
 							</Flex>
-							<Flex gap={4}>
+							<Flex gap={4} flexWrap={"wrap"}>
 								{tool?.certifications && tool.certifications.length > 0 ? (
 									<>
 										{tool.certifications

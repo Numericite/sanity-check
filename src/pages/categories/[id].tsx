@@ -11,6 +11,7 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import Badge from "~/components/ui/badge/badge";
 import PrivacyScoreBadge from "~/components/ui/badge/privacy-score-badge";
 import BreadcrumbLayout from "~/components/ui/breadcrumb/breadcrumb-layout";
@@ -19,11 +20,79 @@ import ToolCard from "~/components/ui/card/tool-card";
 import Carousel from "~/components/ui/carousel/carousel";
 import CategoryIcon from "~/components/ui/icons/category-icon";
 import Search from "~/components/ui/icons/search";
+import { useDebounce } from "~/hooks/use-debounce";
 import { api } from "~/utils/api";
-import { getPopulated } from "~/utils/payload-helpers";
+import { getPopulated, isPopulated } from "~/utils/payload-helpers";
+import { IoMdClose } from "react-icons/io";
+
+type Scores = "A" | "B" | "C" | "D" | "E" | "F";
+type ScoreItem = { score: Scores; active: boolean };
+type LocationItem = { id: number; name: string; active: boolean };
+type CertificationItem = { id: number; name: string; active: boolean };
+
+const scoresList: ScoreItem[] = [
+	{ score: "A", active: false },
+	{ score: "B", active: false },
+	{ score: "C", active: false },
+	{ score: "D", active: false },
+	{ score: "E", active: false },
+	{ score: "F", active: false },
+];
+
+const locationsList: LocationItem[] = [
+	{
+		id: 10,
+		name: "🇫🇷 France",
+		active: false,
+	},
+	{
+		id: 3,
+		name: "🇺🇸 États-Unis",
+		active: false,
+	},
+	{
+		id: 8,
+		name: "🇩🇪 Allemagne",
+		active: false,
+	},
+	{
+		id: 5,
+		name: "🇮🇪 Irlande",
+		active: false,
+	},
+];
+
+const certificationsList: CertificationItem[] = [
+	{
+		id: 5,
+		name: "SOC II",
+		active: false,
+	},
+	{
+		id: 19,
+		name: "ISO 27001",
+		active: false,
+	},
+	{
+		id: 16,
+		name: "SOC III",
+		active: false,
+	},
+	{
+		id: 8,
+		name: "ISO 27001:2013 Certification",
+		active: false,
+	},
+];
 
 export default function Category() {
 	const router = useRouter();
+	const [search, setSearch] = useState("");
+	const debouncedSearch = useDebounce(search);
+	const [scores, setScores] = useState(scoresList);
+	const [dpa, setDpa] = useState(false);
+	const [locations, setLocations] = useState(locationsList);
+	const [certifications, setCertifications] = useState(certificationsList);
 	const { id } = router.query;
 
 	const { data: category, isLoading } = api.category.getById.useQuery(
@@ -142,6 +211,7 @@ export default function Category() {
 							Filtres
 						</Text>
 
+						{/* Recherche */}
 						<Flex flexDir={"column"} gap={3}>
 							<Text fontSize={16} fontWeight={400}>
 								Rechercher
@@ -149,7 +219,7 @@ export default function Category() {
 							<InputGroup>
 								<Flex
 									bgColor={"gray.50"}
-									rounded={"xl"}
+									borderRadius={12}
 									py={4}
 									px={5}
 									gap={3}
@@ -166,6 +236,8 @@ export default function Category() {
 									<Input
 										name="search"
 										id="search"
+										value={search}
+										onChange={(e) => setSearch(e.target.value)}
 										placeholder="Rechercher un outils"
 										bgColor={"transparent"}
 										outline={"none"}
@@ -173,41 +245,61 @@ export default function Category() {
 										fontSize={16}
 										fontWeight={400}
 									/>
-									{/* <Button
+									<Button
+										visibility={search !== "" ? "visible" : "hidden"}
+										onClick={() => setSearch("")}
 										variant={"ghost"}
 										size={"xs"}
 										p={0.5}
 										m={0}
 									>
 										<IoMdClose />
-									</Button> */}
+									</Button>
 								</Flex>
 							</InputGroup>
 						</Flex>
 						<Separator />
 
+						{/* Badges Privacy Score */}
 						<Flex flexDir={"column"} gap={3}>
 							<Text fontSize={16} fontWeight={400}>
 								Score :
 							</Text>
 							<Flex gap={2}>
-								{(["A", "B", "C", "D", "E", "F"] as const).map(
-									(score, index) => (
-										<Button key={index} unstyled cursor={"pointer"}>
-											<PrivacyScoreBadge score={score} active={false} />
-										</Button>
-									),
-								)}
+								{scores.map((score, index) => (
+									<Button
+										key={index}
+										unstyled
+										cursor={"pointer"}
+										onClick={() =>
+											setScores((prev) =>
+												prev.map((s, i) =>
+													i === index ? { ...s, active: !s.active } : s,
+												),
+											)
+										}
+									>
+										<PrivacyScoreBadge
+											score={score.score}
+											active={score.active}
+										/>
+									</Button>
+								))}
 							</Flex>
 						</Flex>
 						<Separator />
 
+						{/* DPA */}
 						<Flex flexDir={"column"} gap={3}>
 							<Text fontSize={16} fontWeight={400}>
 								DPA :
 							</Text>
 							<Flex gap={2}>
-								<Switch.Root colorPalette={"blue"}>
+								<Switch.Root
+									checked={dpa}
+									onCheckedChange={(e) => setDpa(e.checked)}
+									colorPalette={"blue"}
+								>
 									<Switch.HiddenInput />
 									<Switch.Control>
 										<Switch.Thumb />
@@ -234,38 +326,54 @@ export default function Category() {
 						</Flex>
 						<Separator />
 
+						{/* Localisation de l'entreprise */}
 						<Flex flexDir={"column"} gap={3}>
 							<Text fontSize={16} fontWeight={400}>
 								Localisation de l'entreprise :
 							</Text>
 							<Flex gap={2} flexWrap={"wrap"}>
-								{[
-									"🇫🇷 France",
-									"🇺🇸 États-Unis",
-									"🇩🇪 Allemagne",
-									"🇮🇪 Irlande",
-									"🏳️ Autres",
-								].map((location, index) => (
-									<Badge key={index} color="blue" rounded="full">
-										{location}
-									</Badge>
+								{locations.map((location, index) => (
+									<Button
+										key={location.id}
+										unstyled
+										cursor={"pointer"}
+										onClick={() =>
+											setLocations((prev) =>
+												prev.map((l, i) =>
+													i === index ? { ...l, active: !l.active } : l,
+												),
+											)
+										}
+									>
+										<Badge color="blue">{location.name}</Badge>
+									</Button>
 								))}
 							</Flex>
 						</Flex>
 						<Separator />
 
+						{/* Certifications */}
 						<Flex flexDir={"column"} gap={3}>
 							<Text fontSize={16} fontWeight={400}>
 								Certifications de l'entreprise :
 							</Text>
 							<Flex gap={2} flexWrap={"wrap"}>
-								{["HDS", "SecNumCloud", "ISO", "SOC"].map(
-									(certification, index) => (
-										<Badge key={index} rounded="full">
-											{certification}
-										</Badge>
-									),
-								)}
+								{certifications.map((certification, index) => (
+									<Button
+										key={index}
+										unstyled
+										cursor={"pointer"}
+										onClick={() =>
+											setCertifications((prev) =>
+												prev.map((c, i) =>
+													i === index ? { ...c, active: !c.active } : c,
+												),
+											)
+										}
+									>
+										<Badge>{certification.name}</Badge>
+									</Button>
+								))}
 							</Flex>
 						</Flex>
 					</Flex>
@@ -280,20 +388,78 @@ export default function Category() {
 						w={"full"}
 						gap={6}
 					>
-						{category?.relatedTools?.docs?.map((tool) => {
-							const toolPopulated = getPopulated(tool);
-							if (!toolPopulated) return null;
+						{category?.relatedTools?.docs
+							?.filter(isPopulated)
+							?.filter(
+								(tool) =>
+									debouncedSearch === "" ||
+									tool.name
+										.toLowerCase()
+										.includes(debouncedSearch.toLowerCase()),
+							)
+							.filter((tool) => {
+								const activeScores = scores.filter((score) => score.active);
 
-							return (
-								<GridItem alignItems="stretch" h={"fit"} key={toolPopulated.id}>
+								if (activeScores.length === 0) {
+									return true;
+								}
+
+								return activeScores.some(
+									(score) => score.score === tool.privacy_score_saas,
+								);
+							})
+							.filter((tool) => {
+								if (!dpa) {
+									return true;
+								}
+
+								return tool.dpa_compliant;
+							})
+							.filter((tool) => {
+								const activeLocations = locations.filter(
+									(location) => location.active,
+								);
+
+								if (activeLocations.length === 0) {
+									return true;
+								}
+
+								return activeLocations.some((location) =>
+									tool.locations_enterprise?.find(
+										(loc) => isPopulated(loc.location) &&
+											loc.location.id === location.id,
+									),
+								);
+							})
+							.filter((tool) => {
+								const activeCertifications = certifications.filter(
+									(certification) => certification.active,
+								);
+
+								if (activeCertifications.length === 0) {
+									return true;
+								}
+
+								return activeCertifications.some((certification) =>
+									tool.certifications?.find(
+										(cert) => isPopulated(cert.certification) &&
+											cert.certification.id === certification.id,
+									),
+								);
+							})
+							.map((tool, index) => (
+								<GridItem
+									h={"fit"}
+									key={tool?.id ? tool.id : `tool-${index}`}
+									minW={0}
+								>
 									<ToolCard
-										tool={toolPopulated}
+										tool={tool?.id ? tool : null}
 										isLoading={isLoading}
 										hideCategory
 									/>
 								</GridItem>
-							);
-						})}
+							))}
 					</Grid>
 				</Flex>
 				<Flex pt={10} gap={6} flexDir={"column"}>
