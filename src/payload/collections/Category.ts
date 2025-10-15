@@ -5,12 +5,21 @@ export const Categories: CollectionConfig = {
     versions: {
         drafts: false,
     },
+    admin: {
+        useAsTitle: 'name',
+    },
     fields: [
         {
             name: 'name',
             type: "text",
             label: "Nom de la catégorie",
             required: true
+        },
+        {
+            name: 'description',
+            type: "text",
+            label: "Description de la catégorie",
+            required: false
         },
         {
             name: 'icon',

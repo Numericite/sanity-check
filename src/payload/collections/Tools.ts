@@ -1,9 +1,13 @@
+import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import type { CollectionConfig } from "payload";
 
 export const Tools: CollectionConfig = {
 	slug: "tools",
 	versions: {
 		drafts: false,
+	},
+	admin: {
+		useAsTitle: 'name',
 	},
 	fields: [
 		{
@@ -19,7 +23,7 @@ export const Tools: CollectionConfig = {
 			required: true,
 		},
 		{
-			name: "image_link",
+			name: "logo",
 			label: "Image de l'outil",
 			type: "relationship",
 			relationTo: "media",
@@ -27,33 +31,8 @@ export const Tools: CollectionConfig = {
 		{
 			name: "description",
 			type: "textarea",
+			required: false,
 			label: "Description de l'outil",
-		},
-		{
-			name: "enterprise_certifications",
-			type: "text",
-			label: "Certifications de l'entreprise",
-			admin: {
-				components: {
-					Field: {
-						path: "/components/CustomSelect#CustomSelectFieldServer",
-						exportName: "CustomSelectFieldServer",
-					},
-				},
-			},
-		},
-		{
-			name: "data_access",
-			type: "text",
-			label: "Accès aux données",
-			admin: {
-				components: {
-					Field: {
-						path: "/components/CustomSelect#CustomSelectFieldServer",
-						exportName: "CustomSelectFieldServer",
-					},
-				},
-			},
 		},
 		{
 			name: "subcontractors",
@@ -61,158 +40,99 @@ export const Tools: CollectionConfig = {
 			label: "Sous-traitants",
 		},
 		{
+			name: 'subcontractors_infra',
+			type: 'array',
+			label: "Liste des infrastructures sous-traitant",
+			fields: [
+				{
+					name: 'name',
+					type: 'text',
+					label: "Nom du sous-traitant"
+				},
+			]
+		},
+		{
 			name: "transfer_out_eu",
-			type: "text",
+			type: "select",
+			hasMany: false,
+			options: [
+				{ label: 'Oui', value: 'Oui' },
+				{ label: 'Non', value: 'Non' },
+				{ label: 'Au choix', value: 'Au choix' },
+			],
 			label: "Transfert des données en dehors de l'UE",
+			required: false
 		},
 		{
 			name: "privacy_score_saas",
-			type: "text",
+			type: "select",
 			label: "Privacy score (SaaS)",
+			hasMany: false,
+			options: [
+				{ label: 'A', value: 'A' },
+				{ label: 'B', value: 'B' },
+				{ label: 'C', value: 'C' },
+				{ label: 'D', value: 'D' },
+				{ label: 'E', value: 'E' },
+				{ label: 'F', value: 'F' },
+			],
+			required: false
 		},
 		{
 			name: "privacy_score_self_hosted",
-			type: "text",
+			type: "select",
 			label: "Privacy score (auto-hébergé)",
-		},
-		{
-			name: "tool_kind",
-			type: "text",
-			label: "Type d'outil",
-			admin: {
-				components: {
-					Field: {
-						path: "/components/CustomSelect#CustomSelectFieldServer",
-						exportName: "CustomSelectFieldServer",
-					},
-				},
-			},
-		},
-		{
-			name: "location_host_client",
-			type: "text",
-			label: "Localisation hébergement: relation client",
-			admin: {
-				components: {
-					Field: {
-						path: "/components/CustomSelect#CustomSelectFieldServer",
-						exportName: "CustomSelectFieldServer",
-					},
-				},
-			},
+			hasMany: false,
+			options: [
+				{ label: 'A', value: 'A' },
+				{ label: 'B', value: 'B' },
+				{ label: 'C', value: 'C' },
+				{ label: 'D', value: 'D' },
+				{ label: 'E', value: 'E' },
+				{ label: 'F', value: 'F' },
+			],
+			required: false
 		},
 		{
 			name: "online_accessible_dpa",
-			type: "text",
+			type: "checkbox",
+			required: false,
 			label: "Accès en ligne au DPA",
-		},
-		{
-			name: "subcontractors_infra",
-			type: "text",
-			label: "Sous-traitants (infrastructure)",
-			admin: {
-				components: {
-					Field: {
-						path: "/components/CustomSelect#CustomSelectFieldServer",
-						exportName: "CustomSelectFieldServer",
-					},
-				},
-			},
 		},
 		{
 			name: "certification_dpf",
 			type: "checkbox",
+			required: false,
 			label: "Certification DPF",
 		},
 		{
 			name: "opensource",
-			type: "text",
+			type: "checkbox",
+			required: false,
 			label: "Open source",
 		},
 		{
 			name: "self_host_possibility",
-			type: "text",
+			type: "checkbox",
+			required: false,
 			label: "Possibilité d'auto-hébergement",
 		},
 		{
 			name: "fr_documentation",
-			type: "text",
+			type: "checkbox",
+			required: false,
 			label: "Documentation en français",
 		},
 		{
 			name: "dpa_compliant",
-			type: "text",
+			type: "checkbox",
+			required: false,
 			label: "Conformité au DPA",
-		},
-		{
-			name: "subkind",
-			type: "text",
-			label: "Sous Type d'outil / fonctionnalités",
-			admin: {
-				components: {
-					Field: {
-						path: "/components/CustomSelect#CustomSelectFieldServer",
-						exportName: "CustomSelectFieldServer",
-					},
-				},
-			},
-		},
-		{
-			name: "rgpd_feature",
-			type: "text",
-			label: "Fonctionnalités RGPD / Sécurité",
-			admin: {
-				components: {
-					Field: {
-						path: "/components/CustomSelect#CustomSelectFieldServer",
-						exportName: "CustomSelectFieldServer",
-					},
-				},
-			},
-		},
-		{
-			name: "transfer_supervision",
-			type: "text",
-			label: "Supervision des transferts",
-			admin: {
-				components: {
-					Field: {
-						path: "/components/CustomSelect#CustomSelectFieldServer",
-						exportName: "CustomSelectFieldServer",
-					},
-				},
-			},
-		},
-		{
-			name: "enterprise_location",
-			type: "text",
-			label: "Localisation de l'entreprise",
-			admin: {
-				components: {
-					Field: {
-						path: "/components/CustomSelect#CustomSelectFieldServer",
-						exportName: "CustomSelectFieldServer",
-					},
-				},
-			},
 		},
 		{
 			name: "dpa_link",
 			type: "text",
 			label: "Lien vers le DPA",
-		},
-		{
-			name: "subcontractors_certifications",
-			type: "text",
-			label: "Certifications des sous-traitants",
-			admin: {
-				components: {
-					Field: {
-						path: "/components/CustomSelect#CustomSelectFieldServer",
-						exportName: "CustomSelectFieldServer",
-					},
-				},
-			},
 		},
 		{
 			name: "enterprise_european",
@@ -228,27 +148,24 @@ export const Tools: CollectionConfig = {
 			},
 		},
 		{
-			name: "final_users_location",
-			type: "text",
-			label: "Localisation de l'hébergement des utilisateurs finaux",
-			admin: {
-				components: {
-					Field: {
-						path: "/components/CustomSelect#CustomSelectFieldServer",
-						exportName: "CustomSelectFieldServer",
-					},
-				},
-			},
-		},
-		{
 			name: "actions",
 			type: "richText",
 			label: "Actions à mener si utilisation de l'outil",
+			editor: lexicalEditor({
+				features: ({ defaultFeatures }) => [
+					...defaultFeatures,
+				]
+			}),
 		},
 		{
 			name: "location_note",
 			type: "richText",
 			label: "Note sur la localisation",
+			editor: lexicalEditor({
+				features: ({ defaultFeatures }) => [
+					...defaultFeatures,
+				]
+			}),
 		},
 		{
 			name: "transfer_informations",
@@ -262,16 +179,181 @@ export const Tools: CollectionConfig = {
 			label: "DPA (Document de Protection des Données)",
 		},
 		{
-			name: 'category',
-			type: 'relationship',
-			relationTo: 'categories',
-			required: false,
+			name: 'categories',
+			type: 'array',
+			label: 'Catégories',
+			fields: [
+				{
+					name: 'category',
+					type: 'relationship',
+					relationTo: 'categories',
+					required: true,
+					hasMany: false,
+					unique: false,
+				},
+				{
+					name: 'main',
+					type: 'checkbox',
+					label: 'Catégorie principale',
+					defaultValue: false,
+				},
+			],
+			admin: {
+				description:
+					'Sélectionnez une ou plusieurs catégories et cochez celle qui est principale.',
+			},
 		},
 		{
-			name: 'subCategories',
-			type: 'relationship',
-			relationTo: 'categories',
-			hasMany: true,
+			name: 'certifications',
+			type: 'array',
+			label: 'Certifications',
+			fields: [
+				{
+					name: 'certification',
+					type: 'relationship',
+					relationTo: 'certifications',
+					required: true,
+					hasMany: false,
+					unique: false,
+				},
+			],
+			admin: {
+				description:
+					'Sélectionnez une ou plusieurs certifications.',
+			},
+		},
+		{
+			name: 'certifications_subcontractors',
+			type: 'array',
+			label: 'Certifications des sous-traitants',
+			fields: [
+				{
+					name: 'certification',
+					type: 'relationship',
+					relationTo: 'certifications',
+					required: true,
+					hasMany: false,
+					unique: false,
+				},
+			],
+			admin: {
+				description:
+					'Sélectionnez une ou plusieurs certifications.',
+			},
+		},
+		{
+			name: 'accessors',
+			type: 'array',
+			label: 'Personne ayant accès',
+			fields: [
+				{
+					name: 'accessor',
+					type: 'relationship',
+					relationTo: 'accessors',
+					required: true,
+					hasMany: false,
+					unique: false,
+				},
+			],
+			admin: {
+				description:
+					'Sélectionnez une ou plusieurs accesseurs.',
+			},
+		},
+		{
+			name: 'locations_enterprise',
+			type: 'array',
+			label: 'Localisation de l\'entreprise',
+			fields: [
+				{
+					name: 'location',
+					type: 'relationship',
+					relationTo: 'locations',
+					required: true,
+					hasMany: false,
+					unique: false,
+				},
+			],
+			admin: {
+				description:
+					'Sélectionnez une ou plusieurs localisations.',
+			},
+		},
+		{
+			name: 'locations_host_client',
+			type: 'array',
+			label: 'Localisation hébergement : relation client',
+			fields: [
+				{
+					name: 'location',
+					type: 'relationship',
+					relationTo: 'locations',
+					required: true,
+					hasMany: false,
+					unique: false,
+				},
+			],
+			admin: {
+				description:
+					'Sélectionnez une ou plusieurs localisations.',
+			},
+		},
+		{
+			name: 'locations_final_users',
+			type: 'array',
+			label: 'Localisation hébergement : utilisateurs finaux',
+			fields: [
+				{
+					name: 'location',
+					type: 'relationship',
+					relationTo: 'locations',
+					required: true,
+					hasMany: false,
+					unique: false,
+				},
+			],
+			admin: {
+				description:
+					'Sélectionnez une ou plusieurs localisations.',
+			},
+		},
+		{
+			name: 'transfers',
+			type: 'array',
+			label: 'Encadrements des transferts',
+			fields: [
+				{
+					name: 'transfer',
+					type: 'relationship',
+					relationTo: 'transfers',
+					required: true,
+					hasMany: false,
+					unique: false,
+				},
+			],
+			admin: {
+				description:
+					'Sélectionnez une ou plusieurs encadrements.',
+			},
+		},
+		{
+			name: 'features',
+			type: 'array',
+			label: 'Fonctionnalités RGPB',
+			fields: [
+				{
+					name: 'feature',
+					type: 'relationship',
+					relationTo: 'features',
+					required: true,
+					hasMany: false,
+					unique: false,
+				},
+			],
+			admin: {
+				description:
+					'Sélectionnez une ou plusieurs fonctionnalités.',
+			},
 		},
 	],
 };

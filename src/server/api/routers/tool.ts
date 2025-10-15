@@ -1,6 +1,8 @@
-import type { Where } from "payload";
+import type { Sort, Where } from "payload";
 import z from "zod";
+import type { Category } from "~/payload/payload-types";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 
 export const toolRouter = createTRPCRouter({
 
@@ -12,10 +14,13 @@ export const toolRouter = createTRPCRouter({
 				filters: z
 					.array(z.object({ key: z.string(), operation: z.string().optional(), value: z.string() }))
 					.optional(),
+				sort: z
+					.array(z.string())
+					.optional()
 			}),
 		)
 		.query(async ({ ctx, input }) => {
-			const { limit = 10, page = 1, filters } = input;
+			const { limit = 10, page = 1, filters, sort } = input;
 
 			const where: Where = filters && filters.length > 0
 				? {
@@ -31,7 +36,8 @@ export const toolRouter = createTRPCRouter({
 				collection: "tools",
 				limit,
 				page,
-				where
+				where,
+				sort
 			});
 
 			return tools.docs;
@@ -44,8 +50,14 @@ export const toolRouter = createTRPCRouter({
 			const tool = await ctx.payload.findByID({
 				collection: "tools",
 				id,
+				depth: 1
 			});
 
-			return tool;
+			return {
+				...tool,
+				location_note: tool.location_note as SerializedEditorState,
+				actions: tool.actions as SerializedEditorState,
+				category: tool.categories as Category | null,
+			};
 		}),
 });

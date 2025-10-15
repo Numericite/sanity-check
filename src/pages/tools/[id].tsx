@@ -1,23 +1,28 @@
 import {
+  Badge,
   Box,
   Button,
   Flex,
   For,
   Grid,
   GridItem,
-  Image,
   Skeleton,
   Text,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { api } from "~/utils/api";
-import NextImage from "next/image";
-import PrivacyScoreBadge from "~/components/PrivacyScoreBadge";
-import CategoryBadge from "~/components/CategoryBadge";
-import type { icons } from "~/components/Icons";
+import PrivacyScoreBadge from "~/components/ui/badge/privacy-score-badge";
+import CategoryBadge from "~/components/ui/badge/category-badge";
 import NextLink from "next/link";
 import { LuExternalLink } from "react-icons/lu";
-import ToolsCaroussel from "~/components/ToolsCaroussel";
+import Line from "~/components/ui/line";
+import BreadcrumbLayout from "~/components/ui/breadcrumb/breadcrumb-layout";
+import type { Category } from "~/payload/payload-types";
+import { RichText } from "@payloadcms/richtext-lexical/react";
+import BooleanBadge from "~/components/ui/badge/boolean-badge";
+import ToolLogo from "~/components/ui/logo/tool-logo";
+import Caroussel from "~/components/ui/caroussel/caroussel";
+import ToolCard from "~/components/ui/card/tool-card";
 
 const ToolPage = () => {
   const router = useRouter();
@@ -26,7 +31,7 @@ const ToolPage = () => {
   const { data: tool, isLoading } = api.tool.getById.useQuery(Number(id), {
     enabled: !!id,
   });
-
+  console.log(tool);
   const { data: tools, isFetching: isLoadingTools } = api.tool.getList.useQuery(
     {
       limit: 6,
@@ -43,11 +48,23 @@ const ToolPage = () => {
       initialData: Array.from({ length: 6 }),
     }
   );
-  console.log(tools);
+
+  const mainCategory = tool?.categories?.find((cat) => cat.main === true)
+    ?.category as Category;
 
   return (
-    <Flex gap={6} flexDir={"column"}>
-      {/* Content */}
+    <Flex gap={6} flexDir={"column"} py={10}>
+      <BreadcrumbLayout
+        items={[
+          { label: "Catégorie d’outils", link: "/categories" },
+          {
+            label: mainCategory?.name ?? "",
+            link: `/categories/${mainCategory?.id}`,
+          },
+          { label: tool?.name ?? "" },
+        ]}
+      />
+
       <Flex
         flexDir="column"
         alignItems="center"
@@ -56,7 +73,6 @@ const ToolPage = () => {
         backgroundColor={"white"}
         p={5}
         rounded={"2xl"}
-        mt={62}
       >
         {/* Header */}
         <Flex w={"full"} flexDir={"column"}>
@@ -64,8 +80,8 @@ const ToolPage = () => {
           <Flex
             h={60}
             w={"full"}
-            backgroundColor={"orange.50"}
-            borderColor={"orange.100"}
+            backgroundColor={`${mainCategory?.color}.50`}
+            borderColor={`${mainCategory?.color}.100`}
             borderWidth={1}
             rounded={"2xl"}
           />
@@ -97,14 +113,7 @@ const ToolPage = () => {
                 borderColor={"gray.100"}
               >
                 <Skeleton loading={isLoading} rounded={"lg"}>
-                  <Image lineClamp={1} asChild rounded={"lg"}>
-                    <NextImage
-                      src={`https://logo.clearbit.com/${tool?.site_link?.replace("https://", "").split("/")[0]}`}
-                      alt={tool?.name || "Logo de l'outil"}
-                      width={112}
-                      height={112}
-                    />
-                  </Image>
+                  <ToolLogo media={tool?.logo} size={122} />
                 </Skeleton>
               </Box>
 
@@ -123,12 +132,10 @@ const ToolPage = () => {
                     </Text>
 
                     {/* Score */}
-                    <PrivacyScoreBadge score={tool?.privacy_score_saas ?? ""} />
+                    <PrivacyScoreBadge score={tool?.privacy_score_saas} />
 
                     {/* Category badge */}
-                    <CategoryBadge
-                      category={tool?.subkind as keyof typeof icons}
-                    />
+                    <CategoryBadge category={mainCategory as Category} />
                   </>
                 )}
               </Flex>
@@ -140,7 +147,7 @@ const ToolPage = () => {
               alignItems={"center"}
               justifyContent={"space-between"}
               gap={4}
-              mt={4.5}
+              mt={9}
             >
               <Button bgColor={"primary.solid"} asChild>
                 <NextLink href={""} target="_blank">
@@ -166,14 +173,21 @@ const ToolPage = () => {
         {!isLoading && tool && (
           <Flex w={"full"} px={4} flexDir={"column"} gap={7}>
             {/* Infos principales */}
-            <Grid templateColumns="repeat(12, 1fr)" w={"full"} gap="5">
+            <Grid
+              templateColumns="repeat(12, 1fr)"
+              w={"full"}
+              gap="5"
+              autoFlow={"column"}
+              alignItems={"stretch"}
+            >
               {/* DPA */}
               <GridItem colSpan={2}>
                 <Box
                   w={"full"}
+                  h={"100%"}
                   px={4}
                   py={5}
-                  backgroundColor={tool.dpa_compliant ? "green.50" : "red.50"}
+                  bgColor={tool.dpa_compliant ? "green.50" : "red.50"}
                   borderColor={tool.dpa_compliant ? "green.100" : "red.100"}
                   borderWidth={1}
                   rounded={"xl"}
@@ -196,146 +210,235 @@ const ToolPage = () => {
                 </Box>
               </GridItem>
               <GridItem colSpan={3}>
-                <Box
+                <Flex
                   w={"full"}
+                  h={"100%"}
                   px={4}
                   py={5}
                   backgroundColor={"primary.subtle"}
                   borderColor={"blue.100"}
                   borderWidth={1}
                   rounded={"xl"}
+                  gap={5}
+                  flexDir={"column"}
                 >
                   <Text fontSize={16} fontWeight={500}>
                     Hébergement des données
                   </Text>
-                  <Box bgColor={"white"} mt={5} w={"fit"} p={2} rounded={"sm"}>
-                    <Text fontSize={14} fontWeight={400}>
-                      🇪🇺 EU
-                    </Text>
-                  </Box>
-                </Box>
+                  <Flex flexDir={"row"} gap={3} flexWrap={"wrap"}>
+                    <Badge
+                      bgColor="white"
+                      borderColor="gray.50"
+                      borderWidth={1}
+                      w={"fit"}
+                      p={2}
+                      rounded={"sm"}
+                    >
+                      <Text fontSize={14} fontWeight={400} color={"gray.900"}>
+                        TODO
+                      </Text>
+                    </Badge>
+                  </Flex>
+                </Flex>
               </GridItem>
               <GridItem colSpan={3}>
-                <Box
+                <Flex
                   w={"full"}
+                  h={"100%"}
                   px={4}
                   py={5}
                   backgroundColor={"primary.subtle"}
                   borderColor={"blue.100"}
                   borderWidth={1}
                   rounded={"xl"}
+                  gap={5}
+                  flexDir={"column"}
                 >
                   <Text fontSize={16} fontWeight={500}>
                     Localisation de l'entreprise
                   </Text>
-                  <Box bgColor={"white"} mt={5} w={"fit"} p={2} rounded={"sm"}>
-                    <Text fontSize={14} fontWeight={400}>
-                      {tool.enterprise_location}
-                    </Text>
-                  </Box>
-                </Box>
+                  <Flex flexDir={"row"} gap={3} flexWrap={"wrap"}>
+                    {tool.locations_enterprise &&
+                    tool.locations_enterprise.length > 0 ? (
+                      tool.locations_enterprise.map((location) => (
+                        <Badge
+                          bgColor="white"
+                          borderColor="gray.50"
+                          borderWidth={1}
+                          w={"fit"}
+                          p={2}
+                          rounded={"sm"}
+                        >
+                          <Text
+                            fontSize={14}
+                            fontWeight={400}
+                            color={"gray.900"}
+                          >
+                            {typeof location.location != "number" &&
+                              location.location.name}
+                          </Text>
+                        </Badge>
+                      ))
+                    ) : (
+                      <Badge
+                        bgColor="white"
+                        borderColor="gray.50"
+                        borderWidth={1}
+                        w={"fit"}
+                        p={2}
+                        rounded={"sm"}
+                      >
+                        <Text fontSize={14} fontWeight={400} color={"gray.900"}>
+                          Aucune information
+                        </Text>
+                      </Badge>
+                    )}
+                  </Flex>
+                </Flex>
               </GridItem>
               <GridItem colSpan={4}>
-                <Box
+                <Flex
                   w={"full"}
+                  h={"100%"}
                   px={4}
                   py={5}
                   backgroundColor={"gray.50"}
                   borderColor={"gray.100"}
                   borderWidth={1}
                   rounded={"xl"}
+                  gap={5}
+                  flexDir={"column"}
                 >
                   <Text fontSize={16} fontWeight={500}>
                     Certifications
                   </Text>
-                  <Flex flexDir={"row"} gap={3} overflow={"auto"}>
-                    <For each={tool.enterprise_certifications?.split(", ")}>
-                      {(item, index) => (
-                        <Box
-                          key={index}
-                          bgColor={"white"}
-                          mt={5}
-                          w={"fit"}
-                          p={2}
-                          rounded={"sm"}
-                        >
-                          <Text truncate fontSize={14} fontWeight={400}>
-                            {item}
-                          </Text>
-                        </Box>
-                      )}
-                    </For>
+                  <Flex flexDir={"row"} gap={3} flexWrap={"wrap"}>
+                    {tool.certifications && tool.certifications.length > 0 ? (
+                      <>
+                        {tool.certifications
+                          .slice(0, 2)
+                          .map((certification, index) => (
+                            <Badge
+                              px={2}
+                              py={1}
+                              bgColor={"gray.50"}
+                              borderCollapse={"gray.100"}
+                              borderWidth={1}
+                              key={index}
+                            >
+                              <Text
+                                fontSize={14}
+                                fontWeight={400}
+                                color={"gray.900"}
+                              >
+                                {typeof certification.certification !=
+                                  "number" && certification.certification.name}
+                              </Text>
+                            </Badge>
+                          ))}
+                        {tool.certifications.length > 2 && (
+                          <Badge
+                            px={2}
+                            py={1}
+                            bgColor={"gray.50"}
+                            borderCollapse={"gray.100"}
+                            borderWidth={1}
+                          >
+                            <Text
+                              fontSize={14}
+                              fontWeight={400}
+                              color={"gray.900"}
+                            >
+                              + {tool.certifications.length - 2}
+                            </Text>
+                          </Badge>
+                        )}
+                      </>
+                    ) : (
+                      <Text>Aucune certification</Text>
+                    )}
                   </Flex>
-                </Box>
+                </Flex>
               </GridItem>
             </Grid>
             <Box px={6} rounded={"xl"} borderColor={"blue.50"} borderWidth={1}>
               <Line title="Informations sur les transferts">
-                <NextLink
-                  target="_blank"
-                  href={tool.transfer_informations ?? ""}
-                >
-                  <Text
-                    color={"primary.solid"}
-                    textDecoration={"underline"}
-                    textUnderlineOffset={2}
-                    wordBreak="break-all"
+                {tool.transfer_informations ? (
+                  <NextLink
+                    target="_blank"
+                    href={tool.transfer_informations ?? ""}
                   >
-                    {tool.transfer_informations}
-                  </Text>
-                </NextLink>
+                    <Text
+                      color={"primary.solid"}
+                      textDecoration={"underline"}
+                      textUnderlineOffset={2}
+                      wordBreak="break-all"
+                    >
+                      {tool.transfer_informations}
+                    </Text>
+                  </NextLink>
+                ) : (
+                  <Text>Aucune information</Text>
+                )}
               </Line>
 
               <Line title="Remarque Localisation Hébergement">
-                <Text>
-                  {(tool.location_note &&
-                    (tool.location_note[0].children[0] as any).text) ??
-                    "NC"}
-                </Text>
+                {tool.location_note ? (
+                  <RichText data={tool.location_note} />
+                ) : (
+                  <Text>Aucune information</Text>
+                )}
               </Line>
 
-              {/* <Line title="Actions à mener si utilisation de l'outil">
-                <Flex flexDir={"row"} flexWrap={"wrap"} gap={3} overflow={"auto"}>
-                  <For each={tool.actions?.split(", ")}>
-                    {(item, index) => (
-                      <Box
-                        key={index}
-                        bgColor={"gray.50"}
-                        w={"fit"}
-                        p={2}
-                        rounded={"sm"}
-                      >
-                        <Text truncate fontSize={14} fontWeight={400}>
-                          {item}
-                        </Text>
-                      </Box>
-                    )}
-                  </For>
-                </Flex>
-              </Line> */}
+              <Line title="Actions à mener si utilisation de l'outil">
+                {tool.actions ? (
+                  <RichText data={tool.actions} />
+                ) : (
+                  <Text>Aucune information</Text>
+                )}
+              </Line>
 
               <Line title="Localisation hébergement : utilisateurs finaux">
-                <Flex flexDir={"row"} gap={3} overflow={"auto"}>
-                  <For each={tool.final_users_location?.split(", ")}>
-                    {(item, index) => (
-                      <Box
-                        key={index}
-                        bgColor={"blue.50"}
-                        w={"fit"}
-                        p={2}
-                        rounded={"sm"}
-                      >
-                        <Text truncate fontSize={14} fontWeight={400}>
-                          {item}
-                        </Text>
-                      </Box>
-                    )}
-                  </For>
+                <Flex
+                  flexDir={"row"}
+                  flexWrap={"wrap"}
+                  gap={3}
+                  overflow={"auto"}
+                >
+                  {tool.locations_final_users &&
+                  tool.locations_final_users.length > 0 ? (
+                    tool.locations_final_users.map(({ location }) => {
+                      if (typeof location != "number") {
+                        const { id, name } = location;
+                        return (
+                          <Badge
+                            px={2}
+                            py={1}
+                            bgColor={"blue.50"}
+                            borderColor={"blue.100"}
+                            borderWidth={1}
+                            key={id}
+                          >
+                            <Text
+                              fontSize={14}
+                              fontWeight={400}
+                              color={"blue.900"}
+                            >
+                              {name}
+                            </Text>
+                          </Badge>
+                        );
+                      }
+                    })
+                  ) : (
+                    <Text>Aucune information</Text>
+                  )}
                 </Flex>
               </Line>
 
               <Line title="Entreprise EU">
-                <Box
+                TODO
+                {/* <Box
                   bgColor={tool.enterprise_european ? "green.50" : "red.50"}
                   w={"fit"}
                   p={2}
@@ -349,20 +452,24 @@ const ToolPage = () => {
                   >
                     {tool.enterprise_european ? "Oui" : "Non"}
                   </Text>
-                </Box>
+                </Box> */}
               </Line>
 
               <Line title="Site internet">
-                <NextLink target="_blank" href={tool.site_link ?? ""}>
-                  <Text
-                    color={"primary.solid"}
-                    textDecoration={"underline"}
-                    textUnderlineOffset={2}
-                    wordBreak="break-all"
-                  >
-                    {tool.site_link}
-                  </Text>
-                </NextLink>
+                {tool.site_link ? (
+                  <NextLink target="_blank" href={tool.site_link ?? ""}>
+                    <Text
+                      color={"primary.solid"}
+                      textDecoration={"underline"}
+                      textUnderlineOffset={2}
+                      wordBreak="break-all"
+                    >
+                      {tool.site_link}
+                    </Text>
+                  </NextLink>
+                ) : (
+                  <Text>Aucune information</Text>
+                )}
               </Line>
 
               <Line title="Certifications des sous-traitants ou hébergeurs">
@@ -372,35 +479,54 @@ const ToolPage = () => {
                   gap={3}
                   overflow={"auto"}
                 >
-                  <For each={tool.subcontractors_certifications?.split(", ")}>
-                    {(item, index) => (
-                      <Box
-                        key={index}
-                        bgColor={"gray.50"}
-                        w={"fit"}
-                        p={2}
-                        rounded={"sm"}
-                      >
-                        <Text truncate fontSize={14} fontWeight={400}>
-                          {item}
-                        </Text>
-                      </Box>
-                    )}
-                  </For>
+                  {tool.certifications_subcontractors &&
+                  tool.certifications_subcontractors.length > 0 ? (
+                    tool.certifications_subcontractors.map(
+                      ({ certification }) => {
+                        if (typeof certification != "number") {
+                          const { id, name } = certification;
+                          return (
+                            <Badge
+                              px={2}
+                              py={1}
+                              bgColor={"gray.50"}
+                              borderColor={"gray.100"}
+                              borderWidth={1}
+                              key={id}
+                            >
+                              <Text
+                                fontSize={14}
+                                fontWeight={400}
+                                color={"gray.900"}
+                              >
+                                {name}
+                              </Text>
+                            </Badge>
+                          );
+                        }
+                      }
+                    )
+                  ) : (
+                    <Text>Aucune certification</Text>
+                  )}
                 </Flex>
               </Line>
 
               <Line title="Lien DPA si applicable">
-                <NextLink target="_blank" href={tool.dpa_link ?? ""}>
-                  <Text
-                    color={"primary.solid"}
-                    textDecoration={"underline"}
-                    textUnderlineOffset={2}
-                    wordBreak="break-all"
-                  >
-                    {tool.dpa_link}
-                  </Text>
-                </NextLink>
+                {tool.dpa_link ? (
+                  <NextLink target="_blank" href={tool.dpa_link ?? ""}>
+                    <Text
+                      color={"primary.solid"}
+                      textDecoration={"underline"}
+                      textUnderlineOffset={2}
+                      wordBreak="break-all"
+                    >
+                      {tool.dpa_link}
+                    </Text>
+                  </NextLink>
+                ) : (
+                  <Text>Aucune information</Text>
+                )}
               </Line>
 
               <Line title="Encadrement des transferts">
@@ -410,21 +536,33 @@ const ToolPage = () => {
                   gap={3}
                   overflow={"auto"}
                 >
-                  <For each={tool.transfer_supervision?.split(", ")}>
-                    {(item, index) => (
-                      <Box
-                        key={index}
-                        bgColor={"gray.50"}
-                        w={"fit"}
-                        p={2}
-                        rounded={"sm"}
-                      >
-                        <Text truncate fontSize={14} fontWeight={400}>
-                          {item}
-                        </Text>
-                      </Box>
-                    )}
-                  </For>
+                  {tool.transfers && tool.transfers.length > 0 ? (
+                    tool.transfers.map(({ transfer }) => {
+                      if (typeof transfer != "number") {
+                        const { id, name } = transfer;
+                        return (
+                          <Badge
+                            px={2}
+                            py={1}
+                            bgColor={"gray.50"}
+                            borderColor={"gray.100"}
+                            borderWidth={1}
+                            key={id}
+                          >
+                            <Text
+                              fontSize={14}
+                              fontWeight={400}
+                              color={"gray.900"}
+                            >
+                              {name}
+                            </Text>
+                          </Badge>
+                        );
+                      }
+                    })
+                  ) : (
+                    <Text>Aucune information</Text>
+                  )}
                 </Flex>
               </Line>
 
@@ -435,88 +573,50 @@ const ToolPage = () => {
                   gap={3}
                   overflow={"auto"}
                 >
-                  <For each={tool.rgpd_feature?.split(", ")}>
-                    {(item, index) => (
-                      <Box
-                        key={index}
-                        bgColor={"gray.50"}
-                        w={"fit"}
-                        p={2}
-                        rounded={"sm"}
-                      >
-                        <Text truncate fontSize={14} fontWeight={400}>
-                          {item}
-                        </Text>
-                      </Box>
-                    )}
-                  </For>
+                  {tool.features && tool.features.length > 0 ? (
+                    tool.features.map(({ feature }) => {
+                      if (typeof feature != "number") {
+                        const { id, name } = feature;
+                        return (
+                          <Badge
+                            px={2}
+                            py={1}
+                            bgColor={"gray.50"}
+                            borderColor={"gray.100"}
+                            borderWidth={1}
+                            key={id}
+                          >
+                            <Text
+                              fontSize={14}
+                              fontWeight={400}
+                              color={"gray.900"}
+                            >
+                              {name}
+                            </Text>
+                          </Badge>
+                        );
+                      }
+                    })
+                  ) : (
+                    <Text>Aucune fonctionnalité</Text>
+                  )}
                 </Flex>
               </Line>
 
               <Line title="Documentation en FR">
-                <Box
-                  bgColor={tool.fr_documentation ? "green.50" : "red.50"}
-                  w={"fit"}
-                  p={2}
-                  rounded={"sm"}
-                >
-                  <Text
-                    truncate
-                    fontSize={14}
-                    fontWeight={400}
-                    color={tool.fr_documentation ? "green.600" : "red.600"}
-                  >
-                    {tool.fr_documentation ? "Oui" : "Non"}
-                  </Text>
-                </Box>
+                <BooleanBadge val={tool.fr_documentation ?? null} />
               </Line>
 
               <Line title="Possibilité de selfhost">
-                <Box
-                  bgColor={
-                    tool.self_host_possibility === "Oui" ? "green.50" : "red.50"
-                  }
-                  w={"fit"}
-                  p={2}
-                  rounded={"sm"}
-                >
-                  <Text
-                    truncate
-                    fontSize={14}
-                    fontWeight={400}
-                    color={
-                      tool.self_host_possibility === "Oui"
-                        ? "green.600"
-                        : "red.600"
-                    }
-                  >
-                    {tool.self_host_possibility === "Oui" ? "Oui" : "Non"}
-                  </Text>
-                </Box>
+                <BooleanBadge val={tool.self_host_possibility ?? null} />
               </Line>
 
               <Line title="Open source">
-                <Box
-                  bgColor={tool.opensource === "Oui" ? "green.50" : "red.50"}
-                  w={"fit"}
-                  p={2}
-                  rounded={"sm"}
-                >
-                  <Text
-                    truncate
-                    fontSize={14}
-                    fontWeight={400}
-                    color={tool.opensource === "Oui" ? "green.600" : "red.600"}
-                  >
-                    {tool.opensource === "Oui" ? "Oui" : "Non"}
-                  </Text>
-                </Box>
+                <BooleanBadge val={tool.opensource ?? null} />
               </Line>
 
               <Line title='Certifié "DPF"'>
-                <Text>
-                  {tool.certification_dpf ? tool.certification_dpf : "NC"}
-                </Text>
+                <BooleanBadge val={tool.certification_dpf ?? null} />
               </Line>
 
               <Line title="Sous-traitants ultérieurs (Hébergement/Infrastructure)">
@@ -526,46 +626,30 @@ const ToolPage = () => {
                   gap={3}
                   overflow={"auto"}
                 >
-                  <For each={tool.subcontractors_infra?.split(", ")}>
-                    {(item, index) => (
-                      <Box
-                        key={index}
+                  {tool.subcontractors_infra &&
+                  tool.subcontractors_infra.length > 0 ? (
+                    tool.subcontractors_infra.map((infra) => (
+                      <Badge
+                        px={2}
+                        py={1}
                         bgColor={"gray.50"}
-                        w={"fit"}
-                        p={2}
-                        rounded={"sm"}
+                        borderColor={"gray.100"}
+                        borderWidth={1}
+                        key={infra.id}
                       >
-                        <Text truncate fontSize={14} fontWeight={400}>
-                          {item}
+                        <Text fontSize={14} fontWeight={400} color={"gray.900"}>
+                          {infra.name}
                         </Text>
-                      </Box>
-                    )}
-                  </For>
+                      </Badge>
+                    ))
+                  ) : (
+                    <Text>Aucune fonctionnalité</Text>
+                  )}
                 </Flex>
               </Line>
 
               <Line title="DPA accessible en ligne">
-                <Box
-                  bgColor={
-                    tool.online_accessible_dpa === "Oui" ? "green.50" : "red.50"
-                  }
-                  w={"fit"}
-                  p={2}
-                  rounded={"sm"}
-                >
-                  <Text
-                    truncate
-                    fontSize={14}
-                    fontWeight={400}
-                    color={
-                      tool.online_accessible_dpa === "Oui"
-                        ? "green.600"
-                        : "red.600"
-                    }
-                  >
-                    {tool.online_accessible_dpa === "Oui" ? "Oui" : "Non"}
-                  </Text>
-                </Box>
+                <BooleanBadge val={tool.online_accessible_dpa ?? null} />
               </Line>
 
               <Line title="Localisation hébergement : relation client">
@@ -575,21 +659,34 @@ const ToolPage = () => {
                   gap={3}
                   overflow={"auto"}
                 >
-                  <For each={tool.location_host_client?.split(", ")}>
-                    {(item, index) => (
-                      <Box
-                        key={index}
-                        bgColor={"gray.50"}
-                        w={"fit"}
-                        p={2}
-                        rounded={"sm"}
-                      >
-                        <Text truncate fontSize={14} fontWeight={400}>
-                          {item}
-                        </Text>
-                      </Box>
-                    )}
-                  </For>
+                  {tool.locations_host_client &&
+                  tool.locations_host_client.length > 0 ? (
+                    tool.locations_host_client.map(({ location }) => {
+                      if (typeof location != "number") {
+                        const { id, name } = location;
+                        return (
+                          <Badge
+                            px={2}
+                            py={1}
+                            bgColor={"blue.50"}
+                            borderColor={"blue.100"}
+                            borderWidth={1}
+                            key={id}
+                          >
+                            <Text
+                              fontSize={14}
+                              fontWeight={400}
+                              color={"blue.900"}
+                            >
+                              {name}
+                            </Text>
+                          </Badge>
+                        );
+                      }
+                    })
+                  ) : (
+                    <Text>Aucune localisation</Text>
+                  )}
                 </Flex>
               </Line>
 
@@ -600,57 +697,82 @@ const ToolPage = () => {
                   gap={3}
                   overflow={"auto"}
                 >
-                  <For each={tool.tool_kind?.split(", ")}>
-                    {(item, index) => (
-                      <Box
-                        key={index}
-                        bgColor={"gray.50"}
-                        w={"fit"}
-                        p={2}
-                        rounded={"sm"}
-                      >
-                        <Text truncate fontSize={14} fontWeight={400}>
-                          {item}
-                        </Text>
-                      </Box>
-                    )}
-                  </For>
+                  {tool.categories && tool.categories.length > 0 ? (
+                    tool.categories.map(({ category }, index) => {
+                      if (typeof category != "number") {
+                        return (
+                          <CategoryBadge
+                            key={index}
+                            variant="sm"
+                            category={category}
+                          />
+                        );
+                      }
+                    })
+                  ) : (
+                    <Text>Aucune information</Text>
+                  )}
                 </Flex>
               </Line>
 
               <Line title="Privacy score SELFHOSTED">
-                {tool.privacy_score_self_hosted !== "n/a" ? (
-                  <PrivacyScoreBadge
-                    score={tool.privacy_score_self_hosted ?? ""}
-                  />
+                {tool.privacy_score_self_hosted ? (
+                  <PrivacyScoreBadge score={tool.privacy_score_self_hosted} />
                 ) : (
-                  "N/A"
+                  <Text>Aucun score SELFHOSTED</Text>
                 )}
               </Line>
 
               <Line title="Privacy score SAAS">
-                {tool.privacy_score_saas !== "n/a" ? (
-                  <PrivacyScoreBadge score={tool.privacy_score_saas ?? ""} />
-                ) : (
-                  "N/A"
-                )}
+                <PrivacyScoreBadge score={tool.privacy_score_saas} />
               </Line>
 
               <Line title="Transfert hors EU">
-                <Text>{tool.transfer_out_eu}</Text>
+                {(() => {
+                  const color = (() => {
+                    if (tool.transfer_out_eu === "Oui") return "green";
+                    if (tool.transfer_out_eu === "Non") return "red";
+                    return "gray";
+                  })();
+
+                  return tool.transfer_out_eu ? (
+                    <Badge
+                      bgColor={`${color}.50`}
+                      borderColor={`${color}.100`}
+                      borderWidth={1}
+                      w={"fit"}
+                      p={2}
+                      rounded={"sm"}
+                    >
+                      <Text
+                        fontSize={14}
+                        fontWeight={400}
+                        color={`${color}.900`}
+                      >
+                        {tool.transfer_out_eu}
+                      </Text>
+                    </Badge>
+                  ) : (
+                    <Text>Aucune information</Text>
+                  );
+                })()}
               </Line>
 
               <Line title="Liste des sous-traitants ultérieurs">
-                <NextLink target="_blank" href={tool.subcontractors ?? ""}>
-                  <Text
-                    color={"primary.solid"}
-                    textDecoration={"underline"}
-                    textUnderlineOffset={2}
-                    wordBreak="break-all"
-                  >
-                    {tool.subcontractors}
-                  </Text>
-                </NextLink>
+                {tool.subcontractors ? (
+                  <NextLink target="_blank" href={tool.subcontractors ?? ""}>
+                    <Text
+                      color={"primary.solid"}
+                      textDecoration={"underline"}
+                      textUnderlineOffset={2}
+                      wordBreak="break-all"
+                    >
+                      {tool.subcontractors}
+                    </Text>
+                  </NextLink>
+                ) : (
+                  <Text>Aucune liste</Text>
+                )}
               </Line>
 
               <Line title="Accès aux données">
@@ -660,21 +782,33 @@ const ToolPage = () => {
                   gap={3}
                   overflow={"auto"}
                 >
-                  <For each={tool.data_access?.split(", ")}>
-                    {(item, index) => (
-                      <Box
-                        key={index}
-                        bgColor={"gray.50"}
-                        w={"fit"}
-                        p={2}
-                        rounded={"sm"}
-                      >
-                        <Text truncate fontSize={14} fontWeight={400}>
-                          {item}
-                        </Text>
-                      </Box>
-                    )}
-                  </For>
+                  {tool.accessors ? (
+                    tool.accessors.map(({ accessor }) => {
+                      if (typeof accessor != "number") {
+                        const { id, name } = accessor;
+                        return (
+                          <Badge
+                            px={2}
+                            py={1}
+                            bgColor={"gray.50"}
+                            borderColor={"gray.100"}
+                            borderWidth={1}
+                            key={id}
+                          >
+                            <Text
+                              fontSize={14}
+                              fontWeight={400}
+                              color={"gray.900"}
+                            >
+                              {name}
+                            </Text>
+                          </Badge>
+                        );
+                      }
+                    })
+                  ) : (
+                    <Text>Aucune information</Text>
+                  )}
                 </Flex>
               </Line>
 
@@ -685,21 +819,33 @@ const ToolPage = () => {
                   gap={3}
                   overflow={"auto"}
                 >
-                  <For each={tool.enterprise_certifications?.split(", ")}>
-                    {(item, index) => (
-                      <Box
-                        key={index}
-                        bgColor={"gray.50"}
-                        w={"fit"}
-                        p={2}
-                        rounded={"sm"}
-                      >
-                        <Text truncate fontSize={14} fontWeight={400}>
-                          {item}
-                        </Text>
-                      </Box>
-                    )}
-                  </For>
+                  {tool.certifications && tool.certifications.length > 0 ? (
+                    tool.certifications.map(({ certification }) => {
+                      if (typeof certification != "number") {
+                        const { id, name } = certification;
+                        return (
+                          <Badge
+                            px={2}
+                            py={1}
+                            bgColor={"gray.50"}
+                            borderColor={"gray.100"}
+                            borderWidth={1}
+                            key={id}
+                          >
+                            <Text
+                              fontSize={14}
+                              fontWeight={400}
+                              color={"gray.900"}
+                            >
+                              {name}
+                            </Text>
+                          </Badge>
+                        );
+                      }
+                    })
+                  ) : (
+                    <Text>Aucune certification</Text>
+                  )}
                 </Flex>
               </Line>
             </Box>
@@ -713,43 +859,16 @@ const ToolPage = () => {
           Outils similaires
         </Text>
 
-        <ToolsCaroussel tools={tools} isLoading={isLoadingTools} />
+        <Caroussel
+          items={tools}
+          isLoading={isLoadingTools}
+          CardComponent={({ item, isLoading }) => (
+            <ToolCard tool={item} isLoading={isLoading} />
+          )}
+        />
       </Flex>
     </Flex>
   );
 };
-
-function Line({
-  title,
-  last = false,
-  children,
-}: {
-  title: string;
-  last?: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <Flex
-      w={"full"}
-      py={5}
-      gap={5}
-      borderBottomColor={"blue.50"}
-      borderBottomWidth={!last ? 1 : 0}
-    >
-      <Flex w={"1/3"} justifyContent={"start"} alignItems={"center"}>
-        <Text>{title}</Text>
-      </Flex>
-      <Box h={"100"} bgColor={"blue.50"} w={0.5} rounded={"full"} />
-      <Flex
-        w={"2/3"}
-        flexDir={"row"}
-        justifyContent={"start"}
-        alignItems={"center"}
-      >
-        {children}
-      </Flex>
-    </Flex>
-  );
-}
 
 export default ToolPage;

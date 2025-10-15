@@ -1,6 +1,6 @@
 import type { AppType } from "next/app";
 import { Lexend } from "next/font/google";
-import Layout from "~/components/Layout";
+import Layout from "~/components/layout";
 import { Provider } from "~/components/ui/provider";
 import { api } from "~/utils/api";
 

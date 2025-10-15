@@ -8,6 +8,11 @@ import { fileURLToPath } from "node:url";
 import { Media } from "./collections/Media";
 import { Tools } from "./collections/Tools";
 import { Categories } from "./collections/Category";
+import { Certifications } from "./collections/Certification";
+import { Accessors } from "./collections/Accessor";
+import { Locations } from "./collections/Location";
+import { Transfers } from "./collections/Transfer";
+import { Features } from "./collections/Feature";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -19,7 +24,7 @@ export default buildConfig({
 		},
 	},
 	editor: lexicalEditor(),
-	collections: [Tools, Media, Categories],
+	collections: [Tools, Media, Categories, Certifications, Accessors, Locations, Transfers, Features],
 	secret: process.env.PAYLOAD_SECRET || "",
 	db: postgresAdapter({
 		pool: {
