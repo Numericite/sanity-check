@@ -1,6 +1,7 @@
 import type { Where } from "payload";
 import z from "zod";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+import { getListSchema } from "~/server/schema/get-list-schema";
 
 export const categoryRouter = createTRPCRouter({
 	getAll: publicProcedure.query(async ({ ctx }) => {
@@ -35,23 +36,9 @@ export const categoryRouter = createTRPCRouter({
 	}),
 
 	getList: publicProcedure
-		.input(
-			z.object({
-				limit: z.number().optional(),
-				page: z.number().optional(),
-				filters: z
-					.array(
-						z.object({
-							key: z.string(),
-							operation: z.string().optional(),
-							value: z.string(),
-						}),
-					)
-					.optional(),
-			}),
-		)
+		.input(getListSchema)
 		.query(async ({ ctx, input }) => {
-			const { limit = 10, page = 1, filters } = input;
+			const { limit = 10, page = 1, filters, sort } = input;
 
 			const where: Where =
 				filters && filters.length > 0
@@ -69,6 +56,7 @@ export const categoryRouter = createTRPCRouter({
 				limit,
 				page,
 				where,
+				sort,
 			});
 
 			const categoriesWithTools = await Promise.all(

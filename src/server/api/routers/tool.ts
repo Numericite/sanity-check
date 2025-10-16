@@ -1,27 +1,13 @@
 import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
-import type { Sort, Where } from "payload";
+import type { Where } from "payload";
 import z from "zod";
 import type { Category } from "~/payload/payload-types";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+import { getListSchema } from "~/server/schema/get-list-schema";
 
 export const toolRouter = createTRPCRouter({
 	getList: publicProcedure
-		.input(
-			z.object({
-				limit: z.number().optional(),
-				page: z.number().optional(),
-				filters: z
-					.array(
-						z.object({
-							key: z.string(),
-							operation: z.string().optional(),
-							value: z.string(),
-						}),
-					)
-					.optional(),
-				sort: z.array(z.string()).optional(),
-			}),
-		)
+		.input(getListSchema)
 		.query(async ({ ctx, input }) => {
 			const { limit = 10, page = 1, filters, sort } = input;
 
