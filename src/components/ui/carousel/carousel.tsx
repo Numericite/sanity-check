@@ -2,13 +2,13 @@ import { Box, Grid, GridItem } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import DotsCaroussel from "./dots-carousel";
 
-type CarousselProps<T> = {
+type CarousselProps<T extends { id: number }> = {
 	items: T[] | undefined;
 	isLoading: boolean;
 	CardComponent: React.ComponentType<{ item: T; isLoading: boolean }>;
 };
 
-export default function Carousel<T>({
+export default function Carousel<T extends { id: number }>({
 	items,
 	isLoading,
 	CardComponent,
@@ -46,8 +46,8 @@ export default function Carousel<T>({
 				>
 					{items &&
 						items.length > 0 &&
-						items.map((item, index) => (
-							<GridItem key={index}>
+						items.map((item) => (
+							<GridItem key={item.id}>
 								<CardComponent item={item} isLoading={isLoading} />
 							</GridItem>
 						))}
