@@ -301,7 +301,7 @@ export default function Category() {
 					<Carousel
 						items={categories}
 						isLoading={isLoadingCategories}
-						CardComponent={({ item, isLoading }) => (
+						component={({ item, isLoading }) => (
 							<CategoryCard category={item} isLoading={isLoading} />
 						)}
 					/>

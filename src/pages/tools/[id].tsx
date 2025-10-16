@@ -658,7 +658,7 @@ const ToolPage = () => {
 				<Carousel
 					items={tools}
 					isLoading={isLoadingTools}
-					CardComponent={({ item, isLoading }) => (
+					component={({ item, isLoading }) => (
 						<ToolCard tool={item} isLoading={isLoading} />
 					)}
 				/>

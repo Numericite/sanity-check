@@ -197,7 +197,7 @@ export default function Home() {
 					<Carousel
 						items={categories}
 						isLoading={isLoadingCategories}
-						CardComponent={({ item, isLoading }) => (
+						component={({ item, isLoading }) => (
 							<CategoryCard category={item} isLoading={isLoading} />
 						)}
 					/>
@@ -242,7 +242,7 @@ export default function Home() {
 					<Carousel
 						items={toolsAI}
 						isLoading={isLoadingToolsAI}
-						CardComponent={({ item, isLoading }) => (
+						component={({ item, isLoading }) => (
 							<ToolCard tool={item} isLoading={isLoading} />
 						)}
 					/>

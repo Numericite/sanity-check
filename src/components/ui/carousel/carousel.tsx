@@ -47,11 +47,13 @@ export default function Carousel<T extends { id: number }>({
 				>
 					{items &&
 						items.length > 0 &&
-						items.map((item) => (
-							<GridItem key={item.id}>
-								<Component item={item} isLoading={isLoading} />
-							</GridItem>
-						))}
+						items
+							.filter((item) => item && item.id !== undefined)
+							.map((item) => (
+								<GridItem key={item.id}>
+									<Component item={item} isLoading={isLoading} />
+								</GridItem>
+							))}
 				</Grid>
 			</Box>
 
