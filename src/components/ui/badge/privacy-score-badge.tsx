@@ -16,31 +16,31 @@ const colors = {
 	N: { active: "gray.500", bgColor: "gray.50" },
 };
 
+const styles = {
+	md: { fontSize: 22, p: 2.5 },
+	sm: { fontSize: 20, p: 1.5 },
+};
+
 const PrivacyScoreBadge = ({
 	score,
 	active = true,
 	size = "md",
 }: PrivacyScoreBadgeProps) => {
 	const normalizedScore = score ?? "N";
+	const color = active
+		? colors[normalizedScore].active
+		: colors[normalizedScore].bgColor;
+	const fontColor = active ? "white" : colors[normalizedScore].active;
 
 	return (
 		<Badge
-			color={active ? "white" : colors[normalizedScore].active}
-			bgColor={
-				active
-					? colors[normalizedScore].active
-					: colors[normalizedScore].bgColor
-			}
-			fontSize={size === "md" ? 22 : 20}
+			color={fontColor}
+			bgColor={color}
 			fontWeight={500}
 			lineHeight="0.7"
 			borderWidth={1}
-			borderColor={
-				active
-					? colors[normalizedScore].bgColor
-					: colors[normalizedScore].bgColor
-			}
-			p={size === "md" ? 2.5 : 1.5}
+			borderColor={color}
+			{...styles[size]}
 		>
 			{normalizedScore}
 		</Badge>
