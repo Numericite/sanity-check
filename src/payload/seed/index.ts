@@ -3,8 +3,8 @@ import "dotenv/config";
 import config from "@payload-config";
 import { getPayload } from "payload";
 
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import { seed as accessors } from "./accessors";
 import { seed as categories } from "./categories";
 import { seed as features } from "./features";

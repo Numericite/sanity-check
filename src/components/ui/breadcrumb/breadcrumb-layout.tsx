@@ -20,20 +20,18 @@ export default function BreadcrumbLayout({
 		<Breadcrumb.Root>
 			<Breadcrumb.List gap={1}>
 				{home && (
-					<>
-						<Breadcrumb.Item>
-							<ChakraLink asChild textDecorationColor={"blue.600"}>
-								<NextLink href={"/"}>
-									<Flex gap={1} justifyContent={"center"} alignItems={"center"}>
-										<HomeDash />
-										<Text fontSize={14} fontWeight={400} color={"blue.600"}>
-											Accueil
-										</Text>
-									</Flex>
-								</NextLink>
-							</ChakraLink>
-						</Breadcrumb.Item>
-					</>
+					<Breadcrumb.Item>
+						<ChakraLink asChild textDecorationColor={"blue.600"}>
+							<NextLink href={"/"}>
+								<Flex gap={1} justifyContent={"center"} alignItems={"center"}>
+									<HomeDash />
+									<Text fontSize={14} fontWeight={400} color={"blue.600"}>
+										Accueil
+									</Text>
+								</Flex>
+							</NextLink>
+						</ChakraLink>
+					</Breadcrumb.Item>
 				)}
 				{items.map((item, index) => (
 					<>

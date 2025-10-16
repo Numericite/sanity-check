@@ -33,7 +33,7 @@ export default function Caroussel<T>({
 			left: targetScroll,
 			behavior: "smooth",
 		});
-	}, [active]);
+	}, [active, numberOfSlides]);
 
 	return (
 		<>

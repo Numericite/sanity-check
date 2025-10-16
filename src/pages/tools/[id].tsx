@@ -3,7 +3,6 @@ import {
 	Box,
 	Button,
 	Flex,
-	For,
 	Grid,
 	GridItem,
 	Skeleton,
@@ -262,6 +261,7 @@ const ToolPage = () => {
 										tool.locations_enterprise.length > 0 ? (
 											tool.locations_enterprise.map((location) => (
 												<Badge
+													key={location.id}
 													bgColor="white"
 													borderColor="gray.50"
 													borderWidth={1}
@@ -274,7 +274,7 @@ const ToolPage = () => {
 														fontWeight={400}
 														color={"gray.900"}
 													>
-														{typeof location.location != "number" &&
+														{typeof location.location !== "number" &&
 															location.location.name}
 													</Text>
 												</Badge>
@@ -331,7 +331,7 @@ const ToolPage = () => {
 																fontWeight={400}
 																color={"gray.900"}
 															>
-																{typeof certification.certification !=
+																{typeof certification.certification !==
 																	"number" && certification.certification.name}
 															</Text>
 														</Badge>
@@ -408,7 +408,7 @@ const ToolPage = () => {
 									{tool.locations_final_users &&
 									tool.locations_final_users.length > 0 ? (
 										tool.locations_final_users.map(({ location }) => {
-											if (typeof location != "number") {
+											if (typeof location !== "number") {
 												const { id, name } = location;
 												return (
 													<Badge
@@ -483,7 +483,7 @@ const ToolPage = () => {
 									tool.certifications_subcontractors.length > 0 ? (
 										tool.certifications_subcontractors.map(
 											({ certification }) => {
-												if (typeof certification != "number") {
+												if (typeof certification !== "number") {
 													const { id, name } = certification;
 													return (
 														<Badge
@@ -538,7 +538,7 @@ const ToolPage = () => {
 								>
 									{tool.transfers && tool.transfers.length > 0 ? (
 										tool.transfers.map(({ transfer }) => {
-											if (typeof transfer != "number") {
+											if (typeof transfer !== "number") {
 												const { id, name } = transfer;
 												return (
 													<Badge
@@ -575,7 +575,7 @@ const ToolPage = () => {
 								>
 									{tool.features && tool.features.length > 0 ? (
 										tool.features.map(({ feature }) => {
-											if (typeof feature != "number") {
+											if (typeof feature !== "number") {
 												const { id, name } = feature;
 												return (
 													<Badge
@@ -662,7 +662,7 @@ const ToolPage = () => {
 									{tool.locations_host_client &&
 									tool.locations_host_client.length > 0 ? (
 										tool.locations_host_client.map(({ location }) => {
-											if (typeof location != "number") {
+											if (typeof location !== "number") {
 												const { id, name } = location;
 												return (
 													<Badge
@@ -699,7 +699,7 @@ const ToolPage = () => {
 								>
 									{tool.categories && tool.categories.length > 0 ? (
 										tool.categories.map(({ category }, index) => {
-											if (typeof category != "number") {
+											if (typeof category !== "number") {
 												return (
 													<CategoryBadge
 														key={index}
@@ -784,7 +784,7 @@ const ToolPage = () => {
 								>
 									{tool.accessors ? (
 										tool.accessors.map(({ accessor }) => {
-											if (typeof accessor != "number") {
+											if (typeof accessor !== "number") {
 												const { id, name } = accessor;
 												return (
 													<Badge
@@ -821,7 +821,7 @@ const ToolPage = () => {
 								>
 									{tool.certifications && tool.certifications.length > 0 ? (
 										tool.certifications.map(({ certification }) => {
-											if (typeof certification != "number") {
+											if (typeof certification !== "number") {
 												const { id, name } = certification;
 												return (
 													<Badge

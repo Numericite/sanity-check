@@ -10,7 +10,9 @@ export default function HomeDash({ size = 24 }: Props) {
 			viewBox="0 0 24 24"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
+			aria-labelledby="home-dash"
 		>
+			<title id="home-dash">Icône d'accueil</title>
 			<path
 				opacity="0.4"
 				fill-rule="evenodd"

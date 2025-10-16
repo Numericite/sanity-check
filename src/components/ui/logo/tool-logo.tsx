@@ -13,8 +13,8 @@ const ToolLogo: React.FC<ToolLogoProps> = ({ media, size = 52 }) => {
 
 	if (
 		typeof media === "number" ||
-		typeof media === null ||
-		typeof media === undefined ||
+		typeof media === "undefined" ||
+		!media ||
 		!media?.url
 	)
 		return null;

@@ -74,7 +74,7 @@ export default function ToolCard({
 									<Text fontSize={20} fontWeight={500}>
 										{tool?.name}
 									</Text>
-									{tool && tool.privacy_score_saas && (
+									{tool?.privacy_score_saas && (
 										<PrivacyScoreBadge score={tool.privacy_score_saas} />
 									)}
 								</Flex>

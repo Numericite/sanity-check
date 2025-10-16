@@ -10,7 +10,9 @@ export default function Search({ size = 24 }: Props) {
 			viewBox="0 0 24 24"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
+			aria-labelledby="search"
 		>
+			<title id="search">Icône de recherche</title>
 			<path
 				d="M21.72 21.5257C21.57 21.6757 21.3801 21.7457 21.1901 21.7457C21.0001 21.7457 20.81 21.6757 20.66 21.5257L16.29 17.1557C16.68 16.8357 17.03 16.4857 17.35 16.0957L21.72 20.4657C22.01 20.7557 22.01 21.2357 21.72 21.5257Z"
 				fill="#1F2937"

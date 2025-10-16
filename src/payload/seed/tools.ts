@@ -1,5 +1,5 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import type { Payload } from "payload";
 import list from "./../../../scripts/tools.json";
 
@@ -68,6 +68,7 @@ export async function seed(payload: Payload) {
 	let i = 1;
 
 	for (const tool of list) {
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 		const toolData: any = { ...tool };
 
 		if (tool.enterprise_location?.length) {
@@ -109,6 +110,7 @@ export async function seed(payload: Payload) {
 		}
 
 		if (tool.categories?.length) {
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 			toolData.categories = tool.categories.map((c: any) => ({
 				category: categoryMap[c.category],
 				main: c.main ?? false,
@@ -116,6 +118,7 @@ export async function seed(payload: Payload) {
 		}
 
 		if (tool.data_access?.length) {
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 			toolData.accessors = tool.data_access.map((a: any) => ({
 				accessor: accessorMap[a],
 			}));
@@ -129,6 +132,7 @@ export async function seed(payload: Payload) {
 
 		if (tool.enterprise_location?.length) {
 			toolData.locations_enterprise = tool.enterprise_location.map(
+				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 				(l: any) => ({
 					location: locationMap[l],
 				}),
@@ -137,6 +141,7 @@ export async function seed(payload: Payload) {
 
 		if (tool.location_host_client?.length) {
 			toolData.locations_host_client = tool.location_host_client.map(
+				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 				(l: any) => ({
 					location: locationMap[l],
 				}),
@@ -145,6 +150,7 @@ export async function seed(payload: Payload) {
 
 		if (tool.final_users_location?.length) {
 			toolData.locations_final_users = tool.final_users_location.map(
+				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 				(l: any) => ({
 					location: locationMap[l],
 				}),
@@ -152,11 +158,13 @@ export async function seed(payload: Payload) {
 		}
 
 		if (tool.transfer_supervision?.length) {
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 			toolData.transfers = tool.transfer_supervision.map((t: any) => ({
 				transfer: transferMap[t],
 			}));
 		}
 		if (tool.rgpd_feature?.length) {
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 			toolData.features = tool.rgpd_feature.map((f: any) => ({
 				feature: featureMap[f],
 			}));

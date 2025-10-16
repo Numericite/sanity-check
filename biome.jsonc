@@ -39,7 +39,10 @@
 			"complexity": {
 				"useArrowFunction": "off"
 			},
-			"recommended": true
+			"recommended": true,
+			"suspicious": {
+				"noArrayIndexKey": "off"
+			}
 		}
 	}
 }
