@@ -81,10 +81,7 @@ export default function ToolCard({
 								{/* Category */}
 								{tool && mainCategory && !hideCategory && (
 									<Flex w={"full"}>
-										<CategoryBadge
-											category={mainCategory as Category}
-											variant="sm"
-										/>
+										<CategoryBadge category={mainCategory as Category} />
 									</Flex>
 								)}
 							</Flex>

@@ -134,7 +134,7 @@ const ToolPage = () => {
 										<PrivacyScoreBadge score={tool?.privacy_score_saas} />
 
 										{/* Category badge */}
-										<CategoryBadge category={mainCategory as Category} />
+										<CategoryBadge category={mainCategory} size={"lg"} />
 									</>
 								)}
 							</Flex>
@@ -701,11 +701,7 @@ const ToolPage = () => {
 										tool.categories.map(({ category }, index) => {
 											if (typeof category !== "number") {
 												return (
-													<CategoryBadge
-														key={index}
-														variant="sm"
-														category={category}
-													/>
+													<CategoryBadge key={index} category={category} />
 												);
 											}
 										})

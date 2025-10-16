@@ -1,23 +1,13 @@
-import { Badge } from "@chakra-ui/react";
+import { Badge, type ConditionalValue } from "@chakra-ui/react";
 import CategoryIcon from "~/components/ui/icons/category-icon";
 import type { Category } from "~/payload/payload-types";
 
-type Variant = "default" | "sm";
-
 type CategoryBadgeProps = {
 	category: Category;
-	variant?: Variant;
+	size?: ConditionalValue<"md" | "sm" | "lg" | "xs" | undefined>;
 };
 
-const styles = {
-	default: { fontSize: 16, px: 2.5, py: 2 },
-	sm: { fontSize: 14, px: 2, py: 1 },
-};
-
-const CategoryBadge = ({
-	category,
-	variant = "default",
-}: CategoryBadgeProps) => {
+const CategoryBadge = ({ category, size = "md" }: CategoryBadgeProps) => {
 	if (!category) return;
 	return (
 		<Badge
@@ -26,9 +16,9 @@ const CategoryBadge = ({
 			borderWidth={1}
 			gap={2}
 			alignItems={"center"}
-			fontWeight={500}
-			w={"fit"}
-			{...styles[variant]}
+			fontWeight={400}
+			size={size}
+			fontSize={size === "lg" ? 16 : undefined}
 		>
 			<CategoryIcon size={20} category={category} />
 			{category.name}
