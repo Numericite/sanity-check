@@ -38,8 +38,7 @@
 		"**/*.cjs",
 		"**/*.js",
 		".next/types/**/*.ts",
-		"next.config.mjs",
-		"src/pages/categories/[id].tsx.local"
+		"next.config.mjs"
 	],
 	"exclude": ["node_modules"]
 }
