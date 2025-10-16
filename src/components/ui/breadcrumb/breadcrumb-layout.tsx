@@ -1,5 +1,5 @@
 import { Breadcrumb, Link as ChakraLink, Flex, Text } from "@chakra-ui/react";
-import { default as NextLink } from "next/link";
+import NextLink from "next/link";
 import HomeDash from "../icons/home-dash";
 
 type Item = {

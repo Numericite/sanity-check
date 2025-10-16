@@ -1,14 +1,12 @@
 import {
 	Badge,
-	Image as ChakraImage,
 	Link as ChakraLink,
 	Flex,
 	Separator,
 	Skeleton,
 	Text,
 } from "@chakra-ui/react";
-import { default as NextImage } from "next/image";
-import { default as NextLink } from "next/link";
+import NextLink from "next/link";
 import type { Category, Tool } from "~/payload/payload-types";
 import CategoryBadge from "../badge/category-badge";
 import PrivacyScoreBadge from "../badge/privacy-score-badge";

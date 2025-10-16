@@ -13,7 +13,7 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import Head from "next/head";
-import { default as NextLink } from "next/link";
+import NextLink from "next/link";
 import { useState } from "react";
 import { LuSearch, LuX } from "react-icons/lu";
 import CategoryCard from "~/components/ui/card/category-card";
