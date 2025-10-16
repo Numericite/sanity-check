@@ -1,6 +1,6 @@
 import { Box, Grid, GridItem } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
-import DotsCaroussel from "./dots-caroussel";
+import DotsCaroussel from "./dots-carousel";
 
 type CarousselProps<T> = {
 	items: T[] | undefined;
@@ -8,7 +8,7 @@ type CarousselProps<T> = {
 	CardComponent: React.ComponentType<{ item: T; isLoading: boolean }>;
 };
 
-export default function Caroussel<T>({
+export default function Carousel<T>({
 	items,
 	isLoading,
 	CardComponent,

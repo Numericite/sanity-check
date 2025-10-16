@@ -16,7 +16,7 @@ import PrivacyScoreBadge from "~/components/ui/badge/privacy-score-badge";
 import BreadcrumbLayout from "~/components/ui/breadcrumb/breadcrumb-layout";
 import CategoryCard from "~/components/ui/card/category-card";
 import ToolCard from "~/components/ui/card/tool-card";
-import Caroussel from "~/components/ui/caroussel/caroussel";
+import Carousel from "~/components/ui/carousel/carousel";
 import CategoryIcon from "~/components/ui/icons/category-icon";
 import Search from "~/components/ui/icons/search";
 import { api } from "~/utils/api";
@@ -298,7 +298,7 @@ export default function Category() {
 						Autres catégories
 					</Text>
 
-					<Caroussel
+					<Carousel
 						items={categories}
 						isLoading={isLoadingCategories}
 						CardComponent={({ item, isLoading }) => (

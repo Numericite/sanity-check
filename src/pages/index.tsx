@@ -18,7 +18,7 @@ import { useState } from "react";
 import { LuSearch, LuX } from "react-icons/lu";
 import CategoryCard from "~/components/ui/card/category-card";
 import ToolCard from "~/components/ui/card/tool-card";
-import Caroussel from "~/components/ui/caroussel/caroussel";
+import Carousel from "~/components/ui/carousel/carousel";
 import { api } from "~/utils/api";
 
 export default function Home() {
@@ -194,7 +194,7 @@ export default function Home() {
 						</ChakraLink>
 					</Flex>
 
-					<Caroussel
+					<Carousel
 						items={categories}
 						isLoading={isLoadingCategories}
 						CardComponent={({ item, isLoading }) => (
@@ -239,7 +239,7 @@ export default function Home() {
 						</ChakraLink>
 					</Flex>
 
-					<Caroussel
+					<Carousel
 						items={toolsAI}
 						isLoading={isLoadingToolsAI}
 						CardComponent={({ item, isLoading }) => (

@@ -18,7 +18,7 @@ import CategoryBadge from "~/components/ui/badge/category-badge";
 import PrivacyScoreBadge from "~/components/ui/badge/privacy-score-badge";
 import BreadcrumbLayout from "~/components/ui/breadcrumb/breadcrumb-layout";
 import ToolCard from "~/components/ui/card/tool-card";
-import Caroussel from "~/components/ui/caroussel/caroussel";
+import Carousel from "~/components/ui/carousel/carousel";
 import Line from "~/components/ui/line";
 import ToolLogo from "~/components/ui/logo/tool-logo";
 import type { Category } from "~/payload/payload-types";
@@ -655,7 +655,7 @@ const ToolPage = () => {
 					Outils similaires
 				</Text>
 
-				<Caroussel
+				<Carousel
 					items={tools}
 					isLoading={isLoadingTools}
 					CardComponent={({ item, isLoading }) => (
