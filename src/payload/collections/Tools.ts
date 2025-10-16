@@ -31,7 +31,6 @@ export const Tools: CollectionConfig = {
 		{
 			name: "description",
 			type: "textarea",
-			required: false,
 			label: "Description de l'outil",
 		},
 		{
@@ -61,7 +60,6 @@ export const Tools: CollectionConfig = {
 				{ label: "Au choix", value: "Au choix" },
 			],
 			label: "Transfert des données en dehors de l'UE",
-			required: false,
 		},
 		{
 			name: "privacy_score_saas",
@@ -76,7 +74,6 @@ export const Tools: CollectionConfig = {
 				{ label: "E", value: "E" },
 				{ label: "F", value: "F" },
 			],
-			required: false,
 		},
 		{
 			name: "privacy_score_self_hosted",
@@ -91,42 +88,35 @@ export const Tools: CollectionConfig = {
 				{ label: "E", value: "E" },
 				{ label: "F", value: "F" },
 			],
-			required: false,
 		},
 		{
 			name: "online_accessible_dpa",
 			type: "checkbox",
-			required: false,
 			label: "Accès en ligne au DPA",
 		},
 		{
 			name: "certification_dpf",
 			type: "checkbox",
-			required: false,
 			label: "Certification DPF",
 		},
 		{
 			name: "opensource",
 			type: "checkbox",
-			required: false,
 			label: "Open source",
 		},
 		{
 			name: "self_host_possibility",
 			type: "checkbox",
-			required: false,
 			label: "Possibilité d'auto-hébergement",
 		},
 		{
 			name: "fr_documentation",
 			type: "checkbox",
-			required: false,
 			label: "Documentation en français",
 		},
 		{
 			name: "dpa_compliant",
 			type: "checkbox",
-			required: false,
 			label: "Conformité au DPA",
 		},
 		{

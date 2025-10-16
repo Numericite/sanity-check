@@ -19,7 +19,6 @@ export const Categories: CollectionConfig = {
 			name: "description",
 			type: "text",
 			label: "Description de la catégorie",
-			required: false,
 		},
 		{
 			name: "icon",
@@ -37,19 +36,16 @@ export const Categories: CollectionConfig = {
 			name: "fonctionnalities",
 			type: "text",
 			label: "En savoir plus -> Fonctionnalités",
-			required: false,
 		},
 		{
 			name: "vigilances",
 			type: "text",
 			label: "En savoir plus -> Points de vigilance",
-			required: false,
 		},
 		{
 			name: "recommendations",
 			type: "text",
 			label: "En savoir plus -> Recommandations et mentions obligatoires",
-			required: false,
 		},
 		{
 			name: "tools",
