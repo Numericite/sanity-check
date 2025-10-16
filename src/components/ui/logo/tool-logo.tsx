@@ -26,11 +26,11 @@ const ToolLogo: React.FC<ToolLogoProps> = ({ media, size = 52 }) => {
 	return (
 		<Skeleton
 			loading={!isLoading}
-			borderRadius={12}
+			rounded={"xl"}
 			width={`${size}px`}
 			height={`${size}px`}
 		>
-			<ChakraImage asChild borderRadius={12}>
+			<ChakraImage asChild rounded={"xl"}>
 				<NextImage
 					src={`${process.env.NEXT_PUBLIC_URL}${media.url}`}
 					alt={media.alt}

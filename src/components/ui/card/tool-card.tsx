@@ -42,7 +42,7 @@ export default function ToolCard({
 						bgColor={"white"}
 						borderWidth={1}
 						borderColor={"gray.100"}
-						borderRadius={16}
+						rounded={"2xl"}
 						padding={4}
 						gap={4}
 						w={"full"}
@@ -55,7 +55,7 @@ export default function ToolCard({
 								p={2}
 								borderWidth={1}
 								borderColor={"gray.100"}
-								borderRadius={12}
+								rounded={"xl"}
 								h={"full"}
 								aspectRatio={"square"}
 							>

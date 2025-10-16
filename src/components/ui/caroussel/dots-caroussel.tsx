@@ -20,7 +20,7 @@ export default function DotsCaroussel({
 					transition={"all"}
 					w={active === index ? 9 : 3}
 					h={3}
-					borderRadius={"full"}
+					rounded={"full"}
 					bgColor={active === index ? "primary.solid" : "primary.muted"}
 				/>
 			))}

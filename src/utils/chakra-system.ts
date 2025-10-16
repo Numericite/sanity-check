@@ -18,6 +18,9 @@ const config = defineConfig({
 				heading: { value: "var(--font-lexend)" },
 				body: { value: "var(--font-lexend)" },
 			},
+			radii: {
+				"2.5xl": { value: "20px" },
+			},
 			colors: {
 				blue: {
 					50: { value: "#EFF6FF" },

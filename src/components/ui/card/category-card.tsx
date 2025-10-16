@@ -16,7 +16,7 @@ export default function CategoryCard({
 		<Skeleton loading={isLoading}>
 			<Flex
 				p={5}
-				borderRadius={6}
+				rounded={"3xl"}
 				bg={"white"}
 				borderWidth={1}
 				borderColor={"gray.100"}
@@ -28,8 +28,7 @@ export default function CategoryCard({
 					w={"full"}
 					h={36}
 					bg={`${category?.color}.50`}
-					borderRadius={5}
-					borderWidth={1}
+					rounded={"2.5xl"}
 					p={3}
 					gap={1}
 					justifyContent={"center"}

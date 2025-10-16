@@ -31,7 +31,7 @@ const NavbarItem = ({
 			bottom={-1}
 			left={0}
 			right={0}
-			borderRadius="full"
+			rounded="full"
 		/>
 	</Box>
 );
@@ -50,7 +50,7 @@ const Navbar = () => {
 				>
 					<NextLink href="/" passHref>
 						<Flex alignItems="center" gap={2}>
-							<Box bgColor="primary.active" borderRadius="full" px={3} py={1}>
+							<Box bgColor="primary.active" rounded="full" px={3} py={1}>
 								<Text color="white" fontWeight={500} fontSize={20}>
 									S
 								</Text>

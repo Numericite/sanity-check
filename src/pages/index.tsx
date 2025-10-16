@@ -109,7 +109,7 @@ export default function Home() {
 					<Flex
 						alignItems="center"
 						bgColor={isSearching ? "blue.50" : "white"}
-						borderRadius="full"
+						rounded="full"
 						px={4}
 						py={3}
 						mt={8}
@@ -134,7 +134,7 @@ export default function Home() {
 							<IconButton
 								aria-label="Annuler la recherche"
 								bgColor={isSearching ? "white" : "gray.100"}
-								borderRadius="full"
+								rounded="full"
 								size="2xs"
 								p={0}
 								mr={4}
@@ -148,7 +148,7 @@ export default function Home() {
 						</Show>
 						<IconButton
 							aria-label="Rechercher un outil"
-							borderRadius="full"
+							rounded="full"
 							p={6}
 							flex={1}
 							colorPalette={isSearching ? "primary" : "black"}

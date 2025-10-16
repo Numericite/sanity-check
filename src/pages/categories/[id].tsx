@@ -64,7 +64,7 @@ export default function Category() {
 				backgroundColor={"white"}
 				p={5}
 				gap={7}
-				borderRadius={20}
+				rounded={"2.5xl"}
 				borderWidth={1}
 				borderColor={"gray.100"}
 			>
@@ -77,7 +77,7 @@ export default function Category() {
 						bgColor={`${category?.color}.50`}
 						borderWidth={1}
 						borderColor={`${category?.color}.100`}
-						borderRadius={20}
+						rounded={"2.5xl"}
 						justifyContent={"end"}
 						alignItems={"center"}
 						p={5}
@@ -146,7 +146,7 @@ export default function Category() {
 						py={6}
 						borderWidth={1}
 						borderColor={"gray.200"}
-						borderRadius={16}
+						rounded={"2xl"}
 						gap={7}
 						h={"fit"}
 					>
@@ -162,7 +162,7 @@ export default function Category() {
 							<InputGroup>
 								<Flex
 									bgColor={"gray.50"}
-									borderRadius={12}
+									rounded={"xl"}
 									py={4}
 									px={5}
 									gap={3}
@@ -245,7 +245,7 @@ export default function Category() {
 									<Badge
 										key={index}
 										bgColor={"blue.50"}
-										borderRadius={"full"}
+										rounded={"full"}
 										borderColor={"blue.100"}
 										borderWidth={1}
 										px={3}
@@ -276,7 +276,7 @@ export default function Category() {
 									<Badge
 										key={index}
 										bgColor={"blue.50"}
-										borderRadius={"full"}
+										rounded={"full"}
 										borderColor={"blue.100"}
 										borderWidth={1}
 										px={3}
@@ -302,7 +302,7 @@ export default function Category() {
 										<Badge
 											key={index}
 											bgColor={"gray.50"}
-											borderRadius={"full"}
+											rounded={"full"}
 											borderColor={"gray.100"}
 											borderWidth={1}
 											px={3}
