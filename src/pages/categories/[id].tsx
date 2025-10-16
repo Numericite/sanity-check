@@ -1,5 +1,4 @@
 import {
-	Badge,
 	Box,
 	Button,
 	Flex,
@@ -12,6 +11,7 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import Badge from "~/components/ui/badge/badge";
 import PrivacyScoreBadge from "~/components/ui/badge/privacy-score-badge";
 import BreadcrumbLayout from "~/components/ui/breadcrumb/breadcrumb-layout";
 import CategoryCard from "~/components/ui/card/category-card";
@@ -108,13 +108,11 @@ export default function Category() {
 									{category?.name}
 								</Text>
 								{category && (
-									<Badge bgColor={"gray.50"} px={3} py={2}>
-										<Text fontSize={20} fontWeight={400} color={"gray.600"}>
-											{category?.tools?.length} outil
-											{category?.tools?.length && category?.tools?.length > 1
-												? "s"
-												: ""}
-										</Text>
+									<Badge size={"lg"}>
+										{category?.tools?.length} outil
+										{category?.tools?.length && category?.tools?.length > 1
+											? "s"
+											: ""}
 									</Badge>
 								)}
 							</Flex>
@@ -226,18 +224,8 @@ export default function Category() {
 							</Text>
 							<Flex gap={2} flexWrap={"wrap"}>
 								{["🇪🇺 UE", "🇺🇸 Amérique du Nord"].map((location, index) => (
-									<Badge
-										key={index}
-										bgColor={"blue.50"}
-										rounded={"full"}
-										borderColor={"blue.100"}
-										borderWidth={1}
-										px={3}
-										py={2}
-									>
-										<Text fontSize={14} fontWeight={400} color={"blue.950"}>
-											{location}
-										</Text>
+									<Badge color="blue" rounded={"full"} key={index}>
+										{location}
 									</Badge>
 								))}
 							</Flex>
@@ -256,18 +244,8 @@ export default function Category() {
 									"🇮🇪 Irlande",
 									"🏳️ Autres",
 								].map((location, index) => (
-									<Badge
-										key={index}
-										bgColor={"blue.50"}
-										rounded={"full"}
-										borderColor={"blue.100"}
-										borderWidth={1}
-										px={3}
-										py={2}
-									>
-										<Text fontSize={14} fontWeight={400} color={"blue.950"}>
-											{location}
-										</Text>
+									<Badge key={index} color="blue" rounded="full">
+										{location}
 									</Badge>
 								))}
 							</Flex>
@@ -281,18 +259,8 @@ export default function Category() {
 							<Flex gap={2} flexWrap={"wrap"}>
 								{["HDS", "SecNumCloud", "ISO", "SOC"].map(
 									(certification, index) => (
-										<Badge
-											key={index}
-											bgColor={"gray.50"}
-											rounded={"full"}
-											borderColor={"gray.100"}
-											borderWidth={1}
-											px={3}
-											py={2}
-										>
-											<Text fontSize={14} fontWeight={400}>
-												{certification}
-											</Text>
+										<Badge key={index} rounded="full">
+											{certification}
 										</Badge>
 									),
 								)}

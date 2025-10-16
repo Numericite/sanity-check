@@ -1,4 +1,4 @@
-import { Badge, Text } from "@chakra-ui/react";
+import Badge from "./badge";
 
 type Props = {
 	val: boolean | null;
@@ -15,18 +15,5 @@ export default function BooleanBadge({ val, text }: Props) {
 				? "Non"
 				: "Non renseignée";
 
-	return (
-		<Badge
-			bgColor={`${color}.50`}
-			borderColor={`${color}.100`}
-			borderWidth={1}
-			w={"fit"}
-			p={2}
-			rounded={"sm"}
-		>
-			<Text fontSize={14} fontWeight={400} color={`${color}.900`}>
-				{content}
-			</Text>
-		</Badge>
-	);
+	return <Badge color={color}>{content}</Badge>;
 }

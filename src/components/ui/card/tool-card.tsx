@@ -1,5 +1,4 @@
 import {
-	Badge,
 	Link as ChakraLink,
 	Flex,
 	Separator,
@@ -11,6 +10,8 @@ import type { Category, Tool } from "~/payload/payload-types";
 import CategoryBadge from "../badge/category-badge";
 import PrivacyScoreBadge from "../badge/privacy-score-badge";
 import ToolLogo from "../logo/tool-logo";
+import BooleanBadge from "../badge/boolean-badge";
+import Badge from "../badge/badge";
 
 type ToolCardProps = {
 	tool: Tool | null;
@@ -23,8 +24,6 @@ export default function ToolCard({
 	isLoading,
 	hideCategory = false,
 }: ToolCardProps) {
-	const isLoaded = tool !== null && !isLoading;
-
 	const mainCategory = tool?.categories?.find(
 		(cat) => cat.main === true,
 	)?.category;
@@ -87,77 +86,35 @@ export default function ToolCard({
 						<Separator borderColor={"gray.100"} />
 						<Flex gap={4} flexDir={"column"}>
 							<Flex gap={4}>
-								<Badge
-									px={2}
-									py={1}
-									bgColor={tool?.dpa_compliant ? "green.50" : "red.50"}
-									borderColor={tool?.dpa_compliant ? "green.100" : "red.100"}
-									borderWidth={1}
-								>
-									<Text
-										fontSize={14}
-										fontWeight={400}
-										color={tool?.dpa_compliant ? "green.900" : "red.900"}
-									>
-										DPA : {tool?.dpa_compliant ? "Conforme" : "Non conforme"}
-									</Text>
-								</Badge>
+								{tool && (
+									<BooleanBadge
+										val={tool.dpa_compliant ?? null}
+										text={`DPA : ${
+											tool?.dpa_compliant
+												? "Conforme"
+												: tool.dpa_compliant === false
+													? "Non conforme"
+													: "Non renseignée"
+										}`}
+									/>
+								)}
 							</Flex>
 							<Flex gap={4}>
 								{tool?.certifications && tool.certifications.length > 0 ? (
 									<>
-										{tool.certifications
-											.slice(0, 2)
-											.map((certification, index) => (
-												<Badge
-													px={2}
-													py={1}
-													bgColor={"gray.50"}
-													borderCollapse={"gray.100"}
-													borderWidth={1}
-													key={certification.id}
-												>
-													<Text
-														fontSize={14}
-														fontWeight={400}
-														color={"gray.900"}
-													>
-														{typeof certification.certification !== "number" &&
-															certification.certification.name}
-													</Text>
-												</Badge>
-											))}
+										{tool.certifications.slice(0, 2).map((certification) => (
+											<Badge key={certification.id}>
+												{typeof certification.certification !== "number" &&
+													certification.certification.name}
+											</Badge>
+										))}
 										{tool?.certifications &&
 											tool?.certifications.length > 2 && (
-												<Badge
-													px={2}
-													py={1}
-													bgColor={"gray.50"}
-													borderCollapse={"gray.100"}
-													borderWidth={1}
-												>
-													<Text
-														fontSize={14}
-														fontWeight={400}
-														color={"gray.900"}
-													>
-														+ {tool.certifications.length - 2}
-													</Text>
-												</Badge>
+												<Badge>+ {tool.certifications.length - 2}</Badge>
 											)}
 									</>
 								) : (
-									<Badge
-										px={2}
-										py={1}
-										bgColor={"gray.50"}
-										borderCollapse={"gray.100"}
-										borderWidth={1}
-									>
-										<Text fontSize={14} fontWeight={400} color={"gray.900"}>
-											Aucune certification
-										</Text>
-									</Badge>
+									<Badge>Aucune certification</Badge>
 								)}
 							</Flex>
 						</Flex>

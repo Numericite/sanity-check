@@ -1,6 +1,6 @@
 import {
-	Badge,
 	Box,
+	Badge as ChakraBadge,
 	Button,
 	Flex,
 	Grid,
@@ -12,6 +12,7 @@ import { RichText } from "@payloadcms/richtext-lexical/react";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { LuExternalLink } from "react-icons/lu";
+import Badge from "~/components/ui/badge/badge";
 import BooleanBadge from "~/components/ui/badge/boolean-badge";
 import CategoryBadge from "~/components/ui/badge/category-badge";
 import PrivacyScoreBadge from "~/components/ui/badge/privacy-score-badge";
@@ -30,7 +31,7 @@ const ToolPage = () => {
 	const { data: tool, isLoading } = api.tool.getById.useQuery(Number(id), {
 		enabled: !!id,
 	});
-	console.log(tool);
+
 	const { data: tools, isFetching: isLoadingTools } = api.tool.getList.useQuery(
 		{
 			limit: 6,
@@ -47,6 +48,24 @@ const ToolPage = () => {
 			initialData: Array.from({ length: 6 }),
 		},
 	);
+
+	const colorDpa = tool?.dpa_compliant
+		? "green"
+		: tool?.dpa_compliant === false
+			? "red"
+			: "gray";
+	const textDpa = tool?.dpa_compliant
+		? "Conforme"
+		: tool?.dpa_compliant === false
+			? "Non conforme"
+			: "Non renseignée";
+
+	const colorTransferOutEu =
+		tool?.transfer_out_eu === "Oui"
+			? "green"
+			: tool?.transfer_out_eu === "Non"
+				? "red"
+				: "gray";
 
 	const mainCategory = tool?.categories?.find((cat) => cat.main === true)
 		?.category as Category;
@@ -166,32 +185,35 @@ const ToolPage = () => {
 							alignItems={"stretch"}
 						>
 							<GridItem colSpan={2}>
-								<Box
+								<Flex
 									w={"full"}
 									h={"100%"}
 									px={4}
 									py={5}
-									bgColor={tool.dpa_compliant ? "green.50" : "red.50"}
-									borderColor={tool.dpa_compliant ? "green.100" : "red.100"}
+									bgColor={`${colorDpa}.50`}
+									borderColor={`${colorDpa}.100`}
 									borderWidth={1}
 									rounded={"xl"}
+									gap={5}
+									flexDir={"column"}
 								>
 									<Text fontSize={16} fontWeight={500}>
 										DPA
 									</Text>
-									<Box
-										bgColor={tool.dpa_compliant ? "green.100" : "red.100"}
-										mt={5}
-										w={"fit"}
-										p={2}
-										rounded={"sm"}
-										color={tool.dpa_compliant ? "green.600" : "red.600"}
-									>
-										<Text fontSize={14} fontWeight={400}>
-											{tool?.dpa_compliant ? "Conforme" : "Non conforme"}
-										</Text>
-									</Box>
-								</Box>
+									<Flex flexDir={"row"} gap={3} flexWrap={"wrap"}>
+										<ChakraBadge
+											bgColor={`${colorDpa}.100`}
+											borderColor={`${colorDpa}.100`}
+											borderWidth={1}
+											fontSize={16}
+											size={"lg"}
+											fontWeight={400}
+											color={`${colorDpa}.900`}
+										>
+											{textDpa}
+										</ChakraBadge>
+									</Flex>
+								</Flex>
 							</GridItem>
 							<GridItem colSpan={3}>
 								<Flex
@@ -210,18 +232,7 @@ const ToolPage = () => {
 										Hébergement des données
 									</Text>
 									<Flex flexDir={"row"} gap={3} flexWrap={"wrap"}>
-										<Badge
-											bgColor="white"
-											borderColor="gray.50"
-											borderWidth={1}
-											w={"fit"}
-											p={2}
-											rounded={"sm"}
-										>
-											<Text fontSize={14} fontWeight={400} color={"gray.900"}>
-												TODO
-											</Text>
-										</Badge>
+										<Badge>TODO</Badge>
 									</Flex>
 								</Flex>
 							</GridItem>
@@ -245,38 +256,13 @@ const ToolPage = () => {
 										{tool.locations_enterprise &&
 										tool.locations_enterprise.length > 0 ? (
 											tool.locations_enterprise.map((location) => (
-												<Badge
-													key={location.id}
-													bgColor="white"
-													borderColor="gray.50"
-													borderWidth={1}
-													w={"fit"}
-													p={2}
-													rounded={"sm"}
-												>
-													<Text
-														fontSize={14}
-														fontWeight={400}
-														color={"gray.900"}
-													>
-														{typeof location.location !== "number" &&
-															location.location.name}
-													</Text>
+												<Badge key={location.id}>
+													{typeof location.location !== "number" &&
+														location.location.name}
 												</Badge>
 											))
 										) : (
-											<Badge
-												bgColor="white"
-												borderColor="gray.50"
-												borderWidth={1}
-												w={"fit"}
-												p={2}
-												rounded={"sm"}
-											>
-												<Text fontSize={14} fontWeight={400} color={"gray.900"}>
-													Aucune information
-												</Text>
-											</Badge>
+											<Badge>Aucune information</Badge>
 										)}
 									</Flex>
 								</Flex>
@@ -303,40 +289,13 @@ const ToolPage = () => {
 												{tool.certifications
 													.slice(0, 2)
 													.map((certification, index) => (
-														<Badge
-															px={2}
-															py={1}
-															bgColor={"gray.50"}
-															borderCollapse={"gray.100"}
-															borderWidth={1}
-															key={index}
-														>
-															<Text
-																fontSize={14}
-																fontWeight={400}
-																color={"gray.900"}
-															>
-																{typeof certification.certification !==
-																	"number" && certification.certification.name}
-															</Text>
+														<Badge key={certification.id}>
+															{typeof certification.certification !==
+																"number" && certification.certification.name}
 														</Badge>
 													))}
 												{tool.certifications.length > 2 && (
-													<Badge
-														px={2}
-														py={1}
-														bgColor={"gray.50"}
-														borderCollapse={"gray.100"}
-														borderWidth={1}
-													>
-														<Text
-															fontSize={14}
-															fontWeight={400}
-															color={"gray.900"}
-														>
-															+ {tool.certifications.length - 2}
-														</Text>
-													</Badge>
+													<Badge>+ {tool.certifications.length - 2}</Badge>
 												)}
 											</>
 										) : (
@@ -396,21 +355,8 @@ const ToolPage = () => {
 											if (typeof location !== "number") {
 												const { id, name } = location;
 												return (
-													<Badge
-														px={2}
-														py={1}
-														bgColor={"blue.50"}
-														borderColor={"blue.100"}
-														borderWidth={1}
-														key={id}
-													>
-														<Text
-															fontSize={14}
-															fontWeight={400}
-															color={"blue.900"}
-														>
-															{name}
-														</Text>
+													<Badge color="blue" key={id}>
+														{name}
 													</Badge>
 												);
 											}
@@ -470,24 +416,7 @@ const ToolPage = () => {
 											({ certification }) => {
 												if (typeof certification !== "number") {
 													const { id, name } = certification;
-													return (
-														<Badge
-															px={2}
-															py={1}
-															bgColor={"gray.50"}
-															borderColor={"gray.100"}
-															borderWidth={1}
-															key={id}
-														>
-															<Text
-																fontSize={14}
-																fontWeight={400}
-																color={"gray.900"}
-															>
-																{name}
-															</Text>
-														</Badge>
-													);
+													return <Badge key={id}>{name}</Badge>;
 												}
 											},
 										)
@@ -525,24 +454,7 @@ const ToolPage = () => {
 										tool.transfers.map(({ transfer }) => {
 											if (typeof transfer !== "number") {
 												const { id, name } = transfer;
-												return (
-													<Badge
-														px={2}
-														py={1}
-														bgColor={"gray.50"}
-														borderColor={"gray.100"}
-														borderWidth={1}
-														key={id}
-													>
-														<Text
-															fontSize={14}
-															fontWeight={400}
-															color={"gray.900"}
-														>
-															{name}
-														</Text>
-													</Badge>
-												);
+												return <Badge key={id}>{name}</Badge>;
 											}
 										})
 									) : (
@@ -562,24 +474,7 @@ const ToolPage = () => {
 										tool.features.map(({ feature }) => {
 											if (typeof feature !== "number") {
 												const { id, name } = feature;
-												return (
-													<Badge
-														px={2}
-														py={1}
-														bgColor={"gray.50"}
-														borderColor={"gray.100"}
-														borderWidth={1}
-														key={id}
-													>
-														<Text
-															fontSize={14}
-															fontWeight={400}
-															color={"gray.900"}
-														>
-															{name}
-														</Text>
-													</Badge>
-												);
+												return <Badge key={id}>{name}</Badge>;
 											}
 										})
 									) : (
@@ -614,18 +509,7 @@ const ToolPage = () => {
 									{tool.subcontractors_infra &&
 									tool.subcontractors_infra.length > 0 ? (
 										tool.subcontractors_infra.map((infra) => (
-											<Badge
-												px={2}
-												py={1}
-												bgColor={"gray.50"}
-												borderColor={"gray.100"}
-												borderWidth={1}
-												key={infra.id}
-											>
-												<Text fontSize={14} fontWeight={400} color={"gray.900"}>
-													{infra.name}
-												</Text>
-											</Badge>
+											<Badge key={infra.id}>{infra.name}</Badge>
 										))
 									) : (
 										<Text>Aucune fonctionnalité</Text>
@@ -650,21 +534,8 @@ const ToolPage = () => {
 											if (typeof location !== "number") {
 												const { id, name } = location;
 												return (
-													<Badge
-														px={2}
-														py={1}
-														bgColor={"blue.50"}
-														borderColor={"blue.100"}
-														borderWidth={1}
-														key={id}
-													>
-														<Text
-															fontSize={14}
-															fontWeight={400}
-															color={"blue.900"}
-														>
-															{name}
-														</Text>
+													<Badge key={id} color="blue">
+														{name}
 													</Badge>
 												);
 											}
@@ -709,34 +580,13 @@ const ToolPage = () => {
 							</Line>
 
 							<Line title="Transfert hors EU">
-								{(() => {
-									const color = (() => {
-										if (tool.transfer_out_eu === "Oui") return "green";
-										if (tool.transfer_out_eu === "Non") return "red";
-										return "gray";
-									})();
-
-									return tool.transfer_out_eu ? (
-										<Badge
-											bgColor={`${color}.50`}
-											borderColor={`${color}.100`}
-											borderWidth={1}
-											w={"fit"}
-											p={2}
-											rounded={"sm"}
-										>
-											<Text
-												fontSize={14}
-												fontWeight={400}
-												color={`${color}.900`}
-											>
-												{tool.transfer_out_eu}
-											</Text>
-										</Badge>
-									) : (
-										<Text>Aucune information</Text>
-									);
-								})()}
+								{tool.transfer_out_eu ? (
+									<Badge color={colorTransferOutEu}>
+										{tool.transfer_out_eu}
+									</Badge>
+								) : (
+									<Text>Aucune information</Text>
+								)}
 							</Line>
 
 							<Line title="Liste des sous-traitants ultérieurs">
@@ -767,24 +617,7 @@ const ToolPage = () => {
 										tool.accessors.map(({ accessor }) => {
 											if (typeof accessor !== "number") {
 												const { id, name } = accessor;
-												return (
-													<Badge
-														px={2}
-														py={1}
-														bgColor={"gray.50"}
-														borderColor={"gray.100"}
-														borderWidth={1}
-														key={id}
-													>
-														<Text
-															fontSize={14}
-															fontWeight={400}
-															color={"gray.900"}
-														>
-															{name}
-														</Text>
-													</Badge>
-												);
+												return <Badge key={id}>{name}</Badge>;
 											}
 										})
 									) : (
@@ -804,24 +637,7 @@ const ToolPage = () => {
 										tool.certifications.map(({ certification }) => {
 											if (typeof certification !== "number") {
 												const { id, name } = certification;
-												return (
-													<Badge
-														px={2}
-														py={1}
-														bgColor={"gray.50"}
-														borderColor={"gray.100"}
-														borderWidth={1}
-														key={id}
-													>
-														<Text
-															fontSize={14}
-															fontWeight={400}
-															color={"gray.900"}
-														>
-															{name}
-														</Text>
-													</Badge>
-												);
+												return <Badge key={id}>{name}</Badge>;
 											}
 										})
 									) : (

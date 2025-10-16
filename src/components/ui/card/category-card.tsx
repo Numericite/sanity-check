@@ -1,7 +1,8 @@
-import { Badge, Button, Flex, Skeleton, Text } from "@chakra-ui/react";
+import { Button, Flex, Skeleton, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
 import type { Category } from "~/payload/payload-types";
 import CategoryIcon from "../icons/category-icon";
+import Badge from "../badge/badge";
 
 type CategoryCardProps = {
 	category: Category | null;
@@ -42,13 +43,9 @@ export default function CategoryCard({
 					<Text fontSize={20} fontWeight={500}>
 						{category?.name}
 					</Text>
-					<Badge borderWidth={1} p={2} gap={1}>
-						<Text fontSize={14} fontWeight={400}>
-							{category?.tools?.length} outil
-							{category?.tools?.length && category?.tools?.length > 1
-								? "s"
-								: ""}
-						</Text>
+					<Badge>
+						{category?.tools?.length} outil
+						{category?.tools?.length && category?.tools?.length > 1 ? "s" : ""}
 					</Badge>
 				</Flex>
 
