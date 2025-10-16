@@ -67,7 +67,7 @@ const ToolPage = () => {
 				? "red"
 				: "gray";
 
-	const mainCategory = tool?.categories?.find((cat) => cat.main === true)
+	const mainCategory = tool?.categories?.find((cat) => cat.main)
 		?.category as Category;
 
 	return (
