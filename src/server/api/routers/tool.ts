@@ -1,48 +1,51 @@
+import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 import type { Sort, Where } from "payload";
 import z from "zod";
 import type { Category } from "~/payload/payload-types";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
-import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 
 export const toolRouter = createTRPCRouter({
-
 	getList: publicProcedure
 		.input(
 			z.object({
 				limit: z.number().optional(),
 				page: z.number().optional(),
 				filters: z
-					.array(z.object({ key: z.string(), operation: z.string().optional(), value: z.string() }))
+					.array(
+						z.object({
+							key: z.string(),
+							operation: z.string().optional(),
+							value: z.string(),
+						}),
+					)
 					.optional(),
-				sort: z
-					.array(z.string())
-					.optional()
+				sort: z.array(z.string()).optional(),
 			}),
 		)
 		.query(async ({ ctx, input }) => {
 			const { limit = 10, page = 1, filters, sort } = input;
 
-			const where: Where = filters && filters.length > 0
-				? {
-					and: filters.map((filter) => ({
-						[filter.key]: {
-							[filter.operation ?? 'equals']: filter.value
+			const where: Where =
+				filters && filters.length > 0
+					? {
+							and: filters.map((filter) => ({
+								[filter.key]: {
+									[filter.operation ?? "equals"]: filter.value,
+								},
+							})),
 						}
-					})),
-				}
-				: {};
+					: {};
 
 			const tools = await ctx.payload.find({
 				collection: "tools",
 				limit,
 				page,
 				where,
-				sort
+				sort,
 			});
 
 			return tools.docs;
 		}),
-
 
 	getById: publicProcedure
 		.input(z.number())
@@ -50,7 +53,7 @@ export const toolRouter = createTRPCRouter({
 			const tool = await ctx.payload.findByID({
 				collection: "tools",
 				id,
-				depth: 1
+				depth: 1,
 			});
 
 			return {

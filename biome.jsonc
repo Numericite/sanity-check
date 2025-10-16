@@ -12,7 +12,8 @@
 		"enabled": true,
 		"ignore": [
 			"./src/payload/payload-types.ts",
-			"./src/payload/payload-generated-schema.ts"
+			"./src/payload/payload-generated-schema.ts",
+			"./scripts/*"
 		]
 	},
 	"organizeImports": { "enabled": true },
@@ -20,7 +21,8 @@
 		"enabled": true,
 		"ignore": [
 			"./src/payload/payload-types.ts",
-			"./src/payload/payload-generated-schema.ts"
+			"./src/payload/payload-generated-schema.ts",
+			"./scripts/*"
 		],
 		"rules": {
 			"nursery": {

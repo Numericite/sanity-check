@@ -1,7 +1,11 @@
-import { type MigrateUpArgs, type MigrateDownArgs, sql } from '@payloadcms/db-postgres'
+import {
+	type MigrateDownArgs,
+	type MigrateUpArgs,
+	sql,
+} from "@payloadcms/db-postgres";
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
-  await db.execute(sql`
+	await db.execute(sql`
    CREATE TYPE "public"."enum_tools_transfer_out_eu" AS ENUM('Oui', 'Non', 'Au choix');
   CREATE TYPE "public"."enum_tools_privacy_score_saas" AS ENUM('A', 'B', 'C', 'D', 'E', 'F');
   CREATE TYPE "public"."enum_tools_privacy_score_self_hosted" AS ENUM('A', 'B', 'C', 'D', 'E', 'F');
@@ -785,11 +789,15 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "payload_preferences_rels_path_idx" ON "payload_preferences_rels" USING btree ("path");
   CREATE INDEX "payload_preferences_rels_users_id_idx" ON "payload_preferences_rels" USING btree ("users_id");
   CREATE INDEX "payload_migrations_updated_at_idx" ON "payload_migrations" USING btree ("updated_at");
-  CREATE INDEX "payload_migrations_created_at_idx" ON "payload_migrations" USING btree ("created_at");`)
+  CREATE INDEX "payload_migrations_created_at_idx" ON "payload_migrations" USING btree ("created_at");`);
 }
 
-export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
-  await db.execute(sql`
+export async function down({
+	db,
+	payload,
+	req,
+}: MigrateDownArgs): Promise<void> {
+	await db.execute(sql`
    DROP TABLE "tools_subcontractors_infra" CASCADE;
   DROP TABLE "tools_categories" CASCADE;
   DROP TABLE "tools_certifications" CASCADE;
@@ -849,5 +857,5 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum_tools_privacy_score_self_hosted";
   DROP TYPE "public"."enum__tools_v_version_transfer_out_eu";
   DROP TYPE "public"."enum__tools_v_version_privacy_score_saas";
-  DROP TYPE "public"."enum__tools_v_version_privacy_score_self_hosted";`)
+  DROP TYPE "public"."enum__tools_v_version_privacy_score_self_hosted";`);
 }

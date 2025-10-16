@@ -7,20 +7,20 @@
  */
 
 import type {} from "@payloadcms/db-postgres";
+import { relations, sql } from "@payloadcms/db-postgres/drizzle";
 import {
-  pgTable,
-  index,
-  uniqueIndex,
-  foreignKey,
-  serial,
-  varchar,
-  integer,
   boolean,
+  foreignKey,
+  index,
+  integer,
   jsonb,
-  timestamp,
   numeric,
+  pgTable,
+  serial,
+  timestamp,
+  uniqueIndex,
+  varchar,
 } from "@payloadcms/db-postgres/drizzle/pg-core";
-import { sql, relations } from "@payloadcms/db-postgres/drizzle";
 
 export const tools = pgTable(
   "tools",

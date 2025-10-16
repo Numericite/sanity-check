@@ -1,18 +1,18 @@
-import sharp from "sharp";
-import { lexicalEditor } from "@payloadcms/richtext-lexical";
-import { postgresAdapter } from "@payloadcms/db-postgres";
-import { buildConfig } from "payload";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { postgresAdapter } from "@payloadcms/db-postgres";
+import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { buildConfig } from "payload";
+import sharp from "sharp";
 
-import { Media } from "./collections/Media";
-import { Tools } from "./collections/Tools";
+import { Accessors } from "./collections/Accessor";
 import { Categories } from "./collections/Category";
 import { Certifications } from "./collections/Certification";
-import { Accessors } from "./collections/Accessor";
-import { Locations } from "./collections/Location";
-import { Transfers } from "./collections/Transfer";
 import { Features } from "./collections/Feature";
+import { Locations } from "./collections/Location";
+import { Media } from "./collections/Media";
+import { Tools } from "./collections/Tools";
+import { Transfers } from "./collections/Transfer";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -24,7 +24,16 @@ export default buildConfig({
 		},
 	},
 	editor: lexicalEditor(),
-	collections: [Tools, Media, Categories, Certifications, Accessors, Locations, Transfers, Features],
+	collections: [
+		Tools,
+		Media,
+		Categories,
+		Certifications,
+		Accessors,
+		Locations,
+		Transfers,
+		Features,
+	],
 	secret: process.env.PAYLOAD_SECRET || "",
 	db: postgresAdapter({
 		pool: {

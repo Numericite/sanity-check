@@ -7,7 +7,7 @@ export const Tools: CollectionConfig = {
 		drafts: false,
 	},
 	admin: {
-		useAsTitle: 'name',
+		useAsTitle: "name",
 	},
 	fields: [
 		{
@@ -40,28 +40,28 @@ export const Tools: CollectionConfig = {
 			label: "Sous-traitants",
 		},
 		{
-			name: 'subcontractors_infra',
-			type: 'array',
+			name: "subcontractors_infra",
+			type: "array",
 			label: "Liste des infrastructures sous-traitant",
 			fields: [
 				{
-					name: 'name',
-					type: 'text',
-					label: "Nom du sous-traitant"
+					name: "name",
+					type: "text",
+					label: "Nom du sous-traitant",
 				},
-			]
+			],
 		},
 		{
 			name: "transfer_out_eu",
 			type: "select",
 			hasMany: false,
 			options: [
-				{ label: 'Oui', value: 'Oui' },
-				{ label: 'Non', value: 'Non' },
-				{ label: 'Au choix', value: 'Au choix' },
+				{ label: "Oui", value: "Oui" },
+				{ label: "Non", value: "Non" },
+				{ label: "Au choix", value: "Au choix" },
 			],
 			label: "Transfert des données en dehors de l'UE",
-			required: false
+			required: false,
 		},
 		{
 			name: "privacy_score_saas",
@@ -69,14 +69,14 @@ export const Tools: CollectionConfig = {
 			label: "Privacy score (SaaS)",
 			hasMany: false,
 			options: [
-				{ label: 'A', value: 'A' },
-				{ label: 'B', value: 'B' },
-				{ label: 'C', value: 'C' },
-				{ label: 'D', value: 'D' },
-				{ label: 'E', value: 'E' },
-				{ label: 'F', value: 'F' },
+				{ label: "A", value: "A" },
+				{ label: "B", value: "B" },
+				{ label: "C", value: "C" },
+				{ label: "D", value: "D" },
+				{ label: "E", value: "E" },
+				{ label: "F", value: "F" },
 			],
-			required: false
+			required: false,
 		},
 		{
 			name: "privacy_score_self_hosted",
@@ -84,14 +84,14 @@ export const Tools: CollectionConfig = {
 			label: "Privacy score (auto-hébergé)",
 			hasMany: false,
 			options: [
-				{ label: 'A', value: 'A' },
-				{ label: 'B', value: 'B' },
-				{ label: 'C', value: 'C' },
-				{ label: 'D', value: 'D' },
-				{ label: 'E', value: 'E' },
-				{ label: 'F', value: 'F' },
+				{ label: "A", value: "A" },
+				{ label: "B", value: "B" },
+				{ label: "C", value: "C" },
+				{ label: "D", value: "D" },
+				{ label: "E", value: "E" },
+				{ label: "F", value: "F" },
 			],
-			required: false
+			required: false,
 		},
 		{
 			name: "online_accessible_dpa",
@@ -152,9 +152,7 @@ export const Tools: CollectionConfig = {
 			type: "richText",
 			label: "Actions à mener si utilisation de l'outil",
 			editor: lexicalEditor({
-				features: ({ defaultFeatures }) => [
-					...defaultFeatures,
-				]
+				features: ({ defaultFeatures }) => [...defaultFeatures],
 			}),
 		},
 		{
@@ -162,9 +160,7 @@ export const Tools: CollectionConfig = {
 			type: "richText",
 			label: "Note sur la localisation",
 			editor: lexicalEditor({
-				features: ({ defaultFeatures }) => [
-					...defaultFeatures,
-				]
+				features: ({ defaultFeatures }) => [...defaultFeatures],
 			}),
 		},
 		{
@@ -179,180 +175,172 @@ export const Tools: CollectionConfig = {
 			label: "DPA (Document de Protection des Données)",
 		},
 		{
-			name: 'categories',
-			type: 'array',
-			label: 'Catégories',
+			name: "categories",
+			type: "array",
+			label: "Catégories",
 			fields: [
 				{
-					name: 'category',
-					type: 'relationship',
-					relationTo: 'categories',
+					name: "category",
+					type: "relationship",
+					relationTo: "categories",
 					required: true,
 					hasMany: false,
 					unique: false,
 				},
 				{
-					name: 'main',
-					type: 'checkbox',
-					label: 'Catégorie principale',
+					name: "main",
+					type: "checkbox",
+					label: "Catégorie principale",
 					defaultValue: false,
 				},
 			],
 			admin: {
 				description:
-					'Sélectionnez une ou plusieurs catégories et cochez celle qui est principale.',
+					"Sélectionnez une ou plusieurs catégories et cochez celle qui est principale.",
 			},
 		},
 		{
-			name: 'certifications',
-			type: 'array',
-			label: 'Certifications',
+			name: "certifications",
+			type: "array",
+			label: "Certifications",
 			fields: [
 				{
-					name: 'certification',
-					type: 'relationship',
-					relationTo: 'certifications',
+					name: "certification",
+					type: "relationship",
+					relationTo: "certifications",
 					required: true,
 					hasMany: false,
 					unique: false,
 				},
 			],
 			admin: {
-				description:
-					'Sélectionnez une ou plusieurs certifications.',
+				description: "Sélectionnez une ou plusieurs certifications.",
 			},
 		},
 		{
-			name: 'certifications_subcontractors',
-			type: 'array',
-			label: 'Certifications des sous-traitants',
+			name: "certifications_subcontractors",
+			type: "array",
+			label: "Certifications des sous-traitants",
 			fields: [
 				{
-					name: 'certification',
-					type: 'relationship',
-					relationTo: 'certifications',
+					name: "certification",
+					type: "relationship",
+					relationTo: "certifications",
 					required: true,
 					hasMany: false,
 					unique: false,
 				},
 			],
 			admin: {
-				description:
-					'Sélectionnez une ou plusieurs certifications.',
+				description: "Sélectionnez une ou plusieurs certifications.",
 			},
 		},
 		{
-			name: 'accessors',
-			type: 'array',
-			label: 'Personne ayant accès',
+			name: "accessors",
+			type: "array",
+			label: "Personne ayant accès",
 			fields: [
 				{
-					name: 'accessor',
-					type: 'relationship',
-					relationTo: 'accessors',
+					name: "accessor",
+					type: "relationship",
+					relationTo: "accessors",
 					required: true,
 					hasMany: false,
 					unique: false,
 				},
 			],
 			admin: {
-				description:
-					'Sélectionnez une ou plusieurs accesseurs.',
+				description: "Sélectionnez une ou plusieurs accesseurs.",
 			},
 		},
 		{
-			name: 'locations_enterprise',
-			type: 'array',
-			label: 'Localisation de l\'entreprise',
+			name: "locations_enterprise",
+			type: "array",
+			label: "Localisation de l'entreprise",
 			fields: [
 				{
-					name: 'location',
-					type: 'relationship',
-					relationTo: 'locations',
+					name: "location",
+					type: "relationship",
+					relationTo: "locations",
 					required: true,
 					hasMany: false,
 					unique: false,
 				},
 			],
 			admin: {
-				description:
-					'Sélectionnez une ou plusieurs localisations.',
+				description: "Sélectionnez une ou plusieurs localisations.",
 			},
 		},
 		{
-			name: 'locations_host_client',
-			type: 'array',
-			label: 'Localisation hébergement : relation client',
+			name: "locations_host_client",
+			type: "array",
+			label: "Localisation hébergement : relation client",
 			fields: [
 				{
-					name: 'location',
-					type: 'relationship',
-					relationTo: 'locations',
+					name: "location",
+					type: "relationship",
+					relationTo: "locations",
 					required: true,
 					hasMany: false,
 					unique: false,
 				},
 			],
 			admin: {
-				description:
-					'Sélectionnez une ou plusieurs localisations.',
+				description: "Sélectionnez une ou plusieurs localisations.",
 			},
 		},
 		{
-			name: 'locations_final_users',
-			type: 'array',
-			label: 'Localisation hébergement : utilisateurs finaux',
+			name: "locations_final_users",
+			type: "array",
+			label: "Localisation hébergement : utilisateurs finaux",
 			fields: [
 				{
-					name: 'location',
-					type: 'relationship',
-					relationTo: 'locations',
+					name: "location",
+					type: "relationship",
+					relationTo: "locations",
 					required: true,
 					hasMany: false,
 					unique: false,
 				},
 			],
 			admin: {
-				description:
-					'Sélectionnez une ou plusieurs localisations.',
+				description: "Sélectionnez une ou plusieurs localisations.",
 			},
 		},
 		{
-			name: 'transfers',
-			type: 'array',
-			label: 'Encadrements des transferts',
+			name: "transfers",
+			type: "array",
+			label: "Encadrements des transferts",
 			fields: [
 				{
-					name: 'transfer',
-					type: 'relationship',
-					relationTo: 'transfers',
+					name: "transfer",
+					type: "relationship",
+					relationTo: "transfers",
 					required: true,
 					hasMany: false,
 					unique: false,
 				},
 			],
 			admin: {
-				description:
-					'Sélectionnez une ou plusieurs encadrements.',
+				description: "Sélectionnez une ou plusieurs encadrements.",
 			},
 		},
 		{
-			name: 'features',
-			type: 'array',
-			label: 'Fonctionnalités RGPB',
+			name: "features",
+			type: "array",
+			label: "Fonctionnalités RGPB",
 			fields: [
 				{
-					name: 'feature',
-					type: 'relationship',
-					relationTo: 'features',
+					name: "feature",
+					type: "relationship",
+					relationTo: "features",
 					required: true,
 					hasMany: false,
 					unique: false,
 				},
 			],
 			admin: {
-				description:
-					'Sélectionnez une ou plusieurs fonctionnalités.',
+				description: "Sélectionnez une ou plusieurs fonctionnalités.",
 			},
 		},
 	],
