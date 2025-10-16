@@ -2,11 +2,18 @@ import { Badge, Text } from "@chakra-ui/react";
 
 type Props = {
 	val: boolean | null;
-	text?: string | null;
+	text?: string;
 };
 
-export default function BooleanBadge({ val, text = null }: Props) {
-	const color = val === true ? "green" : val === false ? "red" : "gray";
+export default function BooleanBadge({ val, text }: Props) {
+	const color = val ? "green" : val === false ? "red" : "gray";
+	const content = text
+		? text
+		: val
+			? "Oui"
+			: val === false
+				? "Non"
+				: "Non renseignée";
 
 	return (
 		<Badge
@@ -18,13 +25,7 @@ export default function BooleanBadge({ val, text = null }: Props) {
 			rounded={"sm"}
 		>
 			<Text fontSize={14} fontWeight={400} color={`${color}.900`}>
-				{text
-					? text
-					: val === true
-						? "Oui"
-						: val === false
-							? "Non"
-							: "Non renseignée"}
+				{content}
 			</Text>
 		</Badge>
 	);
