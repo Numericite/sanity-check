@@ -5,16 +5,17 @@ import DotsCaroussel from "./dots-carousel";
 type CarousselProps<T extends { id: number }> = {
 	items: T[] | undefined;
 	isLoading: boolean;
-	CardComponent: React.ComponentType<{ item: T; isLoading: boolean }>;
+	component: React.ComponentType<{ item: T; isLoading: boolean }>;
 };
 
 export default function Carousel<T extends { id: number }>({
 	items,
 	isLoading,
-	CardComponent,
+	component,
 }: CarousselProps<T>) {
 	const [active, setActive] = useState(0);
 	const gridRef = useRef<HTMLDivElement>(null);
+	const Component = component;
 
 	const numberOfElements = items ? items.length : 0;
 	const numberOfSlides = items ? items.length - 2 : 0;
@@ -48,7 +49,7 @@ export default function Carousel<T extends { id: number }>({
 						items.length > 0 &&
 						items.map((item) => (
 							<GridItem key={item.id}>
-								<CardComponent item={item} isLoading={isLoading} />
+								<Component item={item} isLoading={isLoading} />
 							</GridItem>
 						))}
 				</Grid>
