@@ -47,6 +47,10 @@ export default function ToolCard({
 						gap={4}
 						w={"full"}
 						flexDir={"column"}
+						transition={"all"}
+						_hover={{
+							borderColor: "gray.200",
+						}}
 					>
 						<Flex w={"full"} alignItems={"center"} gap={3}>
 							<Flex
