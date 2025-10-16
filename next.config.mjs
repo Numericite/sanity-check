@@ -38,6 +38,7 @@ const config = {
 				pathname: "/**",
 			},
 		],
+		domains: ["localhost"],
 	},
 };
 

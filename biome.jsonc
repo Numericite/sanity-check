@@ -13,7 +13,8 @@
 		"ignore": [
 			"./src/payload/payload-types.ts",
 			"./src/payload/payload-generated-schema.ts",
-			"./scripts/*"
+			"./scripts/*",
+			"./src/app/[payload]/*"
 		]
 	},
 	"organizeImports": { "enabled": true },
@@ -22,7 +23,8 @@
 		"ignore": [
 			"./src/payload/payload-types.ts",
 			"./src/payload/payload-generated-schema.ts",
-			"./scripts/*"
+			"./scripts/*",
+			"./src/app/[payload]/*"
 		],
 		"rules": {
 			"nursery": {
