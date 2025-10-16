@@ -12,8 +12,6 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { IoMdClose } from "react-icons/io";
 import PrivacyScoreBadge from "~/components/ui/badge/privacy-score-badge";
 import BreadcrumbLayout from "~/components/ui/breadcrumb/breadcrumb-layout";
 import CategoryCard from "~/components/ui/card/category-card";
@@ -22,8 +20,6 @@ import Caroussel from "~/components/ui/caroussel/caroussel";
 import CategoryIcon from "~/components/ui/icons/category-icon";
 import Search from "~/components/ui/icons/search";
 import { api } from "~/utils/api";
-
-type scores = "A" | "B" | "C" | "D" | "E" | "F";
 
 export default function Category() {
 	const router = useRouter();
@@ -68,9 +64,7 @@ export default function Category() {
 				borderWidth={1}
 				borderColor={"gray.100"}
 			>
-				{/* Header */}
 				<Flex flexDir={"column"} w={"full"}>
-					{/* Banner */}
 					<Flex
 						h={36}
 						w={"full"}
@@ -86,7 +80,6 @@ export default function Category() {
 							<CategoryIcon category={category ?? null} size={121} />
 						</Box>
 					</Flex>
-					{/* Logo + Title + Button */}
 					<Flex
 						w={"full"}
 						pl={10}
@@ -94,9 +87,7 @@ export default function Category() {
 						alignItems={"end"}
 						mt={-8}
 					>
-						{/* Logo + Title + Count */}
 						<Flex gap={5} alignItems={"end"} justifyContent={"start"}>
-							{/* Icon */}
 							<Flex
 								w={32}
 								h={32}
@@ -112,7 +103,6 @@ export default function Category() {
 								<CategoryIcon category={category ?? null} size={80} />
 							</Flex>
 
-							{/* Title & Count */}
 							<Flex h={24} alignItems={"center"} gap={5}>
 								<Text fontSize={40} fontWeight={500}>
 									{category?.name}
@@ -136,9 +126,7 @@ export default function Category() {
 					</Flex>
 				</Flex>
 
-				{/* Content */}
 				<Flex w={"full"} gap={6}>
-					{/* Filters */}
 					<Flex
 						flexDir={"column"}
 						w={"1/3"}
@@ -154,7 +142,6 @@ export default function Category() {
 							Filtres
 						</Text>
 
-						{/* Recherche */}
 						<Flex flexDir={"column"} gap={3}>
 							<Text fontSize={16} fontWeight={400}>
 								Rechercher
@@ -187,19 +174,18 @@ export default function Category() {
 										fontWeight={400}
 									/>
 									{/* <Button
-                    variant={"ghost"}
-                    size={"xs"}
-                    p={0.5}
-                    m={0}
-                  >
-                    <IoMdClose />
-                  </Button> */}
+										variant={"ghost"}
+										size={"xs"}
+										p={0.5}
+										m={0}
+									>
+										<IoMdClose />
+									</Button> */}
 								</Flex>
 							</InputGroup>
 						</Flex>
 						<Separator />
 
-						{/* Badges Privacy Score */}
 						<Flex flexDir={"column"} gap={3}>
 							<Text fontSize={16} fontWeight={400}>
 								Score :
@@ -216,7 +202,6 @@ export default function Category() {
 						</Flex>
 						<Separator />
 
-						{/* DPA */}
 						<Flex flexDir={"column"} gap={3}>
 							<Text fontSize={16} fontWeight={400}>
 								DPA :
@@ -235,7 +220,6 @@ export default function Category() {
 						</Flex>
 						<Separator />
 
-						{/* Lieu d'hébergement des données */}
 						<Flex flexDir={"column"} gap={3}>
 							<Text fontSize={16} fontWeight={400}>
 								Lieu d'hébergement des données :
@@ -260,7 +244,6 @@ export default function Category() {
 						</Flex>
 						<Separator />
 
-						{/* Localisation de l'entreprise */}
 						<Flex flexDir={"column"} gap={3}>
 							<Text fontSize={16} fontWeight={400}>
 								Localisation de l'entreprise :
@@ -291,7 +274,6 @@ export default function Category() {
 						</Flex>
 						<Separator />
 
-						{/* Certifications */}
 						<Flex flexDir={"column"} gap={3}>
 							<Text fontSize={16} fontWeight={400}>
 								Certifications de l'entreprise :
@@ -318,7 +300,6 @@ export default function Category() {
 						</Flex>
 					</Flex>
 
-					{/* Tools */}
 					<Grid
 						templateColumns={{
 							base: "1fr",

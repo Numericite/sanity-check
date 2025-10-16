@@ -73,9 +73,7 @@ const ToolPage = () => {
 				p={5}
 				rounded={"2xl"}
 			>
-				{/* Header */}
 				<Flex w={"full"} flexDir={"column"}>
-					{/* Banner */}
 					<Flex
 						h={60}
 						w={"full"}
@@ -85,7 +83,6 @@ const ToolPage = () => {
 						rounded={"2xl"}
 					/>
 
-					{/* Header informations (title, score, buttons) */}
 					<Flex
 						flexDir={"row"}
 						alignItems={"center"}
@@ -95,7 +92,6 @@ const ToolPage = () => {
 						mt={"-10"}
 						gap={"1.5"}
 					>
-						{/* Informations (title, score, category) */}
 						<Flex
 							flexDir={"row"}
 							alignItems={"end"}
@@ -103,7 +99,6 @@ const ToolPage = () => {
 							gap={5}
 							pl={10}
 						>
-							{/* Logo */}
 							<Box
 								padding={2}
 								backgroundColor={"white"}
@@ -116,7 +111,6 @@ const ToolPage = () => {
 								</Skeleton>
 							</Box>
 
-							{/* Informations */}
 							<Flex
 								gap={10}
 								alignItems={"center"}
@@ -125,22 +119,16 @@ const ToolPage = () => {
 							>
 								{tool && (
 									<>
-										{/* Title */}
 										<Text fontSize={40} fontWeight={500}>
 											{tool?.name}
 										</Text>
-
-										{/* Score */}
 										<PrivacyScoreBadge score={tool?.privacy_score_saas} />
-
-										{/* Category badge */}
 										<CategoryBadge category={mainCategory} size={"lg"} />
 									</>
 								)}
 							</Flex>
 						</Flex>
 
-						{/* Buttons */}
 						<Flex
 							flexDir={"row"}
 							alignItems={"center"}
@@ -168,10 +156,8 @@ const ToolPage = () => {
 					</Flex>
 				</Flex>
 
-				{/* Body (infos) */}
 				{!isLoading && tool && (
 					<Flex w={"full"} px={4} flexDir={"column"} gap={7}>
-						{/* Infos principales */}
 						<Grid
 							templateColumns="repeat(12, 1fr)"
 							w={"full"}
@@ -179,7 +165,6 @@ const ToolPage = () => {
 							autoFlow={"column"}
 							alignItems={"stretch"}
 						>
-							{/* DPA */}
 							<GridItem colSpan={2}>
 								<Box
 									w={"full"}
@@ -439,20 +424,20 @@ const ToolPage = () => {
 							<Line title="Entreprise EU">
 								TODO
 								{/* <Box
-                  bgColor={tool.enterprise_european ? "green.50" : "red.50"}
-                  w={"fit"}
-                  p={2}
-                  rounded={"sm"}
-                >
-                  <Text
-                    truncate
-                    fontSize={14}
-                    fontWeight={400}
-                    color={tool.enterprise_european ? "green.600" : "red.600"}
-                  >
-                    {tool.enterprise_european ? "Oui" : "Non"}
-                  </Text>
-                </Box> */}
+									bgColor={tool.enterprise_european ? "green.50" : "red.50"}
+									w={"fit"}
+									p={2}
+									rounded={"sm"}
+								>
+									<Text
+										truncate
+										fontSize={14}
+										fontWeight={400}
+										color={tool.enterprise_european ? "green.600" : "red.600"}
+									>
+										{tool.enterprise_european ? "Oui" : "Non"}
+									</Text>
+								</Box> */}
 							</Line>
 
 							<Line title="Site internet">
@@ -849,7 +834,6 @@ const ToolPage = () => {
 				)}
 			</Flex>
 
-			{/* Outils similaires */}
 			<Flex pt={10} gap={6} flexDir={"column"}>
 				<Text fontSize={20} fontWeight={500}>
 					Outils similaires

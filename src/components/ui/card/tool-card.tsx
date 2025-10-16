@@ -48,9 +48,7 @@ export default function ToolCard({
 						w={"full"}
 						flexDir={"column"}
 					>
-						{/* Logo + Title + Score + Category */}
 						<Flex w={"full"} alignItems={"center"} gap={3}>
-							{/* Logo */}
 							<Flex
 								p={2}
 								borderWidth={1}
@@ -61,9 +59,8 @@ export default function ToolCard({
 							>
 								<ToolLogo media={tool?.logo} />
 							</Flex>
-							{/* Title + Score + Category */}
+
 							<Flex w={"full"} flexDir={"column"}>
-								{/* Title + Score */}
 								<Flex
 									w={"full"}
 									justifyContent={"space-between"}
@@ -76,7 +73,6 @@ export default function ToolCard({
 										<PrivacyScoreBadge score={tool.privacy_score_saas} />
 									)}
 								</Flex>
-								{/* Category */}
 								{tool && mainCategory && !hideCategory && (
 									<Flex w={"full"}>
 										<CategoryBadge category={mainCategory as Category} />
@@ -87,7 +83,6 @@ export default function ToolCard({
 						<Separator borderColor={"gray.100"} />
 						<Flex gap={4} flexDir={"column"}>
 							<Flex gap={4}>
-								{/* DPA */}
 								<Badge
 									px={2}
 									py={1}

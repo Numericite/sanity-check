@@ -6,7 +6,6 @@ export default function Categories() {
 	const { data: categories, isLoading } = api.category.getAll.useQuery();
 	return (
 		<Flex gap={6} flexDir={"column"}>
-			{/* Title */}
 			<Flex gap={6} flexDir={"column"}>
 				<Text fontSize={30} fontWeight={500}>
 					Catégories d'outils
@@ -21,7 +20,6 @@ export default function Categories() {
 				</Text>
 			</Flex>
 
-			{/* Cards */}
 			<Grid
 				templateColumns={{
 					base: "1fr",

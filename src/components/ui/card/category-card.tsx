@@ -52,12 +52,10 @@ export default function CategoryCard({
 					</Badge>
 				</Flex>
 
-				{/* Description */}
 				<Text fontSize={14} fontWeight={300}>
 					{category?.description}
 				</Text>
 
-				{/* Button */}
 				<NextLink href={`/categories/${category?.id}`}>
 					<Button w={"full"} variant={"outline"}>
 						Voir les outils
