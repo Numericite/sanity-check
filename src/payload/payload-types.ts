@@ -158,7 +158,7 @@ export interface Tool {
   fr_documentation?: boolean | null;
   dpa_compliant?: boolean | null;
   dpa_link?: string | null;
-  enterprise_european?: string | null;
+  enterprise_european?: boolean | null;
   actions?: {
     root: {
       type: string;

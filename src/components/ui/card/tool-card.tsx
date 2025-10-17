@@ -97,6 +97,7 @@ export default function ToolCard({
 										}`}
 									/>
 								)}
+								{tool?.enterprise_european && <Badge color="blue">🇪🇺 EU</Badge>}
 							</Flex>
 							<Flex gap={4}>
 								{tool?.certifications && tool.certifications.length > 0 ? (

@@ -377,22 +377,7 @@ const ToolPage = () => {
 							</Line>
 
 							<Line title="Entreprise EU">
-								TODO
-								{/* <Box
-									bgColor={tool.enterprise_european ? "green.50" : "red.50"}
-									w={"fit"}
-									p={2}
-									rounded={"sm"}
-								>
-									<Text
-										truncate
-										fontSize={14}
-										fontWeight={400}
-										color={tool.enterprise_european ? "green.600" : "red.600"}
-									>
-										{tool.enterprise_european ? "Oui" : "Non"}
-									</Text>
-								</Box> */}
+								<BooleanBadge val={tool.enterprise_european ?? null} />
 							</Line>
 
 							<Line title="Site internet">

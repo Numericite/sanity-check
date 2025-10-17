@@ -150,8 +150,22 @@ class NotionToJSON:
                 item['name'] = 'Brevo'
 
             # enterprise_european
-            # print(item['enterprise_european'])
-            # item['enterprise_european'] = item['enterprise_european'][0]
+            if(len(item['enterprise_european']) > 1):
+                if(item['enterprise_european'][0] == 'Non'):
+                    item['enterprise_european'] = ['Non']
+                if(item['enterprise_european'][0] == 'Filiale EU'):
+                    item['enterprise_european'] = ['Non']
+                if(item['enterprise_european'][0] == 'Oui' and item['enterprise_european'][1] == 'Non'):
+                    item['enterprise_european'] = []
+
+            if(item['enterprise_european'] == []):
+                item['enterprise_european'] = None
+            if(item['enterprise_european'] == ['Oui']):
+                item['enterprise_european'] = True
+            if(item['enterprise_european'] == ['Non']):
+                item['enterprise_european'] = False
+            if(item['enterprise_european'] == ['Filiale EU'] or item['enterprise_european'] == ['Suisse']):
+                item['enterprise_european'] = False
 
             # online_accessible_dpa
             if(item['online_accessible_dpa'] == 'n/a'):
