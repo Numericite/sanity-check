@@ -129,19 +129,6 @@ export const Tools: CollectionConfig = {
 			type: "checkbox",
 			label: "Entreprise européenne",
 		},
-		// {
-		// 	name: "enterprise_european",
-		// 	type: "text",
-		// 	label: "Entreprise européenne",
-		// 	admin: {
-		// 		components: {
-		// 			Field: {
-		// 				path: "/components/CustomSelect#CustomSelectFieldServer",
-		// 				exportName: "CustomSelectFieldServer",
-		// 			},
-		// 		},
-		// 	},
-		// },
 		{
 			name: "actions",
 			type: "richText",
