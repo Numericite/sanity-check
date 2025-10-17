@@ -10,29 +10,7 @@ export const categoryRouter = createTRPCRouter({
 			limit: 0,
 		});
 
-		const categoriesWithTools = await Promise.all(
-			categories.docs.map(async (category) => {
-				const tools = await ctx.payload.find({
-					collection: "tools",
-					limit: 0,
-					where: {
-						"categories.category": {
-							equals: category.id,
-						},
-						"categories.main": {
-							equals: true,
-						},
-					},
-				});
-
-				return {
-					...category,
-					tools: tools.docs,
-				};
-			}),
-		);
-
-		return categoriesWithTools;
+		return categories.docs;
 	}),
 
 	getList: publicProcedure
@@ -59,29 +37,7 @@ export const categoryRouter = createTRPCRouter({
 				sort,
 			});
 
-			const categoriesWithTools = await Promise.all(
-				categories.docs.map(async (category) => {
-					const tools = await ctx.payload.find({
-						collection: "tools",
-						limit: 0,
-						where: {
-							"categories.category": {
-								equals: category.id,
-							},
-							"categories.main": {
-								equals: true,
-							},
-						},
-					});
-
-					return {
-						...category,
-						tools: tools.docs,
-					};
-				}),
-			);
-
-			return categoriesWithTools;
+			return categories.docs;
 		}),
 
 	getById: publicProcedure
@@ -92,22 +48,6 @@ export const categoryRouter = createTRPCRouter({
 				id,
 			});
 
-			const tools = await ctx.payload.find({
-				collection: "tools",
-				limit: 0,
-				where: {
-					"categories.category": {
-						equals: category.id,
-					},
-					"categories.main": {
-						equals: true,
-					},
-				},
-				sort: ["privacy_score_saas", "dpa_compliant"],
-			});
-
-			const categoryWithTools = { ...category, tools: tools.docs };
-
-			return categoryWithTools;
+			return category;
 		}),
 });

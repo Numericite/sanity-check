@@ -48,10 +48,12 @@ export const Categories: CollectionConfig = {
 			label: "En savoir plus -> Recommandations et mentions obligatoires",
 		},
 		{
-			name: "tools",
-			type: "relationship",
-			relationTo: "tools",
-			hasMany: true,
+			name: "relatedTools",
+			type: "join",
+			collection: "tools",
+			on: "categories.category",
+			maxDepth: 2,
+			defaultSort: ["privacy_score_saas", "dpa_compliant"],
 		},
 	],
 };

@@ -80,7 +80,11 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    categories: {
+      relatedTools: 'tools';
+    };
+  };
   collectionsSelect: {
     tools: ToolsSelect<false> | ToolsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -304,7 +308,11 @@ export interface Category {
   fonctionnalities?: string | null;
   vigilances?: string | null;
   recommendations?: string | null;
-  tools?: (number | Tool)[] | null;
+  relatedTools?: {
+    docs?: (number | Tool)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -591,7 +599,7 @@ export interface CategoriesSelect<T extends boolean = true> {
   fonctionnalities?: T;
   vigilances?: T;
   recommendations?: T;
-  tools?: T;
+  relatedTools?: T;
   updatedAt?: T;
   createdAt?: T;
 }

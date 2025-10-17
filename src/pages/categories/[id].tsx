@@ -109,8 +109,9 @@ export default function Category() {
 								</Text>
 								{category && (
 									<Badge size={"lg"}>
-										{category?.tools?.length} outil
-										{category?.tools?.length && category?.tools?.length > 1
+										{category?.relatedTools?.docs?.length} outil
+										{category?.relatedTools?.docs?.length &&
+										category?.relatedTools.docs.length > 1
 											? "s"
 											: ""}
 									</Badge>
@@ -278,19 +279,23 @@ export default function Category() {
 						w={"full"}
 						gap={6}
 					>
-						{category?.tools.map((tool, index) => (
-							<GridItem
-								alignItems="stretch"
-								h={"fit"}
-								key={tool?.id ? tool.id : `tool-${index}`}
-							>
-								<ToolCard
-									tool={tool?.id ? tool : null}
-									isLoading={isLoading}
-									hideCategory
-								/>
-							</GridItem>
-						))}
+						{category?.relatedTools?.docs?.map((tool, index) => {
+							if (typeof tool === "number") return null;
+
+							return (
+								<GridItem
+									alignItems="stretch"
+									h={"fit"}
+									key={tool?.id ? tool.id : `tool-${index}`}
+								>
+									<ToolCard
+										tool={tool?.id ? tool : null}
+										isLoading={isLoading}
+										hideCategory
+									/>
+								</GridItem>
+							);
+						})}
 					</Grid>
 				</Flex>
 				<Flex pt={10} gap={6} flexDir={"column"}>

@@ -44,8 +44,11 @@ export default function CategoryCard({
 						{category?.name}
 					</Text>
 					<Badge>
-						{category?.tools?.length} outil
-						{category?.tools?.length && category?.tools?.length > 1 ? "s" : ""}
+						{category?.relatedTools?.docs?.length} outil
+						{category?.relatedTools?.docs?.length &&
+						category?.relatedTools.docs?.length > 1
+							? "s"
+							: ""}
 					</Badge>
 				</Flex>
 
