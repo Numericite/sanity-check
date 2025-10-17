@@ -100,15 +100,23 @@ export default function ToolCard({
 							</Flex>
 							<Flex gap={4}>
 								{tool?.certifications && tool.certifications.length > 0 ? (
-									tool.certifications.slice(0, 2).map(({ certification }) => {
-										const certificationPopulated = getPopulated(certification);
-										if (certificationPopulated)
-											return (
-												<Badge key={certificationPopulated.id}>
-													{certificationPopulated.name}
-												</Badge>
-											);
-									})
+									<>
+										{tool.certifications
+											.slice(0, 2)
+											.map(({ certification }) => {
+												const certificationPopulated =
+													getPopulated(certification);
+												if (certificationPopulated)
+													return (
+														<Badge key={certificationPopulated.id}>
+															{certificationPopulated.name}
+														</Badge>
+													);
+											})}
+										{tool.certifications.length > 2 && (
+											<Badge>+ {tool.certifications.length - 2}</Badge>
+										)}
+									</>
 								) : (
 									<Badge>Aucune certification</Badge>
 								)}
