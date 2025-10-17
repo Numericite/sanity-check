@@ -20,6 +20,7 @@ import Carousel from "~/components/ui/carousel/carousel";
 import CategoryIcon from "~/components/ui/icons/category-icon";
 import Search from "~/components/ui/icons/search";
 import { api } from "~/utils/api";
+import { getPopulated } from "~/utils/payload-helpers";
 
 export default function Category() {
 	const router = useRouter();
@@ -279,17 +280,14 @@ export default function Category() {
 						w={"full"}
 						gap={6}
 					>
-						{category?.relatedTools?.docs?.map((tool, index) => {
-							if (typeof tool === "number") return null;
+						{category?.relatedTools?.docs?.map((tool) => {
+							const toolPopulated = getPopulated(tool);
+							if (!toolPopulated) return null;
 
 							return (
-								<GridItem
-									alignItems="stretch"
-									h={"fit"}
-									key={tool?.id ? tool.id : `tool-${index}`}
-								>
+								<GridItem alignItems="stretch" h={"fit"} key={toolPopulated.id}>
 									<ToolCard
-										tool={tool?.id ? tool : null}
+										tool={toolPopulated}
 										isLoading={isLoading}
 										hideCategory
 									/>

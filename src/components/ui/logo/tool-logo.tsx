@@ -2,22 +2,18 @@ import { Image as ChakraImage, Skeleton } from "@chakra-ui/react";
 import NextImage from "next/image";
 import { useState } from "react";
 import type { Media } from "~/payload/payload-types";
+import { getPopulated } from "~/utils/payload-helpers";
 
 interface ToolLogoProps {
 	media: number | Media | null | undefined;
 	size?: number;
 }
 
-const ToolLogo: React.FC<ToolLogoProps> = ({ media, size = 52 }) => {
+export default function ToolLogo({ media, size = 52 }: ToolLogoProps) {
 	const [isLoading, setIsLoading] = useState(true);
+	const mediaPopulated = getPopulated(media);
 
-	if (
-		typeof media === "number" ||
-		typeof media === "undefined" ||
-		!media ||
-		!media?.url
-	)
-		return null;
+	if (!mediaPopulated || !mediaPopulated?.url) return null;
 
 	const loaded = () => {
 		setIsLoading(false);
@@ -32,8 +28,8 @@ const ToolLogo: React.FC<ToolLogoProps> = ({ media, size = 52 }) => {
 		>
 			<ChakraImage asChild rounded={"xl"}>
 				<NextImage
-					src={`${process.env.NEXT_PUBLIC_URL}${media.url}`}
-					alt={media.alt}
+					src={`${mediaPopulated.url}`}
+					alt={mediaPopulated.alt}
 					width={size}
 					height={size}
 					onLoad={() => loaded}
@@ -41,6 +37,4 @@ const ToolLogo: React.FC<ToolLogoProps> = ({ media, size = 52 }) => {
 			</ChakraImage>
 		</Skeleton>
 	);
-};
-
-export default ToolLogo;
+}

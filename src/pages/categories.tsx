@@ -3,7 +3,12 @@ import CategoryCard from "~/components/ui/card/category-card";
 import { api } from "~/utils/api";
 
 export default function Categories() {
-	const { data: categories, isLoading } = api.category.getAll.useQuery();
+	const { data: categories, isLoading } = api.category.getAll.useQuery(
+		undefined,
+		{
+			initialData: Array.from({ length: 6 }),
+		},
+	);
 	return (
 		<Flex gap={6} flexDir={"column"}>
 			<Flex gap={6} flexDir={"column"}>

@@ -12,6 +12,7 @@ import PrivacyScoreBadge from "../badge/privacy-score-badge";
 import ToolLogo from "../logo/tool-logo";
 import BooleanBadge from "../badge/boolean-badge";
 import Badge from "../badge/badge";
+import { getPopulated } from "~/utils/payload-helpers";
 
 type ToolCardProps = {
 	tool: Tool | null;
@@ -24,9 +25,7 @@ export default function ToolCard({
 	isLoading,
 	hideCategory = false,
 }: ToolCardProps) {
-	const mainCategory = tool?.categories?.find(
-		(cat) => cat.main === true,
-	)?.category;
+	const mainCategory = tool?.categories?.find((cat) => cat.main)?.category;
 
 	return (
 		<Skeleton loading={isLoading}>
@@ -101,18 +100,15 @@ export default function ToolCard({
 							</Flex>
 							<Flex gap={4}>
 								{tool?.certifications && tool.certifications.length > 0 ? (
-									<>
-										{tool.certifications.slice(0, 2).map((certification) => (
-											<Badge key={certification.id}>
-												{typeof certification.certification !== "number" &&
-													certification.certification.name}
-											</Badge>
-										))}
-										{tool?.certifications &&
-											tool?.certifications.length > 2 && (
-												<Badge>+ {tool.certifications.length - 2}</Badge>
-											)}
-									</>
+									tool.certifications.slice(0, 2).map(({ certification }) => {
+										const certificationPopulated = getPopulated(certification);
+										if (certificationPopulated)
+											return (
+												<Badge key={certificationPopulated.id}>
+													{certificationPopulated.name}
+												</Badge>
+											);
+									})
 								) : (
 									<Badge>Aucune certification</Badge>
 								)}

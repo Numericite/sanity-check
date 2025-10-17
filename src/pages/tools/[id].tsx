@@ -23,6 +23,7 @@ import Line from "~/components/ui/line";
 import ToolLogo from "~/components/ui/logo/tool-logo";
 import type { Category } from "~/payload/payload-types";
 import { api } from "~/utils/api";
+import { getPopulated } from "~/utils/payload-helpers";
 
 const ToolPage = () => {
 	const router = useRouter();
@@ -255,12 +256,17 @@ const ToolPage = () => {
 									<Flex flexDir={"row"} gap={3} flexWrap={"wrap"}>
 										{tool.locations_enterprise &&
 										tool.locations_enterprise.length > 0 ? (
-											tool.locations_enterprise.map((location) => (
-												<Badge key={location.id}>
-													{typeof location.location !== "number" &&
-														location.location.name}
-												</Badge>
-											))
+											<>
+												{tool.locations_enterprise.map(({ location }) => {
+													const locationPopulated = getPopulated(location);
+													if (!locationPopulated) return null;
+													return (
+														<Badge key={locationPopulated.id}>
+															{locationPopulated.name}
+														</Badge>
+													);
+												})}
+											</>
 										) : (
 											<Badge>Aucune information</Badge>
 										)}
@@ -285,19 +291,16 @@ const ToolPage = () => {
 									</Text>
 									<Flex flexDir={"row"} gap={3} flexWrap={"wrap"}>
 										{tool.certifications && tool.certifications.length > 0 ? (
-											<>
-												{tool.certifications
-													.slice(0, 2)
-													.map((certification, index) => (
-														<Badge key={certification.id}>
-															{typeof certification.certification !==
-																"number" && certification.certification.name}
+											tool.certifications.map(({ certification }) => {
+												const certificationPopulated =
+													getPopulated(certification);
+												if (certificationPopulated)
+													return (
+														<Badge key={certificationPopulated.id}>
+															{certificationPopulated.name}
 														</Badge>
-													))}
-												{tool.certifications.length > 2 && (
-													<Badge>+ {tool.certifications.length - 2}</Badge>
-												)}
-											</>
+													);
+											})
 										) : (
 											<Text>Aucune certification</Text>
 										)}
@@ -352,14 +355,13 @@ const ToolPage = () => {
 									{tool.locations_final_users &&
 									tool.locations_final_users.length > 0 ? (
 										tool.locations_final_users.map(({ location }) => {
-											if (typeof location !== "number") {
-												const { id, name } = location;
+											const locationPopulated = getPopulated(location);
+											if (locationPopulated)
 												return (
-													<Badge color="blue" key={id}>
-														{name}
+													<Badge color="blue" key={locationPopulated.id}>
+														{locationPopulated.name}
 													</Badge>
 												);
-											}
 										})
 									) : (
 										<Text>Aucune information</Text>
@@ -414,10 +416,14 @@ const ToolPage = () => {
 									tool.certifications_subcontractors.length > 0 ? (
 										tool.certifications_subcontractors.map(
 											({ certification }) => {
-												if (typeof certification !== "number") {
-													const { id, name } = certification;
-													return <Badge key={id}>{name}</Badge>;
-												}
+												const certificationPopulated =
+													getPopulated(certification);
+												if (certificationPopulated)
+													return (
+														<Badge key={certificationPopulated.id}>
+															{certificationPopulated.name}
+														</Badge>
+													);
 											},
 										)
 									) : (
@@ -452,10 +458,13 @@ const ToolPage = () => {
 								>
 									{tool.transfers && tool.transfers.length > 0 ? (
 										tool.transfers.map(({ transfer }) => {
-											if (typeof transfer !== "number") {
-												const { id, name } = transfer;
-												return <Badge key={id}>{name}</Badge>;
-											}
+											const transferPopulated = getPopulated(transfer);
+											if (transferPopulated)
+												return (
+													<Badge key={transferPopulated.id}>
+														{transferPopulated.name}
+													</Badge>
+												);
 										})
 									) : (
 										<Text>Aucune information</Text>
@@ -472,10 +481,13 @@ const ToolPage = () => {
 								>
 									{tool.features && tool.features.length > 0 ? (
 										tool.features.map(({ feature }) => {
-											if (typeof feature !== "number") {
-												const { id, name } = feature;
-												return <Badge key={id}>{name}</Badge>;
-											}
+											const featurePopulated = getPopulated(feature);
+											if (featurePopulated)
+												return (
+													<Badge key={featurePopulated.id}>
+														{featurePopulated.name}
+													</Badge>
+												);
 										})
 									) : (
 										<Text>Aucune fonctionnalité</Text>
@@ -531,14 +543,13 @@ const ToolPage = () => {
 									{tool.locations_host_client &&
 									tool.locations_host_client.length > 0 ? (
 										tool.locations_host_client.map(({ location }) => {
-											if (typeof location !== "number") {
-												const { id, name } = location;
+											const locationPopulated = getPopulated(location);
+											if (locationPopulated)
 												return (
-													<Badge key={id} color="blue">
-														{name}
+													<Badge key={locationPopulated.id} color="blue">
+														{locationPopulated.name}
 													</Badge>
 												);
-											}
 										})
 									) : (
 										<Text>Aucune localisation</Text>
@@ -554,15 +565,18 @@ const ToolPage = () => {
 									overflow={"auto"}
 								>
 									{tool.categories && tool.categories.length > 0 ? (
-										tool.categories.map(({ category }, index) => {
-											if (typeof category !== "number") {
+										tool.categories.map(({ category }) => {
+											const categoryPopulated = getPopulated(category);
+											if (categoryPopulated)
 												return (
-													<CategoryBadge key={index} category={category} />
+													<CategoryBadge
+														key={categoryPopulated.id}
+														category={categoryPopulated}
+													/>
 												);
-											}
 										})
 									) : (
-										<Text>Aucune information</Text>
+										<Text>Aucune catégorie</Text>
 									)}
 								</Flex>
 							</Line>
@@ -613,12 +627,15 @@ const ToolPage = () => {
 									gap={3}
 									overflow={"auto"}
 								>
-									{tool.accessors ? (
+									{tool.accessors && tool.accessors.length > 0 ? (
 										tool.accessors.map(({ accessor }) => {
-											if (typeof accessor !== "number") {
-												const { id, name } = accessor;
-												return <Badge key={id}>{name}</Badge>;
-											}
+											const accessorPopulated = getPopulated(accessor);
+											if (accessorPopulated)
+												return (
+													<Badge key={accessorPopulated.id}>
+														{accessorPopulated.name}
+													</Badge>
+												);
 										})
 									) : (
 										<Text>Aucune information</Text>
@@ -635,10 +652,14 @@ const ToolPage = () => {
 								>
 									{tool.certifications && tool.certifications.length > 0 ? (
 										tool.certifications.map(({ certification }) => {
-											if (typeof certification !== "number") {
-												const { id, name } = certification;
-												return <Badge key={id}>{name}</Badge>;
-											}
+											const certificationPopulated =
+												getPopulated(certification);
+											if (certificationPopulated)
+												return (
+													<Badge key={certificationPopulated.id}>
+														{certificationPopulated.name}
+													</Badge>
+												);
 										})
 									) : (
 										<Text>Aucune certification</Text>

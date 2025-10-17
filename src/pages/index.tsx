@@ -56,7 +56,7 @@ export default function Home() {
 				sort: ["privacy_score_saas"],
 			},
 			{
-				placeholderData: Array.from({ length: 6 }),
+				initialData: Array.from({ length: 6 }),
 			},
 		);
 
@@ -71,7 +71,7 @@ export default function Home() {
 				sort: ["privacy_score_saas"],
 			},
 			{
-				placeholderData: Array.from({ length: 6 }),
+				initialData: Array.from({ length: 6 }),
 			},
 		);
 
