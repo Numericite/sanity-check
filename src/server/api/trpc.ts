@@ -7,12 +7,12 @@
  * need to use are documented accordingly near the end.
  */
 
+import config from "@payload-config";
 import { initTRPC } from "@trpc/server";
 import type { CreateNextContextOptions } from "@trpc/server/adapters/next";
+import { type BasePayload, getPayload } from "payload";
 import superjson from "superjson";
 import { ZodError } from "zod";
-import { type BasePayload, getPayload } from "payload";
-import config from "@payload-config";
 
 /**
  * 1. CONTEXT

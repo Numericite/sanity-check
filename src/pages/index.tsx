@@ -1,6 +1,7 @@
 import {
 	Box,
 	Button,
+	Link as ChakraLink,
 	Flex,
 	Grid,
 	GridItem,
@@ -11,11 +12,14 @@ import {
 	Show,
 	Text,
 } from "@chakra-ui/react";
-import { LuSearch, LuX } from "react-icons/lu";
 import Head from "next/head";
-import ToolCard from "~/components/ToolCard";
-import { api } from "~/utils/api";
+import NextLink from "next/link";
 import { useState } from "react";
+import { LuSearch, LuX } from "react-icons/lu";
+import CategoryCard from "~/components/ui/card/category-card";
+import ToolCard from "~/components/ui/card/tool-card";
+import Carousel from "~/components/ui/carousel/carousel";
+import { api } from "~/utils/api";
 
 export default function Home() {
 	const [isSearching, setIsSearching] = useState(false);
@@ -32,14 +36,42 @@ export default function Home() {
 			},
 		);
 
-	const { data: toolsFrench, isFetching: isLoadingToolsFrench } =
+	const { data: categories, isLoading: isLoadingCategories } =
+		api.category.getList.useQuery(
+			{
+				limit: 6,
+			},
+			{
+				initialData: Array.from({ length: 6 }),
+			},
+		);
+
+	const { data: toolsFrench, isLoading: isLoadingToolsFrench } =
 		api.tool.getList.useQuery(
 			{
 				limit: 6,
-				filters: [{ key: "enterprise_location", value: "France" }],
+				filters: [
+					{ key: "locations_enterprise.location.name", value: "🇫🇷 France" },
+				],
+				sort: ["privacy_score_saas"],
 			},
 			{
-				placeholderData: Array.from({ length: 6 }),
+				initialData: Array.from({ length: 6 }),
+			},
+		);
+
+	const { data: toolsAI, isLoading: isLoadingToolsAI } =
+		api.tool.getList.useQuery(
+			{
+				limit: 6,
+				filters: [
+					{ key: "categories.category.id", value: "13" },
+					{ key: "categories.main", value: "true" },
+				],
+				sort: ["privacy_score_saas"],
+			},
+			{
+				initialData: Array.from({ length: 6 }),
 			},
 		);
 
@@ -77,7 +109,7 @@ export default function Home() {
 					<Flex
 						alignItems="center"
 						bgColor={isSearching ? "blue.50" : "white"}
-						borderRadius="full"
+						rounded="full"
 						px={4}
 						py={3}
 						mt={8}
@@ -102,7 +134,7 @@ export default function Home() {
 							<IconButton
 								aria-label="Annuler la recherche"
 								bgColor={isSearching ? "white" : "gray.100"}
-								borderRadius="full"
+								rounded="full"
 								size="2xs"
 								p={0}
 								mr={4}
@@ -116,7 +148,7 @@ export default function Home() {
 						</Show>
 						<IconButton
 							aria-label="Rechercher un outil"
-							borderRadius="full"
+							rounded="full"
 							p={6}
 							flex={1}
 							colorPalette={isSearching ? "primary" : "black"}
@@ -147,10 +179,28 @@ export default function Home() {
 						))}
 					</Grid>
 				</Flex>
-				<Flex flexDir="column" mt={12}>
-					<Heading size="xl" fontWeight={500} mb={4}>
-						Catégories d'outils
-					</Heading>
+				<Flex pt={10} gap={6} flexDir={"column"}>
+					<Flex justifyContent={"space-between"} alignItems={"center"}>
+						<Text fontSize={20} fontWeight={500}>
+							Catégories d'outils
+						</Text>
+						<ChakraLink
+							color={"blue.600"}
+							textDecoration={"underline"}
+							textUnderlineOffset={2}
+							asChild
+						>
+							<NextLink href={"/categories"}>Voir plus</NextLink>
+						</ChakraLink>
+					</Flex>
+
+					<Carousel
+						items={categories}
+						isLoading={isLoadingCategories}
+						component={({ item, isLoading }) => (
+							<CategoryCard category={item} isLoading={isLoading} />
+						)}
+					/>
 				</Flex>
 				<Flex flexDir="column" mt={12}>
 					<Heading size="xl" fontWeight={500} mb={4}>
@@ -173,6 +223,29 @@ export default function Home() {
 							</GridItem>
 						))}
 					</Grid>
+				</Flex>
+				<Flex pt={10} gap={6} flexDir={"column"}>
+					<Flex justifyContent={"space-between"} alignItems={"center"}>
+						<Text fontSize={20} fontWeight={500}>
+							Sélection d’outils d’Intelligence Artificielle
+						</Text>
+						<ChakraLink
+							color={"blue.600"}
+							textDecoration={"underline"}
+							textUnderlineOffset={2}
+							asChild
+						>
+							<NextLink href={"/categories/13"}>Voir plus</NextLink>
+						</ChakraLink>
+					</Flex>
+
+					<Carousel
+						items={toolsAI}
+						isLoading={isLoadingToolsAI}
+						component={({ item, isLoading }) => (
+							<ToolCard tool={item} isLoading={isLoading} />
+						)}
+					/>
 				</Flex>
 			</Box>
 		</>

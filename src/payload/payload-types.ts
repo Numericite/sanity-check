@@ -69,15 +69,31 @@ export interface Config {
   collections: {
     tools: Tool;
     media: Media;
+    categories: Category;
+    certifications: Certification;
+    accessors: Accessor;
+    locations: Location;
+    transfers: Transfer;
+    features: Feature;
     users: User;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    categories: {
+      relatedTools: 'tools';
+    };
+  };
   collectionsSelect: {
     tools: ToolsSelect<false> | ToolsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    categories: CategoriesSelect<false> | CategoriesSelect<true>;
+    certifications: CertificationsSelect<false> | CertificationsSelect<true>;
+    accessors: AccessorsSelect<false> | AccessorsSelect<true>;
+    locations: LocationsSelect<false> | LocationsSelect<true>;
+    transfers: TransfersSelect<false> | TransfersSelect<true>;
+    features: FeaturesSelect<false> | FeaturesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -123,36 +139,31 @@ export interface Tool {
   id: number;
   name: string;
   site_link: string;
-  image_link?: (number | null) | Media;
+  logo?: (number | null) | Media;
   description?: string | null;
-  enterprise_certifications?: string | null;
-  data_access?: string | null;
   subcontractors?: string | null;
-  transfer_out_eu?: string | null;
-  privacy_score_saas?: string | null;
-  privacy_score_self_hosted?: string | null;
-  tool_kind?: string | null;
-  location_host_client?: string | null;
-  online_accessible_dpa?: string | null;
-  subcontractors_infra?: string | null;
+  subcontractors_infra?:
+    | {
+        name?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  transfer_out_eu?: ('Oui' | 'Non' | 'Au choix') | null;
+  privacy_score_saas?: ('A' | 'B' | 'C' | 'D' | 'E' | 'F') | null;
+  privacy_score_self_hosted?: ('A' | 'B' | 'C' | 'D' | 'E' | 'F') | null;
+  online_accessible_dpa?: boolean | null;
   certification_dpf?: boolean | null;
-  opensource?: string | null;
-  self_host_possibility?: string | null;
-  fr_documentation?: string | null;
-  dpa_compliant?: string | null;
-  subkind?: string | null;
-  rgpd_feature?: string | null;
-  transfer_supervision?: string | null;
-  enterprise_location?: string | null;
+  opensource?: boolean | null;
+  self_host_possibility?: boolean | null;
+  fr_documentation?: boolean | null;
+  dpa_compliant?: boolean | null;
   dpa_link?: string | null;
-  subcontractors_certifications?: string | null;
   enterprise_european?: string | null;
-  final_users_location?: string | null;
   actions?: {
     root: {
       type: string;
       children: {
-        type: string;
+        type: any;
         version: number;
         [k: string]: unknown;
       }[];
@@ -167,7 +178,7 @@ export interface Tool {
     root: {
       type: string;
       children: {
-        type: string;
+        type: any;
         version: number;
         [k: string]: unknown;
       }[];
@@ -180,6 +191,88 @@ export interface Tool {
   } | null;
   transfer_informations?: string | null;
   dpa_file?: (number | null) | Media;
+  /**
+   * Sélectionnez une ou plusieurs catégories et cochez celle qui est principale.
+   */
+  categories?:
+    | {
+        category: number | Category;
+        main?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Sélectionnez une ou plusieurs certifications.
+   */
+  certifications?:
+    | {
+        certification: number | Certification;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Sélectionnez une ou plusieurs certifications.
+   */
+  certifications_subcontractors?:
+    | {
+        certification: number | Certification;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Sélectionnez une ou plusieurs accesseurs.
+   */
+  accessors?:
+    | {
+        accessor: number | Accessor;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Sélectionnez une ou plusieurs localisations.
+   */
+  locations_enterprise?:
+    | {
+        location: number | Location;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Sélectionnez une ou plusieurs localisations.
+   */
+  locations_host_client?:
+    | {
+        location: number | Location;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Sélectionnez une ou plusieurs localisations.
+   */
+  locations_final_users?:
+    | {
+        location: number | Location;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Sélectionnez une ou plusieurs encadrements.
+   */
+  transfers?:
+    | {
+        transfer: number | Transfer;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Sélectionnez une ou plusieurs fonctionnalités.
+   */
+  features?:
+    | {
+        feature: number | Feature;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -201,6 +294,82 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: number;
+  name: string;
+  description?: string | null;
+  icon: string;
+  color: string;
+  fonctionnalities?: string | null;
+  vigilances?: string | null;
+  recommendations?: string | null;
+  relatedTools?: {
+    docs?: (number | Tool)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "certifications".
+ */
+export interface Certification {
+  id: number;
+  name: string;
+  tools?: (number | Tool)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "accessors".
+ */
+export interface Accessor {
+  id: number;
+  name: string;
+  tools?: (number | Tool)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "locations".
+ */
+export interface Location {
+  id: number;
+  name: string;
+  tools?: (number | Tool)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "transfers".
+ */
+export interface Transfer {
+  id: number;
+  name: string;
+  tools?: (number | Tool)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "features".
+ */
+export interface Feature {
+  id: number;
+  name: string;
+  tools?: (number | Tool)[] | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -240,6 +409,30 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'categories';
+        value: number | Category;
+      } | null)
+    | ({
+        relationTo: 'certifications';
+        value: number | Certification;
+      } | null)
+    | ({
+        relationTo: 'accessors';
+        value: number | Accessor;
+      } | null)
+    | ({
+        relationTo: 'locations';
+        value: number | Location;
+      } | null)
+    | ({
+        relationTo: 'transfers';
+        value: number | Transfer;
+      } | null)
+    | ({
+        relationTo: 'features';
+        value: number | Feature;
       } | null)
     | ({
         relationTo: 'users';
@@ -294,35 +487,85 @@ export interface PayloadMigration {
 export interface ToolsSelect<T extends boolean = true> {
   name?: T;
   site_link?: T;
-  image_link?: T;
+  logo?: T;
   description?: T;
-  enterprise_certifications?: T;
-  data_access?: T;
   subcontractors?: T;
+  subcontractors_infra?:
+    | T
+    | {
+        name?: T;
+        id?: T;
+      };
   transfer_out_eu?: T;
   privacy_score_saas?: T;
   privacy_score_self_hosted?: T;
-  tool_kind?: T;
-  location_host_client?: T;
   online_accessible_dpa?: T;
-  subcontractors_infra?: T;
   certification_dpf?: T;
   opensource?: T;
   self_host_possibility?: T;
   fr_documentation?: T;
   dpa_compliant?: T;
-  subkind?: T;
-  rgpd_feature?: T;
-  transfer_supervision?: T;
-  enterprise_location?: T;
   dpa_link?: T;
-  subcontractors_certifications?: T;
   enterprise_european?: T;
-  final_users_location?: T;
   actions?: T;
   location_note?: T;
   transfer_informations?: T;
   dpa_file?: T;
+  categories?:
+    | T
+    | {
+        category?: T;
+        main?: T;
+        id?: T;
+      };
+  certifications?:
+    | T
+    | {
+        certification?: T;
+        id?: T;
+      };
+  certifications_subcontractors?:
+    | T
+    | {
+        certification?: T;
+        id?: T;
+      };
+  accessors?:
+    | T
+    | {
+        accessor?: T;
+        id?: T;
+      };
+  locations_enterprise?:
+    | T
+    | {
+        location?: T;
+        id?: T;
+      };
+  locations_host_client?:
+    | T
+    | {
+        location?: T;
+        id?: T;
+      };
+  locations_final_users?:
+    | T
+    | {
+        location?: T;
+        id?: T;
+      };
+  transfers?:
+    | T
+    | {
+        transfer?: T;
+        id?: T;
+      };
+  features?:
+    | T
+    | {
+        feature?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -343,6 +586,72 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories_select".
+ */
+export interface CategoriesSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  icon?: T;
+  color?: T;
+  fonctionnalities?: T;
+  vigilances?: T;
+  recommendations?: T;
+  relatedTools?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "certifications_select".
+ */
+export interface CertificationsSelect<T extends boolean = true> {
+  name?: T;
+  tools?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "accessors_select".
+ */
+export interface AccessorsSelect<T extends boolean = true> {
+  name?: T;
+  tools?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "locations_select".
+ */
+export interface LocationsSelect<T extends boolean = true> {
+  name?: T;
+  tools?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "transfers_select".
+ */
+export interface TransfersSelect<T extends boolean = true> {
+  name?: T;
+  tools?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "features_select".
+ */
+export interface FeaturesSelect<T extends boolean = true> {
+  name?: T;
+  tools?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

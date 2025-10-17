@@ -1,7 +1,7 @@
 import type { TextFieldServerComponent } from "payload";
 import type React from "react";
-import CreatableTextClient from "./CreatableTextClient";
 import type { Tool } from "../payload-types";
+import CreatableTextClient from "./CreatableTextClient";
 
 export const CustomSelectFieldServer: TextFieldServerComponent = async (
 	props,

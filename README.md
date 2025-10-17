@@ -1,5 +1,29 @@
 # Create T3 App
 
+## Installation
+
+### Création de la base de données
+
+```bash
+cp .env.example .env
+cp ./scripts/.env.example ./scripts/.env
+```
+
+- Changer les informations dans les fichiers .env
+
+```bash
+cd scripts
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.tsx
+python3 notion_to_json.py
+deactivate
+cd ..
+npx payload migrate
+yarn seed
+yarn dev
+```
+
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
 
 ## What's next? How do I make an app with this?

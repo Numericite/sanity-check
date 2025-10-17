@@ -12,7 +12,9 @@
 		"enabled": true,
 		"ignore": [
 			"./src/payload/payload-types.ts",
-			"./src/payload/payload-generated-schema.ts"
+			"./src/payload/payload-generated-schema.ts",
+			"./scripts/*",
+			"./src/app/[payload]/*"
 		]
 	},
 	"organizeImports": { "enabled": true },
@@ -20,7 +22,9 @@
 		"enabled": true,
 		"ignore": [
 			"./src/payload/payload-types.ts",
-			"./src/payload/payload-generated-schema.ts"
+			"./src/payload/payload-generated-schema.ts",
+			"./scripts/*",
+			"./src/app/[payload]/*"
 		],
 		"rules": {
 			"nursery": {
@@ -35,7 +39,10 @@
 			"complexity": {
 				"useArrowFunction": "off"
 			},
-			"recommended": true
+			"recommended": true,
+			"suspicious": {
+				"noArrayIndexKey": "off"
+			}
 		}
 	}
 }

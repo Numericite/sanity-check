@@ -1,13 +1,17 @@
 import { Box, Button, Container, Flex, Heading, Text } from "@chakra-ui/react";
-import { usePathname } from "next/navigation";
 import { Link as ChakraLink } from "@chakra-ui/react";
 import NextLink from "next/link";
+import { usePathname } from "next/navigation";
 
 const NavbarItem = ({
 	href,
 	isActive,
 	children,
-}: { href: string; children: React.ReactNode; isActive: boolean }) => (
+}: {
+	href: string;
+	children: React.ReactNode;
+	isActive: boolean;
+}) => (
 	<Box position="relative">
 		<ChakraLink
 			color="black"
@@ -27,7 +31,7 @@ const NavbarItem = ({
 			bottom={-1}
 			left={0}
 			right={0}
-			borderRadius="full"
+			rounded="full"
 		/>
 	</Box>
 );
@@ -46,7 +50,7 @@ const Navbar = () => {
 				>
 					<NextLink href="/" passHref>
 						<Flex alignItems="center" gap={2}>
-							<Box bgColor="primary.active" borderRadius="full" px={3} py={1}>
+							<Box bgColor="primary.active" rounded="full" px={3} py={1}>
 								<Text color="white" fontWeight={500} fontSize={20}>
 									S
 								</Text>
@@ -59,7 +63,10 @@ const Navbar = () => {
 					<NavbarItem href="/" isActive={pathname === "/"}>
 						Accueil
 					</NavbarItem>
-					<NavbarItem href="/categories" isActive={pathname === "/categories"}>
+					<NavbarItem
+						href="/categories"
+						isActive={pathname?.startsWith("/categories") ?? false}
+					>
 						Catégories d'outils
 					</NavbarItem>
 					<NavbarItem href="/about" isActive={pathname === "/about"}>
