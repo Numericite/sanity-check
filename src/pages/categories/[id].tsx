@@ -22,7 +22,7 @@ import CategoryIcon from "~/components/ui/icons/category-icon";
 import Search from "~/components/ui/icons/search";
 import { useDebounce } from "~/hooks/use-debounce";
 import { api } from "~/utils/api";
-import { getPopulated, isPopulated } from "~/utils/payload-helpers";
+import { isPopulated } from "~/utils/payload-helpers";
 import { IoMdClose } from "react-icons/io";
 
 type Scores = "A" | "B" | "C" | "D" | "E" | "F";
@@ -345,7 +345,9 @@ export default function Category() {
 											)
 										}
 									>
-										<Badge color="blue">{location.name}</Badge>
+										<Badge color="blue" active={location.active}>
+											{location.name}
+										</Badge>
 									</Button>
 								))}
 							</Flex>
@@ -371,7 +373,9 @@ export default function Category() {
 											)
 										}
 									>
-										<Badge>{certification.name}</Badge>
+										<Badge active={certification.active}>
+											{certification.name}
+										</Badge>
 									</Button>
 								))}
 							</Flex>
@@ -424,9 +428,10 @@ export default function Category() {
 									return true;
 								}
 
-								return activeLocations.some((location) =>
+								return activeLocations.every((location) =>
 									tool.locations_enterprise?.find(
-										(loc) => isPopulated(loc.location) &&
+										(loc) =>
+											isPopulated(loc.location) &&
 											loc.location.id === location.id,
 									),
 								);
@@ -440,9 +445,10 @@ export default function Category() {
 									return true;
 								}
 
-								return activeCertifications.some((certification) =>
+								return activeCertifications.every((certification) =>
 									tool.certifications?.find(
-										(cert) => isPopulated(cert.certification) &&
+										(cert) =>
+											isPopulated(cert.certification) &&
 											cert.certification.id === certification.id,
 									),
 								);

@@ -53,6 +53,7 @@ export const Categories: CollectionConfig = {
 			collection: "tools",
 			on: "categories.category",
 			maxDepth: 2,
+			defaultLimit: 0,
 			defaultSort: ["privacy_score_saas", "dpa_compliant"],
 		},
 	],
