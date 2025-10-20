@@ -115,6 +115,24 @@ export default function Category() {
 			},
 		);
 
+	const handleScore = (index: number) => {
+		setScores((prev) =>
+			prev.map((s, i) => (i === index ? { ...s, active: !s.active } : s)),
+		);
+	};
+
+	const handleLocation = (index: number) => {
+		setLocations((prev) =>
+			prev.map((l, i) => (i === index ? { ...l, active: !l.active } : l)),
+		);
+	};
+
+	const handleCertification = (index: number) => {
+		setCertifications((prev) =>
+			prev.map((c, i) => (i === index ? { ...c, active: !c.active } : c)),
+		);
+	};
+
 	return (
 		<Flex gap={6} flexDir={"column"} py={10}>
 			<BreadcrumbLayout
@@ -271,13 +289,7 @@ export default function Category() {
 										key={index}
 										unstyled
 										cursor={"pointer"}
-										onClick={() =>
-											setScores((prev) =>
-												prev.map((s, i) =>
-													i === index ? { ...s, active: !s.active } : s,
-												),
-											)
-										}
+										onClick={() => handleScore(index)}
 									>
 										<PrivacyScoreBadge
 											score={score.score}
@@ -323,13 +335,7 @@ export default function Category() {
 										key={location.id}
 										unstyled
 										cursor={"pointer"}
-										onClick={() =>
-											setLocations((prev) =>
-												prev.map((l, i) =>
-													i === index ? { ...l, active: !l.active } : l,
-												),
-											)
-										}
+										onClick={() => handleLocation(index)}
 									>
 										<Badge color="blue" active={location.active}>
 											{location.name}
@@ -351,13 +357,7 @@ export default function Category() {
 										key={index}
 										unstyled
 										cursor={"pointer"}
-										onClick={() =>
-											setCertifications((prev) =>
-												prev.map((c, i) =>
-													i === index ? { ...c, active: !c.active } : c,
-												),
-											)
-										}
+										onClick={() => handleCertification(index)}
 									>
 										<Badge active={certification.active}>
 											{certification.name}
