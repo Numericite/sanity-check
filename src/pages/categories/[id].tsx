@@ -312,20 +312,6 @@ export default function Category() {
 						</Flex>
 						<Separator />
 
-						<Flex flexDir={"column"} gap={3}>
-							<Text fontSize={16} fontWeight={400}>
-								Lieu d'hébergement des données :
-							</Text>
-							<Flex gap={2} flexWrap={"wrap"}>
-								{["🇪🇺 UE", "🇺🇸 Amérique du Nord"].map((location, index) => (
-									<Badge color="blue" rounded={"full"} key={index}>
-										{location}
-									</Badge>
-								))}
-							</Flex>
-						</Flex>
-						<Separator />
-
 						{/* Localisation de l'entreprise */}
 						<Flex flexDir={"column"} gap={3}>
 							<Text fontSize={16} fontWeight={400}>
