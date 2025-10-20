@@ -126,16 +126,8 @@ export const Tools: CollectionConfig = {
 		},
 		{
 			name: "enterprise_european",
-			type: "text",
+			type: "checkbox",
 			label: "Entreprise européenne",
-			admin: {
-				components: {
-					Field: {
-						path: "/components/CustomSelect#CustomSelectFieldServer",
-						exportName: "CustomSelectFieldServer",
-					},
-				},
-			},
 		},
 		{
 			name: "actions",

@@ -150,8 +150,26 @@ class NotionToJSON:
                 item['name'] = 'Brevo'
 
             # enterprise_european
-            # print(item['enterprise_european'])
-            # item['enterprise_european'] = item['enterprise_european'][0]
+            # Première vérification, dans certains cas, la donnée est une liste de 2 éléments. 
+            # On transforme alors la liste de deux éléments en un élément afin que la transformation en boolean soit la même pour toutes les données.
+            if(len(item['enterprise_european']) > 1):
+                if(item['enterprise_european'][0] == 'Non'):
+                    item['enterprise_european'] = ['Non']
+                elif(item['enterprise_european'][0] == 'Filiale EU'):
+                    item['enterprise_european'] = ['Non']
+                elif(item['enterprise_european'] == ['Oui', 'Non']):
+                    item['enterprise_european'] = []
+
+            # Transformation de la liste en boolean nullable
+            if(item['enterprise_european'] == []):
+                item['enterprise_european'] = None
+            elif(item['enterprise_european'] == ['Oui']):
+                item['enterprise_european'] = True
+            elif(item['enterprise_european'] == ['Non']):
+                item['enterprise_european'] = False
+            elif(item['enterprise_european'][0] in ['Filiale EU', 'Suisse']):
+            # else if(item['enterprise_european'] == ['Filiale EU'] or item['enterprise_european'] == ['Suisse']):
+                item['enterprise_european'] = False
 
             # online_accessible_dpa
             if(item['online_accessible_dpa'] == 'n/a'):
