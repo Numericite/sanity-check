@@ -1,4 +1,8 @@
-import { Button, Flex, Heading, Tabs, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
+import Presentation from "~/components/about-tabs/presentation";
+import PrivacyScore from "~/components/about-tabs/privacy-score";
+import Glossary from "~/components/about-tabs/glossary";
+import TabLayout from "~/components/ui/tab/tab-layout";
 
 export default function About() {
 	return (
@@ -18,26 +22,26 @@ export default function About() {
 				borderWidth={1}
 				borderColor={"gray.100"}
 			>
-				<Flex>
-					{/* <Tabs.Root defaultValue="presentation" unstyled>
-						<Tabs.List>
-							<Tabs.Trigger value="presentation">
-								Présentation de l'outil
-							</Tabs.Trigger>
-							<Tabs.Trigger value="privacy_score">Privacy score</Tabs.Trigger>
-							<Tabs.Trigger value="glossary">Glossaire</Tabs.Trigger>
-						</Tabs.List>
-						<Tabs.Content value="presentation">
-							<Text>Présrntation</Text>
-						</Tabs.Content>
-						<Tabs.Content value="privacy_score">
-							<Text>Privacy Score</Text>
-						</Tabs.Content>
-						<Tabs.Content value="glossary">
-							<Text>glossaire</Text>
-						</Tabs.Content>
-					</Tabs.Root> */}
-				</Flex>
+				<TabLayout
+					defaultValue={"presentation"}
+					items={[
+						{
+							key: "presentation",
+							label: "Présentation de l'outil",
+							content: <Presentation />,
+						},
+						{
+							key: "privacy_score",
+							label: "Privacy Score",
+							content: <PrivacyScore />,
+						},
+						{
+							key: "glossary",
+							label: "Glossaire",
+							content: <Glossary />,
+						},
+					]}
+				/>
 			</Flex>
 		</Flex>
 	);
