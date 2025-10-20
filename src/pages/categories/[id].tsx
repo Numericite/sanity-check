@@ -11,7 +11,7 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Badge from "~/components/ui/badge/badge";
 import PrivacyScoreBadge from "~/components/ui/badge/privacy-score-badge";
 import BreadcrumbLayout from "~/components/ui/breadcrumb/breadcrumb-layout";
@@ -22,8 +22,10 @@ import CategoryIcon from "~/components/ui/icons/category-icon";
 import Search from "~/components/ui/icons/search";
 import { useDebounce } from "~/hooks/use-debounce";
 import { api } from "~/utils/api";
-import { isPopulated } from "~/utils/payload-helpers";
 import { IoMdClose } from "react-icons/io";
+import CategoriesFilters from "~/components/categories-filters";
+import FiltersSidebar from "~/components/categories-filters";
+import { useCategoryFilters } from "~/hooks/use-categories-filters";
 
 type Scores = "A" | "B" | "C" | "D" | "E" | "F";
 type ScoreItem = { score: Scores; active: boolean };
@@ -87,13 +89,33 @@ const certificationsList: CertificationItem[] = [
 
 export default function Category() {
 	const router = useRouter();
-	const [search, setSearch] = useState("");
-	const debouncedSearch = useDebounce(search);
-	const [scores, setScores] = useState(scoresList);
-	const [dpa, setDpa] = useState(false);
-	const [locations, setLocations] = useState(locationsList);
-	const [certifications, setCertifications] = useState(certificationsList);
 	const { id } = router.query;
+
+	const {
+		search,
+		setSearch,
+		scores,
+		dpa,
+		locations,
+		certifications,
+		handleScore,
+		handleLocation,
+		handleCertification,
+		setDpa,
+		filters,
+	} = useCategoryFilters();
+
+	const { data: tools, isLoading: isLoadingTools } = api.tool.getList.useQuery(
+		{
+			limit: 0,
+			sort: ["privacy_score_saas", "dpa_compliant"],
+			filters: [
+				{ key: "categories.category", value: (id ?? 0).toString() },
+				...filters,
+			],
+		},
+		{ enabled: !!id },
+	);
 
 	const { data: category, isLoading } = api.category.getById.useQuery(
 		Number(id),
@@ -114,24 +136,6 @@ export default function Category() {
 				initialData: Array.from({ length: 6 }),
 			},
 		);
-
-	const handleScore = (index: number) => {
-		setScores((prev) =>
-			prev.map((s, i) => (i === index ? { ...s, active: !s.active } : s)),
-		);
-	};
-
-	const handleLocation = (index: number) => {
-		setLocations((prev) =>
-			prev.map((l, i) => (i === index ? { ...l, active: !l.active } : l)),
-		);
-	};
-
-	const handleCertification = (index: number) => {
-		setCertifications((prev) =>
-			prev.map((c, i) => (i === index ? { ...c, active: !c.active } : c)),
-		);
-	};
 
 	return (
 		<Flex gap={6} flexDir={"column"} py={10}>
@@ -214,159 +218,18 @@ export default function Category() {
 				</Flex>
 
 				<Flex w={"full"} gap={6}>
-					<Flex
-						flexDir={"column"}
-						w={"1/3"}
-						px={5}
-						py={6}
-						borderWidth={1}
-						borderColor={"gray.200"}
-						rounded={"2xl"}
-						gap={7}
-						h={"fit"}
-					>
-						<Text fontSize={24} fontWeight={500}>
-							Filtres
-						</Text>
-
-						{/* Recherche */}
-						<Flex flexDir={"column"} gap={3}>
-							<Text fontSize={16} fontWeight={400}>
-								Rechercher
-							</Text>
-							<InputGroup>
-								<Flex
-									bgColor={"gray.50"}
-									borderRadius={12}
-									py={4}
-									px={5}
-									gap={3}
-									borderWidth={1}
-									borderColor={"gray.200"}
-									alignItems={"center"}
-									transition="all 0.2s"
-									_focusWithin={{
-										borderColor: "blue.500",
-										bgColor: "blue.50",
-									}}
-								>
-									<Search />
-									<Input
-										name="search"
-										id="search"
-										value={search}
-										onChange={(e) => setSearch(e.target.value)}
-										placeholder="Rechercher un outils"
-										bgColor={"transparent"}
-										outline={"none"}
-										unstyled
-										fontSize={16}
-										fontWeight={400}
-									/>
-									<Button
-										visibility={search !== "" ? "visible" : "hidden"}
-										onClick={() => setSearch("")}
-										variant={"ghost"}
-										size={"xs"}
-										p={0.5}
-										m={0}
-									>
-										<IoMdClose />
-									</Button>
-								</Flex>
-							</InputGroup>
-						</Flex>
-						<Separator />
-
-						{/* Badges Privacy Score */}
-						<Flex flexDir={"column"} gap={3}>
-							<Text fontSize={16} fontWeight={400}>
-								Score :
-							</Text>
-							<Flex gap={2}>
-								{scores.map((score, index) => (
-									<Button
-										key={index}
-										unstyled
-										cursor={"pointer"}
-										onClick={() => handleScore(index)}
-									>
-										<PrivacyScoreBadge
-											score={score.score}
-											active={score.active}
-										/>
-									</Button>
-								))}
-							</Flex>
-						</Flex>
-						<Separator />
-
-						{/* DPA */}
-						<Flex flexDir={"column"} gap={3}>
-							<Text fontSize={16} fontWeight={400}>
-								DPA :
-							</Text>
-							<Flex gap={2}>
-								<Switch.Root
-									checked={dpa}
-									onCheckedChange={(e) => setDpa(e.checked)}
-									colorPalette={"blue"}
-								>
-									<Switch.HiddenInput />
-									<Switch.Control>
-										<Switch.Thumb />
-									</Switch.Control>
-									<Switch.Label fontSize={14} fontWeight={500}>
-										DPA conforme
-									</Switch.Label>
-								</Switch.Root>
-							</Flex>
-						</Flex>
-						<Separator />
-
-						{/* Localisation de l'entreprise */}
-						<Flex flexDir={"column"} gap={3}>
-							<Text fontSize={16} fontWeight={400}>
-								Localisation de l'entreprise :
-							</Text>
-							<Flex gap={2} flexWrap={"wrap"}>
-								{locations.map((location, index) => (
-									<Button
-										key={location.id}
-										unstyled
-										cursor={"pointer"}
-										onClick={() => handleLocation(index)}
-									>
-										<Badge color="blue" active={location.active}>
-											{location.name}
-										</Badge>
-									</Button>
-								))}
-							</Flex>
-						</Flex>
-						<Separator />
-
-						{/* Certifications */}
-						<Flex flexDir={"column"} gap={3}>
-							<Text fontSize={16} fontWeight={400}>
-								Certifications de l'entreprise :
-							</Text>
-							<Flex gap={2} flexWrap={"wrap"}>
-								{certifications.map((certification, index) => (
-									<Button
-										key={index}
-										unstyled
-										cursor={"pointer"}
-										onClick={() => handleCertification(index)}
-									>
-										<Badge active={certification.active}>
-											{certification.name}
-										</Badge>
-									</Button>
-								))}
-							</Flex>
-						</Flex>
-					</Flex>
+					<FiltersSidebar
+						search={search}
+						setSearch={setSearch}
+						scores={scores}
+						dpa={dpa}
+						locations={locations}
+						certifications={certifications}
+						handleScore={handleScore}
+						handleLocation={handleLocation}
+						handleCertification={handleCertification}
+						setDpa={setDpa}
+					/>
 
 					<Grid
 						templateColumns={{
@@ -378,78 +241,27 @@ export default function Category() {
 						w={"full"}
 						gap={6}
 					>
-						{category?.relatedTools?.docs
-							?.filter(isPopulated)
-							?.filter(
-								(tool) =>
-									debouncedSearch === "" ||
-									tool.name
-										.toLowerCase()
-										.includes(debouncedSearch.toLowerCase()),
-							)
-							.filter((tool) => {
-								const activeScores = scores.filter((score) => score.active);
+						{isLoadingTools &&
+							Array.from({ length: 6 }).map((_, index) => (
+								<GridItem key={`skeleton-${index}`}>
+									<ToolCard tool={null} isLoading hideCategory />
+								</GridItem>
+							))}
 
-								if (activeScores.length === 0) {
-									return true;
-								}
+						{!isLoadingTools && tools?.length === 0 && (
+							<GridItem colSpan={2} textAlign={"center"}>
+								<Text fontSize={18} color="gray.500">
+									Aucun résultat
+								</Text>
+							</GridItem>
+						)}
 
-								return activeScores.some(
-									(score) => score.score === tool.privacy_score_saas,
-								);
-							})
-							.filter((tool) => {
-								if (!dpa) {
-									return true;
-								}
-
-								return tool.dpa_compliant;
-							})
-							.filter((tool) => {
-								const activeLocations = locations.filter(
-									(location) => location.active,
-								);
-
-								if (activeLocations.length === 0) {
-									return true;
-								}
-
-								return activeLocations.every((location) =>
-									tool.locations_enterprise?.find(
-										(loc) =>
-											isPopulated(loc.location) &&
-											loc.location.id === location.id,
-									),
-								);
-							})
-							.filter((tool) => {
-								const activeCertifications = certifications.filter(
-									(certification) => certification.active,
-								);
-
-								if (activeCertifications.length === 0) {
-									return true;
-								}
-
-								return activeCertifications.every((certification) =>
-									tool.certifications?.find(
-										(cert) =>
-											isPopulated(cert.certification) &&
-											cert.certification.id === certification.id,
-									),
-								);
-							})
-							.map((tool, index) => (
-								<GridItem
-									h={"fit"}
-									key={tool?.id ? tool.id : `tool-${index}`}
-									minW={0}
-								>
-									<ToolCard
-										tool={tool?.id ? tool : null}
-										isLoading={isLoading}
-										hideCategory
-									/>
+						{!isLoadingTools &&
+							tools &&
+							tools?.length > 0 &&
+							tools.map((tool) => (
+								<GridItem key={tool.id} minW={0}>
+									<ToolCard tool={tool} isLoading={false} hideCategory />
 								</GridItem>
 							))}
 					</Grid>

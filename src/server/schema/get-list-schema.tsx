@@ -8,7 +8,13 @@ export const getListSchema = z.object({
 			z.object({
 				key: z.string(),
 				operation: z.string().optional(),
-				value: z.string(),
+				value: z.union([
+					z.string(),
+					z.number(),
+					z.boolean(),
+					z.array(z.string()),
+					z.array(z.number()),
+				]),
 			}),
 		)
 		.optional(),

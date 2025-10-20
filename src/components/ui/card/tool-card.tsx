@@ -28,7 +28,7 @@ export default function ToolCard({
 	const mainCategory = tool?.categories?.find((cat) => cat.main)?.category;
 
 	return (
-		<Skeleton loading={isLoading} w="full">
+		<Skeleton loading={isLoading || !tool?.name} w="full" rounded={"2xl"}>
 			<ChakraLink
 				_hover={{ textDecoration: "none" }}
 				_focus={{ outline: "none" }}
