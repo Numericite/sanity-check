@@ -11,6 +11,7 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import Badge from "~/components/ui/badge/badge";
 import PrivacyScoreBadge from "~/components/ui/badge/privacy-score-badge";
 import BreadcrumbLayout from "~/components/ui/breadcrumb/breadcrumb-layout";
@@ -19,12 +20,102 @@ import ToolCard from "~/components/ui/card/tool-card";
 import Carousel from "~/components/ui/carousel/carousel";
 import CategoryIcon from "~/components/ui/icons/category-icon";
 import Search from "~/components/ui/icons/search";
+import { useDebounce } from "~/hooks/use-debounce";
 import { api } from "~/utils/api";
-import { getPopulated } from "~/utils/payload-helpers";
+import { IoMdClose } from "react-icons/io";
+import CategoriesFilters from "~/components/categories-filters";
+import FiltersSidebar from "~/components/categories-filters";
+import { useCategoryFilters } from "~/hooks/use-categories-filters";
+
+type Scores = "A" | "B" | "C" | "D" | "E" | "F";
+type ScoreItem = { score: Scores; active: boolean };
+type LocationItem = { id: number; name: string; active: boolean };
+type CertificationItem = { id: number; name: string; active: boolean };
+
+const scoresList: ScoreItem[] = [
+	{ score: "A", active: false },
+	{ score: "B", active: false },
+	{ score: "C", active: false },
+	{ score: "D", active: false },
+	{ score: "E", active: false },
+	{ score: "F", active: false },
+];
+
+const locationsList: LocationItem[] = [
+	{
+		id: 10,
+		name: "🇫🇷 France",
+		active: false,
+	},
+	{
+		id: 3,
+		name: "🇺🇸 États-Unis",
+		active: false,
+	},
+	{
+		id: 8,
+		name: "🇩🇪 Allemagne",
+		active: false,
+	},
+	{
+		id: 5,
+		name: "🇮🇪 Irlande",
+		active: false,
+	},
+];
+
+const certificationsList: CertificationItem[] = [
+	{
+		id: 5,
+		name: "SOC II",
+		active: false,
+	},
+	{
+		id: 19,
+		name: "ISO 27001",
+		active: false,
+	},
+	{
+		id: 16,
+		name: "SOC III",
+		active: false,
+	},
+	{
+		id: 8,
+		name: "ISO 27001:2013 Certification",
+		active: false,
+	},
+];
 
 export default function Category() {
 	const router = useRouter();
 	const { id } = router.query;
+
+	const {
+		search,
+		setSearch,
+		scores,
+		dpa,
+		locations,
+		certifications,
+		handleScore,
+		handleLocation,
+		handleCertification,
+		setDpa,
+		filters,
+	} = useCategoryFilters();
+
+	const { data: tools, isLoading: isLoadingTools } = api.tool.getList.useQuery(
+		{
+			limit: 0,
+			sort: ["privacy_score_saas", "dpa_compliant"],
+			filters: [
+				{ key: "categories.category", value: (id ?? 0).toString() },
+				...filters,
+			],
+		},
+		{ enabled: !!id },
+	);
 
 	const { data: category, isLoading } = api.category.getById.useQuery(
 		Number(id),
@@ -127,148 +218,18 @@ export default function Category() {
 				</Flex>
 
 				<Flex w={"full"} gap={6}>
-					<Flex
-						flexDir={"column"}
-						w={"1/3"}
-						px={5}
-						py={6}
-						borderWidth={1}
-						borderColor={"gray.200"}
-						rounded={"2xl"}
-						gap={7}
-						h={"fit"}
-					>
-						<Text fontSize={24} fontWeight={500}>
-							Filtres
-						</Text>
-
-						<Flex flexDir={"column"} gap={3}>
-							<Text fontSize={16} fontWeight={400}>
-								Rechercher
-							</Text>
-							<InputGroup>
-								<Flex
-									bgColor={"gray.50"}
-									rounded={"xl"}
-									py={4}
-									px={5}
-									gap={3}
-									borderWidth={1}
-									borderColor={"gray.200"}
-									alignItems={"center"}
-									transition="all 0.2s"
-									_focusWithin={{
-										borderColor: "blue.500",
-										bgColor: "blue.50",
-									}}
-								>
-									<Search />
-									<Input
-										name="search"
-										id="search"
-										placeholder="Rechercher un outils"
-										bgColor={"transparent"}
-										outline={"none"}
-										unstyled
-										fontSize={16}
-										fontWeight={400}
-									/>
-									{/* <Button
-										variant={"ghost"}
-										size={"xs"}
-										p={0.5}
-										m={0}
-									>
-										<IoMdClose />
-									</Button> */}
-								</Flex>
-							</InputGroup>
-						</Flex>
-						<Separator />
-
-						<Flex flexDir={"column"} gap={3}>
-							<Text fontSize={16} fontWeight={400}>
-								Score :
-							</Text>
-							<Flex gap={2}>
-								{(["A", "B", "C", "D", "E", "F"] as const).map(
-									(score, index) => (
-										<Button key={index} unstyled cursor={"pointer"}>
-											<PrivacyScoreBadge score={score} active={false} />
-										</Button>
-									),
-								)}
-							</Flex>
-						</Flex>
-						<Separator />
-
-						<Flex flexDir={"column"} gap={3}>
-							<Text fontSize={16} fontWeight={400}>
-								DPA :
-							</Text>
-							<Flex gap={2}>
-								<Switch.Root colorPalette={"blue"}>
-									<Switch.HiddenInput />
-									<Switch.Control>
-										<Switch.Thumb />
-									</Switch.Control>
-									<Switch.Label fontSize={14} fontWeight={500}>
-										DPA conforme
-									</Switch.Label>
-								</Switch.Root>
-							</Flex>
-						</Flex>
-						<Separator />
-
-						<Flex flexDir={"column"} gap={3}>
-							<Text fontSize={16} fontWeight={400}>
-								Lieu d'hébergement des données :
-							</Text>
-							<Flex gap={2} flexWrap={"wrap"}>
-								{["🇪🇺 UE", "🇺🇸 Amérique du Nord"].map((location, index) => (
-									<Badge color="blue" rounded={"full"} key={index}>
-										{location}
-									</Badge>
-								))}
-							</Flex>
-						</Flex>
-						<Separator />
-
-						<Flex flexDir={"column"} gap={3}>
-							<Text fontSize={16} fontWeight={400}>
-								Localisation de l'entreprise :
-							</Text>
-							<Flex gap={2} flexWrap={"wrap"}>
-								{[
-									"🇫🇷 France",
-									"🇺🇸 États-Unis",
-									"🇩🇪 Allemagne",
-									"🇮🇪 Irlande",
-									"🏳️ Autres",
-								].map((location, index) => (
-									<Badge key={index} color="blue" rounded="full">
-										{location}
-									</Badge>
-								))}
-							</Flex>
-						</Flex>
-						<Separator />
-
-						<Flex flexDir={"column"} gap={3}>
-							<Text fontSize={16} fontWeight={400}>
-								Certifications de l'entreprise :
-							</Text>
-							<Flex gap={2} flexWrap={"wrap"}>
-								{["HDS", "SecNumCloud", "ISO", "SOC"].map(
-									(certification, index) => (
-										<Badge key={index} rounded="full">
-											{certification}
-										</Badge>
-									),
-								)}
-							</Flex>
-						</Flex>
-					</Flex>
+					<FiltersSidebar
+						search={search}
+						setSearch={setSearch}
+						scores={scores}
+						dpa={dpa}
+						locations={locations}
+						certifications={certifications}
+						handleScore={handleScore}
+						handleLocation={handleLocation}
+						handleCertification={handleCertification}
+						setDpa={setDpa}
+					/>
 
 					<Grid
 						templateColumns={{
@@ -280,20 +241,29 @@ export default function Category() {
 						w={"full"}
 						gap={6}
 					>
-						{category?.relatedTools?.docs?.map((tool) => {
-							const toolPopulated = getPopulated(tool);
-							if (!toolPopulated) return null;
-
-							return (
-								<GridItem alignItems="stretch" h={"fit"} key={toolPopulated.id}>
-									<ToolCard
-										tool={toolPopulated}
-										isLoading={isLoading}
-										hideCategory
-									/>
+						{isLoadingTools &&
+							Array.from({ length: 6 }).map((_, index) => (
+								<GridItem key={`skeleton-${index}`}>
+									<ToolCard tool={null} isLoading hideCategory />
 								</GridItem>
-							);
-						})}
+							))}
+
+						{!isLoadingTools && tools?.length === 0 && (
+							<GridItem colSpan={2} textAlign={"center"}>
+								<Text fontSize={18} color="gray.500">
+									Aucun résultat
+								</Text>
+							</GridItem>
+						)}
+
+						{!isLoadingTools &&
+							tools &&
+							tools?.length > 0 &&
+							tools.map((tool) => (
+								<GridItem key={tool.id} minW={0}>
+									<ToolCard tool={tool} isLoading={false} hideCategory />
+								</GridItem>
+							))}
 					</Grid>
 				</Flex>
 				<Flex pt={10} gap={6} flexDir={"column"}>
