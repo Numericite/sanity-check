@@ -1,91 +1,14 @@
-import {
-	Box,
-	Button,
-	Flex,
-	Grid,
-	GridItem,
-	Input,
-	InputGroup,
-	Separator,
-	Switch,
-	Text,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import Badge from "~/components/ui/badge/badge";
-import PrivacyScoreBadge from "~/components/ui/badge/privacy-score-badge";
 import BreadcrumbLayout from "~/components/ui/breadcrumb/breadcrumb-layout";
 import CategoryCard from "~/components/ui/card/category-card";
 import ToolCard from "~/components/ui/card/tool-card";
 import Carousel from "~/components/ui/carousel/carousel";
 import CategoryIcon from "~/components/ui/icons/category-icon";
-import Search from "~/components/ui/icons/search";
-import { useDebounce } from "~/hooks/use-debounce";
 import { api } from "~/utils/api";
-import { IoMdClose } from "react-icons/io";
-import CategoriesFilters from "~/components/categories-filters";
 import FiltersSidebar from "~/components/categories-filters";
 import { useCategoryFilters } from "~/hooks/use-categories-filters";
-
-type Scores = "A" | "B" | "C" | "D" | "E" | "F";
-type ScoreItem = { score: Scores; active: boolean };
-type LocationItem = { id: number; name: string; active: boolean };
-type CertificationItem = { id: number; name: string; active: boolean };
-
-const scoresList: ScoreItem[] = [
-	{ score: "A", active: false },
-	{ score: "B", active: false },
-	{ score: "C", active: false },
-	{ score: "D", active: false },
-	{ score: "E", active: false },
-	{ score: "F", active: false },
-];
-
-const locationsList: LocationItem[] = [
-	{
-		id: 10,
-		name: "🇫🇷 France",
-		active: false,
-	},
-	{
-		id: 3,
-		name: "🇺🇸 États-Unis",
-		active: false,
-	},
-	{
-		id: 8,
-		name: "🇩🇪 Allemagne",
-		active: false,
-	},
-	{
-		id: 5,
-		name: "🇮🇪 Irlande",
-		active: false,
-	},
-];
-
-const certificationsList: CertificationItem[] = [
-	{
-		id: 5,
-		name: "SOC II",
-		active: false,
-	},
-	{
-		id: 19,
-		name: "ISO 27001",
-		active: false,
-	},
-	{
-		id: 16,
-		name: "SOC III",
-		active: false,
-	},
-	{
-		id: 8,
-		name: "ISO 27001:2013 Certification",
-		active: false,
-	},
-];
 
 export default function Category() {
 	const router = useRouter();
