@@ -7,7 +7,6 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { LuTarget } from "react-icons/lu";
 
 export default function Presentation() {
 	return (
