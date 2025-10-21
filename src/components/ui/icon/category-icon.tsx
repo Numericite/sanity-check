@@ -1,5 +1,4 @@
 import { Icon, Skeleton } from "@chakra-ui/react";
-import type { ElementType } from "react";
 import type { Category } from "~/payload/payload-types";
 
 type CategoryIconProps = {
