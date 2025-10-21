@@ -1,7 +1,7 @@
 import { Button, Flex, Skeleton, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
 import type { Category } from "~/payload/payload-types";
-import CategoryIcon from "../icons/category-icon";
+import CategoryIcon from "../icon/category-icon";
 import Badge from "../badge/badge";
 
 type CategoryCardProps = {
