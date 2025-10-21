@@ -24,6 +24,40 @@ const scores: Item[] = [
 				</Text>
 				<List.Root fontSize={16} fontWeight={400} listStylePosition="inside">
 					<List.Item _marker={{ color: "gray.600" }}>
+						Ne traite pas de données à caractère personnel ou est hébergé au
+						sein de l’Union européenne (ou autre pays conforme) ou permet un
+						auto-hébergement
+					</List.Item>
+					<List.Item _marker={{ color: "gray.600" }}>
+						Dispose d’un DPA conforme à l’article 28-3 du RGPD
+					</List.Item>
+					<List.Item _marker={{ color: "gray.600" }}>
+						Est certifié « Hébergeur de données de santé » et/ou « SecNumCloud »
+					</List.Item>
+					<List.Item _marker={{ color: "gray.600" }}>
+						Dispose d’une documentation claire, de certifications (ISO) et de
+						mesures de sécurité (chiffrement).
+					</List.Item>
+				</List.Root>
+			</>
+		),
+	},
+	{
+		buttonContent: (
+			<>
+				<Text fontSize={16} fontWeight={500}>
+					Score
+				</Text>
+				<PrivacyScoreBadge score={"B"} />
+			</>
+		),
+		content: (
+			<>
+				<Text fontSize={16} fontWeight={400}>
+					L'outils :
+				</Text>
+				<List.Root fontSize={16} fontWeight={400} listStylePosition="inside">
+					<List.Item _marker={{ color: "gray.600" }}>
 						Est hébergé au sein de l’Union européenne (ou autre pays conforme)
 						ou permet un hébergement des données en propre
 					</List.Item>
@@ -48,21 +82,32 @@ const scores: Item[] = [
 				<Text fontSize={16} fontWeight={500}>
 					Score
 				</Text>
-				<PrivacyScoreBadge score={"B"} />
-			</>
-		),
-		content: <></>,
-	},
-	{
-		buttonContent: (
-			<>
-				<Text fontSize={16} fontWeight={500}>
-					Score
-				</Text>
 				<PrivacyScoreBadge score={"C"} />
 			</>
 		),
-		content: <></>,
+		content: (
+			<>
+				<Text fontSize={16} fontWeight={400}>
+					L'outils :
+				</Text>
+				<List.Root fontSize={16} fontWeight={400} listStylePosition="inside">
+					<List.Item _marker={{ color: "gray.600" }}>
+						Est hébergé au sein de l’Union européenne (ou autre pays conforme)
+					</List.Item>
+					<List.Item _marker={{ color: "gray.600" }}>
+						Dispose d’un DPA conforme à l’article 28-3 du RGPD
+					</List.Item>
+					<List.Item _marker={{ color: "gray.600" }}>
+						N’est pas certifié “Hébergeur de données de santé et/ou
+						“SecNumCloud”
+					</List.Item>
+					<List.Item _marker={{ color: "gray.600" }}>
+						Dispose d’une documentation claire et de mesures de sécurité, mais
+						d’aucune certification.
+					</List.Item>
+				</List.Root>
+			</>
+		),
 	},
 	{
 		buttonContent: (
@@ -73,7 +118,31 @@ const scores: Item[] = [
 				<PrivacyScoreBadge score={"D"} />
 			</>
 		),
-		content: <></>,
+		content: (
+			<>
+				<Text fontSize={16} fontWeight={400}>
+					L'outils :
+				</Text>
+				<List.Root fontSize={16} fontWeight={400} listStylePosition="inside">
+					<List.Item _marker={{ color: "gray.600" }}>
+						Est hébergé au sein de l’Union européenne (ou autre pays conforme)
+					</List.Item>
+					<List.Item _marker={{ color: "gray.600" }}>
+						Dispose d’un DPA conforme à l’article 28-3 du RGPD
+					</List.Item>
+					<List.Item _marker={{ color: "gray.600" }}>
+						N’est pas certifié “Hébergeur de données de santé et/ou
+						“SecNumCloud”
+					</List.Item>
+					<List.Item _marker={{ color: "gray.600" }}>
+						Dispose d’une documentation claire
+					</List.Item>
+					<List.Item _marker={{ color: "gray.600" }}>
+						Ne dispose d’aucune certification ni de mesure de sécurité.
+					</List.Item>
+				</List.Root>
+			</>
+		),
 	},
 	{
 		buttonContent: (
@@ -84,7 +153,32 @@ const scores: Item[] = [
 				<PrivacyScoreBadge score={"E"} />
 			</>
 		),
-		content: <></>,
+		content: (
+			<>
+				<Text fontSize={16} fontWeight={400}>
+					L'outils :
+				</Text>
+				<List.Root fontSize={16} fontWeight={400} listStylePosition="inside">
+					<List.Item _marker={{ color: "gray.600" }}>
+						N’est pas hébergé au sein de l’Union européenne (ou autre pays
+						conforme)
+					</List.Item>
+					<List.Item _marker={{ color: "gray.600" }}>
+						Dispose d’un DPA conforme à l’article 28-3 du RGPD
+					</List.Item>
+					<List.Item _marker={{ color: "gray.600" }}>
+						N’est pas certifié “Hébergeur de données de santé et/ou
+						“SecNumCloud”
+					</List.Item>
+					<List.Item _marker={{ color: "gray.600" }}>
+						Dispose d’une documentation claire
+					</List.Item>
+					<List.Item _marker={{ color: "gray.600" }}>
+						Ne dispose d’aucune certification ni de mesure de sécurité.
+					</List.Item>
+				</List.Root>
+			</>
+		),
 	},
 	{
 		buttonContent: (
@@ -95,7 +189,32 @@ const scores: Item[] = [
 				<PrivacyScoreBadge score={"F"} />
 			</>
 		),
-		content: <></>,
+		content: (
+			<>
+				<Text fontSize={16} fontWeight={400}>
+					L'outils :
+				</Text>
+				<List.Root fontSize={16} fontWeight={400} listStylePosition="inside">
+					<List.Item _marker={{ color: "gray.600" }}>
+						N’est pas hébergé au sein de l’Union européenne (ou autre pays
+						conforme)
+					</List.Item>
+					<List.Item _marker={{ color: "gray.600" }}>
+						Dispose d’un DPA conforme à l’article 28-3 du RGPD
+					</List.Item>
+					<List.Item _marker={{ color: "gray.600" }}>
+						N’est pas certifié “Hébergeur de données de santé” et/ou
+						“SecNumCloud”
+					</List.Item>
+					<List.Item _marker={{ color: "gray.600" }}>
+						Ne dispose pas d’une documentation claire
+					</List.Item>
+					<List.Item _marker={{ color: "gray.600" }}>
+						Ne dispose d’aucune certification ni de mesure de sécurité.
+					</List.Item>
+				</List.Root>
+			</>
+		),
 	},
 ];
 
@@ -123,7 +242,10 @@ const matrices: Item[] = [
 		),
 		content: (
 			<Text fontSize={16} fontWeight={400}>
-				N/A
+				L’utilisation pose des questions de conformité. La mise en œuvre de
+				documentations, de contractualisation ou de mesure techniques semble
+				nécessaire, prévenez votre DPD, car il vous aidera à documenter et
+				justifier l’utilisation de ces outils.
 			</Text>
 		),
 	},
@@ -135,7 +257,8 @@ const matrices: Item[] = [
 		),
 		content: (
 			<Text fontSize={16} fontWeight={400}>
-				N/A
+				L’utilisation pose de graves questions de conformité, prenez contact
+				avec votre DPD.
 			</Text>
 		),
 	},
