@@ -6,6 +6,7 @@ import {
 	Text,
 	Separator,
 	Switch,
+	Icon,
 } from "@chakra-ui/react";
 import Badge from "~/components/ui/badge/badge";
 import PrivacyScoreBadge from "~/components/ui/badge/privacy-score-badge";

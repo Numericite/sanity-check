@@ -1,4 +1,10 @@
-import { Breadcrumb, Link as ChakraLink, Flex, Text } from "@chakra-ui/react";
+import {
+	Breadcrumb,
+	Link as ChakraLink,
+	Flex,
+	Icon,
+	Text,
+} from "@chakra-ui/react";
 import NextLink from "next/link";
 import { HomeDashIcon } from "../icon/icons";
 
