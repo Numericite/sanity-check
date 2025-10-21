@@ -1,9 +1,8 @@
-import { Button, Collapsible, Flex, Icon, Text } from "@chakra-ui/react";
+import { Button, Collapsible, Flex, Icon } from "@chakra-ui/react";
 import { useState } from "react";
 import { FaChevronRight } from "react-icons/fa";
 
 type Item = {
-	key: string;
 	buttonContent: React.ReactNode;
 	content: React.ReactNode;
 };
@@ -19,7 +18,6 @@ export default function CollapsibleLayout({ item, defaultOpen }: Props) {
 	return (
 		<Collapsible.Root
 			defaultOpen={defaultOpen}
-			key={item.key}
 			open={open}
 			onOpenChange={(e) => setOpen(e.open)}
 		>
@@ -34,7 +32,6 @@ export default function CollapsibleLayout({ item, defaultOpen }: Props) {
 					<Button h={"fit"} w={"full"} unstyled p={5} asChild>
 						<Flex justifyContent={"space-between"} alignItems={"center"}>
 							<Flex gap={2} alignItems={"center"}>
-								
 								{item.buttonContent}
 							</Flex>
 							<Icon

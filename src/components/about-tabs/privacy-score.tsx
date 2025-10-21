@@ -1,25 +1,14 @@
-import {
-	Box,
-	Button,
-	Collapsible,
-	Flex,
-	Icon,
-	List,
-	Text,
-} from "@chakra-ui/react";
+import { Flex, List, Text } from "@chakra-ui/react";
 import PrivacyScoreBadge from "../ui/badge/privacy-score-badge";
-import { FaChevronRight } from "react-icons/fa";
 import CollapsibleLayout from "../ui/collapsible/collapsible-layout";
 
 type Item = {
-	key: string;
 	buttonContent: React.ReactNode;
 	content: React.ReactNode;
 };
 
 const scores: Item[] = [
 	{
-		key: "score-A",
 		buttonContent: (
 			<>
 				<Text fontSize={16} fontWeight={500}>
@@ -54,7 +43,6 @@ const scores: Item[] = [
 		),
 	},
 	{
-		key: "score-B",
 		buttonContent: (
 			<>
 				<Text fontSize={16} fontWeight={500}>
@@ -66,7 +54,6 @@ const scores: Item[] = [
 		content: <></>,
 	},
 	{
-		key: "score-C",
 		buttonContent: (
 			<>
 				<Text fontSize={16} fontWeight={500}>
@@ -78,7 +65,6 @@ const scores: Item[] = [
 		content: <></>,
 	},
 	{
-		key: "score-D",
 		buttonContent: (
 			<>
 				<Text fontSize={16} fontWeight={500}>
@@ -90,7 +76,6 @@ const scores: Item[] = [
 		content: <></>,
 	},
 	{
-		key: "score-E",
 		buttonContent: (
 			<>
 				<Text fontSize={16} fontWeight={500}>
@@ -102,7 +87,6 @@ const scores: Item[] = [
 		content: <></>,
 	},
 	{
-		key: "score-F",
 		buttonContent: (
 			<>
 				<Text fontSize={16} fontWeight={500}>
@@ -117,7 +101,6 @@ const scores: Item[] = [
 
 const matrices: Item[] = [
 	{
-		key: "matrice-1",
 		buttonContent: (
 			<Text fontSize={16} fontWeight={500}>
 				Classification verte
@@ -133,7 +116,6 @@ const matrices: Item[] = [
 		),
 	},
 	{
-		key: "matrice-2",
 		buttonContent: (
 			<Text fontSize={16} fontWeight={500}>
 				Classification orange
@@ -146,7 +128,6 @@ const matrices: Item[] = [
 		),
 	},
 	{
-		key: "matrice-3",
 		buttonContent: (
 			<Text fontSize={16} fontWeight={500}>
 				Classification rouge
@@ -237,10 +218,10 @@ export default function PrivacyScore() {
 				<Text fontSize={20} fontWeight={500}>
 					Classification
 				</Text>
-				{scores.map((score) => (
+				{scores.map((score, index) => (
 					<CollapsibleLayout
-						key={score.key}
-						defaultOpen={score.key === "score-A"}
+						key={`score-${index}`}
+						defaultOpen={index === 0}
 						item={score}
 					/>
 				))}
@@ -249,10 +230,10 @@ export default function PrivacyScore() {
 				<Text fontSize={20} fontWeight={500}>
 					Matrice d’aide au choix en fonction des traitements de données
 				</Text>
-				{matrices.map((matrice) => (
+				{matrices.map((matrice, index) => (
 					<CollapsibleLayout
-						key={matrice.key}
-						defaultOpen={matrice.key === "matrice-1"}
+						key={`matrice-${index}`}
+						defaultOpen={index === 0}
 						item={matrice}
 					/>
 				))}
