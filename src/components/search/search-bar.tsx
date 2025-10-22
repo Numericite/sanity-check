@@ -56,6 +56,7 @@ export default function SearchBar() {
 	};
 
 	const handleSearch = async () => {
+		setIsFocus(true);
 		setError("");
 		if (search.length < 3) {
 			setError("Votre recherche doit comporter au moins 3 caractères.");
