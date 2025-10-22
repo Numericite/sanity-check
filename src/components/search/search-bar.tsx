@@ -189,7 +189,8 @@ export default function SearchBar() {
 								<Spinner size={"xl"} color={"blue.600"} />
 								<Text>Chargement...</Text>
 							</Flex>
-						) : (
+						) : (categories && categories.length > 0) ||
+							(tools && tools.length > 0) ? (
 							<>
 								{categories && categories.length > 0 && (
 									<>
@@ -215,6 +216,10 @@ export default function SearchBar() {
 									</>
 								)}
 							</>
+						) : (
+							<Flex alignItems={"center"} gap={1}>
+								<Text>Aucun résultat</Text>
+							</Flex>
 						)}
 					</Flex>
 				)}
