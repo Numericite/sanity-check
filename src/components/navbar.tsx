@@ -17,7 +17,7 @@ const NavbarItem = ({
 			color="black"
 			_hover={{ textDecoration: "none", color: "primary.active" }}
 			_focus={{ outline: "none" }}
-			aria-selected={isActive}
+			aria-current={isActive ? "page" : undefined}
 			asChild
 		>
 			<NextLink href={href} passHref>
