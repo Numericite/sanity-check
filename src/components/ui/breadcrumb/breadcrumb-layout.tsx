@@ -1,6 +1,12 @@
-import { Breadcrumb, Link as ChakraLink, Flex, Text } from "@chakra-ui/react";
+import {
+	Breadcrumb,
+	Link as ChakraLink,
+	Flex,
+	Icon,
+	Text,
+} from "@chakra-ui/react";
 import NextLink from "next/link";
-import HomeDash from "../icons/home-dash";
+import { HomeDashIcon } from "../icon/icons";
 
 type Item = {
 	label: string;
@@ -24,7 +30,7 @@ export default function BreadcrumbLayout({
 						<ChakraLink asChild textDecorationColor={"blue.600"}>
 							<NextLink href={"/"}>
 								<Flex gap={1} justifyContent={"center"} alignItems={"center"}>
-									<HomeDash />
+									<HomeDashIcon color={"blue.600"} w={"15px"} h={"15px"} />
 									<Text fontSize={14} fontWeight={400} color={"blue.600"}>
 										Accueil
 									</Text>

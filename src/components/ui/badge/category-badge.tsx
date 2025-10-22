@@ -1,5 +1,5 @@
 import { Flex, type ConditionalValue } from "@chakra-ui/react";
-import CategoryIcon from "~/components/ui/icons/category-icon";
+import CategoryIcon from "~/components/ui/icon/category-icon";
 import type { Category } from "~/payload/payload-types";
 import Badge from "./badge";
 
