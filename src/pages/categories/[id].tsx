@@ -5,7 +5,7 @@ import BreadcrumbLayout from "~/components/ui/breadcrumb/breadcrumb-layout";
 import CategoryCard from "~/components/ui/card/category-card";
 import ToolCard from "~/components/ui/card/tool-card";
 import Carousel from "~/components/ui/carousel/carousel";
-import CategoryIcon from "~/components/ui/icons/category-icon";
+import CategoryIcon from "~/components/ui/icon/category-icon";
 import { api } from "~/utils/api";
 import FiltersSidebar from "~/components/categories-filters";
 import { useCategoryFilters } from "~/hooks/use-categories-filters";

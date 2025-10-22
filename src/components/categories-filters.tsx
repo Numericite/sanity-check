@@ -6,11 +6,12 @@ import {
 	Text,
 	Separator,
 	Switch,
+	Icon,
 } from "@chakra-ui/react";
 import Badge from "~/components/ui/badge/badge";
 import PrivacyScoreBadge from "~/components/ui/badge/privacy-score-badge";
 import { IoMdClose } from "react-icons/io";
-import Search from "~/components/ui/icons/search";
+import { SearchIcon } from "./ui/icon/icons";
 
 type Score = "A" | "B" | "C" | "D" | "E" | "F";
 
@@ -75,7 +76,7 @@ export default function CategoriesFilters({
 							bgColor: "blue.50",
 						}}
 					>
-						<Search />
+						<SearchIcon w={6} h={6} color={"gray.800"} />
 						<Input
 							name="search"
 							id="search"
