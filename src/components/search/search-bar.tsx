@@ -104,127 +104,128 @@ export default function SearchBar() {
 					zIndex={"dropdown"}
 				/>
 			)}
-			<Flex
-				ref={searchRef}
-				alignItems="center"
-				bgColor={isFocus ? "blue.50" : "white"}
-				rounded="full"
-				px={4}
-				py={3}
-				mt={8}
-				w="full"
-				borderWidth={1}
-				borderColor={
-					isFocus ? (error === "" ? "blue.500" : "red.600") : "gray.100"
-				}
-				transition="all 0.2s ease-in-out"
-				zIndex={"sticky"}
-			>
-				<Input
-					placeholder="Rechercher un outil ou une catégorie"
-					size="lg"
-					w="full"
-					variant="outline"
-					outline="none"
-					border="none"
-					onFocus={() => setIsFocus(true)}
-					value={search}
-					onChange={(e) => setSearch(e.target.value)}
-					onKeyDown={(e) => handleKeyDown(e)}
-				/>
-				{search && (
-					<IconButton
-						aria-label="Annuler la recherche"
-						bgColor={isFocus ? "white" : "gray.100"}
-						rounded="full"
-						size="2xs"
-						p={0}
-						mr={4}
-						onClick={() => {
-							setSearch("");
-							setIsFocus(false);
-							setSearched(false);
-						}}
-					>
-						<Icon as={LuX} boxSize={3} color="blue.600" />
-					</IconButton>
-				)}
-				<IconButton
-					aria-label="Rechercher un outil"
+			<Box ref={searchRef} w={"full"} zIndex={"sticky"}>
+				<Flex
+					alignItems="center"
+					bgColor={isFocus ? "blue.50" : "white"}
 					rounded="full"
-					p={6}
-					flex={1}
-					colorPalette={isFocus ? "primary" : "black"}
-					onClick={() => handleSearch()}
+					px={4}
+					py={3}
+					mt={8}
+					w="full"
+					borderWidth={1}
+					borderColor={
+						isFocus ? (error === "" ? "blue.500" : "red.600") : "gray.100"
+					}
+					transition="all 0.2s ease-in-out"
+					zIndex={"sticky"}
 				>
-					<Icon as={LuSearch} boxSize={6} />
-				</IconButton>
-			</Flex>
-			<Flex position={"relative"} w={"full"}>
-				{(searched || error !== "") && isFocus && (
-					<Flex
-						position={"absolute"}
-						flexDir={"column"}
-						w={"full"}
-						mt={1}
-						rounded={"3xl"}
-						borderWidth={1}
-						borderColor={"gray.100"}
-						p={5}
-						gap={5}
-						bgColor={"white"}
-						zIndex={"sticky"}
+					<Input
+						placeholder="Rechercher un outil ou une catégorie"
+						size="lg"
+						w="full"
+						variant="outline"
+						outline="none"
+						border="none"
+						onFocus={() => setIsFocus(true)}
+						value={search}
+						onChange={(e) => setSearch(e.target.value)}
+						onKeyDown={(e) => handleKeyDown(e)}
+					/>
+					{search && (
+						<IconButton
+							aria-label="Annuler la recherche"
+							bgColor={isFocus ? "white" : "gray.100"}
+							rounded="full"
+							size="2xs"
+							p={0}
+							mr={4}
+							onClick={() => {
+								setSearch("");
+								setIsFocus(false);
+								setSearched(false);
+							}}
+						>
+							<Icon as={LuX} boxSize={3} color="blue.600" />
+						</IconButton>
+					)}
+					<IconButton
+						aria-label="Rechercher un outil"
+						rounded="full"
+						p={6}
+						flex={1}
+						colorPalette={isFocus ? "primary" : "black"}
+						onClick={() => handleSearch()}
 					>
-						{error !== "" ? (
-							<Flex alignItems={"center"} gap={1}>
-								<Icon as={IoMdWarning} color={"red.600"} />
-								<Text color={"red.600"}>{error}</Text>
-							</Flex>
-						) : isLoadingCategories && isLoadingTools ? (
-							<Flex
-								w={"full"}
-								flexDir={"column"}
-								justifyContent={"center"}
-								alignItems={"center"}
-							>
-								<Spinner size={"xl"} color={"blue.600"} />
-								<Text>Chargement...</Text>
-							</Flex>
-						) : (categories && categories.length > 0) ||
-							(tools && tools.length > 0) ? (
-							<>
-								{categories && categories.length > 0 && (
-									<>
-										<Text fontWeight={400} fontSize={16} color={"blue.600"}>
-											{categories.length} catégorie
-											{categories.length > 1 ? "s" : ""}
-										</Text>
-										{categories.map((category) => (
-											<SearchCategory key={category.id} category={category} />
-										))}
-										<Separator color={"gray.100"} />
-									</>
-								)}
-								{tools && tools.length > 0 && (
-									<>
-										<Text fontWeight={400} fontSize={16} color={"blue.600"}>
-											{tools.length} outil
-											{tools.length > 1 ? "s" : ""}
-										</Text>
-										{tools.map((tool) => (
-											<SearchTool key={tool.id} tool={tool} />
-										))}
-									</>
-								)}
-							</>
-						) : (
-							<Flex alignItems={"center"} gap={1}>
-								<Text>Aucun résultat</Text>
-							</Flex>
-						)}
-					</Flex>
-				)}
-			</Flex>
+						<Icon as={LuSearch} boxSize={6} />
+					</IconButton>
+				</Flex>
+				<Flex zIndex={"sticky"} position={"relative"} w={"full"}>
+					{(searched || error !== "") && isFocus && (
+						<Flex
+							position={"absolute"}
+							flexDir={"column"}
+							w={"full"}
+							mt={1}
+							rounded={"3xl"}
+							borderWidth={1}
+							borderColor={"gray.100"}
+							p={5}
+							gap={5}
+							bgColor={"white"}
+							zIndex={"sticky"}
+						>
+							{error !== "" ? (
+								<Flex alignItems={"center"} gap={1}>
+									<Icon as={IoMdWarning} color={"red.600"} />
+									<Text color={"red.600"}>{error}</Text>
+								</Flex>
+							) : isLoadingCategories && isLoadingTools ? (
+								<Flex
+									w={"full"}
+									flexDir={"column"}
+									justifyContent={"center"}
+									alignItems={"center"}
+								>
+									<Spinner size={"xl"} color={"blue.600"} />
+									<Text>Chargement...</Text>
+								</Flex>
+							) : (categories && categories.length > 0) ||
+								(tools && tools.length > 0) ? (
+								<>
+									{tools && tools.length > 0 && (
+										<>
+											<Text fontWeight={400} fontSize={16} color={"blue.600"}>
+												{tools.length} outil
+												{tools.length > 1 ? "s" : ""}
+											</Text>
+											{tools.map((tool) => (
+												<SearchTool key={tool.id} tool={tool} />
+											))}
+											<Separator color={"gray.100"} />
+										</>
+									)}
+									{categories && categories.length > 0 && (
+										<>
+											<Text fontWeight={400} fontSize={16} color={"blue.600"}>
+												{categories.length} catégorie
+												{categories.length > 1 ? "s" : ""}
+											</Text>
+											{categories.map((category) => (
+												<SearchCategory key={category.id} category={category} />
+											))}
+										</>
+									)}
+								</>
+							) : (
+								<Flex alignItems={"center"} gap={1}>
+									<Text>Aucun résultat</Text>
+								</Flex>
+							)}
+						</Flex>
+					)}
+				</Flex>
+			</Box>
 		</>
 	);
 }
