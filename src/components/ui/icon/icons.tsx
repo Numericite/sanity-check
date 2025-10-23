@@ -105,10 +105,28 @@ const CheckDoubleIcon = createIcon({
 	),
 });
 
+const SendIcon = createIcon({
+	displayName: "SendIcon",
+	path: (
+		<>
+			<path
+				opacity="0.4"
+				d="M17.6579 18.6672L20.936 5.55416C21.312 4.05016 19.95 2.68817 18.446 3.06417L5.33296 6.34219C2.19996 7.12519 2.23095 11.5892 5.37495 12.3292L10.4719 13.5282L11.6708 18.6252C12.4108 21.7692 16.8749 21.8002 17.6579 18.6672Z"
+				fill="currentColor"
+			/>
+			<path
+				d="M15.532 9.52994L10.6721 14.39L10.4719 13.5299L9.61206 13.3299L14.4719 8.46994C14.7619 8.17994 15.242 8.17994 15.532 8.46994C15.823 8.75994 15.823 9.23994 15.532 9.52994Z"
+				fill="currentColor"
+			/>
+		</>
+	),
+});
+
 export {
 	SearchIcon,
 	HomeDashIcon,
 	TargetIcon,
 	FileTextSearchIcon,
 	CheckDoubleIcon,
+	SendIcon,
 };
