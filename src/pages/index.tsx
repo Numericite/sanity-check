@@ -22,6 +22,7 @@ export default function Home() {
 			{
 				limit: 6,
 				filters: [{ key: "privacy_score_saas", value: "A" }],
+				sort: ["random"],
 			},
 			{
 				initialData: Array.from({ length: 6 }),
@@ -44,8 +45,9 @@ export default function Home() {
 				limit: 6,
 				filters: [
 					{ key: "locations_enterprise.location.name", value: "🇫🇷 France" },
+					{ key: "privacy_score_saas", value: "A" },
 				],
-				sort: ["privacy_score_saas"],
+				sort: ["random"],
 			},
 			{
 				initialData: Array.from({ length: 6 }),
