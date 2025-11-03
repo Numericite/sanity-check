@@ -22,15 +22,43 @@ export const toolRouter = createTRPCRouter({
 						}
 					: {};
 
-			const tools = await ctx.payload.find({
+			const totalResult = await ctx.payload.find({
 				collection: "tools",
-				limit,
-				page,
+				limit: 0,
 				where,
-				sort,
 			});
 
-			return tools.docs;
+			if (totalResult.totalDocs === 0) return [];
+
+			const skip = Math.max(
+				0,
+				Math.floor(Math.random() * totalResult.totalDocs) - limit,
+			);
+
+			const fields = [
+				"name",
+				"transfer_out_eu",
+				"privacy_score_saas",
+				"certification_dpf",
+				"opensource",
+				"fr_documentation",
+				"dpa_compliant",
+			] as const;
+			const directions = ["asc", "desc"] as const;
+
+			const orderBy = fields[Math.floor(Math.random() * fields.length)];
+			const orderDir =
+				directions[Math.floor(Math.random() * directions.length)];
+
+			const result = await ctx.payload.find({
+				collection: "tools",
+				where,
+				limit: limit,
+				page: Math.floor(skip / limit) + 1,
+				sort: `${orderDir === "desc" ? "-" : ""}${orderBy}`,
+			});
+
+			return result.docs;
 		}),
 
 	getById: publicProcedure

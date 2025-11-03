@@ -6,30 +6,23 @@ import {
 	Grid,
 	GridItem,
 	Heading,
-	Icon,
-	IconButton,
-	Input,
-	Show,
 	Text,
 } from "@chakra-ui/react";
 import Head from "next/head";
 import NextLink from "next/link";
-import { useState } from "react";
-import { LuSearch, LuX } from "react-icons/lu";
+import SearchBar from "~/components/search/search-bar";
 import CategoryCard from "~/components/ui/card/category-card";
 import ToolCard from "~/components/ui/card/tool-card";
 import Carousel from "~/components/ui/carousel/carousel";
 import { api } from "~/utils/api";
 
 export default function Home() {
-	const [isSearching, setIsSearching] = useState(false);
-	const [searchTerm, setSearchTerm] = useState("");
-
 	const { data: toolsWithAScore, isFetching: isLoadingToolsWithAScore } =
 		api.tool.getList.useQuery(
 			{
 				limit: 6,
 				filters: [{ key: "privacy_score_saas", value: "A" }],
+				sort: ["random"],
 			},
 			{
 				initialData: Array.from({ length: 6 }),
@@ -52,8 +45,9 @@ export default function Home() {
 				limit: 6,
 				filters: [
 					{ key: "locations_enterprise.location.name", value: "🇫🇷 France" },
+					{ key: "privacy_score_saas", value: "A" },
 				],
-				sort: ["privacy_score_saas"],
+				sort: ["random"],
 			},
 			{
 				initialData: Array.from({ length: 6 }),
@@ -106,56 +100,7 @@ export default function Home() {
 							À propos
 						</Button>
 					</Flex>
-					<Flex
-						alignItems="center"
-						bgColor={isSearching ? "blue.50" : "white"}
-						rounded="full"
-						px={4}
-						py={3}
-						mt={8}
-						w="full"
-						borderWidth={1}
-						borderColor={isSearching ? "blue.500" : "gray.100"}
-						transition="all 0.2s ease-in-out"
-					>
-						<Input
-							placeholder="Rechercher un outil ou une catégorie"
-							size="lg"
-							w="full"
-							variant="outline"
-							outline="none"
-							border="none"
-							onFocus={() => setIsSearching(true)}
-							onBlur={() => setIsSearching(false)}
-							value={searchTerm}
-							onChange={(e) => setSearchTerm(e.target.value)}
-						/>
-						<Show when={searchTerm !== ""}>
-							<IconButton
-								aria-label="Annuler la recherche"
-								bgColor={isSearching ? "white" : "gray.100"}
-								rounded="full"
-								size="2xs"
-								p={0}
-								mr={4}
-								onClick={() => {
-									setSearchTerm("");
-									setIsSearching(false);
-								}}
-							>
-								<Icon as={LuX} boxSize={3} color="blue.600" />
-							</IconButton>
-						</Show>
-						<IconButton
-							aria-label="Rechercher un outil"
-							rounded="full"
-							p={6}
-							flex={1}
-							colorPalette={isSearching ? "primary" : "black"}
-						>
-							<Icon as={LuSearch} boxSize={6} />
-						</IconButton>
-					</Flex>
+					<SearchBar />
 				</Flex>
 				<Flex flexDir="column" mt={12}>
 					<Heading size="xl" fontWeight={500} mb={4}>
