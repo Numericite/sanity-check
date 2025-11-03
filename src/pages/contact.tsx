@@ -24,7 +24,7 @@ import {
 import ContactSuccess from "~/components/contact-success";
 
 export default function Contact() {
-	const [collection, setCollection] = useState<ListCollection>(
+	const [categoriesOptions, setCategoriesOptions] = useState<ListCollection>(
 		createListCollection({
 			items: [{ label: "Chargement", value: 1 }],
 		}),
@@ -79,7 +79,7 @@ export default function Contact() {
 					label: category.name,
 				})),
 			});
-			setCollection(items);
+			setCategoriesOptions(items);
 		}
 	}, [categories, isLoadingCategories]);
 
@@ -129,7 +129,7 @@ export default function Contact() {
 									<Field.RequiredIndicator />
 								</Field.Label>
 								<Select.Root
-									collection={collection}
+									collection={categoriesOptions}
 									size="sm"
 									onValueChange={(e) => setValue("category", Number(e.value))}
 								>
@@ -158,14 +158,14 @@ export default function Contact() {
 												p={1.5}
 												gap={1}
 											>
-												{collection.items.map((item) => (
+												{categoriesOptions.items.map((option) => (
 													<Select.Item
 														rounded={"lg"}
 														px={2}
-														item={item}
-														key={item.value}
+														item={option}
+														key={option.value}
 													>
-														{item.label}
+														{option.label}
 														<Select.ItemIndicator />
 													</Select.Item>
 												))}
