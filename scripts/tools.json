@@ -4103,7 +4103,7 @@
             "children": [
               {
                 "mode": "normal",
-                "text": "Attention  : \n- bandeau cookie nécessaire pour recueillir le consentement des utilisateurs \n- vérifier que le dépôt des cookies se fait bien après le choix de l’utilisateur\n- information des utilisateurs de l’utilisation d’Hotjar dans la politique de confidentialité\n- durée de conservation des cookies max 13 mois.",
+                "text": "Attention à bien implémenter un bandeau cookie pour recueillir le consentement des utilisateurs",
                 "type": "text",
                 "style": "",
                 "detail": 0,
@@ -4141,7 +4141,7 @@
       "Opposition",
       "Accès"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,

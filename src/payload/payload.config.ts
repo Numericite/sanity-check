@@ -13,6 +13,7 @@ import { Locations } from "./collections/Location";
 import { Media } from "./collections/Media";
 import { Tools } from "./collections/Tools";
 import { Transfers } from "./collections/Transfer";
+import { ContactSubmissions } from "./collections/ContactSubmission";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -33,6 +34,7 @@ export default buildConfig({
 		Locations,
 		Transfers,
 		Features,
+		ContactSubmissions,
 	],
 	secret: process.env.PAYLOAD_SECRET || "",
 	db: postgresAdapter({

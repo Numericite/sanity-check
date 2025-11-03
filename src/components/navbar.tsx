@@ -75,8 +75,8 @@ const Navbar = () => {
 				</Flex>
 				<Flex alignItems="center" gap={4}>
 					<Text color="black">Un outil manque ?</Text>
-					<Button colorPalette="primary" variant="outline">
-						Contactez-nous
+					<Button asChild colorScheme="blue" variant="outline">
+						<NextLink href={"/contact"}>Contactez-nous</NextLink>
 					</Button>
 				</Flex>
 			</Flex>

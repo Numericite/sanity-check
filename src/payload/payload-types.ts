@@ -75,6 +75,7 @@ export interface Config {
     locations: Location;
     transfers: Transfer;
     features: Feature;
+    contactSubmissions: ContactSubmission;
     users: User;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -94,6 +95,7 @@ export interface Config {
     locations: LocationsSelect<false> | LocationsSelect<true>;
     transfers: TransfersSelect<false> | TransfersSelect<true>;
     features: FeaturesSelect<false> | FeaturesSelect<true>;
+    contactSubmissions: ContactSubmissionsSelect<false> | ContactSubmissionsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -373,6 +375,20 @@ export interface Feature {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contactSubmissions".
+ */
+export interface ContactSubmission {
+  id: number;
+  state?: ('pending' | 'in_progress' | 'processed' | 'rejected') | null;
+  category: number | Category;
+  name: string;
+  url: string;
+  comment?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -433,6 +449,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'features';
         value: number | Feature;
+      } | null)
+    | ({
+        relationTo: 'contactSubmissions';
+        value: number | ContactSubmission;
       } | null)
     | ({
         relationTo: 'users';
@@ -650,6 +670,19 @@ export interface TransfersSelect<T extends boolean = true> {
 export interface FeaturesSelect<T extends boolean = true> {
   name?: T;
   tools?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contactSubmissions_select".
+ */
+export interface ContactSubmissionsSelect<T extends boolean = true> {
+  state?: T;
+  category?: T;
+  name?: T;
+  url?: T;
+  comment?: T;
   updatedAt?: T;
   createdAt?: T;
 }
