@@ -24,7 +24,6 @@ import {
 import NextLink from "next/link";
 
 export default function Contact() {
-	const [success, setSuccess] = useState(false);
 	const [collection, setCollection] = useState<ListCollection>(
 		createListCollection({
 			items: [{ label: "Chargement", value: 1 }],
@@ -36,11 +35,7 @@ export default function Contact() {
 			sort: ["name"],
 		});
 
-	const mutation = api.contactSubmission.create.useMutation({
-		onSuccess: () => {
-			setSuccess(true);
-		},
-	});
+	const { mutate, isSuccess } = api.contactSubmission.create.useMutation();
 
 	const {
 		register,
@@ -66,8 +61,8 @@ export default function Contact() {
 		url,
 		comment,
 	}: contactSubmissionFormData) => {
-		if (!success) {
-			mutation.mutate({
+		if (!isSuccess) {
+			mutate({
 				category,
 				name,
 				url,
@@ -93,7 +88,7 @@ export default function Contact() {
 			<Text fontSize={30} fontWeight={500}>
 				Formulaire de contact
 			</Text>
-			{success ? (
+			{isSuccess ? (
 				<Flex
 					as={"form"}
 					flexDir="column"
