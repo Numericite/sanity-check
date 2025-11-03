@@ -1,3 +1,4 @@
+import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import type { CollectionConfig } from "payload";
 
 export const Categories: CollectionConfig = {
@@ -34,18 +35,27 @@ export const Categories: CollectionConfig = {
 		},
 		{
 			name: "fonctionnalities",
-			type: "text",
+			type: "richText",
 			label: "En savoir plus -> Fonctionnalités",
+			editor: lexicalEditor({
+				features: ({ defaultFeatures }) => [...defaultFeatures],
+			}),
 		},
 		{
 			name: "vigilances",
-			type: "text",
+			type: "richText",
 			label: "En savoir plus -> Points de vigilance",
+			editor: lexicalEditor({
+				features: ({ defaultFeatures }) => [...defaultFeatures],
+			}),
 		},
 		{
 			name: "recommendations",
-			type: "text",
+			type: "richText",
 			label: "En savoir plus -> Recommandations et mentions obligatoires",
+			editor: lexicalEditor({
+				features: ({ defaultFeatures }) => [...defaultFeatures],
+			}),
 		},
 		{
 			name: "relatedTools",

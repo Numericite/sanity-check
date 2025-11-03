@@ -137,7 +137,7 @@ export default function Category() {
 						</Flex>
 
 						<Flex h={24} alignItems={"center"}>
-							<CategoryDrawer />
+							<CategoryDrawer category={category} />
 						</Flex>
 					</Flex>
 				</Flex>
