@@ -22,28 +22,43 @@ export const toolRouter = createTRPCRouter({
 						}
 					: {};
 
-			const rand = sort?.includes("random") ?? false;
-
-			const tools = await ctx.payload.find({
+			const totalResult = await ctx.payload.find({
 				collection: "tools",
-				limit: rand ? 0 : limit,
-				page,
+				limit: 0,
 				where,
-				sort,
 			});
 
-			if (rand) {
-				const docs = [...tools.docs];
+			if (totalResult.totalDocs === 0) return [];
 
-				while (docs.length > limit) {
-					const randomIndex = Math.floor(Math.random() * docs.length);
-					docs.splice(randomIndex, 1);
-				}
+			const skip = Math.max(
+				0,
+				Math.floor(Math.random() * totalResult.totalDocs) - limit,
+			);
 
-				tools.docs = docs;
-			}
+			const fields = [
+				"name",
+				"transfer_out_eu",
+				"privacy_score_saas",
+				"certification_dpf",
+				"opensource",
+				"fr_documentation",
+				"dpa_compliant",
+			] as const;
+			const directions = ["asc", "desc"] as const;
 
-			return tools.docs;
+			const orderBy = fields[Math.floor(Math.random() * fields.length)];
+			const orderDir =
+				directions[Math.floor(Math.random() * directions.length)];
+
+			const result = await ctx.payload.find({
+				collection: "tools",
+				where,
+				limit: limit,
+				page: Math.floor(skip / limit) + 1,
+				sort: `${orderDir === "desc" ? "-" : ""}${orderBy}`,
+			});
+
+			return result.docs;
 		}),
 
 	getById: publicProcedure
