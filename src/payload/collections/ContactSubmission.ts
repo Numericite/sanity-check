@@ -43,7 +43,7 @@ export const ContactSubmissions: CollectionConfig = {
 		},
 		{
 			name: "comment",
-			type: "text",
+			type: "textarea",
 			label: "Commentaire",
 		},
 	],
