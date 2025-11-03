@@ -22,6 +22,17 @@ export const toolRouter = createTRPCRouter({
 						}
 					: {};
 
+			if (!sort?.includes("random")) {
+				const tools = await ctx.payload.find({
+					collection: "tools",
+					limit,
+					where,
+					sort,
+				});
+
+				return tools.docs;
+			}
+
 			const totalResult = await ctx.payload.find({
 				collection: "tools",
 				limit: 0,
