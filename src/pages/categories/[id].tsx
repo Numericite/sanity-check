@@ -10,6 +10,7 @@ import { useDebounce } from "~/hooks/use-debounce";
 import { api } from "~/utils/api";
 import FiltersSidebar from "~/components/categories-filters";
 import { useCategoryFilters } from "~/hooks/use-categories-filters";
+import CategoryDrawer from "~/components/category-drawer";
 
 export default function Category() {
 	const router = useRouter();
@@ -136,7 +137,7 @@ export default function Category() {
 						</Flex>
 
 						<Flex h={24} alignItems={"center"}>
-							<Button variant={"outline"}>En savoir plus</Button>
+							<CategoryDrawer />
 						</Flex>
 					</Flex>
 				</Flex>
