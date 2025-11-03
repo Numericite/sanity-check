@@ -50,7 +50,7 @@ export default function SearchBar() {
 			sort: ["random", "privacy_score_saas", "dpa_compliant"],
 		});
 
-	const handleSearch = async () => {
+	const handleSearch = () => {
 		setIsFocus(true);
 	};
 
