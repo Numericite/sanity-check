@@ -40,7 +40,7 @@ yarn-error.log*
 /*-lock.json
 
 .yarn/install-state.gz
-
+yarn.lock
 .yarn.yml
 
 # vercel
