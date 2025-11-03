@@ -22,13 +22,26 @@ export const toolRouter = createTRPCRouter({
 						}
 					: {};
 
+			const rand = sort?.includes("random") ?? false;
+
 			const tools = await ctx.payload.find({
 				collection: "tools",
-				limit,
+				limit: rand ? 0 : limit,
 				page,
 				where,
 				sort,
 			});
+
+			if (rand) {
+				const docs = [...tools.docs];
+
+				while (docs.length > limit) {
+					const randomIndex = Math.floor(Math.random() * docs.length);
+					docs.splice(randomIndex, 1);
+				}
+
+				tools.docs = docs;
+			}
 
 			return tools.docs;
 		}),

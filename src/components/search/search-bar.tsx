@@ -1,5 +1,6 @@
 import {
 	Box,
+	Button,
 	Flex,
 	Icon,
 	IconButton,
@@ -8,69 +9,57 @@ import {
 	Spinner,
 	Text,
 } from "@chakra-ui/react";
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LuSearch, LuX } from "react-icons/lu";
 import { api } from "~/utils/api";
 import SearchCategory from "./search-category";
 import SearchTool from "./search-tool";
 import { IoMdWarning } from "react-icons/io";
+import { useDebounce } from "~/hooks/use-debounce";
 
 export default function SearchBar() {
 	const searchRef = useRef<HTMLDivElement>(null);
 	const [isFocus, setIsFocus] = useState(false);
 	const [search, setSearch] = useState("");
-	const [searchTerm, setSearchTerm] = useState("");
-	const [searched, setSearched] = useState(false);
 	const [error, setError] = useState("");
+	const debounce = useDebounce(search);
 
-	const {
-		data: categories,
-		isLoading: isLoadingCategories,
-		refetch: refetchCategories,
-	} = api.category.getList.useQuery(
+	const { data: categories, isLoading: isLoadingCategories } =
+		api.category.getList.useQuery(
+			{
+				limit: 0,
+				filters: [{ key: "name", operation: "contains", value: debounce }],
+				sort: ["name"],
+			},
+			{ enabled: debounce !== "" && debounce.length > 2 },
+		);
+
+	const { data: tools, isLoading: isLoadingTools } = api.tool.getList.useQuery(
 		{
 			limit: 0,
-			filters: [{ key: "name", operation: "contains", value: searchTerm }],
-			sort: ["name"],
-		},
-		{ enabled: false },
-	);
-
-	const {
-		data: tools,
-		isLoading: isLoadingTools,
-		refetch: refetchTools,
-	} = api.tool.getList.useQuery(
-		{
-			limit: 0,
-			filters: [{ key: "name", operation: "contains", value: searchTerm }],
+			filters: [{ key: "name", operation: "contains", value: debounce }],
 			sort: ["privacy_score_saas", "dpa_compliant"],
 		},
-		{ enabled: false },
+		{ enabled: debounce !== "" && debounce.length > 2 },
 	);
 
-	const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-		if (e.key === "Enter") {
-			handleSearch();
-		}
-	};
+	const { data: exampleTools, isLoading: isLoadingExampleTools } =
+		api.tool.getList.useQuery({
+			limit: 5,
+			filters: [{ key: "privacy_score_saas", value: "A" }],
+			sort: ["random", "privacy_score_saas", "dpa_compliant"],
+		});
 
 	const handleSearch = async () => {
 		setIsFocus(true);
-		setError("");
-		if (search.length < 3) {
-			setError("Votre recherche doit comporter au moins 3 caractères.");
-		} else {
-			setSearched(true);
-			setSearchTerm(search);
-		}
 	};
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
-		refetchCategories();
-		refetchTools();
-	}, [searchTerm]);
+		setError("");
+		if (debounce.length < 3 && debounce !== "") {
+			setError("Votre recherche doit comporter au moins 3 caractères.");
+		}
+	}, [debounce]);
 
 	useEffect(() => {
 		function handleClickOutside(event: MouseEvent) {
@@ -130,7 +119,6 @@ export default function SearchBar() {
 						onFocus={() => setIsFocus(true)}
 						value={search}
 						onChange={(e) => setSearch(e.target.value)}
-						onKeyDown={(e) => handleKeyDown(e)}
 					/>
 					{search && (
 						<IconButton
@@ -143,7 +131,6 @@ export default function SearchBar() {
 							onClick={() => {
 								setSearch("");
 								setIsFocus(false);
-								setSearched(false);
 							}}
 						>
 							<Icon as={LuX} boxSize={3} color="blue.600" />
@@ -161,7 +148,7 @@ export default function SearchBar() {
 					</IconButton>
 				</Flex>
 				<Flex zIndex={"sticky"} position={"relative"} w={"full"}>
-					{(searched || error !== "") && isFocus && (
+					{isFocus && (
 						<Flex
 							position={"absolute"}
 							flexDir={"column"}
@@ -202,7 +189,9 @@ export default function SearchBar() {
 											{tools.map((tool) => (
 												<SearchTool key={tool.id} tool={tool} />
 											))}
-											<Separator color={"gray.100"} />
+											{categories && categories.length > 0 && (
+												<Separator color={"gray.100"} />
+											)}
 										</>
 									)}
 									{categories && categories.length > 0 && (
@@ -212,11 +201,34 @@ export default function SearchBar() {
 												{categories.length > 1 ? "s" : ""}
 											</Text>
 											{categories.map((category) => (
-												<SearchCategory key={category.id} category={category} />
+												<SearchCategory
+													key={`category-${category.id}`}
+													category={category}
+												/>
 											))}
 										</>
 									)}
 								</>
+							) : debounce === "" ? (
+								<Flex gap={2} flexDir={"column"}>
+									<Flex gap={2} alignItems={"center"}>
+										<LuSearch />
+										<Text>Rechercher un outil :</Text>
+									</Flex>
+									<Flex gap={2} flexWrap={"wrap"}>
+										{!isLoadingExampleTools &&
+											exampleTools?.map((tool) => (
+												<Button
+													key={`example-tool-${tool.id}`}
+													variant={"outline"}
+													w={"fit"}
+													onClick={() => setSearch(tool.name)}
+												>
+													{tool.name}
+												</Button>
+											))}
+									</Flex>
+								</Flex>
 							) : (
 								<Flex alignItems={"center"} gap={1}>
 									<Text>Aucun résultat</Text>
