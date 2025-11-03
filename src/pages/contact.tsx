@@ -13,7 +13,7 @@ import {
 	type ListCollection,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { CheckDoubleIcon, SendIcon } from "~/components/ui/icon/icons";
+import { SendIcon } from "~/components/ui/icon/icons";
 import { api } from "~/utils/api";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,7 +21,7 @@ import {
 	contactSubmissionSchema,
 	type contactSubmissionFormData,
 } from "~/schemas/contact-submission";
-import NextLink from "next/link";
+import ContactSuccess from "~/components/contact-success";
 
 export default function Contact() {
 	const [collection, setCollection] = useState<ListCollection>(
@@ -89,32 +89,7 @@ export default function Contact() {
 				Formulaire de contact
 			</Text>
 			{isSuccess ? (
-				<Flex
-					as={"form"}
-					flexDir="column"
-					h="full"
-					backgroundColor={"white"}
-					p={10}
-					gap={5}
-					rounded={"3xl"}
-					borderWidth={1}
-					borderColor={"gray.100"}
-				>
-					<Flex flexDir={"column"} gap={5}>
-						<CheckDoubleIcon color={"green.600"} h={20} w={20} />
-						<Text fontSize={20} fontWeight={500}>
-							Merci pour votre contribution !
-						</Text>
-						<Text fontSize={16} fontWeight={400} color={"gray.800"}>
-							Votre demande sera traitée prochainement
-						</Text>
-						<Flex>
-							<Button colorPalette={"primary"}>
-								<NextLink href={"/"}>Retour au site</NextLink>
-							</Button>
-						</Flex>
-					</Flex>
-				</Flex>
+				<ContactSuccess />
 			) : (
 				<Flex
 					as={"form"}
