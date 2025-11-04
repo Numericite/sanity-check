@@ -1,7 +1,15 @@
-import { Box, Button, Drawer, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Drawer, Flex, Icon, Text } from "@chakra-ui/react";
 import type { Category } from "~/payload/payload-types";
 import CategoryIcon from "./ui/icon/category-icon";
-import Badge from "./ui/badge/badge";
+import CollapsibleLayout from "./ui/collapsible/collapsible-layout";
+import { RichText } from "@payloadcms/richtext-lexical/react";
+import { Prose } from "./ui/prose";
+import {
+	DocumentListCheck,
+	InfoCircleIcon,
+	TriangleExclamationIcon,
+} from "./ui/icon/icons";
+import { IoMdWarning } from "react-icons/io";
 
 type Props = {
 	category: Category | undefined;
@@ -74,7 +82,78 @@ export default function CategoryDrawer({ category }: Props) {
 							</Flex>
 						</Flex>
 					</Drawer.Header>
-					<Drawer.Body />
+					<Drawer.Body>
+						<Flex gap={5} flexDir={"column"} w={"full"}>
+							{category.fonctionnalities &&
+							category.vigilances &&
+							category.recommendations ? (
+								<>
+									<CollapsibleLayout
+										defaultOpen
+										item={{
+											buttonContent: (
+												<Flex gap={2} alignItems={"center"}>
+													<InfoCircleIcon color={"blue.600"} w={6} h={6} />
+													<Text fontWeight={500} fontSize={16}>
+														Fonctionnalités
+													</Text>
+												</Flex>
+											),
+											content: (
+												<Prose>
+													<RichText data={category.fonctionnalities} />
+												</Prose>
+											),
+										}}
+									/>
+									<CollapsibleLayout
+										item={{
+											buttonContent: (
+												<Flex gap={2} alignItems={"center"}>
+													<TriangleExclamationIcon
+														color={"gray.700"}
+														w={6}
+														h={6}
+													/>
+													<Text fontWeight={500} fontSize={16}>
+														Points de vigilance
+													</Text>
+												</Flex>
+											),
+											content: (
+												<Prose>
+													<RichText data={category.vigilances} />
+												</Prose>
+											),
+										}}
+									/>
+									<CollapsibleLayout
+										item={{
+											buttonContent: (
+												<Flex gap={2} alignItems={"center"}>
+													<DocumentListCheck color={"gray.800"} w={6} h={6} />
+													<Text fontWeight={500} fontSize={16}>
+														Recommandations et mentions obligatoires
+													</Text>
+												</Flex>
+											),
+											content: (
+												<Prose>
+													<RichText data={category.recommendations} />
+												</Prose>
+											),
+										}}
+									/>
+								</>
+							) : (
+								<Flex gap={2} alignItems={"center"}>
+									<Text fontWeight={500} fontSize={16}>
+										Aucune information pour cette catégorie
+									</Text>
+								</Flex>
+							)}
+						</Flex>
+					</Drawer.Body>
 					<Drawer.Footer />
 				</Drawer.Content>
 			</Drawer.Positioner>
