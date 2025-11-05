@@ -130,7 +130,6 @@ export default function Contact() {
 								</Field.Label>
 								<Select.Root
 									collection={categoriesOptions}
-									size="sm"
 									onValueChange={(e) => setValue("category", Number(e.value))}
 								>
 									<Select.HiddenSelect />
@@ -139,6 +138,7 @@ export default function Contact() {
 											rounded={"xl"}
 											borderWidth={1}
 											borderColor={"gray.200"}
+											h={12}
 											p={4}
 											gap={2}
 											value={category}
@@ -198,6 +198,7 @@ export default function Contact() {
 									borderWidth={1}
 									borderColor={"gray.200"}
 									p={4}
+									h={12}
 									gap={2}
 									_focus={{
 										borderColor: "gray.700",
@@ -228,6 +229,7 @@ export default function Contact() {
 									rounded={"xl"}
 									borderWidth={1}
 									borderColor={"gray.200"}
+									h={12}
 									p={4}
 									gap={2}
 									_focus={{
