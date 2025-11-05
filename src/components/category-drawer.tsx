@@ -9,7 +9,6 @@ import {
 	InfoCircleIcon,
 	TriangleExclamationIcon,
 } from "./ui/icon/icons";
-import { IoMdWarning } from "react-icons/io";
 
 type Props = {
 	category: Category | undefined;
