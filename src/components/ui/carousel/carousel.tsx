@@ -18,7 +18,10 @@ export default function Carousel<T extends { id: number }>({
 	const Component = component;
 
 	const numberOfElements = items ? items.length : 0;
-	const numberOfSlides = items ? items.length - 2 : 0;
+	const numberOfSlides = Math.max((items?.length || 0) - 2, 1);
+
+	const isProgrammaticScroll = useRef(false);
+	const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
 	useEffect(() => {
 		if (!gridRef.current) return;
@@ -26,15 +29,52 @@ export default function Carousel<T extends { id: number }>({
 		const grid = gridRef.current;
 		const scrollWidth = grid.scrollWidth;
 		const visibleWidth = grid.clientWidth;
-
 		const maxScrollLeft = scrollWidth - visibleWidth;
 		const targetScroll = (maxScrollLeft / (numberOfSlides - 1)) * active;
+
+		isProgrammaticScroll.current = true;
 
 		grid.scrollTo({
 			left: targetScroll,
 			behavior: "smooth",
 		});
+
+		const timeout = setTimeout(() => {
+			isProgrammaticScroll.current = false;
+		}, 300);
+
+		return () => clearTimeout(timeout);
 	}, [active, numberOfSlides]);
+
+	useEffect(() => {
+		if (!gridRef.current) return;
+		const grid = gridRef.current;
+
+		const handleScroll = () => {
+			if (isProgrammaticScroll.current) return;
+
+			if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+
+			scrollTimeout.current = setTimeout(() => {
+				const scrollLeft = grid.scrollLeft;
+				const scrollWidth = grid.scrollWidth;
+				const visibleWidth = grid.clientWidth;
+				const maxScrollLeft = scrollWidth - visibleWidth;
+				if (maxScrollLeft <= 0) return;
+
+				const slide = Math.round(
+					(scrollLeft / maxScrollLeft) * (numberOfSlides - 1),
+				);
+				setActive(slide);
+			}, 50);
+		};
+
+		grid.addEventListener("scroll", handleScroll, { passive: true });
+		return () => {
+			grid.removeEventListener("scroll", handleScroll);
+			if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+		};
+	}, [numberOfSlides]);
 
 	return (
 		<>
