@@ -54,12 +54,16 @@ export default function Home() {
 			},
 		);
 
+	const { data: categoryAI } = api.category.getBySlug.useQuery(
+		"artificial-intelligence",
+	);
+
 	const { data: toolsAI, isLoading: isLoadingToolsAI } =
 		api.tool.getList.useQuery(
 			{
 				limit: 6,
 				filters: [
-					{ key: "categories.category.id", value: "13" },
+					{ key: "categories.category.id", value: categoryAI?.id ?? 0 },
 					{ key: "categories.main", value: "true" },
 				],
 				sort: ["privacy_score_saas"],
@@ -188,7 +192,9 @@ export default function Home() {
 							textUnderlineOffset={2}
 							asChild
 						>
-							<NextLink href={"/categories/13"}>Voir plus</NextLink>
+							<NextLink href={`/categories/${categoryAI?.id}`}>
+								Voir plus
+							</NextLink>
 						</ChakraLink>
 					</Flex>
 

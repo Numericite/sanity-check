@@ -50,4 +50,19 @@ export const categoryRouter = createTRPCRouter({
 
 			return category;
 		}),
+
+	getBySlug: publicProcedure
+		.input(z.string())
+		.query(async ({ ctx, input: slug }) => {
+			const category = await ctx.payload.find({
+				collection: "categories",
+				where: {
+					slug: {
+						equals: slug,
+					},
+				},
+				limit: 1,
+			});
+			return category.docs[0] || null;
+		}),
 });
