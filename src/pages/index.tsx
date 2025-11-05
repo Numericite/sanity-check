@@ -93,12 +93,20 @@ export default function Home() {
 						la conformité RGPD d'un site web tiers.
 					</Text>
 					<Flex alignItems="center" mt={8} gap={4}>
-						<Button colorPalette="primary" size="lg">
-							Catégories d'outils
-						</Button>
-						<Button variant="outline" colorPalette="primary" size="lg">
-							À propos
-						</Button>
+						<ChakraLink asChild>
+							<NextLink href={"/categories"}>
+								<Button colorPalette={"primary"} size={"lg"}>
+									Catégories d'outils
+								</Button>
+							</NextLink>
+						</ChakraLink>
+						<ChakraLink asChild>
+							<NextLink href={"/about"}>
+								<Button color={"primary"} variant={"outline"} size={"lg"}>
+									À propos
+								</Button>
+							</NextLink>
+						</ChakraLink>
 					</Flex>
 					<SearchBar />
 				</Flex>
