@@ -83,74 +83,76 @@ export default function CategoryDrawer({ category }: Props) {
 					</Drawer.Header>
 					<Drawer.Body>
 						<Flex gap={5} flexDir={"column"} w={"full"}>
-							{category.fonctionnalities &&
-							category.vigilances &&
-							category.recommendations ? (
-								<>
-									<CollapsibleLayout
-										defaultOpen
-										item={{
-											buttonContent: (
-												<Flex gap={2} alignItems={"center"}>
-													<InfoCircleIcon color={"blue.600"} w={6} h={6} />
-													<Text fontWeight={500} fontSize={16}>
-														Fonctionnalités
-													</Text>
+							<CollapsibleLayout
+								defaultOpen
+								item={{
+									buttonContent: (
+										<Flex gap={2} alignItems={"center"}>
+											<InfoCircleIcon color={"blue.600"} w={6} h={6} />
+											<Text fontWeight={500} fontSize={16}>
+												Fonctionnalités
+											</Text>
+										</Flex>
+									),
+									content: (
+										<Prose>
+											{category.fonctionnalities ? (
+												<RichText data={category.fonctionnalities} />
+											) : (
+												<Flex gap={2}>
+													<Text>Aucun information</Text>
 												</Flex>
-											),
-											content: (
-												<Prose>
-													<RichText data={category.fonctionnalities} />
-												</Prose>
-											),
-										}}
-									/>
-									<CollapsibleLayout
-										item={{
-											buttonContent: (
-												<Flex gap={2} alignItems={"center"}>
-													<TriangleExclamationIcon
-														color={"gray.700"}
-														w={6}
-														h={6}
-													/>
-													<Text fontWeight={500} fontSize={16}>
-														Points de vigilance
-													</Text>
+											)}
+										</Prose>
+									),
+								}}
+							/>
+							<CollapsibleLayout
+								item={{
+									buttonContent: (
+										<Flex gap={2} alignItems={"center"}>
+											<TriangleExclamationIcon color={"gray.700"} w={6} h={6} />
+											<Text fontWeight={500} fontSize={16}>
+												Points de vigilance
+											</Text>
+										</Flex>
+									),
+									content: (
+										<Prose>
+											{category.vigilances ? (
+												<RichText data={category.vigilances} />
+											) : (
+												<Flex gap={2}>
+													<Text>Aucun information</Text>
 												</Flex>
-											),
-											content: (
-												<Prose>
-													<RichText data={category.vigilances} />
-												</Prose>
-											),
-										}}
-									/>
-									<CollapsibleLayout
-										item={{
-											buttonContent: (
-												<Flex gap={2} alignItems={"center"}>
-													<DocumentListCheck color={"gray.800"} w={6} h={6} />
-													<Text fontWeight={500} fontSize={16}>
-														Recommandations et mentions obligatoires
-													</Text>
+											)}
+										</Prose>
+									),
+								}}
+							/>
+							<CollapsibleLayout
+								item={{
+									buttonContent: (
+										<Flex gap={2} alignItems={"center"}>
+											<DocumentListCheck color={"gray.800"} w={6} h={6} />
+											<Text fontWeight={500} fontSize={16}>
+												Recommandations et mentions obligatoires
+											</Text>
+										</Flex>
+									),
+									content: (
+										<Prose>
+											{category.recommendations ? (
+												<RichText data={category.recommendations} />
+											) : (
+												<Flex gap={2}>
+													<Text>Aucun information</Text>
 												</Flex>
-											),
-											content: (
-												<Prose>
-													<RichText data={category.recommendations} />
-												</Prose>
-											),
-										}}
-									/>
-								</>
-							) : (
-								<Flex gap={2} alignItems={"center"}>
-									<Text fontWeight={500} fontSize={16}>
-										Aucune information pour cette catégorie
-									</Text>
-								</Flex>
-							)}
+											)}
+										</Prose>
+									),
+								}}
+							/>
 						</Flex>
 					</Drawer.Body>
 					<Drawer.Footer />
