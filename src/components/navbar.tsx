@@ -40,7 +40,7 @@ const Navbar = () => {
 	const pathname = usePathname();
 
 	return (
-		<Container zIndex={"max"} bgColor={"white"}>
+		<Container zIndex={"sticky"} bgColor={"white"}>
 			<Flex alignItems="center" justifyContent="space-between" py={6}>
 				<ChakraLink
 					color="black"

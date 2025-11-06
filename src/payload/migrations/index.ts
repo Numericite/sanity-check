@@ -3,6 +3,8 @@ import * as migration_20251017_082131 from './20251017_082131';
 import * as migration_20251017_121348_del_tools_enterprise_european from './20251017_121348_del_tools_enterprise_european';
 import * as migration_20251017_121415_add_tools_enterprise_european from './20251017_121415_add_tools_enterprise_european';
 import * as migration_20251023_132714_add_contact_submissions_table from './20251023_132714_add_contact_submissions_table';
+import * as migration_20251105_142709_remove_fonctionnalities_vigilances_recommendations_in_category from './20251105_142709_remove_fonctionnalities_vigilances_recommendations_in_category';
+import * as migration_20251105_142734_add_fonctionnalities_vigilances_recommendations_in_category from './20251105_142734_add_fonctionnalities_vigilances_recommendations_in_category';
 
 export const migrations = [
   {
@@ -28,6 +30,16 @@ export const migrations = [
   {
     up: migration_20251023_132714_add_contact_submissions_table.up,
     down: migration_20251023_132714_add_contact_submissions_table.down,
-    name: '20251023_132714_add_contact_submissions_table'
+    name: '20251023_132714_add_contact_submissions_table',
+  },
+  {
+    up: migration_20251105_142709_remove_fonctionnalities_vigilances_recommendations_in_category.up,
+    down: migration_20251105_142709_remove_fonctionnalities_vigilances_recommendations_in_category.down,
+    name: '20251105_142709_remove_fonctionnalities_vigilances_recommendations_in_category',
+  },
+  {
+    up: migration_20251105_142734_add_fonctionnalities_vigilances_recommendations_in_category.up,
+    down: migration_20251105_142734_add_fonctionnalities_vigilances_recommendations_in_category.down,
+    name: '20251105_142734_add_fonctionnalities_vigilances_recommendations_in_category'
   },
 ];
