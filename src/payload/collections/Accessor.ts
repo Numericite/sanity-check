@@ -8,6 +8,16 @@ export const Accessors: CollectionConfig = {
 	admin: {
 		useAsTitle: "name",
 	},
+	labels: {
+		singular: {
+			en: "Accessor",
+			fr: "Accès",
+		},
+		plural: {
+			en: "Accessors",
+			fr: "Accès",
+		},
+	},
 	fields: [
 		{
 			name: "name",

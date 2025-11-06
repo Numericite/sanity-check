@@ -8,6 +8,16 @@ export const Features: CollectionConfig = {
 	admin: {
 		useAsTitle: "name",
 	},
+	labels: {
+		singular: {
+			en: "Feature",
+			fr: "Fonctionnalité",
+		},
+		plural: {
+			en: "Features",
+			fr: "Fonctionnalités",
+		},
+	},
 	fields: [
 		{
 			name: "name",

@@ -14,6 +14,7 @@ import { Media } from "./collections/Media";
 import { Tools } from "./collections/Tools";
 import { Transfers } from "./collections/Transfer";
 import { ContactSubmissions } from "./collections/ContactSubmission";
+import { fr } from "@payloadcms/translations/languages/fr";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -23,6 +24,11 @@ export default buildConfig({
 		importMap: {
 			baseDir: path.resolve(dirname),
 		},
+		dateFormat: "dd/MM/yy HH:mm",
+	},
+	i18n: {
+		fallbackLanguage: "fr",
+		supportedLanguages: { fr },
 	},
 	editor: lexicalEditor(),
 	collections: [

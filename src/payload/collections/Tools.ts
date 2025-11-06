@@ -9,6 +9,16 @@ export const Tools: CollectionConfig = {
 	admin: {
 		useAsTitle: "name",
 	},
+	labels: {
+		singular: {
+			en: "Tool",
+			fr: "Outil",
+		},
+		plural: {
+			en: "Tools",
+			fr: "Outils",
+		},
+	},
 	fields: [
 		{
 			name: "name",
@@ -42,6 +52,16 @@ export const Tools: CollectionConfig = {
 			name: "subcontractors_infra",
 			type: "array",
 			label: "Liste des infrastructures sous-traitant",
+			labels: {
+				singular: {
+					en: "Subcontractor infrastructure",
+					fr: "Infrastructure des sous-traitants",
+				},
+				plural: {
+					en: "Subcontractor infrastructures",
+					fr: "Infrastructures des sous-traitants",
+				},
+			},
 			fields: [
 				{
 					name: "name",
@@ -159,10 +179,27 @@ export const Tools: CollectionConfig = {
 		{
 			name: "categories",
 			type: "array",
-			label: "Catégories",
+			label: {
+				en: "Categories",
+				fr: "Catégories",
+			},
+			labels: {
+				singular: {
+					en: "Category",
+					fr: "Catégorie",
+				},
+				plural: {
+					en: "Categories",
+					fr: "Catégories",
+				},
+			},
 			fields: [
 				{
 					name: "category",
+					label: {
+						en: "Category",
+						fr: "Catégorie",
+					},
 					type: "relationship",
 					relationTo: "categories",
 					required: true,
@@ -172,7 +209,10 @@ export const Tools: CollectionConfig = {
 				{
 					name: "main",
 					type: "checkbox",
-					label: "Catégorie principale",
+					label: {
+						en: "Main category",
+						fr: "Catégorie principale",
+					},
 					defaultValue: false,
 				},
 			],
@@ -184,12 +224,29 @@ export const Tools: CollectionConfig = {
 		{
 			name: "certifications",
 			type: "array",
-			label: "Certifications",
+			label: {
+				en: "Certification",
+				fr: "Certifications",
+			},
+			labels: {
+				singular: {
+					en: "Certifications",
+					fr: "Certifications",
+				},
+				plural: {
+					en: "Certifications",
+					fr: "Certifications",
+				},
+			},
 			fields: [
 				{
 					name: "certification",
 					type: "relationship",
 					relationTo: "certifications",
+					label: {
+						en: "Certification",
+						fr: "Certification",
+					},
 					required: true,
 					hasMany: false,
 					unique: false,
@@ -202,12 +259,29 @@ export const Tools: CollectionConfig = {
 		{
 			name: "certifications_subcontractors",
 			type: "array",
-			label: "Certifications des sous-traitants",
+			label: {
+				en: "Subcontractor's certifications",
+				fr: "Certifications des sous-traitants",
+			},
+			labels: {
+				singular: {
+					en: "Subcontractor's certification",
+					fr: "Certification des sous-traitants",
+				},
+				plural: {
+					en: "Subcontractor's certifications",
+					fr: "Certifications des sous-traitants",
+				},
+			},
 			fields: [
 				{
 					name: "certification",
 					type: "relationship",
 					relationTo: "certifications",
+					label: {
+						en: "Subcontractor's certification",
+						fr: "Certification des sous-traitants",
+					},
 					required: true,
 					hasMany: false,
 					unique: false,
@@ -220,12 +294,29 @@ export const Tools: CollectionConfig = {
 		{
 			name: "accessors",
 			type: "array",
-			label: "Personne ayant accès",
+			label: {
+				en: "People with access",
+				fr: "Personnes ayant accès",
+			},
+			labels: {
+				singular: {
+					en: "People with access",
+					fr: "Personne ayant accès",
+				},
+				plural: {
+					en: "People with access",
+					fr: "Personnes ayant accès",
+				},
+			},
 			fields: [
 				{
 					name: "accessor",
 					type: "relationship",
 					relationTo: "accessors",
+					label: {
+						en: "People with access",
+						fr: "Personne ayant accès",
+					},
 					required: true,
 					hasMany: false,
 					unique: false,
@@ -238,12 +329,29 @@ export const Tools: CollectionConfig = {
 		{
 			name: "locations_enterprise",
 			type: "array",
-			label: "Localisation de l'entreprise",
+			label: {
+				en: "Enterprise's locations",
+				fr: "Localisations de l'entreprise",
+			},
+			labels: {
+				singular: {
+					en: "Enterprise's location",
+					fr: "Localisation de l'entreprise",
+				},
+				plural: {
+					en: "Enterprise's locations",
+					fr: "Localisations de l'entreprise",
+				},
+			},
 			fields: [
 				{
 					name: "location",
 					type: "relationship",
 					relationTo: "locations",
+					label: {
+						en: "Enterprise's location",
+						fr: "Localisation de l'entreprise",
+					},
 					required: true,
 					hasMany: false,
 					unique: false,
@@ -292,12 +400,29 @@ export const Tools: CollectionConfig = {
 		{
 			name: "transfers",
 			type: "array",
-			label: "Encadrements des transferts",
+			label: {
+				en: "Transfer frameworks",
+				fr: "Encadrements des transferts",
+			},
+			labels: {
+				singular: {
+					en: "Transfer framework",
+					fr: "Encadrement des transferts",
+				},
+				plural: {
+					en: "Transfer frameworks",
+					fr: "Encadrements des transferts",
+				},
+			},
 			fields: [
 				{
 					name: "transfer",
 					type: "relationship",
 					relationTo: "transfers",
+					label: {
+						en: "Transfer framework",
+						fr: "Encadrement des transferts",
+					},
 					required: true,
 					hasMany: false,
 					unique: false,
@@ -310,12 +435,29 @@ export const Tools: CollectionConfig = {
 		{
 			name: "features",
 			type: "array",
-			label: "Fonctionnalités RGPB",
+			label: {
+				en: "RGPB functionalities",
+				fr: "Fonctionnalités RGPB",
+			},
+			labels: {
+				singular: {
+					en: "RGPB functionality",
+					fr: "Fonctionnalité RGPB",
+				},
+				plural: {
+					en: "RGPB functionalities",
+					fr: "Fonctionnalités RGPB",
+				},
+			},
 			fields: [
 				{
 					name: "feature",
 					type: "relationship",
 					relationTo: "features",
+					label: {
+						en: "RGPB functionality",
+						fr: "Fonctionnalité RGPB",
+					},
 					required: true,
 					hasMany: false,
 					unique: false,

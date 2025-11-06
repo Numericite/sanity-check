@@ -8,6 +8,16 @@ export const ContactSubmissions: CollectionConfig = {
 	admin: {
 		useAsTitle: "name",
 	},
+	labels: {
+		singular: {
+			en: "Contact",
+			fr: "Contact",
+		},
+		plural: {
+			en: "Contacts",
+			fr: "Contacts",
+		},
+	},
 	fields: [
 		{
 			name: "state",

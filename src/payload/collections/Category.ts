@@ -9,6 +9,16 @@ export const Categories: CollectionConfig = {
 	admin: {
 		useAsTitle: "name",
 	},
+	labels: {
+		singular: {
+			en: "Category",
+			fr: "Catégorie",
+		},
+		plural: {
+			en: "Categories",
+			fr: "Catégories",
+		},
+	},
 	fields: [
 		{
 			name: "name",

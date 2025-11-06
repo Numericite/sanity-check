@@ -8,6 +8,16 @@ export const Transfers: CollectionConfig = {
 	admin: {
 		useAsTitle: "name",
 	},
+	labels: {
+		singular: {
+			en: "Transfer",
+			fr: "Transfert",
+		},
+		plural: {
+			en: "Transfers",
+			fr: "Transferts",
+		},
+	},
 	fields: [
 		{
 			name: "name",

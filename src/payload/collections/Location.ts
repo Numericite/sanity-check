@@ -8,6 +8,16 @@ export const Locations: CollectionConfig = {
 	admin: {
 		useAsTitle: "name",
 	},
+	labels: {
+		singular: {
+			en: "Location",
+			fr: "Localisation",
+		},
+		plural: {
+			en: "Locations",
+			fr: "Localisations",
+		},
+	},
 	fields: [
 		{
 			name: "name",
