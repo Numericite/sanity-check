@@ -100,7 +100,7 @@ export default function CategoryDrawer({ category }: Props) {
 												<RichText data={category.fonctionnalities} />
 											) : (
 												<Flex gap={2}>
-													<Text>Aucun information</Text>
+													<Text>Aucune information</Text>
 												</Flex>
 											)}
 										</Prose>
@@ -123,7 +123,7 @@ export default function CategoryDrawer({ category }: Props) {
 												<RichText data={category.vigilances} />
 											) : (
 												<Flex gap={2}>
-													<Text>Aucun information</Text>
+													<Text>Aucune information</Text>
 												</Flex>
 											)}
 										</Prose>
@@ -146,7 +146,7 @@ export default function CategoryDrawer({ category }: Props) {
 												<RichText data={category.recommendations} />
 											) : (
 												<Flex gap={2}>
-													<Text>Aucun information</Text>
+													<Text>Aucune information</Text>
 												</Flex>
 											)}
 										</Prose>
