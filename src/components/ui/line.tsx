@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading } from "@chakra-ui/react";
 
 export default function Line({
 	title,
@@ -13,16 +13,21 @@ export default function Line({
 		<Flex
 			w={"full"}
 			py={5}
-			gap={5}
+			gap={{ base: 2, md: 5 }}
+			flexDir={{ base: "column", md: "row" }}
 			borderBottomColor={"blue.50"}
 			borderBottomWidth={!last ? 1 : 0}
 		>
-			<Flex w={"1/3"} justifyContent={"start"} alignItems={"center"}>
-				<Text>{title}</Text>
+			<Flex
+				w={{ base: "full", md: "1/3" }}
+				justifyContent={"start"}
+				alignItems={"center"}
+			>
+				<Heading size={"md"}>{title}</Heading>
 			</Flex>
 			<Box h={"100"} bgColor={"blue.50"} w={0.5} rounded={"full"} />
 			<Flex
-				w={"2/3"}
+				w={{ base: "full", md: "2/3" }}
 				flexDir={"row"}
 				justifyContent={"start"}
 				alignItems={"center"}

@@ -1,4 +1,4 @@
-import { Link as ChakraLink, Flex, Text } from "@chakra-ui/react";
+import { Box, Link as ChakraLink, Flex, Heading, Text } from "@chakra-ui/react";
 import type { Category } from "~/payload/payload-types";
 import NextLink from "next/link";
 import CategoryIcon from "../ui/icon/category-icon";
@@ -21,27 +21,27 @@ export default function SearchCategory({ category }: Props) {
 					borderWidth={1}
 					borderColor={"gray.100"}
 					rounded={"2xl"}
-					p={4}
+					p={{ base: 3, md: 4 }}
 					gap={4}
 					w={"full"}
 				>
-					<Flex
-						w={20}
-						h={20}
+					<Box
+						p={2}
+						h={"fit"}
 						rounded={"2.5xl"}
 						bgColor={`${category.color}.50`}
 						borderWidth={1}
 						borderColor={`${category.color}.100`}
-						justifyContent={"center"}
-						alignItems={"center"}
 					>
-						<CategoryIcon size={52} category={category} />
-					</Flex>
+						<CategoryIcon size={14} category={category} />
+					</Box>
 					<Flex flexDir={"column"} w={"full"} gap={3}>
-						<Flex justifyContent={"space-between"}>
-							<Text fontSize={20} fontWeight={500}>
-								{category.name}
-							</Text>
+						<Flex
+							alignItems={"start"}
+							justifyContent={{ base: "start", md: "space-between" }}
+							flexDir={{ base: "column", md: "row" }}
+						>
+							<Heading size={"md"}>{category.name}</Heading>
 							<Badge>
 								{category.relatedTools?.docs?.length} outil
 								{(category.relatedTools?.docs?.length ?? 0) > 1 ? "s" : ""}

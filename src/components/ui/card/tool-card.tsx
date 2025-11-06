@@ -1,9 +1,9 @@
 import {
 	Link as ChakraLink,
 	Flex,
+	Heading,
 	Separator,
 	Skeleton,
-	Text,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import type { Category, Tool } from "~/payload/payload-types";
@@ -62,15 +62,13 @@ export default function ToolCard({
 								<ToolLogo media={tool?.logo} />
 							</Flex>
 
-							<Flex w={"full"} flexDir={"column"}>
+							<Flex w={"full"} gap={1} flexDir={"column"}>
 								<Flex
 									w={"full"}
 									justifyContent={"space-between"}
 									alignItems={"center"}
 								>
-									<Text fontSize={20} fontWeight={500}>
-										{tool?.name}
-									</Text>
+									<Heading size={"lg"}>{tool?.name}</Heading>
 									{tool?.privacy_score_saas && (
 										<PrivacyScoreBadge score={tool.privacy_score_saas} />
 									)}

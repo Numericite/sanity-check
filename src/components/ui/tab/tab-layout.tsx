@@ -1,5 +1,4 @@
 import { Button, Flex, Tabs } from "@chakra-ui/react";
-import NextLink from "next/link";
 import { useState } from "react";
 
 type Item = {
@@ -29,13 +28,21 @@ export default function TabLayout({ items, defaultValue }: Props) {
 				flexDir={"column"}
 				justifyContent={"center"}
 				alignItems={"center"}
-				gap={10}
+				gap={{ base: 3, md: 10 }}
 			>
 				<Tabs.List>
-					<Flex rounded={"xl"} p={1} gap={3} bgColor={"gray.50"}>
+					<Flex
+						rounded={"xl"}
+						p={1}
+						gap={{ base: 1, md: 3 }}
+						bgColor={"gray.50"}
+					>
 						{items.map((item) => (
 							<Tabs.Trigger asChild key={item.key} value={item.key}>
-								<Button variant={value === item.key ? "solid" : "ghost"}>
+								<Button
+									size={{ base: "sm", md: "md" }}
+									variant={value === item.key ? "solid" : "ghost"}
+								>
 									{item.label}
 								</Button>
 							</Tabs.Trigger>
@@ -43,7 +50,7 @@ export default function TabLayout({ items, defaultValue }: Props) {
 					</Flex>
 				</Tabs.List>
 				{items.map((item) => (
-					<Tabs.Content w={"full"} key={item.key} value={item.key}>
+					<Tabs.Content w={"full"} px={2} key={item.key} value={item.key}>
 						{item.content}
 					</Tabs.Content>
 				))}

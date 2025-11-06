@@ -1,10 +1,4 @@
-import {
-	Breadcrumb,
-	Link as ChakraLink,
-	Flex,
-	Icon,
-	Text,
-} from "@chakra-ui/react";
+import { Breadcrumb, Link as ChakraLink, Flex, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { HomeDashIcon } from "../icon/icons";
 
@@ -24,14 +18,19 @@ export default function BreadcrumbLayout({
 }: BreadcrumbLayoutProps) {
 	return (
 		<Breadcrumb.Root>
-			<Breadcrumb.List gap={1}>
+			<Breadcrumb.List px={2.5} flexWrap={"wrap"} gap={1}>
 				{home && (
 					<Breadcrumb.Item>
 						<ChakraLink asChild textDecorationColor={"blue.600"}>
 							<NextLink href={"/"}>
 								<Flex gap={1} justifyContent={"center"} alignItems={"center"}>
 									<HomeDashIcon color={"blue.600"} w={"15px"} h={"15px"} />
-									<Text fontSize={14} fontWeight={400} color={"blue.600"}>
+									<Text
+										fontSize={14}
+										fontWeight={400}
+										color={"blue.600"}
+										truncate
+									>
 										Accueil
 									</Text>
 								</Flex>
@@ -51,7 +50,12 @@ export default function BreadcrumbLayout({
 											justifyContent={"center"}
 											alignItems={"center"}
 										>
-											<Text fontSize={14} fontWeight={400} color={"blue.600"}>
+											<Text
+												fontSize={14}
+												fontWeight={400}
+												color={"blue.600"}
+												truncate
+											>
 												{item.label}
 											</Text>
 										</Flex>
@@ -59,7 +63,7 @@ export default function BreadcrumbLayout({
 								</ChakraLink>
 							) : (
 								<Flex gap={1} justifyContent={"center"} alignItems={"center"}>
-									<Text fontSize={14} fontWeight={400} color={"black"}>
+									<Text fontSize={14} fontWeight={400} color={"black"} truncate>
 										{item.label}
 									</Text>
 								</Flex>

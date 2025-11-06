@@ -1,8 +1,4 @@
-import {
-	Badge as ChakraBadge,
-	Text,
-	type ConditionalValue,
-} from "@chakra-ui/react";
+import { Badge as ChakraBadge, type ConditionalValue } from "@chakra-ui/react";
 
 type Props = {
 	color?: string;

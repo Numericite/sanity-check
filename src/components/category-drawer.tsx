@@ -1,4 +1,4 @@
-import { Box, Button, Drawer, Flex, Icon, Text } from "@chakra-ui/react";
+import { Box, Button, Drawer, Flex, Heading, Text } from "@chakra-ui/react";
 import type { Category } from "~/payload/payload-types";
 import CategoryIcon from "./ui/icon/category-icon";
 import CollapsibleLayout from "./ui/collapsible/collapsible-layout";
@@ -21,21 +21,24 @@ export default function CategoryDrawer({ category }: Props) {
 		<Drawer.Root size={"lg"}>
 			<Drawer.Backdrop />
 			<Drawer.Trigger asChild>
-				<Button variant={"outline"}>En savoir plus</Button>
+				<Button size={{ base: "xs", md: "md" }} variant={"outline"}>
+					En savoir plus
+				</Button>
 			</Drawer.Trigger>
 			<Drawer.Positioner>
 				<Drawer.Content
+					w={{ base: "80%", md: "100%" }}
 					roundedLeft={"4xl"}
 					borderWidth={1}
 					borderColor={"gray.100"}
-					p={2}
-					gap={7}
+					p={{ base: 0, md: 2 }}
+					gap={{ base: 2, md: 7 }}
 				>
 					<Drawer.CloseTrigger />
 					<Drawer.Header>
 						<Flex flexDir={"column"} w={"full"}>
 							<Flex
-								h={32}
+								h={{ base: 16, md: 32 }}
 								w={"full"}
 								bgColor={`${category?.color}.50`}
 								borderWidth={1}
@@ -46,37 +49,44 @@ export default function CategoryDrawer({ category }: Props) {
 								p={5}
 							>
 								<Box opacity={"20%"} rotate={"-17"}>
-									<CategoryIcon category={category ?? null} size={100} />
+									<CategoryIcon
+										category={category ?? null}
+										size={{ base: 12, md: 24 }}
+									/>
 								</Box>
 							</Flex>
 							<Flex
 								w={"full"}
-								pl={5}
+								pl={{ base: 0, md: 5 }}
 								justifyContent={"space-between"}
-								alignItems={"end"}
-								mt={-7}
+								alignItems={"center"}
+								mt={{ base: 0, md: "-7" }}
 							>
-								<Flex gap={3} alignItems={"end"} justifyContent={"start"}>
-									<Flex
-										w={28}
-										h={28}
+								<Flex
+									gap={3}
+									mt={{ base: 2, md: 0 }}
+									alignItems={"center"}
+									justifyContent={"start"}
+								>
+									<Box
 										bgColor={"white"}
 										borderColor={"gray.100"}
 										borderWidth={1}
 										rounded={"full"}
 										gap={2.5}
-										justifyContent={"center"}
-										alignItems={"center"}
 										p={2}
 									>
-										<CategoryIcon category={category ?? null} size={60} />
-									</Flex>
-
-									<Flex h={24} alignItems={"center"} gap={5}>
-										<Text fontSize={30} fontWeight={500}>
-											{category?.name}
-										</Text>
-									</Flex>
+										<CategoryIcon
+											category={category ?? null}
+											size={{ base: 12, md: 24 }}
+										/>
+									</Box>
+									<Heading
+										mt={{ base: 0, md: 7 }}
+										size={{ base: "2xl", md: "4xl" }}
+									>
+										{category?.name}
+									</Heading>
 								</Flex>
 							</Flex>
 						</Flex>

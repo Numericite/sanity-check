@@ -1,4 +1,11 @@
-import { Link as ChakraLink, Flex, Separator, Text } from "@chakra-ui/react";
+import {
+	Box,
+	Link as ChakraLink,
+	Flex,
+	Heading,
+	Separator,
+	Text,
+} from "@chakra-ui/react";
 import type { Category, Tool } from "~/payload/payload-types";
 import NextLink from "next/link";
 import ToolLogo from "../ui/logo/tool-logo";
@@ -27,41 +34,36 @@ export default function SearchTool({ tool }: Props) {
 					borderWidth={1}
 					borderColor={"gray.100"}
 					rounded={"2xl"}
-					p={4}
+					p={{ base: 3, md: 4 }}
 					gap={4}
 					w={"full"}
 					flexDir={"column"}
 				>
 					<Flex gap={3}>
-						<Flex
-							w={16}
-							h={16}
-							justifyContent={"center"}
-							alignItems={"center"}
+						<Box
+							p={2}
+							h={"fit"}
+							bgColor={"white"}
 							rounded={"xl"}
 							borderWidth={1}
 							borderColor={"gray.100"}
 						>
-							<ToolLogo media={tool.logo} size={52} />
-						</Flex>
+							<ToolLogo media={tool.logo} />
+						</Box>
 						<Flex flexDir={"column"} gap={2} w={"full"}>
 							<Flex
 								w={"full"}
-								justifyContent={"space-between"}
-								alignItems={"center"}
+								justifyContent={{ base: "start", md: "space-between" }}
+								alignItems={{ base: "start", md: "center" }}
+								flexDir={{ base: "column", md: "row" }}
 							>
-								<Text fontSize={20} fontWeight={500}>
-									{tool.name}
-								</Text>
+								<Heading size={"md"}>{tool.name}</Heading>
 								<Flex gap={5} alignItems={"center"}>
 									<CategoryBadge
 										category={mainCategory as Category}
 										size={"sm"}
 									/>
-									<PrivacyScoreBadge
-										score={tool.privacy_score_saas}
-										size="sm"
-									/>
+									<PrivacyScoreBadge score={tool.privacy_score_saas} />
 								</Flex>
 							</Flex>
 							<Flex gap={2} alignItems={"center"}>

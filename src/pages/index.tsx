@@ -13,7 +13,7 @@ import NextLink from "next/link";
 import SearchBar from "~/components/search/search-bar";
 import CategoryCard from "~/components/ui/card/category-card";
 import ToolCard from "~/components/ui/card/tool-card";
-import Carousel from "~/components/ui/carousel/carousel";
+import CarouselLayout from "~/components/ui/carousel/carousel-layout";
 import { api } from "~/utils/api";
 
 export default function Home() {
@@ -73,21 +73,33 @@ export default function Home() {
 		<>
 			<Head>
 				<title>Sanity Check</title>
-				<meta name="description" content="Sanity Check" />
+				<meta
+					name="description"
+					content="Sanity Check vous aide à vérifier facilement la conformité RGPD et l’éthique des solutions numériques que vous utilisez. Analysez en quelques secondes si un site ou service respecte vos valeurs et vos données."
+				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<Box mt={62} pb={24}>
+			<Box pt={{ base: 0, md: 62 }} p={4} pb={24}>
 				<Flex
 					flexDir="column"
 					alignItems="center"
 					justifyContent="center"
-					maxW="65%"
-					mx="auto"
+					mx={"auto"}
+					w={{ base: "full", md: "2/3" }}
 				>
-					<Heading size="6xl" fontWeight={700} mb={4}>
+					<Heading
+						textAlign={"center"}
+						size={{ base: "5xl", md: "6xl" }}
+						fontWeight={700}
+						mb={4}
+					>
 						Sanity Check
 					</Heading>
-					<Text fontSize="xl" textAlign="center" color="gray.700">
+					<Text
+						fontSize={{ base: "lg", md: "xl" }}
+						textAlign="center"
+						color="gray.700"
+					>
 						Analyser simplement et rapidement
 						<br />
 						la conformité RGPD d'un site web tiers.
@@ -110,10 +122,8 @@ export default function Home() {
 					</Flex>
 					<SearchBar />
 				</Flex>
-				<Flex flexDir="column" mt={12}>
-					<Heading size="xl" fontWeight={500} mb={4}>
-						Sélections d'outils en score A
-					</Heading>
+				<Flex flexDir="column" pt={10} gap={6}>
+					<Heading size="xl">Sélections d'outils en score A</Heading>
 					<Grid
 						templateColumns={{
 							base: "1fr",
@@ -133,21 +143,23 @@ export default function Home() {
 					</Grid>
 				</Flex>
 				<Flex pt={10} gap={6} flexDir={"column"}>
-					<Flex justifyContent={"space-between"} alignItems={"center"}>
-						<Text fontSize={20} fontWeight={500}>
+					<Flex justifyContent={"space-between"} alignItems={"center"} gap={5}>
+						<Heading size={"xl"} w={"2/3"}>
 							Catégories d'outils
-						</Text>
+						</Heading>
 						<ChakraLink
 							color={"blue.600"}
 							textDecoration={"underline"}
 							textUnderlineOffset={2}
 							asChild
+							textWrap={"nowrap"}
 						>
 							<NextLink href={"/categories"}>Voir plus</NextLink>
 						</ChakraLink>
 					</Flex>
 
-					<Carousel
+					<CarouselLayout
+						id="carousel-categories"
 						items={categories}
 						isLoading={isLoadingCategories}
 						component={({ item, isLoading }) => (
@@ -155,10 +167,8 @@ export default function Home() {
 						)}
 					/>
 				</Flex>
-				<Flex flexDir="column" mt={12}>
-					<Heading size="xl" fontWeight={500} mb={4}>
-						Sélections d'outils français
-					</Heading>
+				<Flex flexDir="column" pt={10} gap={6}>
+					<Heading size="xl">Sélections d'outils français</Heading>
 					<Grid
 						templateColumns={{
 							base: "1fr",
@@ -178,21 +188,23 @@ export default function Home() {
 					</Grid>
 				</Flex>
 				<Flex pt={10} gap={6} flexDir={"column"}>
-					<Flex justifyContent={"space-between"} alignItems={"center"}>
-						<Text fontSize={20} fontWeight={500}>
+					<Flex justifyContent={"space-between"} alignItems={"center"} gap={5}>
+						<Heading size={"xl"}>
 							Sélection d’outils d’Intelligence Artificielle
-						</Text>
+						</Heading>
 						<ChakraLink
 							color={"blue.600"}
 							textDecoration={"underline"}
 							textUnderlineOffset={2}
 							asChild
+							textWrap={"nowrap"}
 						>
 							<NextLink href={"/categories/13"}>Voir plus</NextLink>
 						</ChakraLink>
 					</Flex>
 
-					<Carousel
+					<CarouselLayout
+						id="carousel-toolsAI"
 						items={toolsAI}
 						isLoading={isLoadingToolsAI}
 						component={({ item, isLoading }) => (

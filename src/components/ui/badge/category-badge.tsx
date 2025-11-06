@@ -10,10 +10,11 @@ type CategoryBadgeProps = {
 
 const CategoryBadge = ({ category, size = "md" }: CategoryBadgeProps) => {
 	if (!category) return;
+
 	return (
 		<Badge color={category.color} size={size}>
 			<Flex gap={2} alignItems={"center"}>
-				<CategoryIcon size={20} category={category} />
+				<CategoryIcon size={5} category={category} />
 				{category.name}
 			</Flex>
 		</Badge>

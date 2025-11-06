@@ -98,10 +98,9 @@ export default function SearchBar() {
 					alignItems="center"
 					bgColor={isFocus ? "blue.50" : "white"}
 					rounded="full"
-					px={4}
-					py={3}
+					px={{ base: 2, md: 4 }}
+					py={{ base: 1, md: 3 }}
 					mt={8}
-					w="full"
 					borderWidth={1}
 					borderColor={
 						isFocus ? (error === "" ? "blue.500" : "red.600") : "gray.100"
@@ -139,12 +138,12 @@ export default function SearchBar() {
 					<IconButton
 						aria-label="Rechercher un outil"
 						rounded="full"
-						p={6}
+						p={{ base: 3, md: 6 }}
 						flex={1}
 						colorPalette={isFocus ? "primary" : "black"}
 						onClick={() => handleSearch()}
 					>
-						<Icon as={LuSearch} boxSize={6} />
+						<Icon as={LuSearch} size={{ base: "sm", md: "md" }} />
 					</IconButton>
 				</Flex>
 				<Flex zIndex={"sticky"} position={"relative"} w={"full"}>
@@ -157,8 +156,8 @@ export default function SearchBar() {
 							rounded={"3xl"}
 							borderWidth={1}
 							borderColor={"gray.100"}
-							p={5}
-							gap={5}
+							p={{ base: 2.5, md: 5 }}
+							gap={{ base: 2.5, md: 5 }}
 							bgColor={"white"}
 							zIndex={"sticky"}
 						>
@@ -182,10 +181,12 @@ export default function SearchBar() {
 								<>
 									{tools && tools.length > 0 && (
 										<>
-											<Text fontWeight={400} fontSize={16} color={"blue.600"}>
-												{tools.length} outil
-												{tools.length > 1 ? "s" : ""}
-											</Text>
+											<Flex p={{ base: 2.5 }}>
+												<Text fontWeight={400} fontSize={16} color={"blue.600"}>
+													{tools.length} outil
+													{tools.length > 1 ? "s" : ""}
+												</Text>
+											</Flex>
 											{tools.map((tool) => (
 												<SearchTool key={tool.id} tool={tool} />
 											))}
@@ -196,10 +197,12 @@ export default function SearchBar() {
 									)}
 									{categories && categories.length > 0 && (
 										<>
-											<Text fontWeight={400} fontSize={16} color={"blue.600"}>
-												{categories.length} catégorie
-												{categories.length > 1 ? "s" : ""}
-											</Text>
+											<Flex p={{ base: 2.5 }}>
+												<Text fontWeight={400} fontSize={16} color={"blue.600"}>
+													{categories.length} catégorie
+													{categories.length > 1 ? "s" : ""}
+												</Text>
+											</Flex>
 											{categories.map((category) => (
 												<SearchCategory
 													key={`category-${category.id}`}
