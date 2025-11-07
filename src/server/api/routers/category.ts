@@ -1,3 +1,4 @@
+import { TRPCError } from "@trpc/server";
 import type { Where } from "payload";
 import z from "zod";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
@@ -63,6 +64,13 @@ export const categoryRouter = createTRPCRouter({
 				},
 				limit: 1,
 			});
-			return category.docs[0] || null;
+
+			if (category.docs.length === 0) {
+				throw new TRPCError({
+					code: "NOT_FOUND",
+				});
+			}
+
+			return category.docs[0];
 		}),
 });

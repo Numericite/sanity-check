@@ -54,9 +54,8 @@ export default function Home() {
 			},
 		);
 
-	const { data: categoryAI } = api.category.getBySlug.useQuery(
-		"artificial-intelligence",
-	);
+	const { data: categoryAI, error: errorCategoryAI } =
+		api.category.getBySlug.useQuery("artificial-intelligence");
 
 	const { data: toolsAI, isLoading: isLoadingToolsAI } =
 		api.tool.getList.useQuery(
@@ -70,6 +69,7 @@ export default function Home() {
 			},
 			{
 				initialData: Array.from({ length: 6 }),
+				enabled: !!categoryAI,
 			},
 		);
 
@@ -181,31 +181,33 @@ export default function Home() {
 						))}
 					</Grid>
 				</Flex>
-				<Flex pt={10} gap={6} flexDir={"column"}>
-					<Flex justifyContent={"space-between"} alignItems={"center"}>
-						<Text fontSize={20} fontWeight={500}>
-							Sélection d’outils d’Intelligence Artificielle
-						</Text>
-						<ChakraLink
-							color={"blue.600"}
-							textDecoration={"underline"}
-							textUnderlineOffset={2}
-							asChild
-						>
-							<NextLink href={`/categories/${categoryAI?.id}`}>
-								Voir plus
-							</NextLink>
-						</ChakraLink>
-					</Flex>
+				{categoryAI && !errorCategoryAI && (
+					<Flex pt={10} gap={6} flexDir={"column"}>
+						<Flex justifyContent={"space-between"} alignItems={"center"}>
+							<Text fontSize={20} fontWeight={500}>
+								Sélection d’outils d’Intelligence Artificielle
+							</Text>
+							<ChakraLink
+								color={"blue.600"}
+								textDecoration={"underline"}
+								textUnderlineOffset={2}
+								asChild
+							>
+								<NextLink href={`/categories/${categoryAI?.id}`}>
+									Voir plus
+								</NextLink>
+							</ChakraLink>
+						</Flex>
 
-					<Carousel
-						items={toolsAI}
-						isLoading={isLoadingToolsAI}
-						component={({ item, isLoading }) => (
-							<ToolCard tool={item} isLoading={isLoading} />
-						)}
-					/>
-				</Flex>
+						<Carousel
+							items={toolsAI}
+							isLoading={isLoadingToolsAI}
+							component={({ item, isLoading }) => (
+								<ToolCard tool={item} isLoading={isLoading} />
+							)}
+						/>
+					</Flex>
+				)}
 			</Box>
 		</>
 	);
