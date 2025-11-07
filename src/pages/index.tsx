@@ -62,8 +62,10 @@ export default function Home() {
 			{
 				limit: 6,
 				filters: [
-					{ key: "categories.category.id", value: categoryAI?.id ?? 0 },
 					{ key: "categories.main", value: "true" },
+					...(categoryAI
+						? [{ key: "categories.category.id", value: categoryAI.id }]
+						: []),
 				],
 				sort: ["privacy_score_saas"],
 			},
