@@ -1,3 +1,4 @@
+import { TRPCError } from "@trpc/server";
 import type { Where } from "payload";
 import z from "zod";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
@@ -49,5 +50,27 @@ export const categoryRouter = createTRPCRouter({
 			});
 
 			return category;
+		}),
+
+	getBySlug: publicProcedure
+		.input(z.string())
+		.query(async ({ ctx, input: slug }) => {
+			const category = await ctx.payload.find({
+				collection: "categories",
+				where: {
+					slug: {
+						equals: slug,
+					},
+				},
+				limit: 1,
+			});
+
+			if (category.docs.length === 0) {
+				throw new TRPCError({
+					code: "NOT_FOUND",
+				});
+			}
+
+			return category.docs[0];
 		}),
 });
