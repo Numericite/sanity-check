@@ -17,6 +17,13 @@ export const Categories: CollectionConfig = {
 			required: true,
 		},
 		{
+			name: "slug",
+			type: "text",
+			label: "Slug de la catégorie",
+			required: true,
+			unique: true,
+		},
+		{
 			name: "description",
 			type: "text",
 			label: "Description de la catégorie",

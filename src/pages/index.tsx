@@ -54,18 +54,24 @@ export default function Home() {
 			},
 		);
 
+	const { data: categoryAI, error: errorCategoryAI } =
+		api.category.getBySlug.useQuery("artificial-intelligence");
+
 	const { data: toolsAI, isLoading: isLoadingToolsAI } =
 		api.tool.getList.useQuery(
 			{
 				limit: 6,
 				filters: [
-					{ key: "categories.category.id", value: "13" },
 					{ key: "categories.main", value: "true" },
+					...(categoryAI
+						? [{ key: "categories.category.id", value: categoryAI.id }]
+						: []),
 				],
 				sort: ["privacy_score_saas"],
 			},
 			{
 				initialData: Array.from({ length: 6 }),
+				enabled: !!categoryAI,
 			},
 		);
 
