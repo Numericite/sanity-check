@@ -93,7 +93,6 @@ export default function Contact() {
 					name="description"
 					content="Un outil manque ? Contactez-nous et aidez-nous à rendre Sanity Check encore plus utile."
 				/>
-				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<Flex
 				bgColor={{ base: "white", md: "transparent" }}

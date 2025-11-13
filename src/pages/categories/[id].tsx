@@ -73,7 +73,6 @@ export default function Category() {
 						"Explorez les outils disponibles sur Sanity Check pour cette catégorie et trouvez facilement ceux qui répondent à vos besoins en matière d’éthique et de conformité RGPD."
 					}
 				/>
-				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<Flex
 				bgColor={{ base: "white", md: "transparent" }}

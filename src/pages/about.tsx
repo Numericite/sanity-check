@@ -14,7 +14,6 @@ export default function About() {
 					name="description"
 					content="Découvrez comment fonctionne Sanity Check, notre système de notation éthique et RGPD. Comprenez le Privacy Score et explorez notre glossaire pour mieux maîtriser l’éthique numérique."
 				/>
-				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<Flex
 				bgColor={{ base: "white", md: "transparent" }}

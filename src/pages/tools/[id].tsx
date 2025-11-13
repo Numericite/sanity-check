@@ -84,7 +84,6 @@ const ToolPage = () => {
 						"Analysez la conformité RGPD et l’éthique de cet outil grâce à Sanity Check. Chargement des informations en cours…"
 					}
 				/>
-				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<Flex
 				bgColor={{ base: "white", md: "transparent" }}

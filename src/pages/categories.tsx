@@ -18,7 +18,6 @@ export default function Categories() {
 					name="description"
 					content="Explorez toutes les catégories d’outils disponibles sur Sanity Check et trouvez facilement ceux qui répondent à vos besoins en matière d’éthique et de conformité RGPD."
 				/>
-				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<Flex gap={6} flexDir={"column"} p={4}>
 				<Flex gap={4} flexDir={"column"}>
