@@ -5,10 +5,11 @@ import {
 	Flex,
 	Grid,
 	GridItem,
-	Skeleton,
 	Text,
+	Heading,
 } from "@chakra-ui/react";
 import { RichText } from "@payloadcms/richtext-lexical/react";
+import Head from "next/head";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { LuExternalLink } from "react-icons/lu";
@@ -18,9 +19,10 @@ import CategoryBadge from "~/components/ui/badge/category-badge";
 import PrivacyScoreBadge from "~/components/ui/badge/privacy-score-badge";
 import BreadcrumbLayout from "~/components/ui/breadcrumb/breadcrumb-layout";
 import ToolCard from "~/components/ui/card/tool-card";
-import Carousel from "~/components/ui/carousel/carousel";
+import CarouselLayout from "~/components/ui/carousel/carousel-layout";
 import Line from "~/components/ui/line";
 import ToolLogo from "~/components/ui/logo/tool-logo";
+import { Prose } from "~/components/ui/prose";
 import type { Category } from "~/payload/payload-types";
 import { api } from "~/utils/api";
 import { getPopulated } from "~/utils/payload-helpers";
@@ -72,342 +74,624 @@ const ToolPage = () => {
 		?.category as Category;
 
 	return (
-		<Flex gap={6} flexDir={"column"} py={10}>
-			<BreadcrumbLayout
-				items={[
-					{ label: "Catégorie d’outils", link: "/categories" },
-					{
-						label: mainCategory?.name ?? "",
-						link: `/categories/${mainCategory?.id}`,
-					},
-					{ label: tool?.name ?? "" },
-				]}
-			/>
-
+		<>
+			<Head>
+				<title>{tool?.name ?? "Outil"} - Sanity Check</title>
+				<meta
+					name="description"
+					content={
+						tool?.description ??
+						"Analysez la conformité RGPD et l’éthique de cet outil grâce à Sanity Check. Chargement des informations en cours…"
+					}
+				/>
+			</Head>
 			<Flex
-				flexDir="column"
-				alignItems="center"
-				justifyContent="center"
-				h="full"
-				backgroundColor={"white"}
-				p={5}
-				rounded={"2xl"}
+				bgColor={{ base: "white", md: "transparent" }}
+				gap={4}
+				flexDir={"column"}
+				py={{ base: 4, md: 10 }}
 			>
-				<Flex w={"full"} flexDir={"column"}>
-					<Flex
-						h={60}
-						w={"full"}
-						backgroundColor={`${mainCategory?.color}.50`}
-						borderColor={`${mainCategory?.color}.100`}
-						borderWidth={1}
-						rounded={"2xl"}
-					/>
+				<BreadcrumbLayout
+					items={[
+						{ label: "Catégorie d’outils", link: "/categories" },
+						{
+							label: mainCategory?.name ?? "",
+							link: `/categories/${mainCategory?.id}`,
+						},
+						{ label: tool?.name ?? "" },
+					]}
+				/>
 
-					<Flex
-						flexDir={"row"}
-						alignItems={"center"}
-						justifyContent={"space-between"}
-						w={"full"}
-						my={4.5}
-						mt={"-10"}
-						gap={"1.5"}
-					>
+				<Flex
+					flexDir="column"
+					alignItems="center"
+					justifyContent="center"
+					h="full"
+					bgColor={"white"}
+					p={{ base: 2.5, md: 5 }}
+					rounded={{ base: "none", md: "2xl" }}
+					borderColor={{ base: "transparent", md: "gray.100" }}
+					borderWidth={1}
+				>
+					<Flex w={"full"} flexDir={"column"}>
 						<Flex
-							flexDir={"row"}
-							alignItems={"end"}
-							justifyContent={"space-between"}
-							gap={5}
-							pl={10}
-						>
-							<Box
-								padding={2}
-								backgroundColor={"white"}
-								rounded={"lg"}
-								borderWidth={1}
-								borderColor={"gray.100"}
-							>
-								<Skeleton loading={isLoading} rounded={"lg"}>
-									<ToolLogo media={tool?.logo} size={122} />
-								</Skeleton>
-							</Box>
-
-							<Flex
-								gap={10}
-								alignItems={"center"}
-								justifyContent={"center"}
-								mb={4.5}
-							>
-								{tool && (
-									<>
-										<Text fontSize={40} fontWeight={500}>
-											{tool?.name}
-										</Text>
-										<PrivacyScoreBadge score={tool?.privacy_score_saas} />
-										<CategoryBadge category={mainCategory} size={"lg"} />
-									</>
-								)}
-							</Flex>
-						</Flex>
-
-						<Flex
-							flexDir={"row"}
-							alignItems={"center"}
-							justifyContent={"space-between"}
-							gap={4}
-							mt={9}
-						>
-							<Button bgColor={"primary.solid"} asChild>
-								<NextLink href={""} target="_blank">
-									<Flex gap={2} alignItems={"center"} justifyContent={"center"}>
-										<Text>Fiche détaillé</Text>
-										<LuExternalLink />
-									</Flex>
-								</NextLink>
-							</Button>
-							<Button colorPalette="primary" variant="outline" asChild>
-								<NextLink href={tool?.site_link ?? ""} target="_blank">
-									<Flex gap={2} alignItems={"center"} justifyContent={"center"}>
-										<Text>Site internet</Text>
-										<LuExternalLink />
-									</Flex>
-								</NextLink>
-							</Button>
-						</Flex>
-					</Flex>
-				</Flex>
-
-				{!isLoading && tool && (
-					<Flex w={"full"} px={4} flexDir={"column"} gap={7}>
-						<Grid
-							templateColumns="repeat(12, 1fr)"
+							h={{ base: 16, md: 60 }}
 							w={"full"}
-							gap="5"
-							autoFlow={"column"}
-							alignItems={"stretch"}
+							backgroundColor={`${mainCategory?.color}.50`}
+							borderColor={`${mainCategory?.color}.100`}
+							borderWidth={1}
+							rounded={"xl"}
+						/>
+
+						<Flex
+							alignItems={"start"}
+							w={"full"}
+							my={4.5}
+							gap={{ base: 2.5, md: 5 }}
 						>
-							<GridItem colSpan={2}>
-								<Flex
-									w={"full"}
-									h={"100%"}
-									px={4}
-									py={5}
-									bgColor={`${colorDpa}.50`}
-									borderColor={`${colorDpa}.100`}
+							<Flex pl={{ base: 0, md: 10 }}>
+								<Box
+									p={2}
+									bgColor={"white"}
+									rounded={"lg"}
+									mt={{ base: 0, md: "-10" }}
 									borderWidth={1}
-									rounded={"xl"}
-									gap={5}
-									flexDir={"column"}
+									borderColor={"gray.100"}
 								>
-									<Text fontSize={16} fontWeight={500}>
-										DPA
-									</Text>
-									<Flex flexDir={"row"} gap={3} flexWrap={"wrap"}>
-										<ChakraBadge
-											bgColor={`${colorDpa}.100`}
-											borderColor={`${colorDpa}.100`}
-											borderWidth={1}
-											fontSize={16}
-											size={"lg"}
-											fontWeight={400}
-											color={`${colorDpa}.900`}
-										>
-											{textDpa}
-										</ChakraBadge>
-									</Flex>
-								</Flex>
-							</GridItem>
-							<GridItem colSpan={3}>
+									<ToolLogo media={tool?.logo} size={{ base: 16, md: 28 }} />
+								</Box>
+							</Flex>
+							<Flex
+								alignSelf={"center"}
+								mt={{ base: 0, md: "-5" }}
+								w={"full"}
+								gap={{ base: 3, md: 10 }}
+								justifyContent={"space-between"}
+								flexDir={{ base: "column", md: "row" }}
+							>
 								<Flex
-									w={"full"}
-									h={"100%"}
-									px={4}
-									py={5}
-									backgroundColor={"primary.subtle"}
-									borderColor={"blue.100"}
-									borderWidth={1}
-									rounded={"xl"}
-									gap={5}
-									flexDir={"column"}
+									gap={{ base: 2.5, md: 10 }}
+									flexDir={{ base: "column", md: "row" }}
 								>
-									<Text fontSize={16} fontWeight={500}>
-										Hébergement des données
-									</Text>
-									<Flex flexDir={"row"} gap={3} flexWrap={"wrap"}>
-										<Badge>TODO</Badge>
-									</Flex>
-								</Flex>
-							</GridItem>
-							<GridItem colSpan={3}>
-								<Flex
-									w={"full"}
-									h={"100%"}
-									px={4}
-									py={5}
-									backgroundColor={"primary.subtle"}
-									borderColor={"blue.100"}
-									borderWidth={1}
-									rounded={"xl"}
-									gap={5}
-									flexDir={"column"}
-								>
-									<Text fontSize={16} fontWeight={500}>
-										Localisation de l'entreprise
-									</Text>
-									<Flex flexDir={"row"} gap={3} flexWrap={"wrap"}>
-										{tool.locations_enterprise &&
-										tool.locations_enterprise.length > 0 ? (
+									<Heading
+										truncate
+										fontSize={{ base: "2xl", md: "4xl" }}
+										fontWeight={500}
+									>
+										{tool?.name}
+									</Heading>
+									<Flex gap={{ base: 2, md: 10 }} alignItems={"center"}>
+										{!isLoading && tool && (
 											<>
-												{tool.locations_enterprise.map(({ location }) => {
-													const locationPopulated = getPopulated(location);
-													if (!locationPopulated) return null;
-													return (
-														<Badge key={locationPopulated.id}>
-															{locationPopulated.name}
-														</Badge>
-													);
-												})}
+												<PrivacyScoreBadge score={tool?.privacy_score_saas} />
+												<CategoryBadge
+													category={mainCategory}
+													size={{ base: "md", md: "lg" }}
+												/>
 											</>
-										) : (
-											<Badge>Aucune information</Badge>
 										)}
 									</Flex>
 								</Flex>
-							</GridItem>
-							<GridItem colSpan={4}>
-								<Flex
-									w={"full"}
-									h={"100%"}
-									px={4}
-									py={5}
-									backgroundColor={"gray.50"}
-									borderColor={"gray.100"}
-									borderWidth={1}
-									rounded={"xl"}
-									gap={5}
-									flexDir={"column"}
-								>
-									<Text fontSize={16} fontWeight={500}>
-										Certifications
-									</Text>
-									<Flex flexDir={"row"} gap={3} flexWrap={"wrap"}>
-										{tool.certifications && tool.certifications.length > 0 ? (
-											<>
-												{tool.certifications
-													.slice(0, 2)
-													.map(({ certification }) => {
-														const certificationPopulated =
-															getPopulated(certification);
-														if (certificationPopulated)
-															return (
-																<Badge key={certificationPopulated.id}>
-																	{certificationPopulated.name}
-																</Badge>
-															);
+								<Flex gap={{ base: 2, md: 4 }} flexDir={"row"}>
+									<Button
+										size={{ base: "xs", md: "md" }}
+										bgColor={"primary.solid"}
+										asChild
+										flex={1}
+									>
+										<NextLink href={""} target="_blank">
+											<Flex
+												gap={2}
+												alignItems={"center"}
+												justifyContent={"center"}
+											>
+												<Text>Fiche détaillé</Text>
+												<LuExternalLink />
+											</Flex>
+										</NextLink>
+									</Button>
+									<Button
+										colorPalette="primary"
+										variant="outline"
+										asChild
+										size={{ base: "xs", md: "md" }}
+										flex={1}
+									>
+										<NextLink href={tool?.site_link ?? ""} target="_blank">
+											<Flex
+												gap={2}
+												alignItems={"center"}
+												justifyContent={"center"}
+											>
+												<Text>Site internet</Text>
+												<LuExternalLink />
+											</Flex>
+										</NextLink>
+									</Button>
+								</Flex>
+							</Flex>
+						</Flex>
+					</Flex>
+
+					{!isLoading && tool && (
+						<Flex w={"full"} px={{ base: 2, md: 4 }} flexDir={"column"} gap={7}>
+							<Grid
+								templateColumns={{
+									base: "repeat(1fr)",
+									md: "repeat(12, 1fr)",
+								}}
+								w={"full"}
+								gap={{ base: 2.5, md: 5 }}
+								alignItems={"stretch"}
+							>
+								<GridItem colSpan={{ base: 4, md: 2 }}>
+									<Flex
+										w={"full"}
+										h={"100%"}
+										px={4}
+										py={5}
+										bgColor={`${colorDpa}.50`}
+										borderColor={`${colorDpa}.100`}
+										borderWidth={1}
+										rounded={"xl"}
+										gap={5}
+										flexDir={"column"}
+									>
+										<Text fontSize={16} fontWeight={500}>
+											DPA
+										</Text>
+										<Flex flexDir={"row"} gap={3} flexWrap={"wrap"}>
+											<ChakraBadge
+												bgColor={`${colorDpa}.100`}
+												borderColor={`${colorDpa}.100`}
+												borderWidth={1}
+												fontSize={16}
+												size={"lg"}
+												fontWeight={400}
+												color={`${colorDpa}.900`}
+											>
+												{textDpa}
+											</ChakraBadge>
+										</Flex>
+									</Flex>
+								</GridItem>
+								<GridItem colSpan={{ base: 4, md: 3 }}>
+									<Flex
+										w={"full"}
+										h={"100%"}
+										px={4}
+										py={5}
+										backgroundColor={"primary.subtle"}
+										borderColor={"blue.100"}
+										borderWidth={1}
+										rounded={"xl"}
+										gap={5}
+										flexDir={"column"}
+									>
+										<Text fontSize={16} fontWeight={500}>
+											Hébergement des données
+										</Text>
+										<Flex flexDir={"row"} gap={3} flexWrap={"wrap"}>
+											<Badge>TODO</Badge>
+										</Flex>
+									</Flex>
+								</GridItem>
+								<GridItem colSpan={{ base: 4, md: 3 }}>
+									<Flex
+										w={"full"}
+										h={"100%"}
+										px={4}
+										py={5}
+										backgroundColor={"primary.subtle"}
+										borderColor={"blue.100"}
+										borderWidth={1}
+										rounded={"xl"}
+										gap={5}
+										flexDir={"column"}
+									>
+										<Text fontSize={16} fontWeight={500}>
+											Localisation de l'entreprise
+										</Text>
+										<Flex flexDir={"row"} gap={3} flexWrap={"wrap"}>
+											{tool.locations_enterprise &&
+											tool.locations_enterprise.length > 0 ? (
+												<>
+													{tool.locations_enterprise.map(({ location }) => {
+														const locationPopulated = getPopulated(location);
+														if (!locationPopulated) return null;
+														return (
+															<Badge key={locationPopulated.id}>
+																{locationPopulated.name}
+															</Badge>
+														);
 													})}
-												{tool.certifications.length > 2 && (
-													<Badge>+ {tool.certifications.length - 2}</Badge>
-												)}
-											</>
+												</>
+											) : (
+												<Badge>Aucune information</Badge>
+											)}
+										</Flex>
+									</Flex>
+								</GridItem>
+								<GridItem colSpan={4}>
+									<Flex
+										w={"full"}
+										h={"100%"}
+										px={4}
+										py={5}
+										backgroundColor={"gray.50"}
+										borderColor={"gray.100"}
+										borderWidth={1}
+										rounded={"xl"}
+										gap={5}
+										flexDir={"column"}
+									>
+										<Text fontSize={16} fontWeight={500}>
+											Certifications
+										</Text>
+										<Flex flexDir={"row"} gap={3} flexWrap={"wrap"}>
+											{tool.certifications && tool.certifications.length > 0 ? (
+												<>
+													{tool.certifications
+														.slice(0, 2)
+														.map(({ certification }) => {
+															const certificationPopulated =
+																getPopulated(certification);
+															if (certificationPopulated)
+																return (
+																	<Badge key={certificationPopulated.id}>
+																		{certificationPopulated.name}
+																	</Badge>
+																);
+														})}
+													{tool.certifications.length > 2 && (
+														<Badge>+ {tool.certifications.length - 2}</Badge>
+													)}
+												</>
+											) : (
+												<Text>Aucune certification</Text>
+											)}
+										</Flex>
+									</Flex>
+								</GridItem>
+							</Grid>
+							<Box
+								px={6}
+								rounded={"xl"}
+								borderColor={"blue.50"}
+								borderWidth={1}
+							>
+								<Line title="Informations sur les transferts">
+									{tool.transfer_informations ? (
+										<NextLink
+											target="_blank"
+											href={tool.transfer_informations ?? ""}
+										>
+											<Text
+												color={"primary.solid"}
+												textDecoration={"underline"}
+												textUnderlineOffset={2}
+												wordBreak="break-all"
+											>
+												{tool.transfer_informations}
+											</Text>
+										</NextLink>
+									) : (
+										<Text>Aucune information</Text>
+									)}
+								</Line>
+
+								<Line title="Remarque Localisation Hébergement">
+									{tool.location_note ? (
+										<Prose>
+											<RichText data={tool.location_note} />
+										</Prose>
+									) : (
+										<Text>Aucune information</Text>
+									)}
+								</Line>
+
+								<Line title="Actions à mener si utilisation de l'outil">
+									{tool.actions ? (
+										<Prose>
+											<RichText data={tool.actions} />
+										</Prose>
+									) : (
+										<Text>Aucune information</Text>
+									)}
+								</Line>
+
+								<Line title="Localisation hébergement : utilisateurs finaux">
+									<Flex
+										flexDir={"row"}
+										flexWrap={"wrap"}
+										gap={3}
+										overflow={"auto"}
+									>
+										{tool.locations_final_users &&
+										tool.locations_final_users.length > 0 ? (
+											tool.locations_final_users.map(({ location }) => {
+												const locationPopulated = getPopulated(location);
+												if (locationPopulated)
+													return (
+														<Badge color="blue" key={locationPopulated.id}>
+															{locationPopulated.name}
+														</Badge>
+													);
+											})
+										) : (
+											<Text>Aucune information</Text>
+										)}
+									</Flex>
+								</Line>
+
+								<Line title="Entreprise EU">
+									<BooleanBadge val={tool.enterprise_european ?? null} />
+								</Line>
+
+								<Line title="Site internet">
+									{tool.site_link ? (
+										<NextLink target="_blank" href={tool.site_link ?? ""}>
+											<Text
+												color={"primary.solid"}
+												textDecoration={"underline"}
+												textUnderlineOffset={2}
+												wordBreak="break-all"
+											>
+												{tool.site_link}
+											</Text>
+										</NextLink>
+									) : (
+										<Text>Aucune information</Text>
+									)}
+								</Line>
+
+								<Line title="Certifications des sous-traitants ou hébergeurs">
+									<Flex
+										flexDir={"row"}
+										flexWrap={"wrap"}
+										gap={3}
+										overflow={"auto"}
+									>
+										{tool.certifications_subcontractors &&
+										tool.certifications_subcontractors.length > 0 ? (
+											tool.certifications_subcontractors.map(
+												({ certification }) => {
+													const certificationPopulated =
+														getPopulated(certification);
+													if (certificationPopulated)
+														return (
+															<Badge key={certificationPopulated.id}>
+																{certificationPopulated.name}
+															</Badge>
+														);
+												},
+											)
 										) : (
 											<Text>Aucune certification</Text>
 										)}
 									</Flex>
-								</Flex>
-							</GridItem>
-						</Grid>
-						<Box px={6} rounded={"xl"} borderColor={"blue.50"} borderWidth={1}>
-							<Line title="Informations sur les transferts">
-								{tool.transfer_informations ? (
-									<NextLink
-										target="_blank"
-										href={tool.transfer_informations ?? ""}
-									>
-										<Text
-											color={"primary.solid"}
-											textDecoration={"underline"}
-											textUnderlineOffset={2}
-											wordBreak="break-all"
-										>
-											{tool.transfer_informations}
-										</Text>
-									</NextLink>
-								) : (
-									<Text>Aucune information</Text>
-								)}
-							</Line>
+								</Line>
 
-							<Line title="Remarque Localisation Hébergement">
-								{tool.location_note ? (
-									<RichText data={tool.location_note} />
-								) : (
-									<Text>Aucune information</Text>
-								)}
-							</Line>
-
-							<Line title="Actions à mener si utilisation de l'outil">
-								{tool.actions ? (
-									<RichText data={tool.actions} />
-								) : (
-									<Text>Aucune information</Text>
-								)}
-							</Line>
-
-							<Line title="Localisation hébergement : utilisateurs finaux">
-								<Flex
-									flexDir={"row"}
-									flexWrap={"wrap"}
-									gap={3}
-									overflow={"auto"}
-								>
-									{tool.locations_final_users &&
-									tool.locations_final_users.length > 0 ? (
-										tool.locations_final_users.map(({ location }) => {
-											const locationPopulated = getPopulated(location);
-											if (locationPopulated)
-												return (
-													<Badge color="blue" key={locationPopulated.id}>
-														{locationPopulated.name}
-													</Badge>
-												);
-										})
+								<Line title="Lien DPA si applicable">
+									{tool.dpa_link ? (
+										<NextLink target="_blank" href={tool.dpa_link ?? ""}>
+											<Text
+												color={"primary.solid"}
+												textDecoration={"underline"}
+												textUnderlineOffset={2}
+												wordBreak="break-all"
+											>
+												{tool.dpa_link}
+											</Text>
+										</NextLink>
 									) : (
 										<Text>Aucune information</Text>
 									)}
-								</Flex>
-							</Line>
+								</Line>
 
-							<Line title="Entreprise EU">
-								<BooleanBadge val={tool.enterprise_european ?? null} />
-							</Line>
+								<Line title="Encadrement des transferts">
+									<Flex
+										flexDir={"row"}
+										flexWrap={"wrap"}
+										gap={3}
+										overflow={"auto"}
+									>
+										{tool.transfers && tool.transfers.length > 0 ? (
+											tool.transfers.map(({ transfer }) => {
+												const transferPopulated = getPopulated(transfer);
+												if (transferPopulated)
+													return (
+														<Badge key={transferPopulated.id}>
+															{transferPopulated.name}
+														</Badge>
+													);
+											})
+										) : (
+											<Text>Aucune information</Text>
+										)}
+									</Flex>
+								</Line>
 
-							<Line title="Site internet">
-								{tool.site_link ? (
-									<NextLink target="_blank" href={tool.site_link ?? ""}>
-										<Text
-											color={"primary.solid"}
-											textDecoration={"underline"}
-											textUnderlineOffset={2}
-											wordBreak="break-all"
-										>
-											{tool.site_link}
-										</Text>
-									</NextLink>
-								) : (
-									<Text>Aucune information</Text>
-								)}
-							</Line>
+								<Line title="Fonctionnalités RGPD/Sécurité">
+									<Flex
+										flexDir={"row"}
+										flexWrap={"wrap"}
+										gap={3}
+										overflow={"auto"}
+									>
+										{tool.features && tool.features.length > 0 ? (
+											tool.features.map(({ feature }) => {
+												const featurePopulated = getPopulated(feature);
+												if (featurePopulated)
+													return (
+														<Badge key={featurePopulated.id}>
+															{featurePopulated.name}
+														</Badge>
+													);
+											})
+										) : (
+											<Text>Aucune fonctionnalité</Text>
+										)}
+									</Flex>
+								</Line>
 
-							<Line title="Certifications des sous-traitants ou hébergeurs">
-								<Flex
-									flexDir={"row"}
-									flexWrap={"wrap"}
-									gap={3}
-									overflow={"auto"}
-								>
-									{tool.certifications_subcontractors &&
-									tool.certifications_subcontractors.length > 0 ? (
-										tool.certifications_subcontractors.map(
-											({ certification }) => {
+								<Line title="Documentation en FR">
+									<BooleanBadge val={tool.fr_documentation ?? null} />
+								</Line>
+
+								<Line title="Possibilité de selfhost">
+									<BooleanBadge val={tool.self_host_possibility ?? null} />
+								</Line>
+
+								<Line title="Open source">
+									<BooleanBadge val={tool.opensource ?? null} />
+								</Line>
+
+								<Line title='Certifié "DPF"'>
+									<BooleanBadge val={tool.certification_dpf ?? null} />
+								</Line>
+
+								<Line title="Sous-traitants ultérieurs (Hébergement/Infrastructure)">
+									<Flex
+										flexDir={"row"}
+										flexWrap={"wrap"}
+										gap={3}
+										overflow={"auto"}
+									>
+										{tool.subcontractors_infra &&
+										tool.subcontractors_infra.length > 0 ? (
+											tool.subcontractors_infra.map((infra) => (
+												<Badge key={infra.id}>{infra.name}</Badge>
+											))
+										) : (
+											<Text>Aucune fonctionnalité</Text>
+										)}
+									</Flex>
+								</Line>
+
+								<Line title="DPA accessible en ligne">
+									<BooleanBadge val={tool.online_accessible_dpa ?? null} />
+								</Line>
+
+								<Line title="Localisation hébergement : relation client">
+									<Flex
+										flexDir={"row"}
+										flexWrap={"wrap"}
+										gap={3}
+										overflow={"auto"}
+									>
+										{tool.locations_host_client &&
+										tool.locations_host_client.length > 0 ? (
+											tool.locations_host_client.map(({ location }) => {
+												const locationPopulated = getPopulated(location);
+												if (locationPopulated)
+													return (
+														<Badge key={locationPopulated.id} color="blue">
+															{locationPopulated.name}
+														</Badge>
+													);
+											})
+										) : (
+											<Text>Aucune localisation</Text>
+										)}
+									</Flex>
+								</Line>
+
+								<Line title="Type d'outil">
+									<Flex
+										flexDir={"row"}
+										flexWrap={"wrap"}
+										gap={3}
+										overflow={"auto"}
+									>
+										{tool.categories && tool.categories.length > 0 ? (
+											tool.categories.map(({ category }) => {
+												const categoryPopulated = getPopulated(category);
+												if (categoryPopulated)
+													return (
+														<CategoryBadge
+															key={categoryPopulated.id}
+															category={categoryPopulated}
+														/>
+													);
+											})
+										) : (
+											<Text>Aucune catégorie</Text>
+										)}
+									</Flex>
+								</Line>
+
+								<Line title="Privacy score SELFHOSTED">
+									{tool.privacy_score_self_hosted ? (
+										<PrivacyScoreBadge score={tool.privacy_score_self_hosted} />
+									) : (
+										<Text>Aucun score SELFHOSTED</Text>
+									)}
+								</Line>
+
+								<Line title="Privacy score SAAS">
+									<PrivacyScoreBadge score={tool.privacy_score_saas} />
+								</Line>
+
+								<Line title="Transfert hors EU">
+									{tool.transfer_out_eu ? (
+										<Badge color={colorTransferOutEu}>
+											{tool.transfer_out_eu}
+										</Badge>
+									) : (
+										<Text>Aucune information</Text>
+									)}
+								</Line>
+
+								<Line title="Liste des sous-traitants ultérieurs">
+									{tool.subcontractors ? (
+										<NextLink target="_blank" href={tool.subcontractors ?? ""}>
+											<Text
+												color={"primary.solid"}
+												textDecoration={"underline"}
+												textUnderlineOffset={2}
+												wordBreak="break-all"
+											>
+												{tool.subcontractors}
+											</Text>
+										</NextLink>
+									) : (
+										<Text>Aucune liste</Text>
+									)}
+								</Line>
+
+								<Line title="Accès aux données">
+									<Flex
+										flexDir={"row"}
+										flexWrap={"wrap"}
+										gap={3}
+										overflow={"auto"}
+									>
+										{tool.accessors && tool.accessors.length > 0 ? (
+											tool.accessors.map(({ accessor }) => {
+												const accessorPopulated = getPopulated(accessor);
+												if (accessorPopulated)
+													return (
+														<Badge key={accessorPopulated.id}>
+															{accessorPopulated.name}
+														</Badge>
+													);
+											})
+										) : (
+											<Text>Aucune information</Text>
+										)}
+									</Flex>
+								</Line>
+
+								<Line title="Certifications de l'entreprise" last>
+									<Flex
+										flexDir={"row"}
+										flexWrap={"wrap"}
+										gap={3}
+										overflow={"auto"}
+									>
+										{tool.certifications && tool.certifications.length > 0 ? (
+											tool.certifications.map(({ certification }) => {
 												const certificationPopulated =
 													getPopulated(certification);
 												if (certificationPopulated)
@@ -416,267 +700,35 @@ const ToolPage = () => {
 															{certificationPopulated.name}
 														</Badge>
 													);
-											},
-										)
-									) : (
-										<Text>Aucune certification</Text>
-									)}
-								</Flex>
-							</Line>
+											})
+										) : (
+											<Text>Aucune certification</Text>
+										)}
+									</Flex>
+								</Line>
+							</Box>
+						</Flex>
+					)}
+				</Flex>
 
-							<Line title="Lien DPA si applicable">
-								{tool.dpa_link ? (
-									<NextLink target="_blank" href={tool.dpa_link ?? ""}>
-										<Text
-											color={"primary.solid"}
-											textDecoration={"underline"}
-											textUnderlineOffset={2}
-											wordBreak="break-all"
-										>
-											{tool.dpa_link}
-										</Text>
-									</NextLink>
-								) : (
-									<Text>Aucune information</Text>
-								)}
-							</Line>
+				{!isLoadingTools && tools && (
+					<Flex px={4} pt={10} gap={6} flexDir={"column"}>
+						<Text fontSize={20} fontWeight={500}>
+							Outils similaires
+						</Text>
 
-							<Line title="Encadrement des transferts">
-								<Flex
-									flexDir={"row"}
-									flexWrap={"wrap"}
-									gap={3}
-									overflow={"auto"}
-								>
-									{tool.transfers && tool.transfers.length > 0 ? (
-										tool.transfers.map(({ transfer }) => {
-											const transferPopulated = getPopulated(transfer);
-											if (transferPopulated)
-												return (
-													<Badge key={transferPopulated.id}>
-														{transferPopulated.name}
-													</Badge>
-												);
-										})
-									) : (
-										<Text>Aucune information</Text>
-									)}
-								</Flex>
-							</Line>
-
-							<Line title="Fonctionnalités RGPD/Sécurité">
-								<Flex
-									flexDir={"row"}
-									flexWrap={"wrap"}
-									gap={3}
-									overflow={"auto"}
-								>
-									{tool.features && tool.features.length > 0 ? (
-										tool.features.map(({ feature }) => {
-											const featurePopulated = getPopulated(feature);
-											if (featurePopulated)
-												return (
-													<Badge key={featurePopulated.id}>
-														{featurePopulated.name}
-													</Badge>
-												);
-										})
-									) : (
-										<Text>Aucune fonctionnalité</Text>
-									)}
-								</Flex>
-							</Line>
-
-							<Line title="Documentation en FR">
-								<BooleanBadge val={tool.fr_documentation ?? null} />
-							</Line>
-
-							<Line title="Possibilité de selfhost">
-								<BooleanBadge val={tool.self_host_possibility ?? null} />
-							</Line>
-
-							<Line title="Open source">
-								<BooleanBadge val={tool.opensource ?? null} />
-							</Line>
-
-							<Line title='Certifié "DPF"'>
-								<BooleanBadge val={tool.certification_dpf ?? null} />
-							</Line>
-
-							<Line title="Sous-traitants ultérieurs (Hébergement/Infrastructure)">
-								<Flex
-									flexDir={"row"}
-									flexWrap={"wrap"}
-									gap={3}
-									overflow={"auto"}
-								>
-									{tool.subcontractors_infra &&
-									tool.subcontractors_infra.length > 0 ? (
-										tool.subcontractors_infra.map((infra) => (
-											<Badge key={infra.id}>{infra.name}</Badge>
-										))
-									) : (
-										<Text>Aucune fonctionnalité</Text>
-									)}
-								</Flex>
-							</Line>
-
-							<Line title="DPA accessible en ligne">
-								<BooleanBadge val={tool.online_accessible_dpa ?? null} />
-							</Line>
-
-							<Line title="Localisation hébergement : relation client">
-								<Flex
-									flexDir={"row"}
-									flexWrap={"wrap"}
-									gap={3}
-									overflow={"auto"}
-								>
-									{tool.locations_host_client &&
-									tool.locations_host_client.length > 0 ? (
-										tool.locations_host_client.map(({ location }) => {
-											const locationPopulated = getPopulated(location);
-											if (locationPopulated)
-												return (
-													<Badge key={locationPopulated.id} color="blue">
-														{locationPopulated.name}
-													</Badge>
-												);
-										})
-									) : (
-										<Text>Aucune localisation</Text>
-									)}
-								</Flex>
-							</Line>
-
-							<Line title="Type d'outil">
-								<Flex
-									flexDir={"row"}
-									flexWrap={"wrap"}
-									gap={3}
-									overflow={"auto"}
-								>
-									{tool.categories && tool.categories.length > 0 ? (
-										tool.categories.map(({ category }) => {
-											const categoryPopulated = getPopulated(category);
-											if (categoryPopulated)
-												return (
-													<CategoryBadge
-														key={categoryPopulated.id}
-														category={categoryPopulated}
-													/>
-												);
-										})
-									) : (
-										<Text>Aucune catégorie</Text>
-									)}
-								</Flex>
-							</Line>
-
-							<Line title="Privacy score SELFHOSTED">
-								{tool.privacy_score_self_hosted ? (
-									<PrivacyScoreBadge score={tool.privacy_score_self_hosted} />
-								) : (
-									<Text>Aucun score SELFHOSTED</Text>
-								)}
-							</Line>
-
-							<Line title="Privacy score SAAS">
-								<PrivacyScoreBadge score={tool.privacy_score_saas} />
-							</Line>
-
-							<Line title="Transfert hors EU">
-								{tool.transfer_out_eu ? (
-									<Badge color={colorTransferOutEu}>
-										{tool.transfer_out_eu}
-									</Badge>
-								) : (
-									<Text>Aucune information</Text>
-								)}
-							</Line>
-
-							<Line title="Liste des sous-traitants ultérieurs">
-								{tool.subcontractors ? (
-									<NextLink target="_blank" href={tool.subcontractors ?? ""}>
-										<Text
-											color={"primary.solid"}
-											textDecoration={"underline"}
-											textUnderlineOffset={2}
-											wordBreak="break-all"
-										>
-											{tool.subcontractors}
-										</Text>
-									</NextLink>
-								) : (
-									<Text>Aucune liste</Text>
-								)}
-							</Line>
-
-							<Line title="Accès aux données">
-								<Flex
-									flexDir={"row"}
-									flexWrap={"wrap"}
-									gap={3}
-									overflow={"auto"}
-								>
-									{tool.accessors && tool.accessors.length > 0 ? (
-										tool.accessors.map(({ accessor }) => {
-											const accessorPopulated = getPopulated(accessor);
-											if (accessorPopulated)
-												return (
-													<Badge key={accessorPopulated.id}>
-														{accessorPopulated.name}
-													</Badge>
-												);
-										})
-									) : (
-										<Text>Aucune information</Text>
-									)}
-								</Flex>
-							</Line>
-
-							<Line title="Certifications de l'entreprise" last>
-								<Flex
-									flexDir={"row"}
-									flexWrap={"wrap"}
-									gap={3}
-									overflow={"auto"}
-								>
-									{tool.certifications && tool.certifications.length > 0 ? (
-										tool.certifications.map(({ certification }) => {
-											const certificationPopulated =
-												getPopulated(certification);
-											if (certificationPopulated)
-												return (
-													<Badge key={certificationPopulated.id}>
-														{certificationPopulated.name}
-													</Badge>
-												);
-										})
-									) : (
-										<Text>Aucune certification</Text>
-									)}
-								</Flex>
-							</Line>
-						</Box>
+						<CarouselLayout
+							id="carousel-tools"
+							items={tools}
+							isLoading={isLoadingTools}
+							component={({ item, isLoading }) => (
+								<ToolCard tool={item} isLoading={isLoading} />
+							)}
+						/>
 					</Flex>
 				)}
 			</Flex>
-
-			<Flex pt={10} gap={6} flexDir={"column"}>
-				<Text fontSize={20} fontWeight={500}>
-					Outils similaires
-				</Text>
-
-				<Carousel
-					items={tools}
-					isLoading={isLoadingTools}
-					component={({ item, isLoading }) => (
-						<ToolCard tool={item} isLoading={isLoading} />
-					)}
-				/>
-			</Flex>
-		</Flex>
+		</>
 	);
 };
 

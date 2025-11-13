@@ -5,6 +5,7 @@ import {
 	Flex,
 	Grid,
 	GridItem,
+	Heading,
 	Input,
 	Portal,
 	Select,
@@ -22,6 +23,7 @@ import {
 	type contactSubmissionFormData,
 } from "~/schemas/contact-submission";
 import ContactSuccess from "~/components/contact-success";
+import Head from "next/head";
 
 export default function Contact() {
 	const [categoriesOptions, setCategoriesOptions] = useState<ListCollection>(
@@ -84,152 +86,197 @@ export default function Contact() {
 	}, [categories, isLoadingCategories]);
 
 	return (
-		<Flex gap={6} flexDir={"column"}>
-			<Text fontSize={30} fontWeight={500}>
-				Formulaire de contact
-			</Text>
-			{isSuccess ? (
-				<ContactSuccess />
-			) : (
-				<Flex
-					as={"form"}
-					flexDir="column"
-					h="full"
-					backgroundColor={"white"}
-					p={10}
-					gap={5}
-					rounded={"3xl"}
-					borderWidth={1}
-					borderColor={"gray.100"}
-					onSubmit={handleSubmit(onSubmit)}
-				>
-					<Flex flexDir={"column"} gap={5}>
-						<Text fontSize={20} fontWeight={500}>
-							Un outil manque ?
-						</Text>
-						<Text fontSize={16} fontWeight={400} color={"gray.800"}>
-							Vous avez remarqué qu’un outil manque sur notre site ? Nous sommes
-							toujours à la recherche de nouvelles ressources pour enrichir
-							notre bibliothèque. N’hésitez pas à nous envoyer vos suggestions
-							via ce formulaire, et nous ferons de notre mieux pour l’ajouter
-							rapidement !
-						</Text>
-					</Flex>
-					<Grid
-						templateColumns={{
-							base: "1fr",
-							sm: "repeat(2, 1fr)",
-						}}
-						gap={10}
+		<>
+			<Head>
+				<title>Contact - Sanity Check</title>
+				<meta
+					name="description"
+					content="Un outil manque ? Contactez-nous et aidez-nous à rendre Sanity Check encore plus utile."
+				/>
+			</Head>
+			<Flex
+				bgColor={{ base: "white", md: "transparent" }}
+				gap={4}
+				flexDir={"column"}
+				py={{ base: 4, md: 10 }}
+			>
+				<Heading px={{ base: 4, md: 10 }} size={"2xl"}>
+					Formulaire de contact
+				</Heading>
+				{isSuccess ? (
+					<ContactSuccess />
+				) : (
+					<Flex
+						as={"form"}
+						flexDir="column"
+						h="full"
+						backgroundColor={"white"}
+						p={{ base: 6, md: 10 }}
+						gap={5}
+						rounded={"3xl"}
+						borderWidth={1}
+						borderColor={{ base: "transparent", md: "gray.100" }}
+						onSubmit={handleSubmit(onSubmit)}
 					>
-						<GridItem>
-							<Field.Root invalid={!!errors.category} gap={3}>
-								<Field.Label gap={1} color={"primary.solid"}>
-									Catégorie d'outil
-									<Field.RequiredIndicator />
-								</Field.Label>
-								<Select.Root
-									collection={categoriesOptions}
-									onValueChange={(e) => setValue("category", Number(e.value))}
-								>
-									<Select.HiddenSelect />
-									<Select.Control>
-										<Select.Trigger
-											rounded={"xl"}
-											borderWidth={1}
-											borderColor={"gray.200"}
-											h={12}
-											p={4}
-											gap={2}
-											value={category}
-										>
-											<Select.ValueText placeholder="Choisir une catégorie" />
-										</Select.Trigger>
-										<Select.IndicatorGroup>
-											<Select.Indicator />
-										</Select.IndicatorGroup>
-									</Select.Control>
-									<Portal>
-										<Select.Positioner>
-											<Select.Content
+						<Flex flexDir={"column"} gap={5}>
+							<Text fontSize={20} fontWeight={500}>
+								Un outil manque ?
+							</Text>
+							<Text fontSize={16} fontWeight={400} color={"gray.800"}>
+								Vous avez remarqué qu’un outil manque sur notre site ? Nous
+								sommes toujours à la recherche de nouvelles ressources pour
+								enrichir notre bibliothèque. N’hésitez pas à nous envoyer vos
+								suggestions via ce formulaire, et nous ferons de notre mieux
+								pour l’ajouter rapidement !
+							</Text>
+						</Flex>
+						<Grid
+							templateColumns={{
+								base: "1fr",
+								sm: "repeat(2, 1fr)",
+							}}
+							gap={5}
+						>
+							<GridItem>
+								<Field.Root invalid={!!errors.category} gap={3}>
+									<Field.Label gap={1} color={"primary.solid"}>
+										Catégorie d'outil
+										<Field.RequiredIndicator />
+									</Field.Label>
+									<Select.Root
+										collection={categoriesOptions}
+										onValueChange={(e) => setValue("category", Number(e.value))}
+									>
+										<Select.HiddenSelect />
+										<Select.Control>
+											<Select.Trigger
 												rounded={"xl"}
 												borderWidth={1}
 												borderColor={"gray.200"}
-												p={1.5}
-												gap={1}
+												h={12}
+												p={4}
+												gap={2}
+												value={category}
 											>
-												{categoriesOptions.items.map((option) => (
-													<Select.Item
-														rounded={"lg"}
-														px={2}
-														item={option}
-														key={option.value}
-													>
-														{option.label}
-														<Select.ItemIndicator />
-													</Select.Item>
-												))}
-											</Select.Content>
-										</Select.Positioner>
-									</Portal>
-								</Select.Root>
-								<Flex w={"full"} justifyContent={"end"}>
-									<Field.ErrorText>{errors.category?.message}</Field.ErrorText>
-								</Flex>
-							</Field.Root>
-						</GridItem>
-					</Grid>
-					<Grid
-						templateColumns={{
-							base: "1fr",
-							sm: "repeat(2, 1fr)",
-						}}
-						gap={10}
-					>
-						<GridItem>
-							<Field.Root invalid={!!errors.name} required gap={3}>
-								<Field.Label gap={1} color={"primary.solid"}>
-									Nom de l'outil
-									<Field.RequiredIndicator />
-								</Field.Label>
-								<Input
-									placeholder="Saisir le nom de l'outil"
-									rounded={"xl"}
-									borderWidth={1}
-									borderColor={"gray.200"}
-									p={4}
-									h={12}
-									gap={2}
-									_focus={{
-										borderColor: "gray.700",
-									}}
-									_invalid={{
-										borderColor: "red.300",
-										_focus: {
-											borderColor: "red.500",
-										},
-									}}
-									{...register("name")}
-									outline={"none"}
-								/>
-								<Flex w={"full"} justifyContent={"end"}>
-									<Field.ErrorText>{errors.name?.message}</Field.ErrorText>
-								</Flex>
-							</Field.Root>
-						</GridItem>
+												<Select.ValueText placeholder="Choisir une catégorie" />
+											</Select.Trigger>
+											<Select.IndicatorGroup>
+												<Select.Indicator />
+											</Select.IndicatorGroup>
+										</Select.Control>
+										<Portal>
+											<Select.Positioner>
+												<Select.Content
+													rounded={"xl"}
+													borderWidth={1}
+													borderColor={"gray.200"}
+													p={1.5}
+													gap={1}
+												>
+													{categoriesOptions.items.map((option) => (
+														<Select.Item
+															rounded={"lg"}
+															px={2}
+															item={option}
+															key={option.value}
+														>
+															{option.label}
+															<Select.ItemIndicator />
+														</Select.Item>
+													))}
+												</Select.Content>
+											</Select.Positioner>
+										</Portal>
+									</Select.Root>
+									<Flex w={"full"} justifyContent={"end"}>
+										<Field.ErrorText>
+											{errors.category?.message}
+										</Field.ErrorText>
+									</Flex>
+								</Field.Root>
+							</GridItem>
+						</Grid>
+						<Grid
+							templateColumns={{
+								base: "1fr",
+								sm: "repeat(2, 1fr)",
+							}}
+							gap={5}
+						>
+							<GridItem>
+								<Field.Root invalid={!!errors.name} required gap={3}>
+									<Field.Label gap={1} color={"primary.solid"}>
+										Nom de l'outil
+										<Field.RequiredIndicator />
+									</Field.Label>
+									<Input
+										placeholder="Saisir le nom de l'outil"
+										rounded={"xl"}
+										borderWidth={1}
+										borderColor={"gray.200"}
+										p={4}
+										h={12}
+										gap={2}
+										_focus={{
+											borderColor: "gray.700",
+										}}
+										_invalid={{
+											borderColor: "red.300",
+											_focus: {
+												borderColor: "red.500",
+											},
+										}}
+										{...register("name")}
+										outline={"none"}
+									/>
+									<Flex w={"full"} justifyContent={"end"}>
+										<Field.ErrorText>{errors.name?.message}</Field.ErrorText>
+									</Flex>
+								</Field.Root>
+							</GridItem>
 
-						<GridItem>
-							<Field.Root invalid={!!errors.url} required gap={3}>
+							<GridItem>
+								<Field.Root invalid={!!errors.url} required gap={3}>
+									<Field.Label gap={1} color={"primary.solid"}>
+										Site web de l'outil
+										<Field.RequiredIndicator />
+									</Field.Label>
+									<Input
+										placeholder="Saisir l'URL du site web"
+										rounded={"xl"}
+										borderWidth={1}
+										borderColor={"gray.200"}
+										h={12}
+										p={4}
+										gap={2}
+										_focus={{
+											borderColor: "gray.700",
+										}}
+										_invalid={{
+											borderColor: "red.300",
+											_focus: {
+												borderColor: "red.500",
+											},
+										}}
+										{...register("url")}
+										outline={"none"}
+									/>
+									<Flex w={"full"} justifyContent={"end"}>
+										<Field.ErrorText>{errors.url?.message}</Field.ErrorText>
+									</Flex>
+								</Field.Root>
+							</GridItem>
+						</Grid>
+						<Flex>
+							<Field.Root invalid={!!errors.comment} gap={3}>
 								<Field.Label gap={1} color={"primary.solid"}>
-									Site web de l'outil
-									<Field.RequiredIndicator />
+									Commentaire
 								</Field.Label>
-								<Input
-									placeholder="Saisir l'URL du site web"
+								<Textarea
+									placeholder="Ecrire du texte"
 									rounded={"xl"}
 									borderWidth={1}
 									borderColor={"gray.200"}
-									h={12}
 									p={4}
 									gap={2}
 									_focus={{
@@ -241,55 +288,26 @@ export default function Contact() {
 											borderColor: "red.500",
 										},
 									}}
-									{...register("url")}
+									{...register("comment")}
+									resize={"none"}
 									outline={"none"}
 								/>
-								<Flex w={"full"} justifyContent={"end"}>
-									<Field.ErrorText>{errors.url?.message}</Field.ErrorText>
-								</Flex>
+								<Field.ErrorText>{errors.comment?.message}</Field.ErrorText>
 							</Field.Root>
-						</GridItem>
-					</Grid>
-					<Flex>
-						<Field.Root invalid={!!errors.comment} gap={3}>
-							<Field.Label gap={1} color={"primary.solid"}>
-								Commentaire
-							</Field.Label>
-							<Textarea
-								placeholder="Ecrire du texte"
-								rounded={"xl"}
-								borderWidth={1}
-								borderColor={"gray.200"}
-								p={4}
-								gap={2}
-								_focus={{
-									borderColor: "gray.700",
-								}}
-								_invalid={{
-									borderColor: "red.300",
-									_focus: {
-										borderColor: "red.500",
-									},
-								}}
-								{...register("comment")}
-								resize={"none"}
-								outline={"none"}
-							/>
-							<Field.ErrorText>{errors.comment?.message}</Field.ErrorText>
-						</Field.Root>
+						</Flex>
+						<Flex justifyContent={"end"}>
+							<Button type="submit" size={"lg"} colorPalette={"primary"}>
+								<Flex justifyContent={"center"} alignItems={"center"} gap={2}>
+									<Text fontSize={20} fontWeight={500}>
+										Envoyer
+									</Text>
+									<SendIcon w={6} h={6} color={"white"} />
+								</Flex>
+							</Button>
+						</Flex>
 					</Flex>
-					<Flex justifyContent={"end"}>
-						<Button type="submit" size={"lg"} colorPalette={"primary"}>
-							<Flex justifyContent={"center"} alignItems={"center"} gap={2}>
-								<Text fontSize={20} fontWeight={500}>
-									Envoyer
-								</Text>
-								<SendIcon w={6} h={6} color={"white"} />
-							</Flex>
-						</Button>
-					</Flex>
-				</Flex>
-			)}
-		</Flex>
+				)}
+			</Flex>
+		</>
 	);
 }

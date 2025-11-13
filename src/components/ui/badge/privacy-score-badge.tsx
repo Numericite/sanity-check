@@ -1,9 +1,9 @@
-import { Badge } from "@chakra-ui/react";
+import { Badge, Heading, type ConditionalValue } from "@chakra-ui/react";
 
 type PrivacyScoreBadgeProps = {
 	score: "A" | "B" | "C" | "D" | "E" | "F" | "N" | null | undefined;
 	active?: boolean;
-	size?: "md" | "sm";
+	size?: ConditionalValue<"md" | "sm">;
 };
 
 const colors = {
@@ -16,11 +16,6 @@ const colors = {
 	N: { active: "gray.500", bgColor: "gray.50" },
 };
 
-const styles = {
-	md: { fontSize: 22, p: 2.5 },
-	sm: { fontSize: 20, p: 1.5 },
-};
-
 const PrivacyScoreBadge = ({
 	score,
 	active = true,
@@ -31,6 +26,9 @@ const PrivacyScoreBadge = ({
 		? colors[normalizedScore].active
 		: colors[normalizedScore].bgColor;
 	const fontColor = active ? "white" : colors[normalizedScore].active;
+	const borderColor = active
+		? colors[normalizedScore].bgColor
+		: colors[normalizedScore].active;
 
 	return (
 		<Badge
@@ -39,10 +37,9 @@ const PrivacyScoreBadge = ({
 			fontWeight={500}
 			lineHeight="0.7"
 			borderWidth={1}
-			borderColor={color}
-			{...styles[size]}
+			borderColor={`${borderColor}/30`}
 		>
-			{normalizedScore}
+			<Heading size={size}>{normalizedScore}</Heading>
 		</Badge>
 	);
 };

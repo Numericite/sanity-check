@@ -6,12 +6,13 @@ import {
 	Text,
 	Separator,
 	Switch,
-	Icon,
+	useBreakpointValue,
 } from "@chakra-ui/react";
 import Badge from "~/components/ui/badge/badge";
 import PrivacyScoreBadge from "~/components/ui/badge/privacy-score-badge";
 import { IoMdClose } from "react-icons/io";
 import { SearchIcon } from "./ui/icon/icons";
+import CollapsibleLayout from "./ui/collapsible/collapsible-layout";
 
 type Score = "A" | "B" | "C" | "D" | "E" | "F";
 
@@ -28,7 +29,7 @@ interface Props {
 	setDpa: (value: boolean) => void;
 }
 
-export default function CategoriesFilters({
+function Filters({
 	search,
 	setSearch,
 	scores,
@@ -41,28 +42,15 @@ export default function CategoriesFilters({
 	setDpa,
 }: Props) {
 	return (
-		<Flex
-			flexDir={"column"}
-			w={"1/3"}
-			px={5}
-			py={6}
-			borderWidth={1}
-			borderColor={"gray.200"}
-			rounded={"2xl"}
-			gap={7}
-			h={"fit"}
-		>
-			<Text fontSize={24} fontWeight={500}>
-				Filtres
-			</Text>
-
+		<>
 			<Flex flexDir={"column"} gap={3}>
 				<Text fontSize={16} fontWeight={400}>
 					Rechercher
 				</Text>
 				<InputGroup>
 					<Flex
-						bgColor={"gray.50"}
+						w={"full"}
+						bgColor={"white"}
 						borderRadius={12}
 						py={4}
 						px={5}
@@ -88,6 +76,7 @@ export default function CategoriesFilters({
 							unstyled
 							fontSize={16}
 							fontWeight={400}
+							w={"full"}
 						/>
 						<Button
 							visibility={search !== "" ? "visible" : "hidden"}
@@ -178,11 +167,61 @@ export default function CategoriesFilters({
 							cursor={"pointer"}
 							onClick={() => handleCertification(index)}
 						>
-							<Badge active={certification.active}>{certification.name}</Badge>
+							<Badge color="white" active={certification.active}>
+								{certification.name}
+							</Badge>
 						</Button>
 					))}
 				</Flex>
 			</Flex>
+		</>
+	);
+}
+
+export default function CategoriesFilters(props: Props) {
+	const currentBreakpoint = useBreakpointValue({
+		base: "base",
+		sm: "sm",
+		md: "md",
+		lg: "lg",
+		xl: "xl",
+	});
+
+	if (currentBreakpoint === "base") {
+		return (
+			<CollapsibleLayout
+				item={{
+					buttonContent: (
+						<Flex gap={2} alignItems={"center"}>
+							<Text fontWeight={500} fontSize={24}>
+								Filtres
+							</Text>
+						</Flex>
+					),
+					content: <Filters {...props} />,
+				}}
+			/>
+		);
+	}
+
+	return (
+		<Flex
+			flexDir={"column"}
+			w={"full"}
+			px={5}
+			py={6}
+			borderWidth={1}
+			borderColor={"gray.200"}
+			rounded={"2xl"}
+			gap={7}
+			h={"fit"}
+			bgColor={"bg.subtle"}
+		>
+			<Text fontSize={24} fontWeight={500}>
+				Filtres
+			</Text>
+
+			<Filters {...props} />
 		</Flex>
 	);
 }

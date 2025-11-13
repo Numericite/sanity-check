@@ -1,4 +1,4 @@
-import { Button, Flex, Skeleton, Text } from "@chakra-ui/react";
+import { Button, Flex, Heading, Skeleton, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
 import type { Category } from "~/payload/payload-types";
 import CategoryIcon from "../icon/category-icon";
@@ -13,8 +13,10 @@ export default function CategoryCard({
 	category,
 	isLoading,
 }: CategoryCardProps) {
+	const categoriesLength = category?.relatedTools?.docs?.length ?? 0;
+
 	return (
-		<Skeleton loading={isLoading}>
+		<Skeleton loading={isLoading} w={"full"}>
 			<Flex
 				p={5}
 				rounded={"3xl"}
@@ -28,31 +30,40 @@ export default function CategoryCard({
 				<Flex
 					w={"full"}
 					h={36}
-					bg={`${category?.color}.50`}
+					bg={`${category?.color ?? "gray"}.50`}
 					rounded={"2.5xl"}
 					p={3}
 					gap={1}
 					justifyContent={"center"}
 					alignItems={"center"}
+					borderWidth={1}
+					borderColor={`${category?.color ?? "gray"}.100`}
 				>
-					<CategoryIcon size={60} category={category} />
+					<CategoryIcon size={16} category={category} />
 				</Flex>
 
 				{/* Title & count tools */}
-				<Flex justifyContent={"space-between"} alignItems={"center"}>
-					<Text fontSize={20} fontWeight={500}>
-						{category?.name}
-					</Text>
+				<Flex
+					justifyContent={"space-between"}
+					alignItems={{ base: "start", md: "center" }}
+					flexDir={{ base: "column", md: "row" }}
+					gap={1}
+				>
+					<Heading size={"lg"}>{category?.name ?? "Chargement..."}</Heading>
 					<Badge>
-						{category?.relatedTools?.docs?.length} outil
-						{category?.relatedTools?.docs?.length &&
-						category?.relatedTools.docs?.length > 1
+						{categoriesLength} outil
+						{categoriesLength && categoriesLength > 1
 							? "s"
 							: ""}
 					</Badge>
 				</Flex>
 
-				<Text fontSize={14} fontWeight={300}>
+				<Text
+					fontSize={"sm"}
+					lineClamp={3}
+					lineHeight={1.5}
+					h={"calc(1.5em * 3)"}
+				>
 					{category?.description}
 				</Text>
 
