@@ -41,72 +41,72 @@ const Navbar = () => {
 	const pathname = usePathname();
 
 	return (
-		<Container>
-			<Flex
-				bgColor={"white"}
-				alignItems="center"
-				justifyContent="space-between"
-				borderBottomWidth={1}
-				borderColor={"gray.100"}
-				py={6}
-			>
-				<ChakraLink
-					color="black"
-					_hover={{ textDecoration: "none" }}
-					_focus={{ outline: "none" }}
-					asChild
-				>
-					<NextLink href="/" passHref>
-						<Flex alignItems="center" gap={2}>
-							<Flex
-								bgColor="primary.active"
-								rounded="full"
-								h={10}
-								w={10}
-								justifyContent={"center"}
-								alignItems={"center"}
-							>
-								<Text color="white" fontWeight={500} fontSize={20}>
-									S
-								</Text>
-							</Flex>
-							<Heading as={"h1"} color="black">
-								Sanity Check
-							</Heading>
-						</Flex>
-					</NextLink>
-				</ChakraLink>
+		<Box borderBottomWidth={1} borderColor={"gray.100"}>
+			<Container>
 				<Flex
-					display={{ base: "none", md: "flex" }}
+					bgColor={"white"}
 					alignItems="center"
-					gap={7}
+					justifyContent="space-between"
+					py={6}
 				>
-					<NavbarItem href="/" isActive={pathname === "/"}>
-						Accueil
-					</NavbarItem>
-					<NavbarItem
-						href="/categories"
-						isActive={pathname?.startsWith("/categories") ?? false}
+					<ChakraLink
+						color="black"
+						_hover={{ textDecoration: "none" }}
+						_focus={{ outline: "none" }}
+						asChild
 					>
-						Catégories d'outils
-					</NavbarItem>
-					<NavbarItem href="/about" isActive={pathname === "/about"}>
-						À propos
-					</NavbarItem>
+						<NextLink href="/" passHref>
+							<Flex alignItems="center" gap={2}>
+								<Flex
+									bgColor="primary.active"
+									rounded="full"
+									h={10}
+									w={10}
+									justifyContent={"center"}
+									alignItems={"center"}
+								>
+									<Text color="white" fontWeight={500} fontSize={20}>
+										S
+									</Text>
+								</Flex>
+								<Heading as={"h1"} color="black">
+									Sanity Check
+								</Heading>
+							</Flex>
+						</NextLink>
+					</ChakraLink>
+					<Flex
+						display={{ base: "none", md: "flex" }}
+						alignItems="center"
+						gap={7}
+					>
+						<NavbarItem href="/" isActive={pathname === "/"}>
+							Accueil
+						</NavbarItem>
+						<NavbarItem
+							href="/categories"
+							isActive={pathname?.startsWith("/categories") ?? false}
+						>
+							Catégories d'outils
+						</NavbarItem>
+						<NavbarItem href="/about" isActive={pathname === "/about"}>
+							À propos
+						</NavbarItem>
+					</Flex>
+					<Flex
+						display={{ base: "none", md: "flex" }}
+						alignItems="center"
+						gap={4}
+					>
+						<Text color="black">Un outil manque ?</Text>
+						<Button asChild colorScheme="blue" variant="outline">
+							<NextLink href={"/contact"}>Contactez-nous</NextLink>
+						</Button>
+					</Flex>
+					<MobileNavbar pathname={pathname} />
 				</Flex>
-				<Flex
-					display={{ base: "none", md: "flex" }}
-					alignItems="center"
-					gap={4}
-				>
-					<Text color="black">Un outil manque ?</Text>
-					<Button asChild colorScheme="blue" variant="outline">
-						<NextLink href={"/contact"}>Contactez-nous</NextLink>
-					</Button>
-				</Flex>
-				<MobileNavbar pathname={pathname} />
-			</Flex>
-		</Container>
+			</Container>
+		</Box>
 	);
 };
 
