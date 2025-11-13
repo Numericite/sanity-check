@@ -167,9 +167,7 @@ function Filters({
 							cursor={"pointer"}
 							onClick={() => handleCertification(index)}
 						>
-							<Badge color="white" active={certification.active}>
-								{certification.name}
-							</Badge>
+							<Badge active={certification.active}>{certification.name}</Badge>
 						</Button>
 					))}
 				</Flex>
@@ -215,7 +213,7 @@ export default function CategoriesFilters(props: Props) {
 			rounded={"2xl"}
 			gap={7}
 			h={"fit"}
-			bgColor={"bg.subtle"}
+			bgColor={"gray.50"}
 		>
 			<Text fontSize={24} fontWeight={500}>
 				Filtres
