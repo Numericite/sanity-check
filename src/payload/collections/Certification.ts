@@ -8,6 +8,16 @@ export const Certifications: CollectionConfig = {
 	admin: {
 		useAsTitle: "name",
 	},
+	labels: {
+		singular: {
+			en: "Certification",
+			fr: "Certification",
+		},
+		plural: {
+			en: "Certifications",
+			fr: "Certifications",
+		},
+	},
 	fields: [
 		{
 			name: "name",
