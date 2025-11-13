@@ -7,7 +7,7 @@ import {
 	Link as ChakraLink,
 	Box,
 } from "@chakra-ui/react";
-import { CiMenuBurger } from "react-icons/ci";
+import { HiBars3 } from "react-icons/hi2";
 import NextLink from "next/link";
 import { useState } from "react";
 
@@ -66,7 +66,7 @@ export default function MobileNavbar({
 				<Drawer.Backdrop />
 				<Drawer.Trigger asChild>
 					<Button variant={"plain"} aria-label="Ouvrir le menu">
-						<Icon h={5} w={5} as={CiMenuBurger} />
+						<Icon h={7} w={7} as={HiBars3} />
 					</Button>
 				</Drawer.Trigger>
 				<Drawer.Positioner>
