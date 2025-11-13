@@ -13,6 +13,8 @@ export default function CategoryCard({
 	category,
 	isLoading,
 }: CategoryCardProps) {
+	const categoriesLength = category?.relatedTools?.docs?.length ?? 0;
+
 	return (
 		<Skeleton loading={isLoading} w={"full"}>
 			<Flex
@@ -49,9 +51,8 @@ export default function CategoryCard({
 				>
 					<Heading size={"lg"}>{category?.name ?? "Chargement..."}</Heading>
 					<Badge>
-						{category?.relatedTools?.docs?.length ?? 0} outil
-						{category?.relatedTools?.docs?.length &&
-						category?.relatedTools.docs?.length > 1
+						{categoriesLength} outil
+						{categoriesLength && categoriesLength > 1
 							? "s"
 							: ""}
 					</Badge>
