@@ -171,7 +171,7 @@ export default function Category() {
 					<Grid
 						templateColumns={{
 							base: "1fr",
-							sm: "25% 75%",
+							sm: "25% 1fr",
 						}}
 						w={"full"}
 						gap={6}
