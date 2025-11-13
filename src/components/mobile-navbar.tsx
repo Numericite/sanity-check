@@ -6,6 +6,7 @@ import {
 	Icon,
 	Link as ChakraLink,
 	Box,
+	CloseButton,
 } from "@chakra-ui/react";
 import { HiBars3 } from "react-icons/hi2";
 import NextLink from "next/link";
@@ -76,14 +77,12 @@ export default function MobileNavbar({
 						borderWidth={1}
 						borderColor={"gray.100"}
 						p={2}
-						gap={7}
 					>
-						<Drawer.Header asChild>
-							<Drawer.Title asChild>
-								<Heading fontSize={24} color="black">
-									Sanity Check
-								</Heading>
-							</Drawer.Title>
+						<Drawer.Header>
+							<Drawer.Title fontSize={"2xl"}>Sanity Check</Drawer.Title>
+							<Drawer.CloseTrigger asChild pos="initial">
+								<CloseButton />
+							</Drawer.CloseTrigger>
 						</Drawer.Header>
 						<Drawer.Body gap={2}>
 							<NavbarItem
