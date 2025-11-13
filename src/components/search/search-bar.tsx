@@ -233,7 +233,12 @@ export default function SearchBar() {
 									</Flex>
 								</Flex>
 							) : (
-								<Flex alignItems={"center"} gap={1}>
+								<Flex
+									alignItems={"center"}
+									justifyContent={"center"}
+									p={2}
+									gap={1}
+								>
 									<Text>Aucun résultat</Text>
 								</Flex>
 							)}
