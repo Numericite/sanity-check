@@ -67,9 +67,7 @@ export default buildConfig({
 		s3Storage({
 			enabled: isUsingAws,
 			collections: {
-				media: {
-					prefix: "media",
-				},
+				media: true,
 			},
 			bucket: process.env.S3_BUCKET || "",
 			config: {
