@@ -1,14 +1,12 @@
 import { Box, Flex, Heading } from "@chakra-ui/react";
 
-export default function Line({
-	title,
-	last = false,
-	children,
-}: {
+type Props = {
 	title: string;
 	last?: boolean;
-	children: React.ReactNode;
-}) {
+	content: React.ReactNode;
+};
+
+export default function Line({ title, last = false, content }: Props) {
 	return (
 		<Flex
 			w={"full"}
@@ -32,7 +30,7 @@ export default function Line({
 				justifyContent={"start"}
 				alignItems={"center"}
 			>
-				{children}
+				{content}
 			</Flex>
 		</Flex>
 	);

@@ -5,6 +5,7 @@ import type { Category } from "~/payload/payload-types";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import type { filtersSchemaType } from "~/server/schema/filters-schema";
 import { getListSchema } from "~/server/schema/get-list-schema";
+import type { ToolRichType } from "~/types/tool-rich-types";
 
 function getWhere(filters: filtersSchemaType): Where {
 	const where: Where =
@@ -113,11 +114,13 @@ export const toolRouter = createTRPCRouter({
 				depth: 1,
 			});
 
-			return {
+			const toolRichTypes: ToolRichType = {
 				...tool,
 				location_note: tool.location_note as SerializedEditorState,
 				actions: tool.actions as SerializedEditorState,
 				category: tool.categories as Category | null,
 			};
+
+			return toolRichTypes;
 		}),
 });

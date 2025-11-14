@@ -6,6 +6,7 @@ import * as migration_20251023_132714_add_contact_submissions_table from './2025
 import * as migration_20251105_142709_remove_fonctionnalities_vigilances_recommendations_in_category from './20251105_142709_remove_fonctionnalities_vigilances_recommendations_in_category';
 import * as migration_20251105_142734_add_fonctionnalities_vigilances_recommendations_in_category from './20251105_142734_add_fonctionnalities_vigilances_recommendations_in_category';
 import * as migration_20251105_160408_add_category_slug from './20251105_160408_add_category_slug';
+import * as migration_20251117_132630_add_lines from './20251117_132630_add_lines';
 
 export const migrations = [
   {
@@ -41,11 +42,16 @@ export const migrations = [
   {
     up: migration_20251105_142734_add_fonctionnalities_vigilances_recommendations_in_category.up,
     down: migration_20251105_142734_add_fonctionnalities_vigilances_recommendations_in_category.down,
-    name: '20251105_142734_add_fonctionnalities_vigilances_recommendations_in_category'
+    name: '20251105_142734_add_fonctionnalities_vigilances_recommendations_in_category',
   },
   {
     up: migration_20251105_160408_add_category_slug.up,
     down: migration_20251105_160408_add_category_slug.down,
-    name: '20251105_160408_add_category_slug'
+    name: '20251105_160408_add_category_slug',
+  },
+  {
+    up: migration_20251117_132630_add_lines.up,
+    down: migration_20251117_132630_add_lines.down,
+    name: '20251117_132630_add_lines'
   },
 ];

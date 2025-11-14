@@ -76,6 +76,7 @@ export interface Config {
     transfers: Transfer;
     features: Feature;
     contactSubmissions: ContactSubmission;
+    lines: Line;
     users: User;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -96,6 +97,7 @@ export interface Config {
     transfers: TransfersSelect<false> | TransfersSelect<true>;
     features: FeaturesSelect<false> | FeaturesSelect<true>;
     contactSubmissions: ContactSubmissionsSelect<false> | ContactSubmissionsSelect<true>;
+    lines: LinesSelect<false> | LinesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -432,6 +434,19 @@ export interface ContactSubmission {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "lines".
+ */
+export interface Line {
+  id: number;
+  _order?: string | null;
+  slug: string;
+  name: string;
+  active?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -496,6 +511,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'contactSubmissions';
         value: number | ContactSubmission;
+      } | null)
+    | ({
+        relationTo: 'lines';
+        value: number | Line;
       } | null)
     | ({
         relationTo: 'users';
@@ -727,6 +746,18 @@ export interface ContactSubmissionsSelect<T extends boolean = true> {
   name?: T;
   url?: T;
   comment?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "lines_select".
+ */
+export interface LinesSelect<T extends boolean = true> {
+  _order?: T;
+  slug?: T;
+  name?: T;
+  active?: T;
   updatedAt?: T;
   createdAt?: T;
 }

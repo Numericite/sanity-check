@@ -11,6 +11,7 @@ import { seed as features } from "./features";
 import { seed as locations } from "./locations";
 import { seed as tools } from "./tools";
 import { seed as transfers } from "./transfers";
+import { seed as lines } from "./lines";
 
 const seedData = async () => {
 	try {
@@ -46,6 +47,10 @@ const seedData = async () => {
 		console.log("⚪️ Features seed begin");
 		await features(payload);
 		console.log("✅ Features seed done");
+
+		console.log("⚪️ Lines seed begin");
+		await lines(payload);
+		console.log("✅ Lines seed done");
 
 		console.log("⚪️ Tools seed begin");
 		await tools(payload);
