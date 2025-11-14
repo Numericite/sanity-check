@@ -4,6 +4,7 @@ import { postgresAdapter } from "@payloadcms/db-postgres";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { buildConfig } from "payload";
 import sharp from "sharp";
+import { s3Storage } from "@payloadcms/storage-s3";
 
 import { Accessors } from "./collections/Accessor";
 import { Categories } from "./collections/Category";
@@ -15,6 +16,15 @@ import { Tools } from "./collections/Tools";
 import { Transfers } from "./collections/Transfer";
 import { ContactSubmissions } from "./collections/ContactSubmission";
 import { fr } from "@payloadcms/translations/languages/fr";
+
+const hasAwsCreds = Boolean(
+	process.env.S3_ACCESS_KEY_ID &&
+		process.env.S3_SECRET_ACCESS_KEY &&
+		process.env.S3_BUCKET &&
+		process.env.S3_REGION,
+);
+
+const isUsingAws = hasAwsCreds && process.env.NODE_ENV === "production";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -53,6 +63,24 @@ export default buildConfig({
 			"./payload-generated-schema.ts",
 		),
 	}),
+	plugins: [
+		s3Storage({
+			enabled: isUsingAws,
+			collections: {
+				media: {
+					prefix: "media",
+				},
+			},
+			bucket: process.env.S3_BUCKET || "",
+			config: {
+				credentials: {
+					accessKeyId: process.env.S3_ACCESS_KEY_ID || "",
+					secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || "",
+				},
+				region: process.env.S3_REGION,
+			},
+		}),
+	],
 	sharp,
 	typescript: {
 		outputFile: path.resolve(dirname, "payload-types.ts"),
