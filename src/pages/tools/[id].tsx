@@ -272,7 +272,7 @@ const ToolPage = () => {
 											Hébergement des données
 										</Text>
 										<Flex flexDir={"row"} gap={3} flexWrap={"wrap"}>
-											<Badge>TODO</Badge>
+											<Badge color="blue">TODO</Badge>
 										</Flex>
 									</Flex>
 								</GridItem>
@@ -300,7 +300,7 @@ const ToolPage = () => {
 														const locationPopulated = getPopulated(location);
 														if (!locationPopulated) return null;
 														return (
-															<Badge key={locationPopulated.id}>
+															<Badge color="blue" key={locationPopulated.id}>
 																{locationPopulated.name}
 															</Badge>
 														);

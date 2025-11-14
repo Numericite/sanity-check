@@ -17,8 +17,8 @@ export default function Badge({
 }: Props) {
 	return (
 		<ChakraBadge
-			bgColor={`${color}.${active ? 600 : 50}`}
-			borderColor={`${color}.${active ? 600 : 100}`}
+			bgColor={`${color}.${active ? 700 : 100}`}
+			borderColor={`${color}.${active ? 700 : 200}`}
 			borderWidth={1}
 			size={size}
 			rounded={rounded === "full" ? "full" : undefined}

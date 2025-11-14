@@ -22,16 +22,59 @@ export const toolRouter = createTRPCRouter({
 						}
 					: {};
 
-			if (!sort?.includes("random")) {
-				const tools = await ctx.payload.find({
-					collection: "tools",
-					limit,
-					where,
-					sort,
-				});
+			const tools = await ctx.payload.find({
+				collection: "tools",
+				limit,
+				where,
+				sort,
+				page,
+			});
 
-				return tools.docs;
-			}
+			return tools.docs;
+		}),
+
+	getListPagination: publicProcedure
+		.input(getListSchema)
+		.query(async ({ ctx, input }) => {
+			const { limit = 10, page = 1, filters, sort } = input;
+
+			const where: Where =
+				filters && filters.length > 0
+					? {
+							and: filters.map((filter) => ({
+								[filter.key]: {
+									[filter.operation ?? "equals"]: filter.value,
+								},
+							})),
+						}
+					: {};
+
+			const tools = await ctx.payload.find({
+				collection: "tools",
+				limit,
+				where,
+				sort,
+				page,
+			});
+
+			return tools;
+		}),
+
+	getListRandom: publicProcedure
+		.input(getListSchema)
+		.query(async ({ ctx, input }) => {
+			const { filters, limit = 10 } = input;
+
+			const where: Where =
+				filters && filters.length > 0
+					? {
+							and: filters.map((filter) => ({
+								[filter.key]: {
+									[filter.operation ?? "equals"]: filter.value,
+								},
+							})),
+						}
+					: {};
 
 			const totalResult = await ctx.payload.find({
 				collection: "tools",

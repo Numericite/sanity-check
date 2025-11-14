@@ -1,4 +1,14 @@
-import { Box, Flex, Grid, GridItem, Heading, Text } from "@chakra-ui/react";
+import {
+	Box,
+	ButtonGroup,
+	Flex,
+	Grid,
+	GridItem,
+	Heading,
+	IconButton,
+	Pagination,
+	Text,
+} from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import Badge from "~/components/ui/badge/badge";
 import BreadcrumbLayout from "~/components/ui/breadcrumb/breadcrumb-layout";
@@ -11,10 +21,15 @@ import { useCategoryFilters } from "~/hooks/use-categories-filters";
 import CategoryDrawer from "~/components/category-drawer";
 import Head from "next/head";
 import CarouselLayout from "~/components/ui/carousel/carousel-layout";
+import { useState } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
+const pageSize = 8;
 
 export default function Category() {
 	const router = useRouter();
 	const { id } = router.query;
+	const [page, setPage] = useState(1);
 
 	const {
 		search,
@@ -30,17 +45,19 @@ export default function Category() {
 		filters,
 	} = useCategoryFilters();
 
-	const { data: tools, isLoading: isLoadingTools } = api.tool.getList.useQuery(
-		{
-			limit: 0,
-			sort: ["privacy_score_saas", "dpa_compliant"],
-			filters: [
-				{ key: "categories.category", value: (id ?? 0).toString() },
-				...filters,
-			],
-		},
-		{ enabled: !!id },
-	);
+	const { data: tools, isLoading: isLoadingTools } =
+		api.tool.getListPagination.useQuery(
+			{
+				limit: pageSize,
+				page,
+				sort: ["privacy_score_saas", "dpa_compliant"],
+				filters: [
+					{ key: "categories.category", value: (id ?? 0).toString() },
+					...filters,
+				],
+			},
+			{ enabled: !!id },
+		);
 
 	const { data: category, isLoading } = api.category.getById.useQuery(
 		Number(id),
@@ -61,6 +78,9 @@ export default function Category() {
 				initialData: Array.from({ length: 6 }),
 			},
 		);
+
+	const toolsLength = category?.relatedTools?.docs?.length ?? 0;
+	const toolsVisible = tools?.totalDocs ?? 0;
 
 	return (
 		<>
@@ -155,11 +175,8 @@ export default function Category() {
 								>
 									{category && (
 										<Badge size={{ base: "md", md: "lg" }}>
-											{category?.relatedTools?.docs?.length} outil
-											{category?.relatedTools?.docs?.length &&
-											category?.relatedTools.docs.length > 1
-												? "s"
-												: ""}
+											{toolsLength} outil
+											{toolsLength && toolsLength > 1 ? "s" : ""}
 										</Badge>
 									)}
 									<CategoryDrawer category={category} />
@@ -196,33 +213,73 @@ export default function Category() {
 									sm: "repeat(2, 1fr)",
 								}}
 								h={"fit"}
-								w={"full"}
 								gap={6}
 							>
 								{isLoadingTools &&
-									Array.from({ length: 6 }).map((_, index) => (
-										<GridItem key={`skeleton-${index}`}>
-											<ToolCard tool={null} isLoading hideCategory />
+									Array.from({ length: pageSize }).map((_, index) => (
+										<GridItem key={`tool-${index}`}>
+											<ToolCard
+												tool={null}
+												isLoading={isLoadingTools}
+												hideCategory
+											/>
 										</GridItem>
 									))}
 
-								{!isLoadingTools && tools?.length === 0 && (
+								{tools?.docs.map((tool, index) => (
+									<GridItem key={`tool-${index}`}>
+										<ToolCard
+											tool={tool}
+											isLoading={isLoadingTools}
+											hideCategory
+										/>
+									</GridItem>
+								))}
+
+								{!isLoadingTools && tools?.docs.length === 0 && (
 									<GridItem colSpan={2} textAlign={"center"}>
 										<Text fontSize={18} color="gray.500">
 											Aucun résultat
 										</Text>
 									</GridItem>
 								)}
-
-								{!isLoadingTools &&
-									tools &&
-									tools?.length > 0 &&
-									tools.map((tool) => (
-										<GridItem key={tool.id} minW={0}>
-											<ToolCard tool={tool} isLoading={false} hideCategory />
-										</GridItem>
-									))}
 							</Grid>
+							{toolsLength > pageSize && toolsVisible > pageSize && (
+								<Flex mt={5} justifyContent={"end"}>
+									<Pagination.Root
+										count={toolsVisible}
+										pageSize={pageSize}
+										page={page}
+										onPageChange={(e) => setPage(e.page)}
+										siblingCount={3}
+									>
+										<ButtonGroup variant="ghost" size="sm">
+											<Pagination.PrevTrigger asChild>
+												<IconButton colorPalette={"blue"}>
+													<FaChevronLeft />
+												</IconButton>
+											</Pagination.PrevTrigger>
+
+											<Pagination.Items
+												render={(page) => (
+													<IconButton
+														colorPalette={"blue"}
+														variant={{ base: "ghost", _selected: "solid" }}
+													>
+														{page.value}
+													</IconButton>
+												)}
+											/>
+
+											<Pagination.NextTrigger asChild>
+												<IconButton colorPalette={"blue"}>
+													<FaChevronRight />
+												</IconButton>
+											</Pagination.NextTrigger>
+										</ButtonGroup>
+									</Pagination.Root>
+								</Flex>
+							)}
 						</GridItem>
 					</Grid>
 

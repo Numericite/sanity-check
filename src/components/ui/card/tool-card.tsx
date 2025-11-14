@@ -83,35 +83,29 @@ export default function ToolCard({
 						<Separator borderColor={"gray.100"} />
 						<Flex gap={4} flexDir={"column"}>
 							<Flex gap={4}>
-								{tool && (
-									<BooleanBadge
-										val={tool.dpa_compliant ?? null}
-										text={`DPA : ${
-											tool?.dpa_compliant
-												? "Conforme"
-												: tool.dpa_compliant === false
-													? "Non conforme"
-													: "Non renseignée"
-										}`}
-									/>
-								)}
+								<BooleanBadge
+									val={tool?.dpa_compliant ?? null}
+									text={`DPA : ${
+										tool?.dpa_compliant
+											? "Conforme"
+											: tool?.dpa_compliant === false
+												? "Non conforme"
+												: "Non renseignée"
+									}`}
+								/>
 								{tool?.enterprise_european && <Badge color="blue">🇪🇺 EU</Badge>}
 							</Flex>
 							<Flex gap={4} flexWrap={"wrap"}>
 								{tool?.certifications && tool.certifications.length > 0 ? (
 									<>
 										{tool.certifications
+											.map(({ certification }) => getPopulated(certification))
+											.filter((cert) => cert !== null)
+											.sort((a, b) => a.name.length - b.name.length)
 											.slice(0, 2)
-											.map(({ certification }) => {
-												const certificationPopulated =
-													getPopulated(certification);
-												if (certificationPopulated)
-													return (
-														<Badge key={certificationPopulated.id}>
-															{certificationPopulated.name}
-														</Badge>
-													);
-											})}
+											.map((cert) => (
+												<Badge key={cert.id}>{cert.name}</Badge>
+											))}
 										{tool.certifications.length > 2 && (
 											<Badge>+ {tool.certifications.length - 2}</Badge>
 										)}

@@ -44,10 +44,9 @@ export default function SearchBar() {
 	);
 
 	const { data: exampleTools, isLoading: isLoadingExampleTools } =
-		api.tool.getList.useQuery({
+		api.tool.getListRandom.useQuery({
 			limit: 5,
 			filters: [{ key: "privacy_score_saas", value: "A" }],
-			sort: ["random", "privacy_score_saas", "dpa_compliant"],
 		});
 
 	const handleSearch = () => {
