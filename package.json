@@ -14,7 +14,7 @@
 		"typecheck": "tsc --noEmit",
 		"payload": "PAYLOAD_CONFIG_PATH=src/payload/payload.config.ts payload",
 		"seed:dev": "NODE_ENV=development PAYLOAD_CONFIG_PATH=./src/payload/payload.config.ts PAYLOAD_DROP_DATABASE=true payload run ./src/payload/seed/index.ts",
-		"seed:prod": "NODE_ENV=prod PAYLOAD_CONFIG_PATH=./src/payload/payload.config.ts payload run ./src/payload/seed/index.ts"
+		"seed:prod": "NODE_ENV=production PAYLOAD_CONFIG_PATH=./src/payload/payload.config.ts payload run ./src/payload/seed/index.ts"
 	},
 	"dependencies": {
 		"@chakra-ui/react": "^3.22.0",
