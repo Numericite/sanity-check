@@ -24,15 +24,7 @@ export async function seed(payload: Payload) {
 		accessorMap[acc.name] = acc.id;
 	}
 
-	// const certifications = await payload.find({
-	//     collection: "certifications",
-	//     limit: 0,
-	// });
-
 	const certificationMap: Record<string, number> = {};
-	// for (const cert of certifications.docs) {
-	//     certificationMap[cert.name] = cert.id;
-	// }
 
 	const locations = await payload.find({
 		collection: "locations",
@@ -124,12 +116,6 @@ export async function seed(payload: Payload) {
 			}));
 		}
 
-		// if (tool.enterprise_certifications?.length) {
-		//     toolData.certifications = tool.enterprise_certifications.map((c: any) => ({
-		//         certification: certificationMap[c],
-		//     }));
-		// }
-
 		if (tool.enterprise_location?.length) {
 			toolData.locations_enterprise = tool.enterprise_location.map(
 				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -139,17 +125,8 @@ export async function seed(payload: Payload) {
 			);
 		}
 
-		if (tool.location_host_client?.length) {
-			toolData.locations_host_client = tool.location_host_client.map(
-				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-				(l: any) => ({
-					location: locationMap[l],
-				}),
-			);
-		}
-
-		if (tool.final_users_location?.length) {
-			toolData.locations_final_users = tool.final_users_location.map(
+		if (tool.locations_data?.length) {
+			toolData.locations_data = tool.locations_data.map(
 				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 				(l: any) => ({
 					location: locationMap[l],

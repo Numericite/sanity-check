@@ -6,8 +6,8 @@ import * as migration_20251023_132714_add_contact_submissions_table from './2025
 import * as migration_20251105_142709_remove_fonctionnalities_vigilances_recommendations_in_category from './20251105_142709_remove_fonctionnalities_vigilances_recommendations_in_category';
 import * as migration_20251105_142734_add_fonctionnalities_vigilances_recommendations_in_category from './20251105_142734_add_fonctionnalities_vigilances_recommendations_in_category';
 import * as migration_20251105_160408_add_category_slug from './20251105_160408_add_category_slug';
-import * as migration_20251117_153928_related_tools from './20251117_153928_related_tools';
-import * as migration_20251117_163816_revert_related_tools from './20251117_163816_revert_related_tools';
+import * as migration_20251114_101722_add_locations_data_in_tool from './20251114_101722_add_locations_data_in_tool';
+import * as migration_20251114_104709_remove_location_host_client_final_users from './20251114_104709_remove_location_host_client_final_users';
 
 export const migrations = [
   {
@@ -51,13 +51,13 @@ export const migrations = [
     name: '20251105_160408_add_category_slug',
   },
   {
-    up: migration_20251117_153928_related_tools.up,
-    down: migration_20251117_153928_related_tools.down,
-    name: '20251117_153928_related_tools',
+    up: migration_20251114_101722_add_locations_data_in_tool.up,
+    down: migration_20251114_101722_add_locations_data_in_tool.down,
+    name: '20251114_101722_add_locations_data_in_tool',
   },
   {
-    up: migration_20251117_163816_revert_related_tools.up,
-    down: migration_20251117_163816_revert_related_tools.down,
-    name: '20251117_163816_revert_related_tools'
+    up: migration_20251114_104709_remove_location_host_client_final_users.up,
+    down: migration_20251114_104709_remove_location_host_client_final_users.down,
+    name: '20251114_104709_remove_location_host_client_final_users'
   },
 ];
