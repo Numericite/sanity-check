@@ -234,17 +234,15 @@ export default function Category() {
 									</GridItem>
 								)}
 							</Grid>
-							{toolsLength > NUMBER_PER_PAGE &&
-								toolsVisible > NUMBER_PER_PAGE && (
-									<Flex mt={5} justifyContent={"end"}>
-										<PaginationLayout
-											page={page}
-											setPage={setPage}
-											count={toolsVisible}
-											numberPerPage={NUMBER_PER_PAGE}
-										/>
-									</Flex>
-								)}
+							<Flex mt={5} justifyContent={"end"}>
+								<PaginationLayout
+									page={page}
+									setPage={setPage}
+									count={toolsVisible}
+									isLoading={isLoadingTools}
+									numberPerPage={NUMBER_PER_PAGE}
+								/>
+							</Flex>
 						</GridItem>
 					</Grid>
 
