@@ -52,9 +52,7 @@ export default function CategoryCard({
 					<Heading size={"lg"}>{category?.name ?? "Chargement..."}</Heading>
 					<Badge>
 						{categoriesLength} outil
-						{categoriesLength && categoriesLength > 1
-							? "s"
-							: ""}
+						{categoriesLength && categoriesLength > 1 ? "s" : ""}
 					</Badge>
 				</Flex>
 

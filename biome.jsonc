@@ -14,17 +14,19 @@
 			"./src/payload/payload-types.ts",
 			"./src/payload/payload-generated-schema.ts",
 			"./scripts/*",
-			"./src/app/[payload]/*"
+			"./src/app/(payload)/*",
+			"./src/payload/migrations/*"
 		]
 	},
-	"organizeImports": { "enabled": true },
+	"organizeImports": { "enabled": false },
 	"linter": {
 		"enabled": true,
 		"ignore": [
 			"./src/payload/payload-types.ts",
 			"./src/payload/payload-generated-schema.ts",
 			"./scripts/*",
-			"./src/app/[payload]/*"
+			"./src/app/(payload)/*",
+			"./src/payload/migrations/*"
 		],
 		"rules": {
 			"nursery": {
