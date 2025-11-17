@@ -1,14 +1,4 @@
-import {
-	Box,
-	ButtonGroup,
-	Flex,
-	Grid,
-	GridItem,
-	Heading,
-	IconButton,
-	Pagination,
-	Text,
-} from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Heading, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import Badge from "~/components/ui/badge/badge";
 import BreadcrumbLayout from "~/components/ui/breadcrumb/breadcrumb-layout";
@@ -22,7 +12,7 @@ import CategoryDrawer from "~/components/category-drawer";
 import Head from "next/head";
 import CarouselLayout from "~/components/ui/carousel/carousel-layout";
 import { useState } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import PaginationLayout from "~/components/ui/pagination/pagination-layout";
 
 const NUMBER_PER_PAGE = 8;
 
@@ -244,42 +234,17 @@ export default function Category() {
 									</GridItem>
 								)}
 							</Grid>
-							{toolsLength > NUMBER_PER_PAGE && toolsVisible > NUMBER_PER_PAGE && (
-								<Flex mt={5} justifyContent={"end"}>
-									<Pagination.Root
-										count={toolsVisible}
-										pageSize={NUMBER_PER_PAGE}
-										page={page}
-										onPageChange={(e) => setPage(e.page)}
-										siblingCount={3}
-									>
-										<ButtonGroup variant="ghost" size="sm">
-											<Pagination.PrevTrigger asChild>
-												<IconButton colorPalette={"blue"}>
-													<FaChevronLeft />
-												</IconButton>
-											</Pagination.PrevTrigger>
-
-											<Pagination.Items
-												render={(page) => (
-													<IconButton
-														colorPalette={"blue"}
-														variant={{ base: "ghost", _selected: "solid" }}
-													>
-														{page.value}
-													</IconButton>
-												)}
-											/>
-
-											<Pagination.NextTrigger asChild>
-												<IconButton colorPalette={"blue"}>
-													<FaChevronRight />
-												</IconButton>
-											</Pagination.NextTrigger>
-										</ButtonGroup>
-									</Pagination.Root>
-								</Flex>
-							)}
+							{toolsLength > NUMBER_PER_PAGE &&
+								toolsVisible > NUMBER_PER_PAGE && (
+									<Flex mt={5} justifyContent={"end"}>
+										<PaginationLayout
+											page={page}
+											setPage={setPage}
+											count={toolsVisible}
+											numberPerPage={NUMBER_PER_PAGE}
+										/>
+									</Flex>
+								)}
 						</GridItem>
 					</Grid>
 
