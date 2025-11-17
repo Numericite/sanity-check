@@ -26,15 +26,10 @@ export const Features: CollectionConfig = {
 			required: true,
 		},
 		{
-			name: "relatedTools",
-			label: {
-				fr: "Outils",
-			},
-			type: "join",
-			collection: "tools",
-			on: "features.feature",
-			maxDepth: 2,
-			defaultLimit: 0,
+			name: "tools",
+			type: "relationship",
+			relationTo: "tools",
+			hasMany: true,
 		},
 	],
 };

@@ -26,15 +26,10 @@ export const Accessors: CollectionConfig = {
 			required: true,
 		},
 		{
-			name: "relatedTools",
-			type: "join",
-			label: {
-				fr: "Outils",
-			},
-			collection: "tools",
-			on: "accessors.accessor",
-			maxDepth: 2,
-			defaultLimit: 0,
+			name: "tools",
+			type: "relationship",
+			relationTo: "tools",
+			hasMany: true,
 		},
 	],
 };

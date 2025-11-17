@@ -26,15 +26,10 @@ export const Transfers: CollectionConfig = {
 			required: true,
 		},
 		{
-			name: "relatedTools",
-			type: "join",
-			label: {
-				fr: "Outils",
-			},
-			collection: "tools",
-			on: "transfers.transfer",
-			maxDepth: 2,
-			defaultLimit: 0,
+			name: "tools",
+			type: "relationship",
+			relationTo: "tools",
+			hasMany: true,
 		},
 	],
 };

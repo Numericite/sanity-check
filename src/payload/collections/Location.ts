@@ -26,15 +26,10 @@ export const Locations: CollectionConfig = {
 			required: true,
 		},
 		{
-			name: "relatedToolsEnterprise",
-			type: "join",
-			collection: "tools",
-			label: {
-				fr: "Outils : Localisation de l'entreprise",
-			},
-			on: "locations_enterprise.location",
-			maxDepth: 2,
-			defaultLimit: 0,
+			name: "tools",
+			type: "relationship",
+			relationTo: "tools",
+			hasMany: true,
 		},
 	],
 };
