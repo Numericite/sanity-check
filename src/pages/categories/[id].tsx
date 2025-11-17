@@ -24,7 +24,7 @@ import CarouselLayout from "~/components/ui/carousel/carousel-layout";
 import { useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-const pageSize = 8;
+const NUMBER_PER_PAGE = 8;
 
 export default function Category() {
 	const router = useRouter();
@@ -48,7 +48,7 @@ export default function Category() {
 	const { data: tools, isLoading: isLoadingTools } =
 		api.tool.getListPagination.useQuery(
 			{
-				limit: pageSize,
+				limit: NUMBER_PER_PAGE,
 				page,
 				sort: ["privacy_score_saas", "dpa_compliant"],
 				filters: [
@@ -216,7 +216,7 @@ export default function Category() {
 								gap={6}
 							>
 								{isLoadingTools &&
-									Array.from({ length: pageSize }).map((_, index) => (
+									Array.from({ length: NUMBER_PER_PAGE }).map((_, index) => (
 										<GridItem key={`tool-${index}`}>
 											<ToolCard
 												tool={null}
@@ -244,11 +244,11 @@ export default function Category() {
 									</GridItem>
 								)}
 							</Grid>
-							{toolsLength > pageSize && toolsVisible > pageSize && (
+							{toolsLength > NUMBER_PER_PAGE && toolsVisible > NUMBER_PER_PAGE && (
 								<Flex mt={5} justifyContent={"end"}>
 									<Pagination.Root
 										count={toolsVisible}
-										pageSize={pageSize}
+										pageSize={NUMBER_PER_PAGE}
 										page={page}
 										onPageChange={(e) => setPage(e.page)}
 										siblingCount={3}
