@@ -26,10 +26,15 @@ export const Certifications: CollectionConfig = {
 			required: true,
 		},
 		{
-			name: "tools",
-			type: "relationship",
-			relationTo: "tools",
-			hasMany: true,
+			name: "relatedTools",
+			label: {
+				fr: "Outils",
+			},
+			type: "join",
+			collection: "tools",
+			on: "certifications.certification",
+			maxDepth: 2,
+			defaultLimit: 0,
 		},
 	],
 };

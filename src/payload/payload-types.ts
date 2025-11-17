@@ -85,6 +85,21 @@ export interface Config {
     categories: {
       relatedTools: 'tools';
     };
+    certifications: {
+      relatedTools: 'tools';
+    };
+    accessors: {
+      relatedTools: 'tools';
+    };
+    locations: {
+      relatedToolsEnterprise: 'tools';
+    };
+    transfers: {
+      relatedTools: 'tools';
+    };
+    features: {
+      relatedTools: 'tools';
+    };
   };
   collectionsSelect: {
     tools: ToolsSelect<false> | ToolsSelect<true>;
@@ -368,7 +383,11 @@ export interface Category {
 export interface Certification {
   id: number;
   name: string;
-  tools?: (number | Tool)[] | null;
+  relatedTools?: {
+    docs?: (number | Tool)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -379,7 +398,11 @@ export interface Certification {
 export interface Accessor {
   id: number;
   name: string;
-  tools?: (number | Tool)[] | null;
+  relatedTools?: {
+    docs?: (number | Tool)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -390,7 +413,11 @@ export interface Accessor {
 export interface Location {
   id: number;
   name: string;
-  tools?: (number | Tool)[] | null;
+  relatedToolsEnterprise?: {
+    docs?: (number | Tool)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -401,7 +428,11 @@ export interface Location {
 export interface Transfer {
   id: number;
   name: string;
-  tools?: (number | Tool)[] | null;
+  relatedTools?: {
+    docs?: (number | Tool)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -412,7 +443,11 @@ export interface Transfer {
 export interface Feature {
   id: number;
   name: string;
-  tools?: (number | Tool)[] | null;
+  relatedTools?: {
+    docs?: (number | Tool)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -673,7 +708,7 @@ export interface CategoriesSelect<T extends boolean = true> {
  */
 export interface CertificationsSelect<T extends boolean = true> {
   name?: T;
-  tools?: T;
+  relatedTools?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -683,7 +718,7 @@ export interface CertificationsSelect<T extends boolean = true> {
  */
 export interface AccessorsSelect<T extends boolean = true> {
   name?: T;
-  tools?: T;
+  relatedTools?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -693,7 +728,7 @@ export interface AccessorsSelect<T extends boolean = true> {
  */
 export interface LocationsSelect<T extends boolean = true> {
   name?: T;
-  tools?: T;
+  relatedToolsEnterprise?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -703,7 +738,7 @@ export interface LocationsSelect<T extends boolean = true> {
  */
 export interface TransfersSelect<T extends boolean = true> {
   name?: T;
-  tools?: T;
+  relatedTools?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -713,7 +748,7 @@ export interface TransfersSelect<T extends boolean = true> {
  */
 export interface FeaturesSelect<T extends boolean = true> {
   name?: T;
-  tools?: T;
+  relatedTools?: T;
   updatedAt?: T;
   createdAt?: T;
 }
