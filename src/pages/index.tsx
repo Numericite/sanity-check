@@ -18,11 +18,10 @@ import { api } from "~/utils/api";
 
 export default function Home() {
 	const { data: toolsWithAScore, isFetching: isLoadingToolsWithAScore } =
-		api.tool.getList.useQuery(
+		api.tool.getListRandom.useQuery(
 			{
 				limit: 6,
 				filters: [{ key: "privacy_score_saas", value: "A" }],
-				sort: ["random"],
 			},
 			{
 				initialData: Array.from({ length: 6 }),
@@ -40,14 +39,13 @@ export default function Home() {
 		);
 
 	const { data: toolsFrench, isLoading: isLoadingToolsFrench } =
-		api.tool.getList.useQuery(
+		api.tool.getListRandom.useQuery(
 			{
 				limit: 6,
 				filters: [
 					{ key: "locations_enterprise.location.name", value: "🇫🇷 France" },
 					{ key: "privacy_score_saas", value: "A" },
 				],
-				sort: ["random"],
 			},
 			{
 				initialData: Array.from({ length: 6 }),

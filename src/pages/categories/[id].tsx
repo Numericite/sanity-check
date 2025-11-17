@@ -11,10 +11,15 @@ import { useCategoryFilters } from "~/hooks/use-categories-filters";
 import CategoryDrawer from "~/components/category-drawer";
 import Head from "next/head";
 import CarouselLayout from "~/components/ui/carousel/carousel-layout";
+import { useState } from "react";
+import PaginationLayout from "~/components/ui/pagination/pagination-layout";
+
+const NUMBER_PER_PAGE = 8;
 
 export default function Category() {
 	const router = useRouter();
 	const { id } = router.query;
+	const [page, setPage] = useState(1);
 
 	const {
 		search,
@@ -30,17 +35,19 @@ export default function Category() {
 		filters,
 	} = useCategoryFilters();
 
-	const { data: tools, isLoading: isLoadingTools } = api.tool.getList.useQuery(
-		{
-			limit: 0,
-			sort: ["privacy_score_saas", "dpa_compliant"],
-			filters: [
-				{ key: "categories.category", value: (id ?? 0).toString() },
-				...filters,
-			],
-		},
-		{ enabled: !!id },
-	);
+	const { data: tools, isLoading: isLoadingTools } =
+		api.tool.getListPagination.useQuery(
+			{
+				limit: NUMBER_PER_PAGE,
+				page,
+				sort: ["privacy_score_saas", "dpa_compliant"],
+				filters: [
+					{ key: "categories.category", value: (id ?? 0).toString() },
+					...filters,
+				],
+			},
+			{ enabled: !!id },
+		);
 
 	const { data: category, isLoading } = api.category.getById.useQuery(
 		Number(id),
@@ -61,6 +68,9 @@ export default function Category() {
 				initialData: Array.from({ length: 6 }),
 			},
 		);
+
+	const toolsLength = category?.relatedTools?.docs?.length ?? 0;
+	const toolsVisible = tools?.totalDocs ?? 0;
 
 	return (
 		<>
@@ -155,11 +165,8 @@ export default function Category() {
 								>
 									{category && (
 										<Badge size={{ base: "md", md: "lg" }}>
-											{category?.relatedTools?.docs?.length} outil
-											{category?.relatedTools?.docs?.length &&
-											category?.relatedTools.docs.length > 1
-												? "s"
-												: ""}
+											{toolsLength} outil
+											{toolsLength && toolsLength > 1 ? "s" : ""}
 										</Badge>
 									)}
 									<CategoryDrawer category={category} />
@@ -196,33 +203,48 @@ export default function Category() {
 									sm: "repeat(2, 1fr)",
 								}}
 								h={"fit"}
-								w={"full"}
 								gap={6}
 							>
 								{isLoadingTools &&
-									Array.from({ length: 6 }).map((_, index) => (
-										<GridItem key={`skeleton-${index}`}>
-											<ToolCard tool={null} isLoading hideCategory />
+									Array.from({ length: NUMBER_PER_PAGE }).map((_, index) => (
+										<GridItem key={`tool-${index}`}>
+											<ToolCard
+												tool={null}
+												isLoading={isLoadingTools}
+												hideCategory
+											/>
 										</GridItem>
 									))}
 
-								{!isLoadingTools && tools?.length === 0 && (
+								{tools?.docs.map((tool, index) => (
+									<GridItem key={`tool-${index}`}>
+										<ToolCard
+											tool={tool}
+											isLoading={isLoadingTools}
+											hideCategory
+										/>
+									</GridItem>
+								))}
+
+								{!isLoadingTools && tools?.docs.length === 0 && (
 									<GridItem colSpan={2} textAlign={"center"}>
 										<Text fontSize={18} color="gray.500">
 											Aucun résultat
 										</Text>
 									</GridItem>
 								)}
-
-								{!isLoadingTools &&
-									tools &&
-									tools?.length > 0 &&
-									tools.map((tool) => (
-										<GridItem key={tool.id} minW={0}>
-											<ToolCard tool={tool} isLoading={false} hideCategory />
-										</GridItem>
-									))}
 							</Grid>
+							{toolsLength > NUMBER_PER_PAGE &&
+								toolsVisible > NUMBER_PER_PAGE && (
+									<Flex mt={5} justifyContent={"end"}>
+										<PaginationLayout
+											page={page}
+											setPage={setPage}
+											count={toolsVisible}
+											numberPerPage={NUMBER_PER_PAGE}
+										/>
+									</Flex>
+								)}
 						</GridItem>
 					</Grid>
 

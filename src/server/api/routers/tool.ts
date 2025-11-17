@@ -3,7 +3,23 @@ import type { Where } from "payload";
 import z from "zod";
 import type { Category } from "~/payload/payload-types";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+import type { filtersSchemaType } from "~/server/schema/filters-schema";
 import { getListSchema } from "~/server/schema/get-list-schema";
+
+function getWhere(filters: filtersSchemaType): Where {
+	const where: Where =
+		filters && filters.length > 0
+			? {
+					and: filters.map((filter) => ({
+						[filter.key]: {
+							[filter.operation ?? "equals"]: filter.value,
+						},
+					})),
+				}
+			: {};
+
+	return where;
+}
 
 export const toolRouter = createTRPCRouter({
 	getList: publicProcedure
@@ -11,27 +27,43 @@ export const toolRouter = createTRPCRouter({
 		.query(async ({ ctx, input }) => {
 			const { limit = 10, page = 1, filters, sort } = input;
 
-			const where: Where =
-				filters && filters.length > 0
-					? {
-							and: filters.map((filter) => ({
-								[filter.key]: {
-									[filter.operation ?? "equals"]: filter.value,
-								},
-							})),
-						}
-					: {};
+			const where = getWhere(filters);
 
-			if (!sort?.includes("random")) {
-				const tools = await ctx.payload.find({
-					collection: "tools",
-					limit,
-					where,
-					sort,
-				});
+			const tools = await ctx.payload.find({
+				collection: "tools",
+				limit,
+				where,
+				sort,
+				page,
+			});
 
-				return tools.docs;
-			}
+			return tools.docs;
+		}),
+
+	getListPagination: publicProcedure
+		.input(getListSchema)
+		.query(async ({ ctx, input }) => {
+			const { limit = 10, page = 1, filters, sort } = input;
+
+			const where = getWhere(filters);
+
+			const tools = await ctx.payload.find({
+				collection: "tools",
+				limit,
+				where,
+				sort,
+				page,
+			});
+
+			return tools;
+		}),
+
+	getListRandom: publicProcedure
+		.input(getListSchema)
+		.query(async ({ ctx, input }) => {
+			const { filters, limit = 10 } = input;
+
+			const where = getWhere(filters);
 
 			const totalResult = await ctx.payload.find({
 				collection: "tools",
