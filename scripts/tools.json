@@ -97,7 +97,8 @@
         "category": "Documentation",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -211,7 +212,8 @@
         "category": "Documentation",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -260,6 +262,9 @@
         "category": "Messagerie",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -316,6 +321,9 @@
         "category": "Messagerie",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇫🇷 France"
     ]
   },
   {
@@ -405,7 +413,8 @@
         "category": "Documentation",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -527,6 +536,9 @@
         "category": "No code",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -630,6 +642,9 @@
         "category": "Hébergeur",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -680,7 +695,8 @@
         "category": "Messagerie",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -744,6 +760,9 @@
         "category": "Monitoring",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -802,7 +821,8 @@
         "category": "Hébergeur",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -850,6 +870,9 @@
         "category": "Hébergeur",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇫🇷 France"
     ]
   },
   {
@@ -983,7 +1006,8 @@
         "category": "Analytics",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -1068,7 +1092,8 @@
         "category": "Documentation",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -1175,6 +1200,14 @@
         "category": "Emailing",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇪🇺 Europe",
+      "🇧🇬 Bulgarie",
+      "🇮🇳 Inde",
+      "🇩🇪 Allemagne",
+      "🇧🇪 Belgique",
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -1211,7 +1244,8 @@
         "category": "No code",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -1294,6 +1328,10 @@
         "category": "Hébergeur",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇪🇺 Europe",
+      "🇫🇷 France"
     ]
   },
   {
@@ -1416,6 +1454,9 @@
         "category": "Analytics",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -1531,6 +1572,10 @@
         "category": "No code",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇪🇺 Europe",
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -1608,6 +1653,10 @@
         "category": "Support",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇪🇺 Europe",
+      "🇫🇷 France"
     ]
   },
   {
@@ -1720,6 +1769,10 @@
         "category": "Support",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇦🇺 Australie",
+      "🏳️ Au choix"
     ]
   },
   {
@@ -1776,6 +1829,9 @@
         "category": "Analytics",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🏳️ Au choix"
     ]
   },
   {
@@ -1879,7 +1935,10 @@
     "enterprise_certifications": [],
     "name": "Screeb",
     "id_notion": "22a93d4b-ce64-807c-9a36-fd475e0a1133",
-    "categories": []
+    "categories": [],
+    "locations_data": [
+      "🇫🇷 France"
+    ]
   },
   {
     "dpa_en_pdf": [
@@ -1967,6 +2026,11 @@
         "category": "No code",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇩🇪 Allemagne",
+      "🇺🇸 États-Unis",
+      "🇮🇪 Irlande"
     ]
   },
   {
@@ -2095,6 +2159,9 @@
         "category": "Analytics",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -2205,6 +2272,9 @@
         "category": "Hébergeur",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -2294,7 +2364,8 @@
     ],
     "name": "Text Blaze",
     "id_notion": "27293d4b-ce64-806c-b6af-cf213b46e24e",
-    "categories": []
+    "categories": [],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -2380,6 +2451,9 @@
         "category": "Hébergeur",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🏳️ Au choix"
     ]
   },
   {
@@ -2483,6 +2557,10 @@
         "category": "Emailing",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇪🇺 Europe",
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -2577,6 +2655,9 @@
         "category": "No code",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇫🇷 France"
     ]
   },
   {
@@ -2705,6 +2786,10 @@
         "category": "Analytics",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis",
+      "🇪🇺 Europe"
     ]
   },
   {
@@ -2796,7 +2881,11 @@
     ],
     "name": "Whereby",
     "id_notion": "33dade81-f79c-41b5-8054-f00a07cef179",
-    "categories": []
+    "categories": [],
+    "locations_data": [
+      "🇮🇪 Irlande",
+      "🇱🇺 Luxembourg"
+    ]
   },
   {
     "dpa_en_pdf": [
@@ -2916,6 +3005,11 @@
         "category": "Analytics",
         "main": false
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis",
+      "🇪🇺 Europe",
+      "🇫🇷 France"
     ]
   },
   {
@@ -3043,6 +3137,9 @@
         "category": "Emailing",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -3144,7 +3241,8 @@
         "category": "Intelligence Artificielle",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -3237,7 +3335,8 @@
         "category": "Emailing",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -3349,6 +3448,9 @@
         "category": "Hébergeur",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -3436,7 +3538,10 @@
     ],
     "name": "Jitsi",
     "id_notion": "426b9e37-58d7-4ce2-abd3-b8fd14fb98fb",
-    "categories": []
+    "categories": [],
+    "locations_data": [
+      "🇺🇸 États-Unis"
+    ]
   },
   {
     "dpa_en_pdf": [
@@ -3545,6 +3650,9 @@
         "category": "No code",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -3609,6 +3717,10 @@
         "category": "Hébergeur",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇫🇷 France",
+      "🏳️ Au choix"
     ]
   },
   {
@@ -3697,7 +3809,8 @@
         "category": "Analytics",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -3820,6 +3933,9 @@
         "category": "Hébergeur",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇫🇷 France"
     ]
   },
   {
@@ -3899,6 +4015,10 @@
         "category": "Consent Manager Platform",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇪🇺 Europe",
+      "🇫🇷 France"
     ]
   },
   {
@@ -3994,7 +4114,8 @@
         "category": "Emailing",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -4052,6 +4173,9 @@
         "category": "Messagerie",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -4175,6 +4299,9 @@
         "category": "Analytics",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇪🇺 Europe"
     ]
   },
   {
@@ -4261,7 +4388,8 @@
         "category": "Hébergeur",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -4365,7 +4493,8 @@
         "category": "Hébergeur",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [
@@ -4465,6 +4594,9 @@
         "category": "Support",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇪🇺 Europe"
     ]
   },
   {
@@ -4554,6 +4686,9 @@
         "category": "Consent Manager Platform",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇪🇺 Europe"
     ]
   },
   {
@@ -4660,7 +4795,10 @@
     ],
     "name": "Bitwarden",
     "id_notion": "590c7de5-8ab1-432b-8bbb-1135a77f1e78",
-    "categories": []
+    "categories": [],
+    "locations_data": [
+      "🇺🇸 États-Unis"
+    ]
   },
   {
     "dpa_en_pdf": [],
@@ -4736,7 +4874,8 @@
     "enterprise_certifications": [],
     "name": "Produktly",
     "id_notion": "5ace2c13-9b2c-4ae0-9583-45d44b0624af",
-    "categories": []
+    "categories": [],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -4776,6 +4915,9 @@
         "category": "Messagerie",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇫🇷 France"
     ]
   },
   {
@@ -4860,7 +5002,8 @@
     ],
     "name": "Frigade",
     "id_notion": "61862508-bfd7-4ece-8e91-8eaf6dc0b0d2",
-    "categories": []
+    "categories": [],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -4954,7 +5097,8 @@
         "category": "Analytics",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -5064,6 +5208,9 @@
         "category": "Formulaire",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -5167,6 +5314,11 @@
         "category": "Support",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇪🇺 Europe",
+      "🇺🇸 États-Unis",
+      "🇨🇦 Canada"
     ]
   },
   {
@@ -5293,6 +5445,9 @@
         "category": "Formulaire",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -5395,6 +5550,9 @@
         "category": "Hébergeur",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -5475,6 +5633,9 @@
         "category": "Support",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -5524,7 +5685,8 @@
         "category": "No code",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -5596,6 +5758,9 @@
         "category": "Emailing",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -5680,6 +5845,10 @@
         "category": "Hébergeur",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇨🇭 Suisse",
+      "🇪🇺 Europe"
     ]
   },
   {
@@ -5757,6 +5926,10 @@
         "category": "Hébergeur",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇫🇷 France",
+      "🇪🇺 Europe"
     ]
   },
   {
@@ -5802,6 +5975,10 @@
         "category": "Messagerie",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇪🇺 Europe",
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -5891,7 +6068,8 @@
         "category": "Intelligence Artificielle",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -5988,7 +6166,8 @@
         "category": "Analytics",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -6077,6 +6256,9 @@
         "category": "Messagerie",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -6120,7 +6302,8 @@
         "category": "Messagerie",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -6219,7 +6402,11 @@
     "enterprise_certifications": [],
     "name": "SleekPlan",
     "id_notion": "8787cc80-e448-435e-b79a-e6e5acb9ea64",
-    "categories": []
+    "categories": [],
+    "locations_data": [
+      "🇩🇪 Allemagne",
+      "🇺🇸 États-Unis"
+    ]
   },
   {
     "dpa_en_pdf": [],
@@ -6309,6 +6496,9 @@
         "category": "Emailing",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -6362,6 +6552,9 @@
         "category": "Messagerie",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇫🇷 France"
     ]
   },
   {
@@ -6443,6 +6636,11 @@
         "category": "Hébergeur",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🏳️ Au choix",
+      "🇱🇺 Luxembourg",
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -6545,7 +6743,8 @@
     "enterprise_certifications": [],
     "name": "Le Sphinx",
     "id_notion": "920f96db-6810-42a3-a8e7-af41dd8e0ef8",
-    "categories": []
+    "categories": [],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -6676,6 +6875,9 @@
         "category": "No code",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -6769,6 +6971,9 @@
         "category": "Monitoring",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -6872,6 +7077,9 @@
         "category": "Messagerie",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -6972,6 +7180,11 @@
         "category": "Emailing",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis",
+      "🇪🇺 Europe",
+      "🇫🇷 France"
     ]
   },
   {
@@ -7069,7 +7282,8 @@
     "enterprise_certifications": [],
     "name": "Featurebase",
     "id_notion": "9c3b0088-c2b3-40ff-933a-edb3c08a2fb6",
-    "categories": []
+    "categories": [],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -7186,7 +7400,8 @@
         "category": "Formulaire",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -7250,6 +7465,11 @@
         "category": "Messagerie",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇫🇷 France",
+      "🇪🇺 Europe",
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -7338,7 +7558,8 @@
         "category": "CRM",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -7416,7 +7637,10 @@
     ],
     "name": "Livestorm",
     "id_notion": "a635b8b3-e647-4df7-ac58-3e9c28b16d84",
-    "categories": []
+    "categories": [],
+    "locations_data": [
+      "🇪🇺 Europe"
+    ]
   },
   {
     "dpa_en_pdf": [
@@ -7505,7 +7729,8 @@
         "category": "Hébergeur",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -7599,7 +7824,8 @@
         "category": "Emailing",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -7715,7 +7941,8 @@
     ],
     "name": "Maze",
     "id_notion": "b4bc2750-05a5-4eec-8249-42f72498daaf",
-    "categories": []
+    "categories": [],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -7841,6 +8068,9 @@
         "category": "Analytics",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -7923,6 +8153,9 @@
         "category": "Messagerie",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇫🇷 France"
     ]
   },
   {
@@ -8018,6 +8251,10 @@
         "category": "Hébergeur",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🏳️ Au choix",
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -8103,6 +8340,9 @@
         "category": "No code",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇩🇪 Allemagne"
     ]
   },
   {
@@ -8145,6 +8385,9 @@
         "category": "Emailing",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -8250,6 +8493,9 @@
         "category": "Analytics",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇪🇺 Europe"
     ]
   },
   {
@@ -8350,7 +8596,8 @@
         "category": "Intelligence Artificielle",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -8474,6 +8721,9 @@
         "category": "Messagerie",
         "main": false
       }
+    ],
+    "locations_data": [
+      "🇩🇪 Allemagne"
     ]
   },
   {
@@ -8592,6 +8842,10 @@
         "category": "Analytics",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇩🇪 Allemagne",
+      "🇪🇺 Europe"
     ]
   },
   {
@@ -8717,6 +8971,10 @@
         "category": "Analytics",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇪🇺 Europe",
+      "🇫🇷 France"
     ]
   },
   {
@@ -8809,6 +9067,11 @@
         "category": "Emailing",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis",
+      "🇪🇺 Europe",
+      "🇫🇷 France"
     ]
   },
   {
@@ -8899,6 +9162,9 @@
         "category": "Support",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇪🇺 Europe"
     ]
   },
   {
@@ -9002,6 +9268,9 @@
         "category": "Documentation",
         "main": false
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -9095,6 +9364,9 @@
         "category": "No code",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -9159,7 +9431,8 @@
         "category": "Support",
         "main": false
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -9209,6 +9482,10 @@
         "category": "Hébergeur",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇪🇺 Europe",
+      "🇫🇷 France"
     ]
   },
   {
@@ -9313,6 +9590,9 @@
         "category": "Chatbot",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇪🇺 Europe"
     ]
   },
   {
@@ -9388,6 +9668,9 @@
         "category": "Monitoring",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -9481,7 +9764,8 @@
         "category": "Intelligence Artificielle",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -9575,6 +9859,9 @@
         "category": "Support",
         "main": false
       }
+    ],
+    "locations_data": [
+      "🇧🇪 Belgique"
     ]
   },
   {
@@ -9707,6 +9994,10 @@
         "category": "Emailing",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis",
+      "🇪🇺 Europe"
     ]
   },
   {
@@ -9777,7 +10068,8 @@
         "category": "Documentation",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -9873,7 +10165,8 @@
         "category": "Hébergeur",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -9924,6 +10217,9 @@
         "category": "Hébergeur",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇪🇺 Europe"
     ]
   },
   {
@@ -10015,6 +10311,10 @@
         "category": "Hébergeur",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇪🇺 Europe",
+      "🇫🇷 France"
     ]
   },
   {
@@ -10118,7 +10418,8 @@
         "category": "Analytics",
         "main": true
       }
-    ]
+    ],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -10172,6 +10473,10 @@
         "category": "Formulaire",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇪🇺 Europe",
+      "🇩🇪 Allemagne"
     ]
   },
   {
@@ -10230,6 +10535,9 @@
         "category": "Documentation",
         "main": false
       }
+    ],
+    "locations_data": [
+      "🇫🇷 France"
     ]
   },
   {
@@ -10340,6 +10648,9 @@
         "category": "CRM",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇪🇺 Europe"
     ]
   },
   {
@@ -10404,6 +10715,10 @@
         "category": "Messagerie",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇫🇷 France",
+      "🇪🇺 Europe"
     ]
   },
   {
@@ -10501,7 +10816,8 @@
     ],
     "name": "UserGuiding",
     "id_notion": "e84d60bc-fbc0-4ad4-87b2-180b90706c30",
-    "categories": []
+    "categories": [],
+    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -10606,6 +10922,9 @@
         "category": "Documentation",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -10740,6 +11059,10 @@
         "category": "Analytics",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis",
+      "🇪🇺 Europe"
     ]
   },
   {
@@ -10817,6 +11140,9 @@
         "category": "Analytics",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇫🇷 France"
     ]
   },
   {
@@ -10914,6 +11240,9 @@
         "category": "Hébergeur",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -11014,6 +11343,10 @@
         "category": "CRM",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇪🇺 Europe",
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -11087,6 +11420,9 @@
         "category": "Monitoring",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -11189,6 +11525,9 @@
         "category": "Documentation",
         "main": true
       }
+    ],
+    "locations_data": [
+      "🇧🇪 Belgique"
     ]
   }
 ]

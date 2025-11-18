@@ -362,32 +362,31 @@ export const Tools: CollectionConfig = {
 			},
 		},
 		{
-			name: "locations_host_client",
+			name: "locations_data",
 			type: "array",
-			label: "Localisation hébergement : relation client",
-			fields: [
-				{
-					name: "location",
-					type: "relationship",
-					relationTo: "locations",
-					required: true,
-					hasMany: false,
-					unique: false,
-				},
-			],
-			admin: {
-				description: "Sélectionnez une ou plusieurs localisations.",
+			label: {
+				en: "Data locations",
+				fr: "Localisations des données",
 			},
-		},
-		{
-			name: "locations_final_users",
-			type: "array",
-			label: "Localisation hébergement : utilisateurs finaux",
+			labels: {
+				singular: {
+					en: "Data location",
+					fr: "Localisation des données",
+				},
+				plural: {
+					en: "Data locations",
+					fr: "Localisations des données",
+				},
+			},
 			fields: [
 				{
 					name: "location",
 					type: "relationship",
 					relationTo: "locations",
+					label: {
+						en: "Data location",
+						fr: "Localisation des données",
+					},
 					required: true,
 					hasMany: false,
 					unique: false,

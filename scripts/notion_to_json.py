@@ -380,6 +380,9 @@ class NotionToJSON:
                         liste[i] = locations[locations_old.index(liste[i])]
                     item[column] = liste
 
+                # Fusion des deux colonnes location_host_client et final_users_location pour locations_data
+                item['locations_data'] = list(dict.fromkeys(item['location_host_client'] + item['final_users_location']))
+
                 # Gestion des transfer_supervision
                 transfer_supervision = ["Clauses contractuelles type","Décisions d'adéquation","DPA","Standards du secteur commercial","BCR","Méthodes de chiffrement sécurisé","Filiale localisée EU","Data Transfer Assessment"]
                 transfer_supervision_old = ["Clauses contractuelles type","Décisions d'adéquation","DPA","standards du secteur commercial","BCR","méthodes de chiffrement sécurisé","Filiale localisée EU","Data Transfer Assessment"]

@@ -242,16 +242,7 @@ export interface Tool {
   /**
    * Sélectionnez une ou plusieurs localisations.
    */
-  locations_host_client?:
-    | {
-        location: number | Location;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Sélectionnez une ou plusieurs localisations.
-   */
-  locations_final_users?:
+  locations_data?:
     | {
         location: number | Location;
         id?: string | null;
@@ -605,13 +596,7 @@ export interface ToolsSelect<T extends boolean = true> {
         location?: T;
         id?: T;
       };
-  locations_host_client?:
-    | T
-    | {
-        location?: T;
-        id?: T;
-      };
-  locations_final_users?:
+  locations_data?:
     | T
     | {
         location?: T;

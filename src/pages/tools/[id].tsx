@@ -272,7 +272,19 @@ const ToolPage = () => {
 											Hébergement des données
 										</Text>
 										<Flex flexDir={"row"} gap={3} flexWrap={"wrap"}>
-											<Badge color="blue">TODO</Badge>
+											{tool.locations_data && tool.locations_data.length > 0 ? (
+												tool.locations_data.map(({ location }) => {
+													const locationPopulated = getPopulated(location);
+													if (locationPopulated)
+														return (
+															<Badge color="blue" key={locationPopulated.id}>
+																{locationPopulated.name}
+															</Badge>
+														);
+												})
+											) : (
+												<Text>Aucune information</Text>
+											)}
 										</Flex>
 									</Flex>
 								</GridItem>
@@ -400,16 +412,15 @@ const ToolPage = () => {
 									)}
 								</Line>
 
-								<Line title="Localisation hébergement : utilisateurs finaux">
+								<Line title="Hébergement des données">
 									<Flex
 										flexDir={"row"}
 										flexWrap={"wrap"}
 										gap={3}
 										overflow={"auto"}
 									>
-										{tool.locations_final_users &&
-										tool.locations_final_users.length > 0 ? (
-											tool.locations_final_users.map(({ location }) => {
+										{tool.locations_data && tool.locations_data.length > 0 ? (
+											tool.locations_data.map(({ location }) => {
 												const locationPopulated = getPopulated(location);
 												if (locationPopulated)
 													return (
@@ -571,30 +582,6 @@ const ToolPage = () => {
 
 								<Line title="DPA accessible en ligne">
 									<BooleanBadge val={tool.online_accessible_dpa ?? null} />
-								</Line>
-
-								<Line title="Localisation hébergement : relation client">
-									<Flex
-										flexDir={"row"}
-										flexWrap={"wrap"}
-										gap={3}
-										overflow={"auto"}
-									>
-										{tool.locations_host_client &&
-										tool.locations_host_client.length > 0 ? (
-											tool.locations_host_client.map(({ location }) => {
-												const locationPopulated = getPopulated(location);
-												if (locationPopulated)
-													return (
-														<Badge key={locationPopulated.id} color="blue">
-															{locationPopulated.name}
-														</Badge>
-													);
-											})
-										) : (
-											<Text>Aucune localisation</Text>
-										)}
-									</Flex>
 								</Line>
 
 								<Line title="Type d'outil">
