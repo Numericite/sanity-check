@@ -61,11 +61,11 @@
       "Modification",
       "Accès"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Amazon Web Services Inc. (USA)"
@@ -148,11 +148,11 @@
       "Clauses contractuelles type"
     ],
     "rgpd_feature": [],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "CallPoint New Europe EAD d/b/a Telus International Europe (Bulgarie)"
@@ -234,16 +234,16 @@
     "rgpd_feature": [
       "Gestion des exercices des droits des personnes concernées"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": null,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [],
-    "online_accessible_dpa": null,
+    "online_accessible_dpa": true,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "A",
+    "privacy_score_saas": "B",
     "transfer_out_eu": "Oui",
     "subcontractors": null,
     "data_access": [
@@ -254,7 +254,11 @@
       "Filiales",
       "La personne qui utilise l'outil"
     ],
-    "enterprise_certifications": [],
+    "enterprise_certifications": [
+      "ISO 27001",
+      "ISO 27017",
+      "SOC II"
+    ],
     "name": "Whatsapp (Meta)",
     "id_notion": "0239aa3d-621f-4896-905f-ee6adeb161f2",
     "categories": [
@@ -290,7 +294,7 @@
     "rgpd_feature": [
       "Gestion des exercices des droits des personnes concernées"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": false,
@@ -300,10 +304,10 @@
         "name": "Scaleway (France)"
       }
     ],
-    "online_accessible_dpa": null,
+    "online_accessible_dpa": false,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "A",
+    "privacy_score_saas": "C",
     "transfer_out_eu": "Non",
     "subcontractors": null,
     "data_access": [
@@ -378,11 +382,11 @@
       "Décisions d'adéquation"
     ],
     "rgpd_feature": [],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": true,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Google Cloud (USA)"
@@ -391,7 +395,7 @@
         "name": "Amazon Web Services Inc. (USA)"
       }
     ],
-    "online_accessible_dpa": false,
+    "online_accessible_dpa": true,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
     "privacy_score_saas": "B",
@@ -483,11 +487,11 @@
       "Modification",
       "Opposition"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Sutherland Global Services Bulgaria EOOD (Bulgarie)"
@@ -510,7 +514,7 @@
       "🇺🇸 États-Unis"
     ],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "B",
+    "privacy_score_saas": "C",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://www.figma.com/fr/sub-processors/",
     "data_access": [
@@ -603,11 +607,11 @@
       "Droit à la portabilité",
       "Droit d'opposition"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": true,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Atos IT Solutions (USA)"
@@ -667,16 +671,16 @@
     "rgpd_feature": [
       "Gestion des exercices des droits des personnes concernées"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": null,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [],
-    "online_accessible_dpa": null,
+    "online_accessible_dpa": true,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "A",
+    "privacy_score_saas": "B",
     "transfer_out_eu": "Oui",
     "subcontractors": null,
     "data_access": [
@@ -687,7 +691,11 @@
       "Filiales",
       "La personne qui utilise l'outil"
     ],
-    "enterprise_certifications": [],
+    "enterprise_certifications": [
+      "ISO 27017",
+      "HDS",
+      "ISO 27001"
+    ],
     "name": "Messenger (Meta)",
     "id_notion": "11b9c199-c4a3-4c63-a81f-66ecfe40a658",
     "categories": [
@@ -767,13 +775,47 @@
   },
   {
     "dpa_en_pdf": [],
-    "transfer_informations": "Hors UE + pays ne présentant pas un niveau de protection adéquat",
-    "location_note": null,
+    "transfer_informations": "Inscrit sur la liste du ministère américain du commerce",
+    "location_note": {
+      "root": {
+        "type": "root",
+        "format": "",
+        "indent": 0,
+        "version": 1,
+        "children": [
+          {
+            "type": "paragraph",
+            "format": "",
+            "indent": 0,
+            "version": 1,
+            "children": [
+              {
+                "mode": "normal",
+                "text": "Principalement USA",
+                "type": "text",
+                "style": "",
+                "detail": 0,
+                "format": 0,
+                "version": 1
+              }
+            ],
+            "direction": null,
+            "textStyle": "",
+            "textFormat": 0
+          }
+        ],
+        "direction": null
+      }
+    },
     "actions": null,
     "final_users_location": [],
     "enterprise_european": false,
     "site_link": "https://www.digitalocean.com/",
-    "subcontractors_certifications": [],
+    "subcontractors_certifications": [
+      "PCI DSS Certification",
+      "HDS",
+      "ISO 27001"
+    ],
     "dpa_link": "https://www.digitalocean.com/legal/data-processing-agreement",
     "enterprise_location": [
       "🇺🇸 États-Unis"
@@ -788,18 +830,22 @@
       "Portabilité",
       "Gestion des exercices des droits des personnes concernées"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": null,
     "opensource": false,
-    "certification_dpf": null,
-    "subcontractors_infra": [],
+    "certification_dpf": true,
+    "subcontractors_infra": [
+      {
+        "name": "Amazon Web Services Inc. (USA)"
+      }
+    ],
     "online_accessible_dpa": true,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
     "privacy_score_saas": "B",
     "transfer_out_eu": "Oui",
-    "subcontractors": "Liste des ST présentée sur demande écrite",
+    "subcontractors": "https://www.digitalocean.com/trust/subprocessors",
     "data_access": [
       "Responsable du traitement",
       "Sous-traitant ultérieur",
@@ -841,7 +887,7 @@
     ],
     "transfer_supervision": [],
     "rgpd_feature": [],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": false,
@@ -967,11 +1013,11 @@
       "Opposition",
       "Retrait du consentement"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": true,
     "opensource": true,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Cloudflare (USA/local)"
@@ -1061,7 +1107,7 @@
       "Clauses contractuelles type"
     ],
     "rgpd_feature": [],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": true,
     "opensource": true,
@@ -1074,7 +1120,7 @@
         "name": "Google Cloud (USA)"
       }
     ],
-    "online_accessible_dpa": false,
+    "online_accessible_dpa": true,
     "location_host_client": [],
     "privacy_score_self_hosted": "A",
     "privacy_score_saas": "C",
@@ -1157,7 +1203,7 @@
       "Portabilité",
       "Opposition"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": false,
@@ -1183,7 +1229,7 @@
       "🇮🇳 Inde"
     ],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "C",
+    "privacy_score_saas": "B",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://fr.mailjet.com/dpa-changelog/",
     "data_access": [
@@ -1209,43 +1255,6 @@
       "🇧🇪 Belgique",
       "🇺🇸 États-Unis"
     ]
-  },
-  {
-    "dpa_en_pdf": [],
-    "transfer_informations": null,
-    "location_note": null,
-    "actions": null,
-    "final_users_location": [],
-    "enterprise_european": null,
-    "site_link": "https://penpot.app/",
-    "subcontractors_certifications": [],
-    "dpa_link": null,
-    "enterprise_location": [],
-    "transfer_supervision": [],
-    "rgpd_feature": [],
-    "dpa_compliant": null,
-    "fr_documentation": null,
-    "self_host_possibility": true,
-    "opensource": true,
-    "certification_dpf": null,
-    "subcontractors_infra": [],
-    "online_accessible_dpa": null,
-    "location_host_client": [],
-    "privacy_score_self_hosted": "A",
-    "privacy_score_saas": null,
-    "transfer_out_eu": null,
-    "subcontractors": null,
-    "data_access": [],
-    "enterprise_certifications": [],
-    "name": "Penpot",
-    "id_notion": "1c10d263-8e41-47d0-9c1a-dd3329c4c924",
-    "categories": [
-      {
-        "category": "No code",
-        "main": true
-      }
-    ],
-    "locations_data": []
   },
   {
     "dpa_en_pdf": [],
@@ -1336,7 +1345,7 @@
   },
   {
     "dpa_en_pdf": [],
-    "transfer_informations": null,
+    "transfer_informations": "https://www.metabase.com/docs/latest/installation-and-operation/privacy",
     "location_note": {
       "root": {
         "type": "root",
@@ -1419,11 +1428,11 @@
       "Accès",
       "Opposition"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": true,
     "opensource": true,
-    "certification_dpf": null,
+    "certification_dpf": false,
     "subcontractors_infra": [
       {
         "name": "Amazon Web Services Inc. (USA)"
@@ -1434,7 +1443,7 @@
       "🇺🇸 États-Unis"
     ],
     "privacy_score_self_hosted": "A",
-    "privacy_score_saas": "B",
+    "privacy_score_saas": "D",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://www.metabase.com/hosting/subprocessors/",
     "data_access": [
@@ -1792,11 +1801,11 @@
     ],
     "transfer_supervision": [],
     "rgpd_feature": [],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": true,
     "self_host_possibility": null,
     "opensource": true,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [],
     "online_accessible_dpa": true,
     "location_host_client": [],
@@ -1980,11 +1989,11 @@
       "Suppression définitive des données",
       "Modification"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Amazon Web Services Inc. (USA)"
@@ -2035,7 +2044,7 @@
   },
   {
     "dpa_en_pdf": [],
-    "transfer_informations": null,
+    "transfer_informations": "https://sentry.io/privacy/#international-data-transfers",
     "location_note": {
       "root": {
         "type": "root",
@@ -2119,11 +2128,11 @@
       "Accès",
       "Opposition"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": true,
     "opensource": true,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Google Cloud (USA)"
@@ -2222,11 +2231,11 @@
       "Accès",
       "Suppression définitive des données"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": true,
     "opensource": true,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Amazon Web Services Inc. (USA)"
@@ -2347,10 +2356,10 @@
         "name": "Digital Ocean LLC (USA)"
       }
     ],
-    "online_accessible_dpa": false,
+    "online_accessible_dpa": true,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "C",
+    "privacy_score_saas": "B",
     "transfer_out_eu": "Oui",
     "subcontractors": "(Annexe dans le DPA)",
     "data_access": [
@@ -2414,7 +2423,7 @@
     ],
     "transfer_supervision": [],
     "rgpd_feature": [],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": null,
     "self_host_possibility": false,
     "opensource": false,
@@ -2514,11 +2523,11 @@
       "Gestion des exercices des droits des personnes concernées",
       "Gestion de la preuve du consentement"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": false,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Amazon Web Services Inc. (USA)"
@@ -2539,7 +2548,7 @@
       "🇺🇸 États-Unis"
     ],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "C",
+    "privacy_score_saas": "B",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://www.mailgun.com/fr/legal/politique-confidentialite/",
     "data_access": [
@@ -2620,7 +2629,7 @@
       "Opposition",
       "Accès"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": false,
@@ -2638,7 +2647,7 @@
       "🇫🇷 France"
     ],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "B",
+    "privacy_score_saas": "D",
     "transfer_out_eu": "Oui",
     "subcontractors": "Pas d'infos à part sur le bandeau cookies",
     "data_access": [
@@ -2745,7 +2754,7 @@
       "Opposition",
       "Accès"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": true,
     "self_host_possibility": true,
     "opensource": true,
@@ -2833,7 +2842,11 @@
     ],
     "enterprise_european": false,
     "site_link": "https://whereby.com/",
-    "subcontractors_certifications": [],
+    "subcontractors_certifications": [
+      "PCI DSS Certification",
+      "HDS",
+      "ISO 27001"
+    ],
     "dpa_link": "https://whereby.com/information/dpa/",
     "enterprise_location": [
       "🇳🇴 Norvège"
@@ -2846,7 +2859,7 @@
       "Suppression définitive des données",
       "Portabilité"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,
@@ -2867,7 +2880,7 @@
     "privacy_score_self_hosted": null,
     "privacy_score_saas": "B",
     "transfer_out_eu": "Oui",
-    "subcontractors": null,
+    "subcontractors": "https://whereby.com/information/dpa/",
     "data_access": [
       "Responsable du traitement",
       "Employés",
@@ -3086,7 +3099,7 @@
       "PCI DSS Certification",
       "ISO 27001"
     ],
-    "dpa_link": "https://emailable.com/fr/data-processing-agreement/",
+    "dpa_link": "https://emailable.com/data-processing-agreement/",
     "enterprise_location": [
       "🇺🇸 États-Unis"
     ],
@@ -3104,7 +3117,7 @@
       "Retrait du consentement",
       "Portabilité"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,
@@ -3119,7 +3132,7 @@
       "🇺🇸 États-Unis"
     ],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "B",
+    "privacy_score_saas": "C",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://emailable.com/fr/privacy-policy/",
     "data_access": [
@@ -3207,11 +3220,11 @@
       "Droit de suppression",
       "Droit de limitation"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,
-    "certification_dpf": false,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Amazon Web Services Inc. (USA)"
@@ -3223,7 +3236,7 @@
     "online_accessible_dpa": true,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "D",
+    "privacy_score_saas": "B",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://fireflies.ai/data_processing_terms.pdf",
     "data_access": [
@@ -3305,11 +3318,11 @@
       "Droit de limitation",
       "Droit à la portabilité"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,
-    "certification_dpf": false,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Amazon Web Services Inc. (USA)"
@@ -3318,7 +3331,7 @@
     "online_accessible_dpa": true,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "D",
+    "privacy_score_saas": "C",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://substack.com/pa",
     "data_access": [
@@ -3407,7 +3420,7 @@
       "Droit de suppression",
       "Droit d'opposition"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": true,
@@ -3434,7 +3447,7 @@
       "🇺🇸 États-Unis"
     ],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "C",
+    "privacy_score_saas": "B",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://djangoeurope.com/data-privacy/gdpr/sub-processors",
     "data_access": [
@@ -3510,7 +3523,7 @@
       "Droit de limitation",
       "Droit à l'information"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": false,
     "self_host_possibility": true,
     "opensource": true,
@@ -3675,7 +3688,7 @@
     ],
     "transfer_supervision": [],
     "rgpd_feature": [],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": null,
     "self_host_possibility": false,
     "opensource": false,
@@ -3781,7 +3794,7 @@
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Amazon Web Services Inc. (USA)"
@@ -3875,7 +3888,7 @@
       "Suppression définitive des données",
       "Opposition"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": true,
     "self_host_possibility": true,
     "opensource": true,
@@ -4081,7 +4094,7 @@
       "Portabilité",
       "Retrait du consentement"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": false,
@@ -4100,7 +4113,7 @@
     "online_accessible_dpa": true,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "B",
+    "privacy_score_saas": "C",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://www.usebouncer.com/fr/services-de-tiers/",
     "data_access": [],
@@ -4134,18 +4147,19 @@
       "🇪🇺 Filiale Européenne"
     ],
     "transfer_supervision": [
-      "Clauses contractuelles type"
+      "Clauses contractuelles type",
+      "DPA"
     ],
     "rgpd_feature": [
       "Gestion des exercices des droits des personnes concernées"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": true,
     "self_host_possibility": null,
     "opensource": null,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [],
-    "online_accessible_dpa": null,
+    "online_accessible_dpa": true,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
     "privacy_score_saas": "B",
@@ -4306,93 +4320,6 @@
   },
   {
     "dpa_en_pdf": [],
-    "transfer_informations": "https://news.infomaniak.com/hebergement-des-donnees-en-suisse/?upage=2",
-    "location_note": {
-      "root": {
-        "type": "root",
-        "format": "",
-        "indent": 0,
-        "version": 1,
-        "children": [
-          {
-            "type": "paragraph",
-            "format": "",
-            "indent": 0,
-            "version": 1,
-            "children": [
-              {
-                "mode": "normal",
-                "text": "En Europe",
-                "type": "text",
-                "style": "",
-                "detail": 0,
-                "format": 0,
-                "version": 1
-              }
-            ],
-            "direction": null,
-            "textStyle": "",
-            "textFormat": 0
-          }
-        ],
-        "direction": null
-      }
-    },
-    "actions": null,
-    "final_users_location": [],
-    "enterprise_european": true,
-    "site_link": "https://www.infomaniak.com/fr",
-    "subcontractors_certifications": [],
-    "dpa_link": null,
-    "enterprise_location": [
-      "🇨🇭 Suisse"
-    ],
-    "transfer_supervision": [],
-    "rgpd_feature": [
-      "Suppression définitive des données",
-      "Accès",
-      "Modification"
-    ],
-    "dpa_compliant": null,
-    "fr_documentation": true,
-    "self_host_possibility": false,
-    "opensource": true,
-    "certification_dpf": null,
-    "subcontractors_infra": [
-      {
-        "name": "Infomaniak Network SA (Suisse)"
-      }
-    ],
-    "online_accessible_dpa": false,
-    "location_host_client": [],
-    "privacy_score_self_hosted": null,
-    "privacy_score_saas": "B",
-    "transfer_out_eu": "Oui",
-    "subcontractors": null,
-    "data_access": [
-      "Partenaires",
-      "Employés"
-    ],
-    "enterprise_certifications": [
-      "ISO 27001",
-      "ISO 9001",
-      "ISO 14001",
-      "ISO 50001",
-      "Code de conduite sur le cloud dans l'UE : niveau 2",
-      "Label Swiss Hosting"
-    ],
-    "name": "Infomaniak",
-    "id_notion": "53eb9747-6cc1-4546-a76f-6cba7dbf723a",
-    "categories": [
-      {
-        "category": "Hébergeur",
-        "main": true
-      }
-    ],
-    "locations_data": []
-  },
-  {
-    "dpa_en_pdf": [],
     "transfer_informations": "https://www.snowflake.com/privacy-policy/",
     "location_note": {
       "root": {
@@ -4452,7 +4379,7 @@
       "Droit de suppression",
       "Droit de limitation"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": true,
@@ -4754,11 +4681,11 @@
       "Modification",
       "Suppression définitive des données"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": false,
     "self_host_possibility": true,
     "opensource": true,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Microsoft Inc. (USA)"
@@ -4775,7 +4702,7 @@
       "🇺🇸 États-Unis"
     ],
     "privacy_score_self_hosted": "A",
-    "privacy_score_saas": "B",
+    "privacy_score_saas": "D",
     "transfer_out_eu": "Oui",
     "subcontractors": null,
     "data_access": [
@@ -4855,7 +4782,7 @@
       "Droit de suppression",
       "Droit de limitation"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": true,
@@ -4977,11 +4904,11 @@
       "Droit de retirer son consentement",
       "Droit d'opposition"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,
-    "certification_dpf": null,
+    "certification_dpf": false,
     "subcontractors_infra": [
       {
         "name": "Amazon Web Services Inc. (USA)"
@@ -4990,7 +4917,7 @@
     "online_accessible_dpa": false,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "D",
+    "privacy_score_saas": "E",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://frigade.com/privacy",
     "data_access": [
@@ -5058,11 +4985,11 @@
       "Opposition",
       "Accès"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": false,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Andale (USA)"
@@ -5080,7 +5007,7 @@
     "online_accessible_dpa": true,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "D",
+    "privacy_score_saas": "B",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://www.facebook.com/legal/ads-subprocessors_Preview",
     "data_access": [
@@ -5277,11 +5204,11 @@
       "Accès",
       "Opposition"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": false,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Google Cloud (USA)"
@@ -5510,11 +5437,11 @@
       "Droit de rectification",
       "Droit de suppression"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": true,
     "self_host_possibility": true,
     "opensource": true,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Amazon Web Services Inc. (USA)"
@@ -5557,7 +5484,7 @@
   },
   {
     "dpa_en_pdf": [],
-    "transfer_informations": null,
+    "transfer_informations": "https://www.chatwoot.com/privacy-policy",
     "location_note": {
       "root": {
         "type": "root",
@@ -5606,7 +5533,7 @@
     "fr_documentation": false,
     "self_host_possibility": true,
     "opensource": true,
-    "certification_dpf": null,
+    "certification_dpf": false,
     "subcontractors_infra": [
       {
         "name": "Amazon Web Services Inc. (USA)"
@@ -5655,7 +5582,7 @@
     ],
     "transfer_supervision": [],
     "rgpd_feature": [],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": true,
     "opensource": true,
@@ -5739,7 +5666,7 @@
     "fr_documentation": false,
     "self_host_possibility": true,
     "opensource": true,
-    "certification_dpf": null,
+    "certification_dpf": false,
     "subcontractors_infra": [],
     "online_accessible_dpa": false,
     "location_host_client": [
@@ -5767,7 +5694,7 @@
     "dpa_en_pdf": [
       "dpa.pdf"
     ],
-    "transfer_informations": null,
+    "transfer_informations": "https://www.infomaniak.com/en/legal/general-terms-and-conditions",
     "location_note": {
       "root": {
         "type": "root",
@@ -5807,7 +5734,7 @@
     "enterprise_european": false,
     "site_link": "https://www.infomaniak.com/fr",
     "subcontractors_certifications": [],
-    "dpa_link": "https://manager.infomaniak.com/pdfcgu.php/fr_FR/52/dpa.pdf",
+    "dpa_link": "https://www.infomaniak.com/documents/privacy/DPA/Data_Processing_Agreement_(DPA).pdf",
     "enterprise_location": [
       "🇨🇭 Suisse"
     ],
@@ -5815,7 +5742,7 @@
     "rgpd_feature": [
       "Gestion des exercices des droits des personnes concernées"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": true,
     "self_host_possibility": null,
     "opensource": true,
@@ -5899,18 +5826,22 @@
     ],
     "transfer_supervision": [],
     "rgpd_feature": [],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": true,
     "self_host_possibility": null,
     "opensource": false,
     "certification_dpf": null,
-    "subcontractors_infra": [],
+    "subcontractors_infra": [
+      {
+        "name": "OVH (France - EU)"
+      }
+    ],
     "online_accessible_dpa": false,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "A",
+    "privacy_score_saas": "C",
     "transfer_out_eu": "Non",
-    "subcontractors": "Liste des ST présentée sur demande écrite",
+    "subcontractors": "https://www.leviia.com/politique-de-confidentialite/",
     "data_access": [
       "Responsable du traitement",
       "Employés"
@@ -5948,13 +5879,13 @@
     "enterprise_location": [],
     "transfer_supervision": [],
     "rgpd_feature": [],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": true,
     "self_host_possibility": null,
     "opensource": null,
     "certification_dpf": null,
     "subcontractors_infra": [],
-    "online_accessible_dpa": null,
+    "online_accessible_dpa": false,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
     "privacy_score_saas": "D",
@@ -6035,7 +5966,7 @@
       "Droit d'accès",
       "Droit de limitation"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,
@@ -6127,11 +6058,11 @@
       "Portabilité",
       "Anonymisation"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": true,
     "opensource": true,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "hébergeur choisi (selfhost)"
@@ -6225,11 +6156,11 @@
       "Modification",
       "Portabilité"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Amazon Web Services Inc. (USA)"
@@ -6391,7 +6322,7 @@
       "🇺🇸 États-Unis"
     ],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "C",
+    "privacy_score_saas": "B",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://help.sleekplan.com/en/articles/5149070-how-sleekplan-complies-with-gdpr",
     "data_access": [
@@ -6460,11 +6391,11 @@
       "Clauses contractuelles type"
     ],
     "rgpd_feature": [],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": false,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Google Cloud (USA)"
@@ -6478,7 +6409,7 @@
       "🇺🇸 États-Unis"
     ],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "C",
+    "privacy_score_saas": "B",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://mailchimp.com/legal/subprocessors/",
     "data_access": [
@@ -6559,7 +6490,7 @@
   },
   {
     "dpa_en_pdf": [],
-    "transfer_informations": null,
+    "transfer_informations": "https://www.pcloud.com/fr/privacy_policy.html",
     "location_note": {
       "root": {
         "type": "root",
@@ -6608,16 +6539,16 @@
       "Filiale localisée EU"
     ],
     "rgpd_feature": [],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": false,
     "certification_dpf": null,
     "subcontractors_infra": [],
-    "online_accessible_dpa": null,
+    "online_accessible_dpa": false,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "B",
+    "privacy_score_saas": "C",
     "transfer_out_eu": "Au choix",
     "subcontractors": null,
     "data_access": [
@@ -6720,7 +6651,7 @@
     ],
     "transfer_supervision": [],
     "rgpd_feature": [],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": false,
@@ -6733,7 +6664,7 @@
     "online_accessible_dpa": false,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "B",
+    "privacy_score_saas": "C",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://www.lesphinx-developpement.fr/ressources/rgpd/",
     "data_access": [
@@ -6804,11 +6735,11 @@
       "Modification",
       "Suppression définitive des données"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Amazon Web Services Inc. (USA)"
@@ -7039,11 +6970,11 @@
       "Droit d'opposition",
       "Plainte"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": false,
     "self_host_possibility": true,
     "opensource": true,
-    "certification_dpf": null,
+    "certification_dpf": false,
     "subcontractors_infra": [
       {
         "name": "Amazon Web Services Inc. (USA)"
@@ -7058,12 +6989,12 @@
         "name": "Hurricane Electric (USA)"
       }
     ],
-    "online_accessible_dpa": true,
+    "online_accessible_dpa": false,
     "location_host_client": [
       "🇺🇸 États-Unis"
     ],
     "privacy_score_self_hosted": "A",
-    "privacy_score_saas": "B",
+    "privacy_score_saas": "E",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://www.discourse.org/subprocessors",
     "data_access": [],
@@ -7142,7 +7073,7 @@
       "L'enregistrement des données liées à l'inscription et à la désinscription des contacts",
       "Validation d'inscription par double opt-in"
     ],
-    "dpa_compliant": false,
+    "dpa_compliant": true,
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": false,
@@ -7166,7 +7097,7 @@
       "🇺🇸 États-Unis"
     ],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "E",
+    "privacy_score_saas": "B",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://www.sarbacane.com/sous-traitants",
     "data_access": [
@@ -7232,7 +7163,7 @@
       "SOC Type III",
       "ISO 27001"
     ],
-    "dpa_link": "https://help.featurebase.app/en/articles/8874192-is-featurebase-gdpr-compliant",
+    "dpa_link": "https://help.featurebase.app/en/articles/6556750-data-processing-agreement",
     "enterprise_location": [
       "🇪🇪 Estonie"
     ],
@@ -7249,7 +7180,7 @@
       "Droit de suppression",
       "Droit de limitation"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": true,
@@ -7271,7 +7202,7 @@
     "online_accessible_dpa": true,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "C",
+    "privacy_score_saas": "B",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://www.featurebase.app/privacy-policy",
     "data_access": [
@@ -7428,7 +7359,7 @@
     "rgpd_feature": [
       "Gestion des exercices des droits des personnes concernées"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": true,
     "self_host_possibility": null,
     "opensource": null,
@@ -7563,7 +7494,7 @@
   },
   {
     "dpa_en_pdf": [],
-    "transfer_informations": null,
+    "transfer_informations": "https://livestorm.co/fr/rgpd",
     "location_note": {
       "root": {
         "type": "root",
@@ -7601,14 +7532,20 @@
     ],
     "enterprise_european": true,
     "site_link": "https://livestorm.co/fr",
-    "subcontractors_certifications": [],
-    "dpa_link": "https://livestorm.imgix.net/1127/1675174056-privacy-policy-fr.pdf",
+    "subcontractors_certifications": [
+      "PCI DSS Certification",
+      "HDS",
+      "ISO 27001"
+    ],
+    "dpa_link": "https://security.livestorm.co/",
     "enterprise_location": [
       "🇫🇷 France"
     ],
-    "transfer_supervision": [],
+    "transfer_supervision": [
+      "DPA"
+    ],
     "rgpd_feature": [],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": null,
     "opensource": false,
@@ -7700,11 +7637,11 @@
       "Portabilité",
       "Gestion des exercices des droits des personnes concernées"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": null,
     "opensource": false,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Amazon Web Services Inc. (USA)"
@@ -7794,7 +7731,7 @@
       "Droit de rectification",
       "Droit d'opposition"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": false,
@@ -7807,7 +7744,7 @@
     "online_accessible_dpa": false,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "B",
+    "privacy_score_saas": "C",
     "transfer_out_eu": "Oui",
     "subcontractors": null,
     "data_access": [],
@@ -7915,11 +7852,11 @@
       "Droit de suppression",
       "Droit d'opposition"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,
-    "certification_dpf": false,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Amazon Web Services Inc. (USA)"
@@ -7928,7 +7865,7 @@
     "online_accessible_dpa": true,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "D",
+    "privacy_score_saas": "B",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://mazedesign.notion.site/Sub-processors-c27947fa5f6c4c5eb8ad1541339da19c",
     "data_access": [
@@ -8031,11 +7968,11 @@
       "Opposition",
       "Accès"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": false,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Google Cloud (EU)"
@@ -8044,7 +7981,7 @@
         "name": "Google Cloud (USA)"
       }
     ],
-    "online_accessible_dpa": false,
+    "online_accessible_dpa": true,
     "location_host_client": [
       "🇺🇸 États-Unis"
     ],
@@ -8122,7 +8059,7 @@
     "rgpd_feature": [
       "Gestion des exercices des droits des personnes concernées"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": true,
     "self_host_possibility": null,
     "opensource": null,
@@ -8132,12 +8069,12 @@
         "name": "OVH (France - EU)"
       }
     ],
-    "online_accessible_dpa": null,
+    "online_accessible_dpa": false,
     "location_host_client": [
       "🇫🇷 France"
     ],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "B",
+    "privacy_score_saas": "C",
     "transfer_out_eu": "Non",
     "subcontractors": null,
     "data_access": [
@@ -8218,7 +8155,7 @@
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": false,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [],
     "online_accessible_dpa": true,
     "location_host_client": [],
@@ -8308,7 +8245,7 @@
       "Clauses contractuelles type"
     ],
     "rgpd_feature": [],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": true,
     "opensource": true,
@@ -8323,7 +8260,7 @@
       "🇩🇪 Allemagne"
     ],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "D",
+    "privacy_score_saas": "C",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://n8n.io/legal/subprocessors",
     "data_access": [
@@ -8343,51 +8280,6 @@
     ],
     "locations_data": [
       "🇩🇪 Allemagne"
-    ]
-  },
-  {
-    "dpa_en_pdf": [],
-    "transfer_informations": null,
-    "location_note": null,
-    "actions": null,
-    "final_users_location": [
-      "🇺🇸 États-Unis"
-    ],
-    "enterprise_european": false,
-    "site_link": "https://www.sendpost.io/",
-    "subcontractors_certifications": [],
-    "dpa_link": null,
-    "enterprise_location": [
-      "🇺🇸 États-Unis"
-    ],
-    "transfer_supervision": [],
-    "rgpd_feature": [],
-    "dpa_compliant": null,
-    "fr_documentation": false,
-    "self_host_possibility": false,
-    "opensource": false,
-    "certification_dpf": null,
-    "subcontractors_infra": [],
-    "online_accessible_dpa": false,
-    "location_host_client": [
-      "🇺🇸 États-Unis"
-    ],
-    "privacy_score_self_hosted": null,
-    "privacy_score_saas": "F",
-    "transfer_out_eu": "Oui",
-    "subcontractors": "https://www.sendpost.io/privacy/",
-    "data_access": [],
-    "enterprise_certifications": [],
-    "name": "SendPost",
-    "id_notion": "bab54d6d-23b7-48cf-9b9a-9e3a4139585a",
-    "categories": [
-      {
-        "category": "Emailing",
-        "main": true
-      }
-    ],
-    "locations_data": [
-      "🇺🇸 États-Unis"
     ]
   },
   {
@@ -8561,7 +8453,7 @@
       "Droit de suppression",
       "Droit de limitation"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,
@@ -8580,7 +8472,7 @@
     "online_accessible_dpa": true,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "C",
+    "privacy_score_saas": "B",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://www.bliro.io/privacy-policy",
     "data_access": [
@@ -8688,7 +8580,7 @@
       "Droit d'opposition",
       "Droit à la portabilité"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,
@@ -8701,7 +8593,7 @@
     "online_accessible_dpa": false,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "B",
+    "privacy_score_saas": "C",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://postoplan.contenive.com/fr/privacy-policy",
     "data_access": [
@@ -8805,7 +8697,7 @@
     "rgpd_feature": [
       "Accès"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": true,
     "opensource": true,
@@ -8964,7 +8856,7 @@
       "Sous-traitant ultérieur"
     ],
     "enterprise_certifications": [],
-    "name": "Atinternet",
+    "name": "AtInternet",
     "id_notion": "c0ad1d57-3ce2-43d5-9eaa-e1c5634dbd6e",
     "categories": [
       {
@@ -9033,7 +8925,7 @@
       "Gestion des exercices des droits des personnes concernées",
       "Opposition"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": false,
@@ -9076,7 +8968,7 @@
   },
   {
     "dpa_en_pdf": [],
-    "transfer_informations": null,
+    "transfer_informations": "https://zammad.com/en/company/privacy",
     "location_note": {
       "root": {
         "type": "root",
@@ -9114,18 +9006,22 @@
     ],
     "enterprise_european": true,
     "site_link": "https://zammad.com/en/company/privacy",
-    "subcontractors_certifications": [],
-    "dpa_link": null,
+    "subcontractors_certifications": [
+      "ISO 27001"
+    ],
+    "dpa_link": "https://localcontexts.org/wp-content/uploads/2024/03/Zammad-DPA.pdf",
     "enterprise_location": [
       "🇩🇪 Allemagne"
     ],
-    "transfer_supervision": [],
+    "transfer_supervision": [
+      "DPA"
+    ],
     "rgpd_feature": [
       "Suppression définitive des données",
       "Accès",
       "Modification"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": true,
     "opensource": true,
@@ -9226,11 +9122,11 @@
       "Portabilité",
       "Suppression définitive des données"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,
-    "certification_dpf": null,
+    "certification_dpf": false,
     "subcontractors_infra": [
       {
         "name": "Amazon Web Services Inc. (USA)"
@@ -9344,7 +9240,7 @@
       "🇺🇸 États-Unis"
     ],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "C",
+    "privacy_score_saas": "B",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://zapier.com/legal/subprocessors",
     "data_access": [
@@ -9370,16 +9266,16 @@
     ]
   },
   {
-    "dpa_en_pdf": [
-      "data-processing-addendum.pdf"
-    ],
-    "transfer_informations": "https://www.salesforce.com/content/dam/web/en_us/www/documents/legal/Agreements/data-transfer-mechanisms-FAQ.pdf",
+    "dpa_en_pdf": [],
+    "transfer_informations": "https://www.salesforce.com/company/legal/privacy/",
     "location_note": null,
     "actions": null,
     "final_users_location": [],
     "enterprise_european": false,
     "site_link": "https://www.salesforce.com/fr/",
-    "subcontractors_certifications": [],
+    "subcontractors_certifications": [
+      "ISO 27001"
+    ],
     "dpa_link": "https://www.salesforce.com/company/privacy/",
     "enterprise_location": [
       "🇪🇺 Filiale Européenne",
@@ -9391,18 +9287,18 @@
       "Clauses contractuelles type"
     ],
     "rgpd_feature": [],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": true,
     "self_host_possibility": null,
     "opensource": false,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [],
     "online_accessible_dpa": true,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
     "privacy_score_saas": "B",
     "transfer_out_eu": "Oui",
-    "subcontractors": null,
+    "subcontractors": "https://www.salesforce.com/en-us/wp-content/uploads/sites/4/documents/legal/misc/salesforce-infrastructure-and-subprocessors.pdf",
     "data_access": [
       "Responsable du traitement",
       "Employés",
@@ -9733,7 +9629,7 @@
       "Droit de rectification",
       "Droit à l'information"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,
@@ -9743,10 +9639,10 @@
         "name": "Amazon Web Services Inc. (USA)"
       }
     ],
-    "online_accessible_dpa": true,
+    "online_accessible_dpa": false,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "B",
+    "privacy_score_saas": "C",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://otter.ai/subprocessors",
     "data_access": [
@@ -9975,7 +9871,7 @@
       "🇪🇺 Europe"
     ],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "C",
+    "privacy_score_saas": "B",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://www.brevo.com/legal/termsofuse/",
     "data_access": [
@@ -10131,7 +10027,7 @@
       "Droit de suppression",
       "Droit de limitation"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": true,
@@ -10187,7 +10083,7 @@
       "Clauses contractuelles type"
     ],
     "rgpd_feature": [],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": false,
@@ -10277,7 +10173,7 @@
     ],
     "transfer_supervision": [],
     "rgpd_feature": [],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": false,
@@ -10382,7 +10278,7 @@
       "Droit de suppression",
       "Droit de retirer son consentement"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,
@@ -10676,7 +10572,7 @@
     "rgpd_feature": [
       "Gestion des exercices des droits des personnes concernées"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": false,
@@ -10781,11 +10677,11 @@
       "Droit de rectification",
       "Droit à l'information"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Amazon Web Services Inc. (USA)"
@@ -10803,7 +10699,7 @@
     "online_accessible_dpa": false,
     "location_host_client": [],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "D",
+    "privacy_score_saas": "C",
     "transfer_out_eu": "Oui",
     "subcontractors": "https://userguiding.com/privacy-policy/",
     "data_access": [
@@ -10872,11 +10768,11 @@
       "Décisions d'adéquation"
     ],
     "rgpd_feature": [],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Amazon Web Services Inc. (USA)"
@@ -11015,11 +10911,11 @@
       "Opposition",
       "Retrait du consentement"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": true,
     "self_host_possibility": false,
     "opensource": true,
-    "certification_dpf": null,
+    "certification_dpf": true,
     "subcontractors_infra": [
       {
         "name": "Google Cloud (EU)"
@@ -11117,7 +11013,7 @@
       "Anonymisation",
       "Retrait du consentement"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": false,
     "fr_documentation": true,
     "self_host_possibility": null,
     "opensource": false,
@@ -11128,7 +11024,7 @@
       "🇫🇷 France"
     ],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": null,
+    "privacy_score_saas": "D",
     "transfer_out_eu": null,
     "subcontractors": null,
     "data_access": [],
@@ -11486,7 +11382,7 @@
       "Modification",
       "Accès"
     ],
-    "dpa_compliant": null,
+    "dpa_compliant": true,
     "fr_documentation": false,
     "self_host_possibility": false,
     "opensource": false,
@@ -11510,7 +11406,7 @@
       "🇧🇪 Belgique"
     ],
     "privacy_score_self_hosted": null,
-    "privacy_score_saas": "C",
+    "privacy_score_saas": "B",
     "transfer_out_eu": "Non",
     "subcontractors": "https://elium.com/legal/",
     "data_access": [
