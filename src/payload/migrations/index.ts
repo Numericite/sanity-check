@@ -8,7 +8,7 @@ import * as migration_20251105_142734_add_fonctionnalities_vigilances_recommenda
 import * as migration_20251105_160408_add_category_slug from './20251105_160408_add_category_slug';
 import * as migration_20251114_101722_add_locations_data_in_tool from './20251114_101722_add_locations_data_in_tool';
 import * as migration_20251114_104709_remove_location_host_client_final_users from './20251114_104709_remove_location_host_client_final_users';
-import * as migration_20251117_132630_add_lines from './20251117_132630_add_lines';
+import * as migration_20251118_143802_add_lines from './20251118_143802_add_lines';
 
 export const migrations = [
   {
@@ -49,7 +49,7 @@ export const migrations = [
   {
     up: migration_20251105_160408_add_category_slug.up,
     down: migration_20251105_160408_add_category_slug.down,
-    name: '20251105_160408_add_category_slug'
+    name: '20251105_160408_add_category_slug',
   },
   {
     up: migration_20251114_101722_add_locations_data_in_tool.up,
@@ -59,11 +59,11 @@ export const migrations = [
   {
     up: migration_20251114_104709_remove_location_host_client_final_users.up,
     down: migration_20251114_104709_remove_location_host_client_final_users.down,
-    name: '20251114_104709_remove_location_host_client_final_users'
+    name: '20251114_104709_remove_location_host_client_final_users',
   },
   {
-    up: migration_20251117_132630_add_lines.up,
-    down: migration_20251117_132630_add_lines.down,
-    name: '20251117_132630_add_lines'
+    up: migration_20251118_143802_add_lines.up,
+    down: migration_20251118_143802_add_lines.down,
+    name: '20251118_143802_add_lines'
   },
 ];

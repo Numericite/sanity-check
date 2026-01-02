@@ -76,7 +76,6 @@ export interface Config {
     transfers: Transfer;
     features: Feature;
     contactSubmissions: ContactSubmission;
-    lines: Line;
     users: User;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -97,7 +96,6 @@ export interface Config {
     transfers: TransfersSelect<false> | TransfersSelect<true>;
     features: FeaturesSelect<false> | FeaturesSelect<true>;
     contactSubmissions: ContactSubmissionsSelect<false> | ContactSubmissionsSelect<true>;
-    lines: LinesSelect<false> | LinesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -106,8 +104,12 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    lines: Line;
+  };
+  globalsSelect: {
+    lines: LinesSelect<false> | LinesSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -425,19 +427,6 @@ export interface ContactSubmission {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "lines".
- */
-export interface Line {
-  id: number;
-  _order?: string | null;
-  slug: string;
-  name: string;
-  active?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -502,10 +491,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'contactSubmissions';
         value: number | ContactSubmission;
-      } | null)
-    | ({
-        relationTo: 'lines';
-        value: number | Line;
       } | null)
     | ({
         relationTo: 'users';
@@ -736,18 +721,6 @@ export interface ContactSubmissionsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "lines_select".
- */
-export interface LinesSelect<T extends boolean = true> {
-  _order?: T;
-  slug?: T;
-  name?: T;
-  active?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
@@ -799,6 +772,42 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "lines".
+ */
+export interface Line {
+  id: number;
+  items?:
+    | {
+        slug: string;
+        name: string;
+        active?: boolean | null;
+        type: 'link' | 'richtext' | 'locations' | 'boolean' | 'choice' | 'badges' | 'categories' | 'privacy_score';
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "lines_select".
+ */
+export interface LinesSelect<T extends boolean = true> {
+  items?:
+    | T
+    | {
+        slug?: T;
+        name?: T;
+        active?: T;
+        type?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

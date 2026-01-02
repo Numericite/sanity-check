@@ -2,16 +2,12 @@ import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
 export const lineRouter = createTRPCRouter({
 	getAll: publicProcedure.query(async ({ ctx }) => {
-		const lines = await ctx.payload.find({
-			collection: "lines",
-			where: {
-				active: {
-					equals: true,
-				},
-			},
-			limit: 0,
+		const lines = await ctx.payload.findGlobal({
+			slug: "lines",
 		});
 
-		return lines.docs;
+		const activeItems = lines?.items?.filter((i) => i.active === true);
+
+		if (activeItems) return activeItems;
 	}),
 });

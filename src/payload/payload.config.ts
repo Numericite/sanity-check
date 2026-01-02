@@ -15,8 +15,8 @@ import { Media } from "./collections/Media";
 import { Tools } from "./collections/Tools";
 import { Transfers } from "./collections/Transfer";
 import { ContactSubmissions } from "./collections/ContactSubmission";
-import { Lines } from "./collections/Line";
 import { fr } from "@payloadcms/translations/languages/fr";
+import { Lines } from "./globals/Line";
 
 const hasAwsCreds = Boolean(
 	process.env.S3_ACCESS_KEY_ID &&
@@ -52,8 +52,8 @@ export default buildConfig({
 		Transfers,
 		Features,
 		ContactSubmissions,
-		Lines,
 	],
+	globals: [Lines],
 	secret: process.env.PAYLOAD_SECRET || "",
 	db: postgresAdapter({
 		pool: {

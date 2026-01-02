@@ -1,85 +1,47 @@
-import { Box } from "@chakra-ui/react";
-import Line from "./line";
-import TransferInformations from "./lines/transfer_informations";
-import LocationNote from "./lines/location_note";
-import Actions from "./lines/actions";
-import LocationsData from "./lines/locations_data";
-import LocationsFinalUsers from "./lines/locations_final_users";
-import EnterpriseEuropean from "./lines/enterprise_european";
-import SiteLink from "./lines/site_link";
-import CertificationsSubcontractors from "./lines/certifications_subcontractors";
-import DpaLink from "./lines/dpa_link";
-import Transfers from "./lines/transfers";
-import Features from "./lines/features";
-import FrDocumentation from "./lines/fr_documentation";
-import SelfHostPossibility from "./lines/self_host_possibility";
-import Opensource from "./lines/opensource";
-import CertificationDpf from "./lines/certification_dpf";
-import SubcontractorsInfra from "./lines/subcontractors_infra";
-import OnlineAccessibleDpa from "./lines/online_accessible_dpa";
-import LocationsHostClient from "./lines/locations_host_client";
-import Categories from "./lines/categories";
-import PrivacyScoreSelfHosted from "./lines/privacy_score_self_hosted";
-import PrivacyScoreSaas from "./lines/privacy_score_saas";
-import TransferOutEu from "./lines/transfer_out_eu";
-import Subcontractors from "./lines/subcontractors";
-import Accessors from "./lines/accessors";
-import Certifications from "./lines/certifications";
-import { api } from "~/utils/api";
+import { Box, Text } from "@chakra-ui/react";
 import type { ToolRichType } from "~/types/tool-rich-types";
+import { api } from "~/utils/api";
+import LineBoolean from "./line-types/line-boolean";
+import Line from "./line";
+import LineLink from "./line-types/line-link";
+import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
+import LineRichtext from "./line-types/line-richtext";
+import LineLocations from "./line-types/line-locations";
+import LineChoice from "./line-types/line-choice";
 
 type Props = {
 	tool: ToolRichType;
 };
 
-const lineDefinitions = {
-	transfer_informations: TransferInformations,
-	location_note: LocationNote,
-	actions: Actions,
-	locations_data: LocationsData,
-	locations_final_users: LocationsFinalUsers,
-	enterprise_european: EnterpriseEuropean,
-	site_link: SiteLink,
-	certifications_subcontractors: CertificationsSubcontractors,
-	dpa_link: DpaLink,
-	transfers: Transfers,
-	features: Features,
-	fr_documentation: FrDocumentation,
-	self_host_possibility: SelfHostPossibility,
-	opensource: Opensource,
-	certification_dpf: CertificationDpf,
-	subcontractors_infra: SubcontractorsInfra,
-	online_accessible_dpa: OnlineAccessibleDpa,
-	locations_host_client: LocationsHostClient,
-	categories: Categories,
-	privacy_score_self_hosted: PrivacyScoreSelfHosted,
-	privacy_score_saas: PrivacyScoreSaas,
-	transfer_out_eu: TransferOutEu,
-	subcontractors: Subcontractors,
-	accessors: Accessors,
-	certifications: Certifications,
-} as const;
-
-type LineSlug = keyof typeof lineDefinitions;
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+const lineComponents: Record<string, (val: any) => React.ReactNode | null> = {
+	boolean: (val) =>
+		typeof val === "boolean" ? <LineBoolean val={val} /> : null,
+	link: (val) =>
+		val === null || typeof val === "string" ? <LineLink val={val} /> : null,
+	richtext: (val) => <LineRichtext val={val} />,
+	locations: (val) => <LineLocations val={val} />,
+	choice: (val) => <LineChoice val={val} />,
+};
 
 export default function Lines({ tool }: Props) {
-	const { data: lines, isLoading } = api.line.getAll.useQuery();
-
-	if (isLoading || !tool) return null;
+	const { data: lines } = api.line.getAll.useQuery();
 
 	return (
 		<Box px={6} rounded={"xl"} borderColor={"blue.50"} borderWidth={1}>
 			{lines?.map((line, index) => {
-				const Comp = lineDefinitions[line.slug as LineSlug];
+				const title = line.name;
+				const val = tool[line.slug as keyof ToolRichType];
 				const isLast = index === lines.length - 1;
 
+				const Component = lineComponents[line.type];
+				if (!Component) return null;
+
+				const content = Component(val);
+				if (!content) return null;
+
 				return (
-					<Line
-						title={line.name}
-						key={line.slug}
-						last={isLast}
-						content={<Comp tool={tool} />}
-					/>
+					<Line key={line.slug} title={title} last={isLast} content={content} />
 				);
 			})}
 		</Box>
