@@ -22,15 +22,6 @@ export default function Categories() {
 			<Flex gap={6} flexDir={"column"} p={4}>
 				<Flex gap={4} flexDir={"column"}>
 					<Heading size={"2xl"}>Catégories d'outils</Heading>
-					<Text fontSize={16} fontWeight={300}>
-						Terramatisk androcentrism att medellogi inklusive filostat
-						paratologi psykokemi stereovalens operastik postaktiv. Prebel
-						semigyn teleaktiv kvasicentrism prostik komform än kontratism
-						ambisofi destris. Filotopi hypertet oaktat rekrati fonotologi
-						apotet: teramodern abskop. Postlog primasocial för demogen sedan
-						antropoaktiv medelpod, polisofi konlogi, komtiv deslogi monotris. Du
-						kan vara drabbad.
-					</Text>
 				</Flex>
 
 				<Grid
