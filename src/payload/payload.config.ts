@@ -16,6 +16,7 @@ import { Tools } from "./collections/Tools";
 import { Transfers } from "./collections/Transfer";
 import { ContactSubmissions } from "./collections/ContactSubmission";
 import { fr } from "@payloadcms/translations/languages/fr";
+import { LegalNotices } from "./globals/legal-notices";
 
 const hasAwsCreds = Boolean(
 	process.env.S3_ACCESS_KEY_ID &&
@@ -51,6 +52,9 @@ export default buildConfig({
 		Transfers,
 		Features,
 		ContactSubmissions,
+	],
+	globals: [
+		LegalNotices
 	],
 	secret: process.env.PAYLOAD_SECRET || "",
 	db: postgresAdapter({
