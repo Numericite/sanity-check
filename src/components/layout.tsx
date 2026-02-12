@@ -1,5 +1,6 @@
 import { Box, Container } from "@chakra-ui/react";
 import Navbar from "./navbar";
+import Footer from "./footer";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
@@ -10,6 +11,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 					{children}
 				</Container>
 			</Box>
+			<Footer />
 		</>
 	);
 }
