@@ -54,5 +54,5 @@ tarteaucitron.init({
   partnersList: true /* Show the number of partners on the popup/middle banner */,
 });
 
-tarteaucitron.user.plausibleDomain = "https://plausible.numericite.eu";
+tarteaucitron.user.plausibleDomain = "sanity-check.numericite.eu";
 (tarteaucitron.job = tarteaucitron.job || []).push("plausible");
