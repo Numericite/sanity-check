@@ -15,7 +15,8 @@
 			"./src/payload/payload-generated-schema.ts",
 			"./scripts/*",
 			"./src/app/(payload)/*",
-			"./src/payload/migrations/*"
+			"./src/payload/migrations/*",
+			"./public/static/tarteaucitron/*"
 		]
 	},
 	"organizeImports": { "enabled": false },
@@ -26,7 +27,8 @@
 			"./src/payload/payload-generated-schema.ts",
 			"./scripts/*",
 			"./src/app/(payload)/*",
-			"./src/payload/migrations/*"
+			"./src/payload/migrations/*",
+			"./public/static/tarteaucitron/*"
 		],
 		"rules": {
 			"nursery": {
