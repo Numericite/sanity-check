@@ -55,4 +55,5 @@ tarteaucitron.init({
 });
 
 tarteaucitron.user.plausibleDomain = "sanity-check.numericite.eu";
+tarteaucitron.user.plausibleEndpoint = "plausible.numericite.eu";
 (tarteaucitron.job = tarteaucitron.job || []).push("plausible");
