@@ -121,6 +121,15 @@ export default function Footer(){
                                 Mentions légales
                             </NextLink>
                         </ChakraLink>
+                        <ChakraLink
+                            color="black"
+                            fontSize={{ base: 14, lg: 16 }}
+                            asChild
+                        >
+                            <NextLink href={"/personal-data"} passHref>
+                                Données à caractère personnel
+                            </NextLink>
+                        </ChakraLink>
                         <Text fontSize={{ base: 14, lg: 16 }}>
                             © {year} Sanity Check
                         </Text>

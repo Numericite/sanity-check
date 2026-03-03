@@ -106,9 +106,11 @@ export interface Config {
   };
   globals: {
     'legal-notices': LegalNotice;
+    'personal-data': PersonalDatum;
   };
   globalsSelect: {
     'legal-notices': LegalNoticesSelect<false> | LegalNoticesSelect<true>;
+    'personal-data': PersonalDataSelect<false> | PersonalDataSelect<true>;
   };
   locale: null;
   user: User & {
@@ -799,9 +801,43 @@ export interface LegalNotice {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "personal-data".
+ */
+export interface PersonalDatum {
+  id: number;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "legal-notices_select".
  */
 export interface LegalNoticesSelect<T extends boolean = true> {
+  content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "personal-data_select".
+ */
+export interface PersonalDataSelect<T extends boolean = true> {
   content?: T;
   updatedAt?: T;
   createdAt?: T;

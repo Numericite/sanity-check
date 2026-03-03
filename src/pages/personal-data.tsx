@@ -4,13 +4,13 @@ import Head from "next/head";
 import { Prose } from "~/components/ui/prose";
 import { api } from "~/utils/api";
 
-export default function LegalNotices() {
-	const { data, isLoading } = api.legalNotices.get.useQuery();
+export default function PersonalData() {
+	const { data, isLoading } = api.personalData.get.useQuery();
 
 	return (
 		<>
 			<Head>
-				<title>Mentions légales - Sanity Check</title>
+				<title>Données à caractère personnel - Sanity Check</title>
 			</Head>
 			<Flex
 				bgColor={{ base: "white", md: "transparent" }}

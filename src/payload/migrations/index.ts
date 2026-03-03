@@ -9,6 +9,7 @@ import * as migration_20251105_160408_add_category_slug from './20251105_160408_
 import * as migration_20251114_101722_add_locations_data_in_tool from './20251114_101722_add_locations_data_in_tool';
 import * as migration_20251114_104709_remove_location_host_client_final_users from './20251114_104709_remove_location_host_client_final_users';
 import * as migration_20260212_152610_legal_notices from './20260212_152610_legal_notices';
+import * as migration_20260303_151053_personal_data from './20260303_151053_personal_data';
 
 export const migrations = [
   {
@@ -64,6 +65,11 @@ export const migrations = [
   {
     up: migration_20260212_152610_legal_notices.up,
     down: migration_20260212_152610_legal_notices.down,
-    name: '20260212_152610_legal_notices'
+    name: '20260212_152610_legal_notices',
+  },
+  {
+    up: migration_20260303_151053_personal_data.up,
+    down: migration_20260303_151053_personal_data.down,
+    name: '20260303_151053_personal_data'
   },
 ];
