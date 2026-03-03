@@ -292,6 +292,10 @@ export default function Contact() {
 									resize={"none"}
 									outline={"none"}
 								/>
+								<Field.HelperText>
+									Cet espace n’a pas vocation à transmettre des données à
+									caractère personnels.
+								</Field.HelperText>
 								<Field.ErrorText>{errors.comment?.message}</Field.ErrorText>
 							</Field.Root>
 						</Flex>

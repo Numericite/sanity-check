@@ -9,13 +9,13 @@ export default function Document() {
 					content="Sanity Check vous aide à vérifier facilement la conformité RGPD et l’éthique des solutions numériques que vous utilisez. Analysez en quelques secondes si un site ou service respecte vos valeurs et vos données."
 				/>
 				<link rel="icon" href="/favicon.ico" />
-				<script
+				{/* <script
 					type="text/javascript"
 					src="/static/tarteaucitron/tarteaucitron.js"
 				/>
 				{process.env.NEXT_PUBLIC_ENV_APP === "production" && (
 					<script type="text/javascript" src="/static/tarteaucitron/init.js" />
-				)}
+				)} */}
 			</Head>
 			<body>
 				<Main />

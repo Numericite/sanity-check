@@ -109,7 +109,7 @@ export default function Footer(){
                     flexDir={"column"}
                 >
                     <Heading color={"primary.active"} as={"h3"} size={{ base: "lg", lg: "xl" }}>
-                        Légal
+                        Juridique
                     </Heading>
                     <Flex flexDir={"column"} alignItems={{ base: "center", lg: "start" }} gap={{ base: 2, lg: 1 }} mt={2}>
                         <ChakraLink
