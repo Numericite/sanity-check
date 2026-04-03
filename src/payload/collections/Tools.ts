@@ -113,31 +113,37 @@ export const Tools: CollectionConfig = {
 			name: "online_accessible_dpa",
 			type: "checkbox",
 			label: "Accès en ligne au DPA",
+			defaultValue: false,
 		},
 		{
 			name: "certification_dpf",
 			type: "checkbox",
 			label: "Certification DPF",
+			defaultValue: false,
 		},
 		{
 			name: "opensource",
 			type: "checkbox",
 			label: "Open source",
+			defaultValue: false,
 		},
 		{
 			name: "self_host_possibility",
 			type: "checkbox",
 			label: "Possibilité d'auto-hébergement",
+			defaultValue: false,
 		},
 		{
 			name: "fr_documentation",
 			type: "checkbox",
 			label: "Documentation en français",
+			defaultValue: false,
 		},
 		{
 			name: "dpa_compliant",
 			type: "checkbox",
 			label: "Conformité au DPA",
+			defaultValue: false,
 		},
 		{
 			name: "dpa_link",
@@ -148,6 +154,7 @@ export const Tools: CollectionConfig = {
 			name: "enterprise_european",
 			type: "checkbox",
 			label: "Entreprise européenne",
+			defaultValue: false,
 		},
 		{
 			name: "actions",
